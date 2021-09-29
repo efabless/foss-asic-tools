@@ -18,7 +18,7 @@ ENV HOME=/headless \
     NO_VNC_HOME=/dockerstartup/noVNC \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1680x1050 \
-    VNC_PW=start \
+    VNC_PW=abc123 \
     VNC_VIEW_ONLY=false \
     DESIGNS=/foss/designs \
     TOOLS=/foss/tools \
@@ -78,7 +78,7 @@ ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
 RUN bash $STARTUPDIR/scripts/miscellaneous.sh
 
 ADD ./scripts/env.sh $HOME/.bashrc
-#RUN bash $HOME/.bashrc
+RUN bash $HOME/.bashrc
 
 ### configure startup
 RUN $STARTUPDIR/scripts/libnss_wrapper.sh
@@ -87,7 +87,6 @@ RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
 WORKDIR $DESIGNS
 
 USER 1000
-RUN bash $HOME/.bashrc
 
 ENTRYPOINT ["/dockerstartup/scripts/vnc_startup.sh"]
 
