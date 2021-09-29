@@ -3,11 +3,10 @@
 set -e
 
 echo "Install some common tools for further installation"
+
 yum -y install epel-release 
 
 yum -y update
-
-yum clean all
 
 yum install -y \
 	git \

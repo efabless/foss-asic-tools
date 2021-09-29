@@ -78,7 +78,7 @@ ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
 RUN bash $STARTUPDIR/scripts/miscellaneous.sh
 
 ADD ./scripts/env.sh $HOME/.bashrc
-RUN bash $HOME/.bashrc
+#RUN bash $HOME/.bashrc
 
 ### configure startup
 RUN $STARTUPDIR/scripts/libnss_wrapper.sh
@@ -87,6 +87,7 @@ RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
 WORKDIR $DESIGNS
 
 USER 1000
+RUN bash $HOME/.bashrc
 
 ENTRYPOINT ["/dockerstartup/scripts/vnc_startup.sh"]
 

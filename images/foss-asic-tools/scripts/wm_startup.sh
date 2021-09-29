@@ -4,11 +4,6 @@ set -e
 
 echo -e "\n------------------ startup of Xfce4 window manager ------------------"
 
-### disable screensaver and power management
-xset -dpms &
-xset s noblank &
-xset s off &
-
-/usr/bin/startxfce4 --replace > $STARTUPDIR/logs/wm.log &
+/usr/bin/startxfce4 > $STARTUPDIR/logs/wm.log &
 sleep 1
 cat $STARTUPDIR/logs/wm.log

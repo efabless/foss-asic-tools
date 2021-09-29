@@ -25,7 +25,7 @@ echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTIO
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/logs/vnc_startup.log
 
 echo -e "start window manager\n..."
-$STARTUPDIR/scripts/wm_startup.sh &> $STARTUPDIR/logs/wm_startup.log
+##$STARTUPDIR/scripts/wm_startup.sh &> $STARTUPDIR/logs/wm_startup.log
 
 ## log connect options
 echo -e "\n\n------------------ VNC environment started ------------------"
