@@ -1,0 +1,8 @@
+{
+    "args": {
+        "BASE_IMAGE": "base",
+        "NAME": "openlane",
+        "REPO_URL": "https://github.com/The-OpenROAD-Project/OpenLane",
+        "REPO_COMMIT": "2021.09.23_03.17.13"
+    }
+}

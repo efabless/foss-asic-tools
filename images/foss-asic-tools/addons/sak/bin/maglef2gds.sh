@@ -1,0 +1,1 @@
+../magic/maglef2gds.sh

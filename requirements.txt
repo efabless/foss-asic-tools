@@ -1,0 +1,3 @@
+docker
+six
+gitpython

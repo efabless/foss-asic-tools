@@ -1,0 +1,1 @@
+../magic/gds2mag.sh

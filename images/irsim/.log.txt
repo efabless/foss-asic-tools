@@ -1,0 +1,2 @@
+make[1]: Entering directory '/home/karim/work/ef/chipignite/tools/magic'
+make[1]: Leaving directory '/home/karim/work/ef/chipignite/tools/magic'

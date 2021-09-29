@@ -1,0 +1,1 @@
+../magic/drc-def-sky130A.sh

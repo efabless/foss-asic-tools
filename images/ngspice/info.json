@@ -1,0 +1,8 @@
+{
+	"args" : {
+		"BASE_IMAGE" : "base",
+		"NAME": "ngspice",
+		"REPO_URL": "https://git.code.sf.net/p/ngspice/ngspice",
+		"REPO_COMMIT": "51cc21de1637d1abca1b361b756784e69a28cf76"
+	}
+}

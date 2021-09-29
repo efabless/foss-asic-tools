@@ -1,0 +1,1 @@
+../magic/ext-gds-sky130A.sh

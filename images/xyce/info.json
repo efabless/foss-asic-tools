@@ -1,0 +1,8 @@
+{
+    "args": {
+        "BASE_IMAGE": "base",
+        "NAME": "xyce",
+        "REPO_URL": "https://github.com/Xyce/Xyce.git",
+        "REPO_COMMIT": "a157dbaa9516d5c218725f174b35f670b9e34131"
+    }
+}
