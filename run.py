@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import argparse
-from image.image import Image
-from docker_builder.docker_builder import DockerBuilder
-from paths import paths as p
-from recipe import recipe
+from src.image import recipe
+from src.image.image import Image
+from src.docker_builder.docker_builder import DockerBuilder
+from src.image import paths as p
 
 def buildImages(paths):
     builder = DockerBuilder()

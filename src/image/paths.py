@@ -3,11 +3,12 @@
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGES_PATH = "../images/"
+IMAGES_PATH = "../../images/"
 
 
 def getAllImagesPath():
-    packages_dir = os.path.join(SCRIPT_DIR, IMAGES_PATH)
+    packages_dir = os.path.abspath(
+        os.path.join(SCRIPT_DIR, IMAGES_PATH))
     dirs = os.listdir(packages_dir)
     dirs_not_hidden = [f for f in dirs if not f.startswith('.')]
     full_dirs_path = [os.path.join(packages_dir, f) for f in dirs_not_hidden]

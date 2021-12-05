@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from paths.paths import getImagePath
+from .paths import getImagePath
 import json
 import csv
-from image.image import Image
+from .image import Image
 
 
 def parseRecipeDict(recipe_dict):
