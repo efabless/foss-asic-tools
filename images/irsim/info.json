@@ -1,8 +1,9 @@
 {
     "args": {
+        "GIT": "true",
         "BASE_IMAGE": "base",
         "NAME": "irsim",
         "REPO_URL": "https://github.com/rtimothyedwards/irsim",
-        "REPO_COMMIT": " 5f33a7328787f726c1a22e787c8cc810f46971d3"
+        "REPO_COMMIT": "3813495e55a21a024e62e21bd6993fac068a61b9"
     }
 }

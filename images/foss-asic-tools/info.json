@@ -1,5 +1,6 @@
 {
     "args": {
+        "GIT": "false",
         "BASE_IMAGE": "base",
         "NAME": "foss-asic-tools",
         "REPO_URL": "https://github.com/efabless/foss-asic-tools",

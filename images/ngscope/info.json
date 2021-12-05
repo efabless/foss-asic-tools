@@ -1,8 +1,9 @@
 {
     "args": {
+        "GIT": "false",
         "BASE_IMAGE": "base",
         "NAME": "ngscope",
-        "REPO_URL": "none",
+        "REPO_URL": "n/a",
         "REPO_COMMIT": "0.9.5"
     }
 }

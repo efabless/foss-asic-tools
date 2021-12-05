@@ -6,6 +6,18 @@ import csv
 from .image import Image
 
 
+def genRecipe(images):
+    csv = "Name,Version\n"
+    for image_name in images:
+        image_path = getImagePath(image_name)
+        image = Image.createFromPath(image_path)
+        version = image.version
+        csv += f"{image_name},{version}\n"
+
+    return csv
+
+
+
 def parseRecipeDict(recipe_dict):
     images = []
     for item in recipe_dict:

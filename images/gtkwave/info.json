@@ -1,8 +1,9 @@
 {
-	"args" : {
-		"BASE_IMAGE" : "base",
-		"NAME": "gtkwave",
-		"REPO_URL": "https://github.com/gtkwave/gtkwave",
-		"REPO_COMMIT": "bc06f0fabd174d44f50647b09d6f7c702b3b6c40"
-	}
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "gtkwave",
+        "REPO_URL": "https://github.com/gtkwave/gtkwave",
+        "REPO_COMMIT": "13fc69b24caa203d3b1946eb228d462c1e9d98c5"
+    }
 }

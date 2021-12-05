@@ -1,8 +1,9 @@
 {
     "args": {
+        "GIT": "true",
         "BASE_IMAGE": "base",
         "NAME": "magic",
         "REPO_URL": "https://github.com/rtimothyedwards/magic",
-        "REPO_COMMIT": "73929a0bccd3083c3fe5c74b7ebf5a20d74bb4ee"
+        "REPO_COMMIT": "bfdf1227a704dbbfb78f42f69965ccc2c81989c1"
     }
 }

@@ -1,5 +1,6 @@
 {
 	"args" : {
+		"GIT": "true",
 		"BASE_IMAGE" : "base",
 		"NAME": "covered",
 		"REPO_URL": "https://github.com/Manarabdelaty/verilog-covered",

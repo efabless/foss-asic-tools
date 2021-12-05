@@ -1,8 +1,9 @@
 {
     "args": {
+        "GIT": "true",
         "BASE_IMAGE": "base",
         "NAME": "netgen",
         "REPO_URL": "https://github.com/rtimothyedwards/netgen",
-        "REPO_COMMIT": "18dcac73bcb10455475826facbfdb4c25ce1a951"
+        "REPO_COMMIT": "cfdc60104b8487be153541697df476ca84598e4a"
     }
 }

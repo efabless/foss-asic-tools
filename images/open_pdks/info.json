@@ -1,5 +1,6 @@
 {
     "args": {
+        "GIT": "true",
         "BASE_IMAGE": "base",
         "MAGIC_IMAGE": "magic",
         "NAME": "open_pdks",

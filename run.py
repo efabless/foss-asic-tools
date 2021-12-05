@@ -52,6 +52,7 @@ def update(args):
 def handleRecipe(args):
     json_file = args.json
     csv_file = args.csv
+    update = args.update
     dict = None
 
     if json_file != None:
@@ -60,15 +61,23 @@ def handleRecipe(args):
         dict = recipe.parseCsvFile(csv_file)
 
     images = recipe.parseRecipeDict(dict)
-    builder = DockerBuilder()
-    for image in images:
-        image.build_status = builder.build(image)
+    if update == True:
+        csv = "Name,Version\n"
+        for image in images:
+            image.update(updateFlag=True)
+            csv += f"{image.name},{image.version}\n"
+        with open(csv_file, "w") as file:
+            file.writelines(csv)
+    else:
+        builder = DockerBuilder()
+        for image in images:
+            image.build_status = builder.build(image)
 
-    for image in images:
-        status = "Fail"
-        if image.build_status == True:
-            status = "Success"
-        print("Image | {:^30} | {:10} ".format(image.name, status))
+        for image in images:
+            status = "Fail"
+            if image.build_status == True:
+                status = "Success"
+            print("Image | {:^30} | {:10} ".format(image.name, status))
 
 
 parser = argparse.ArgumentParser(
@@ -92,6 +101,7 @@ recipe_subparser = subparsers.add_parser("recipe",
                                          help="recipe ")
 recipe_subparser.add_argument("--json", type=str)
 recipe_subparser.add_argument("--csv", type=str)
+recipe_subparser.add_argument("--update", action="store_true")
 recipe_subparser.set_defaults(func=handleRecipe)
 
 args = parser.parse_args()

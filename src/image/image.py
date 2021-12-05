@@ -17,6 +17,8 @@ class Image():
         self.version = self.args["REPO_COMMIT"]
         self.build_status = False
 
+        self.is_git = True if self.args["GIT"] == "true" else False
+
 
     @classmethod
     def createFromPath(cls, path):
@@ -24,6 +26,7 @@ class Image():
         json_file = os.path.join(path, JSON_FILE)
 
         return cls.createFromJSON(json_file)
+
 
     @classmethod
     def createFromJSON(cls, json_file):
@@ -46,10 +49,12 @@ class Image():
 
 
     def getLatestVersion(self):
-        url = self.url
-        g = git.cmd.Git()
-        response = g.ls_remote(url, 'HEAD')
-        latest_version = response.split()[0]
+        latest_version = ""
+        if self.is_git == True:
+            url = self.url
+            g = git.cmd.Git()
+            response = g.ls_remote(url, 'HEAD')
+            latest_version = response.split()[0]
 
         return latest_version
 
@@ -67,21 +72,25 @@ class Image():
 
 
     def update(self, updateFlag=False):
-        current_version = self.version
-        new_version = self.getLatestVersion()
+        if self.is_git == True:
+            current_version = self.version
+            new_version = self.getLatestVersion()
 
-        if (new_version != current_version):
-            if (updateFlag == True):
-                self.commitVersion(new_version)
-            else:
-                response = self.updatePrompt(new_version)
-                if (response == True):
+            if (new_version != current_version):
+                if (updateFlag == True):
                     self.commitVersion(new_version)
-                    print("New version commited!")
+                    print(f"{self.name} updated to {self.version}")
+                else:
+                    response = self.updatePrompt(new_version)
+                    if (response == True):
+                        self.commitVersion(new_version)
+                        print(f"{self.name} updated to {self.version}")
+            else:
+               print("Latest version for (%s) synced.\n"
+                     "Run install to install it.\n"
+                     "Nothing to be done." % self.name)
         else:
-           print("Latest version for (%s) synced.\n"
-                 "Run install to install it.\n"
-                 "Nothing to be done." % self.name)
+            print(f"{self.name} is not git-based")
 
 
     def commitVersion(self, new_version):
