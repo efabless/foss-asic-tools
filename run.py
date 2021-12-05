@@ -53,14 +53,14 @@ def handleRecipe(args):
     json_file = args.json
     csv_file = args.csv
     update = args.update
-    dict = None
+    dictionary = None
 
     if json_file != None:
-        dict = recipe.readJsonFile(json_file)
+        dictionary = recipe.readJsonFile(json_file)
     elif csv_file != None:
-        dict = recipe.parseCsvFile(csv_file)
+        dictionary = recipe.parseCsvFile(csv_file)
 
-    images = recipe.parseRecipeDict(dict)
+    images = recipe.parseRecipeDict(dictionary)
     if update == True:
         csv = "Name,Version\n"
         for image in images:
