@@ -86,8 +86,7 @@ class Image():
                         self.commitVersion(new_version)
                         print(f"{self.name} updated to {self.version}")
             else:
-               print("Latest version for (%s) synced.\n"
-                     "Run install to install it.\n"
+               print("Latest version for (%s) synced. "
                      "Nothing to be done." % self.name)
         else:
             print(f"{self.name} is not git-based")
