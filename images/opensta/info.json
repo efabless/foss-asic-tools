@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "opensta",
+        "REPO_URL": "https://github.com/The-OpenROAD-Project/OpenSTA",
+        "REPO_COMMIT": "cdf590deb1e75b6f348036f7498179adeddf462d"
+    }
+}

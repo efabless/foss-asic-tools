@@ -23,7 +23,7 @@ ENV HOME=/headless \
     DESIGNS=/foss/designs \
     TOOLS=/foss/tools \
     PDK_ROOT=/foss/pdks
-    
+
 ADD ./scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 RUN $STARTUPDIR/scripts/tools.sh
@@ -32,7 +32,7 @@ RUN $STARTUPDIR/scripts/tools.sh
 RUN $STARTUPDIR/scripts/tigervnc.sh
 RUN $STARTUPDIR/scripts/no_vnc.sh
 
-### Install firefox 
+### Install firefox
 RUN $STARTUPDIR/scripts/firefox.sh
 
 ### Install xfce UI
@@ -58,18 +58,20 @@ FROM base
 
 COPY --from=pdk        	/foss/pdks/    /foss/pdks/
 COPY --from=openlane   	/foss/tools    /foss/tools
-COPY --from=gtkwave    	/foss/tools/   /foss/tools/ 
-COPY --from=iverilog   	/foss/tools/   /foss/tools/ 
-COPY --from=magic      	/foss/tools/   /foss/tools/ 
-COPY --from=netgen     	/foss/tools/   /foss/tools/ 
-COPY --from=klayout    	/foss/tools/   /foss/tools/ 
-COPY --from=rv32i 	/foss/tools/   /foss/tools/ 
-COPY --from=gaw3       	/foss/tools/   /foss/tools/ 
-COPY --from=ngscope   	/foss/tools/   /foss/tools/ 
-COPY --from=ngspice    	/foss/tools/   /foss/tools/ 
-COPY --from=xschem     	/foss/tools/   /foss/tools/ 
-COPY --from=xyce       	/foss/tools/   /foss/tools/ 
-COPY --from=covered    	/foss/tools/   /foss/tools/ 
+COPY --from=gtkwave    	/foss/tools/   /foss/tools/
+COPY --from=iverilog   	/foss/tools/   /foss/tools/
+COPY --from=magic      	/foss/tools/   /foss/tools/
+COPY --from=netgen     	/foss/tools/   /foss/tools/
+COPY --from=klayout    	/foss/tools/   /foss/tools/
+COPY --from=rv32i 	    /foss/tools/   /foss/tools/
+COPY --from=gaw3       	/foss/tools/   /foss/tools/
+COPY --from=ngscope   	/foss/tools/   /foss/tools/
+COPY --from=ngspice    	/foss/tools/   /foss/tools/
+COPY --from=xschem     	/foss/tools/   /foss/tools/
+COPY --from=xyce       	/foss/tools/   /foss/tools/
+COPY --from=covered    	/foss/tools/   /foss/tools/
+COPY --from=opensta    	/foss/tools/   /foss/tools/
+COPY --from=cvc     	  /foss/tools/   /foss/tools/
 
 
 ADD ./addons/sak /foss/tools/sak

@@ -19,8 +19,10 @@ ngspice_path=$(get_path "ngspice")
 xschem_path=$(get_path "xschem")
 xyce_path=$(get_path "xyce/Parallel")
 covered_path=$(get_path "covered")
+opensta_path=$(get_path "opensta")
+cvc_path=$(get_path "cvc")
 
-export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}
+export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 

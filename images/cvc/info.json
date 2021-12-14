@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "cvc",
+        "REPO_URL": "https://github.com/cambridgehackers/open-src-cvc.git",
+        "REPO_COMMIT": "d01c4abd446aaac3fe7f9465611d654536a20a7a"
+    }
+}
