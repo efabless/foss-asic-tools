@@ -9,5 +9,5 @@ git checkout ${REPO_COMMIT}
 git submodule update --init --recursive
 mkdir build
 cd build
-../configure --with-arch=rv32i --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
-make -j$(nproc)
+../configure --with-arch=rv32ia --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
+make linux -j$(nproc)
