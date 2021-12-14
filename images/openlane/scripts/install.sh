@@ -4,7 +4,7 @@ source scl_source enable devtoolset-8
 
 
 install_openlane_tools() {
-	cd docker_build
+	cd docker
 	make export-all
 	mkdir -p /foss/tools/${NAME}_tools/${REPO_COMMIT}
 	cp -r build/* /foss/tools/${NAME}_tools/${REPO_COMMIT}
