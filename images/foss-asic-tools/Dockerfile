@@ -48,7 +48,7 @@ FROM open_pdks:latest as pdk
 FROM magic:latest as magic
 FROM netgen:latest as netgen
 FROM riscv-gnu-toolchain-rv32i as rv32i
-FROM gaw3 as gaw3
+FROM gaw3-xschem as gaw3-xschem
 FROM ngscope as ngscope
 FROM ngspice as ngspice
 FROM xyce as xyce
@@ -64,7 +64,7 @@ COPY --from=magic      	/foss/tools/   /foss/tools/
 COPY --from=netgen     	/foss/tools/   /foss/tools/
 COPY --from=klayout    	/foss/tools/   /foss/tools/
 COPY --from=rv32i 	    /foss/tools/   /foss/tools/
-COPY --from=gaw3       	/foss/tools/   /foss/tools/
+COPY --from=gaw3-xschem	/foss/tools/   /foss/tools/
 COPY --from=ngscope   	/foss/tools/   /foss/tools/
 COPY --from=ngspice    	/foss/tools/   /foss/tools/
 COPY --from=xschem     	/foss/tools/   /foss/tools/
