@@ -3,6 +3,7 @@
 import docker
 import time
 import logging
+import re
 
 
 class DockerBuilder():
@@ -50,10 +51,12 @@ class DockerBuilder():
         return build_status
 
     def printResponse(self, response, name):
+        ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         if 'stream' in response:
             for line in response['stream'].splitlines():
-                if (line != ''):
-                    if (line.rstrip() != '\n' and (line.rstrip() != '')):
-                        self.logger.info("[" + name + "] :: " + line.rstrip())
+                line = line.rstrip()
+                line = ansi_escape.sub('', line)
+                if line != '\n' and line != '':
+                    self.logger.info("[" + name + "] :: " + line.rstrip())
         elif 'error' in response:
             raise docker.errors.APIError(response['error'])
