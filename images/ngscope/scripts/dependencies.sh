@@ -4,6 +4,7 @@ yum -y install bison flex gawk zlib-devel libtool wget git curl zip unzip
 yum -y install autoconf automake make gcc-c++ libstdc++-static.x86_64
 yum -y install curl libffi-devel readline-devel tcl tcl-devel graphviz xdot tk tk-devel bzip2-devel xz-devel gtk2*
 yum -y install wxGTK-devel
+yum install -y ca-certificates
 
 cmakeVersionBig=3.14
 cmakeVersionSmall=${cmakeVersionBig}.0
