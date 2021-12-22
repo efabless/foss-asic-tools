@@ -1,8 +1,7 @@
 Name,Version
 base,alpha
-riscv-gnu-toolchain-rv32i,b39e36160aa0649ba0dfb9aa314d375900d610fb
+riscv-gnu-toolchain-rv32i,411d134
 opensta,104f90089a0e4427e1fa03d59a583e7414fbbb20
 cvc,d01c4abd446aaac3fe7f9465611d654536a20a7a
-gtkwave,13fc69b24caa203d3b1946eb228d462c1e9d98c5
 iverilog,668f9850bc74c49842302891d63d7d42058e4a11
-foss-asic-tools,alpha
+verification,alpha
