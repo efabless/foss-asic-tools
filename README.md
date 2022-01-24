@@ -48,7 +48,7 @@ Download and install Docker for your operating system
 ```
 export DESIGNS=<host path for designs>
 docker pull efabless/foss-asic-tools:alpha
-docker run -it -p 80:80 --user 0  -v $DESIGNS:/foss/designs efabless/foss-asic-tools:alpha bash
+docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabless/foss-asic-tools:alpha bash
 ```
 - Open your browser of choice and go to https://localhost when asked for a password use abc123 which is the default.
 
