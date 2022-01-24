@@ -38,6 +38,11 @@ FOSS-Tools Manager - building a docker container from s pecific set of commit ID
     44c13e2256d5907090d6a2a62d9b9f8ddf23758d
     Would you like to update? (y/N)
     ```
+- Updating all images
+    ```
+    python3 run.py update --all --yes
+    ```
+    
 ## Quick Launch:
 
 Download and install Docker for your operating system
