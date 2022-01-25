@@ -38,9 +38,9 @@ FOSS-Tools Manager - building a docker container from s pecific set of commit ID
     44c13e2256d5907090d6a2a62d9b9f8ddf23758d
     Would you like to update? (y/N)
     ```
-- Updating all images
+- Updating all images in a given recipe file
     ```
-    python3 run.py update --all --yes
+    python3 run.py recipe --csv ./recipes/recipe.csv --update-reference
     ```
     
 ## Quick Launch:
