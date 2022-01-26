@@ -1,0 +1,117 @@
+
+    /* User Preferences */
+
+    /* userprefs version managed by mkcf */
+up_version = 16
+    /* global debug flag */
+up_prog_debug = 0
+    /* level of verbosity */
+up_verbose = 0
+    /* Number of panels to be displayed by default */
+up_npanels = 3
+    /* Window minimum width */
+up_min_win_width = 500
+    /* Window minimum height */
+up_min_win_height = 500
+    /* lower y coord for panel_scrolled on screen */
+up_max_ps_y = 1409
+    /* grid X line spacing */
+up_gridXSpacing = 20
+    /* grid Y line spacing */
+up_gridYSpacing = 20
+    /* nominal height for panel */
+up_panelHeight = 203
+    /* nominal width for panel */
+up_panelWidth = 1998
+    /* minimun height for panel */
+up_minPanelHeight = 200
+    /* minimuùm width for panel */
+up_minPanelWidth = 500
+    /* icons, text or both */
+up_toolBarStyle = 2
+    /* RGB color for panel background 0-0xff, 0-0xff, 0-0xff */
+up_panelBgColor = "rgb(0,0,0)"
+    /* nominal width for buttons and masurements table */
+up_lmtableWidth = 280
+    /* Should we show yhe grid in panel */
+up_showGrid = 0
+    /* RGB color for grid 0-0xff, 0-0xff, 0-0xff */
+up_gridColor = "rgb(102,40,40)"
+    /* RGB color for highlight  0-0xff, 0-0xff, 0-0xff */
+up_hlColor = "rgb(255,255,255)"
+    /* RGB color for select range  0-0xff, 0-0xff, 0-0xff */
+up_srangeColor = "rgb(255,255,255)"
+    /* [0, 1, 2] cursors 0, 1, diff, colors  0xffffff */
+up_cursorsColor = "rgb(255,255,255)", "rgb(255,255,0)", ""
+    /* [state] RGB button bg color[state] 0-0xff, 0-0xff, 0-0xff */
+up_buttonBgColor = "", "", ""
+    /* Should we show X labels */
+up_showXLabels = 1
+    /* Should we show Y labels */
+up_showYLabels = 1
+    /* choice between old mode with 2 labels or new mode with more */
+up_showMoreYLabels = 0
+    /* Should we use scientific conversion mode */
+up_scientific = 0
+    /* Should we set log X scale */
+up_setLogX = 0
+    /* Should we set log Y scale */
+up_setLogY = 0
+    /* Should we show Y diff measure buttons */
+up_showYDiff = 0
+    /* image default format: jpeg, png, tiff,... */
+up_imgFmt = "png"
+    /* Base name for saving image */
+up_imgBaseName = "panel"
+    /* jpeg quality for saving image */
+up_jpegQuality = 100
+    /* png compression for saving image */
+up_pngCompression = 0
+    /* time to wait in millisecond before saving image to file */
+up_exportTimeout = 1500
+    /* port used for listen in gaw server */
+up_listenPort = 2020
+    /* preferred format for data file */
+up_dataFileFormat =
+    /* last used file name */
+up_lastDataFile =
+    /* sampling rate */
+up_rate = 48000
+    /* duration length of capture in seconds */
+up_duration = 10
+    /* value of pcm format : SND_PCM_FORMAT_S16_LE ... */
+up_pcm_format = 0
+    /* index of the mixer input */
+up_input = 2
+    /* index of the card '-' for default, '0' ... */
+up_cardidstr = "-"
+    /* command called for display help */
+up_helpCmd = "firefox %s"
+    /* Gaw user guide page */
+up_userGuide = "http://www.rvq.fr/linux/gawman.php"
+    /* gaw main page web site */
+up_webSite = "http://www.rvq.fr/linux/gaw.php"
+    /* background color for drawing text */
+up_text_bg_color = "rgb(239,41,41)"
+    /* foreround color for drawing text */
+up_text_fg_color = "rgb(243,243,243)"
+    /* user default font for drawing text */
+up_text_font = "Sans 10"
+    /* degree: default angle for drawing text */
+up_angle = "0"
+    /* allow resize the main window */
+up_allowResize = 0
+    /* index of the drawing algorithm */
+up_drawAlgo = 0
+    /* RGB color for list box button back ground color */
+up_lboxbgColor = "rgb(0,0,0)"
+    /* RGB color for wave button back ground color */
+up_wavebgColor = "rgb(0,0,0)"
+    /* RGB color for list box button foreground color */
+up_lboxfgColor = "rgb(255,255,255)"
+    /* index of the X conversion */
+up_xconvert = 0
+    /* a strptime, strftime format for time_t conv */
+up_date_fmt = "%d-%m-%Y %H:%M:%S"
+    /* a printf format to exprees a diff date */
+up_diffdate_fmt = "%dd %dh %dm %ds"

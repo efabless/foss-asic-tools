@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "magic",
         "REPO_URL": "https://github.com/rtimothyedwards/magic",
-        "REPO_COMMIT": "bfdf1227a704dbbfb78f42f69965ccc2c81989c1"
+        "REPO_COMMIT": "45bb62de2fa1e089d7d98b4cdfcd24837c277af8"
     }
 }
