@@ -80,9 +80,9 @@ COPY --from=irsim    		/foss/tools/   /foss/tools/
 
 
 ADD ./addons/sak 	/foss/tools/sak
-ADD ./addons/.klayout 	/headless/ 
-ADD ./addons/.gaw 	/headless/
-ADD ./addons/.xschem 	/headless/
+COPY ./addons/.klayout/ 	/headless/.klayout/
+COPY ./addons/.xschem/ 	    /headless/.xschem/
+COPY ./addons/.gaw/ 	    /headless/.gaw/
 
 
 ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
