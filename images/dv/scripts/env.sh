@@ -9,8 +9,8 @@ function get_path() {
 iverilog_path=$(get_path "iverilog")
 riscv32i_path=$(get_path "riscv-gnu-toolchain-rv32i" )
 opensta_path=$(get_path "opensta")
-cvc_path=$(get_path "cvc")
+simcvc_path=$(get_path "simcvc")
 
-export PATH=$PATH:${iverilog_path}:${riscv32i_path}:${opensta_path}:${cvc_path}
+export PATH=$PATH:${iverilog_path}:${riscv32i_path}:${opensta_path}:${simcvc_path}
 export GCC_PATH=${riscv32i_path}
 

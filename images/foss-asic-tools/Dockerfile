@@ -54,7 +54,7 @@ FROM xyce as xyce
 FROM covered as covered
 FROM cvc as cvc
 FROM opensta as opensta
-#FROM efabless_dv as efabless_dv
+FROM  dv as dv
 FROM irsim as irsim
 FROM base
 
@@ -75,14 +75,13 @@ COPY --from=xyce	       	/foss/tools/   /foss/tools/
 COPY --from=covered	       	/foss/tools/   /foss/tools/
 COPY --from=opensta    		/foss/tools/   /foss/tools/
 COPY --from=cvc     	  	/foss/tools/   /foss/tools/
-#COPY --from=efabless_dv   	/foss/tools/   /foss/tools/
+COPY --from=dv   		/foss/tools/   /foss/tools/
 COPY --from=irsim    		/foss/tools/   /foss/tools/
 
 
-ADD ./addons/sak 	/foss/tools/sak
+ADD  ./addons/sak 		/foss/tools/sak
 COPY ./addons/.klayout/ 	/headless/.klayout/
-COPY ./addons/.xschem/ 	    /headless/.xschem/
-COPY ./addons/.gaw/ 	    /headless/.gaw/
+COPY ./addons/.gaw/ 	    	/headless/.gaw/
 
 
 ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh

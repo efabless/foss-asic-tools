@@ -1,0 +1,162 @@
+** sch_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/test_comparator.sch
+**.subckt test_comparator CAL PLUS MINUS EN VSS VCC SAOUT
+*.ipin CAL
+*.ipin PLUS
+*.ipin MINUS
+*.ipin EN
+*.ipin VSS
+*.ipin VCC
+*.opin SAOUT
+E5 TEMPERAT VSS VOL=' temper '
+C38 VSS 0 2p m=1
+C3 SAOUTF 0 4f m=1
+C5 GN 0 4f m=1
+C30 SN 0 2f m=1
+C31 OUTDIFF 0 4f m=1
+v2 net1 VSSI 0
+.save  i(v2)
+v3 net4 VSSI 0
+.save  i(v3)
+v4 net3 VSSI 0
+.save  i(v4)
+v6 net2 VSSI 0
+.save  i(v6)
+C1 SAOUT 0 4f m=1
+v1 net5 VSSI 0
+.save  i(v1)
+v5 net6 VSSI 0
+.save  i(v5)
+C7 GP 0 4f m=1
+x4 CALBB CALB VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x5 CALB CAL VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+XM4 SP VSS VCC VCC sky130_fd_pr__pfet_01v8 L=1 W=0.55 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM5 OUTDIFF GN VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM6 GN GN VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM8 SAOUTF OUTDIFF VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM9 SAOUT SAOUTF VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM11 SAOUT EN VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM12 SAOUT ZERO2 VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM13 SAOUTF ZERO1 VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM14 OUTDIFF ZERO0 VCC VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM1 VSSI EN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=2 m=2
+XM2 OUTDIFF ZERO0 net2 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM3 SAOUTF ZERO1 net3 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM7 SAOUT ZERO2 net6 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM15 SAOUT SAOUTF net5 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM10 SAOUTF OUTDIFF net4 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM17 SN VCC net1 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=0.42 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM18 OUTDIFF GP VSSI VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM19 GP GP VSSI VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM20 OUTDIFF PLUS SP VCC sky130_fd_pr__pfet_01v8_lvt L=0.35 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM21 GP MINUS SP VCC sky130_fd_pr__pfet_01v8_lvt L=0.35 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM23 OUTDIFF PLUS SN VSS sky130_fd_pr__nfet_01v8_lvt L=0.25 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM16 GN MINUS SN VSS sky130_fd_pr__nfet_01v8_lvt L=0.25 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+x1 OUTDIFF ZERO0 CALB CALBB VCC VSS passgate_nlvt W_N=0.42 L_N=0.4 W_P=0.42 L_P=0.4 m=1
+x2 SAOUTF ZERO1 CALB CALBB VCC VSS passgate_nlvt W_N=0.42 L_N=0.4 W_P=0.42 L_P=0.4 m=1
+x3 SAOUT ZERO2 CALB CALBB VCC VSS passgate_nlvt W_N=0.42 L_N=0.4 W_P=0.42 L_P=0.4 m=1
+C2 ZERO0 VCC 15f m=1
+C4 ZERO1 VCC 15f m=1
+C6 ZERO2 VCC 15f m=1
+**** begin user architecture code
+
+** opencircuitdesign pdks install
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sky130_tests/not.sym # of pins=2
+** sym_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/not.sym
+** sch_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/not.sch
+.subckt not  y a  VCCPIN  VSSPIN      W_N=1 L_N=0.15 W_P=2 L_P=0.15
+*.opin y
+*.ipin a
+XM1 y a VSSPIN VSSPIN sky130_fd_pr__nfet_01v8 L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 y a VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/passgate_nlvt.sym # of pins=4
+** sym_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/passgate_nlvt.sym
+** sch_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/passgate_nlvt.sch
+.subckt passgate_nlvt  Z A GP GN  VCCBPIN  VSSBPIN   W_N=1 L_N=0.35 W_P=1 L_P=0.35
+*.iopin A
+*.iopin Z
+*.ipin GP
+*.ipin GN
+XM1 Z GN A VSSBPIN sky130_fd_pr__nfet_01v8_lvt L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Z GP A VCCBPIN sky130_fd_pr__pfet_01v8_lvt L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+**** begin user architecture code
+
+
+** this experimental option enables mos model bin
+** selection based on W/NF instead of W
+.option wnflag=1
+
+.param VCCGAUSS=agauss(1.8, 0.05, 1)
+.param VCC='VCCGAUSS'
+** use following line to remove VCC variations
+* .param VCC=1.8
+.param VDL='VCC/2+0.2'
+.param TEMPGAUSS=agauss(40, 30, 1)
+.option temp='TEMPGAUSS'
+** use following line to remove temperature variations
+* .option temp=25
+
+** to generate following file:
+** copy .../xschem_sky130/sky130_tests/stimuli.test_comparator to simulation directory
+** then do 'Simulation->Utile Stimuli Editor (GUI)' and press 'Translate'
+.include "stimuli_test_comparator.cir"
+
+.control
+  option seed=12
+  let run=1
+  dowhile run <= 40
+    if run > 1
+      reset
+      set appendwrite
+    end
+    save all
+    * save saout cal i(vvcc) en plus minus
+    tran 0.1n 300n uic
+    write test_comparator.raw
+    let run = run + 1
+  end
+.endc
+
+
+**** end user architecture code
+.end
