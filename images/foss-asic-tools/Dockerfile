@@ -84,6 +84,7 @@ COPY --from=irsim    		/foss/tools/   /foss/tools/
 ADD  ./addons/sak 		/foss/tools/sak
 COPY ./addons/.klayout/ 	/headless/.klayout/
 COPY ./addons/.gaw/ 	    	/headless/.gaw/
+COPY ./addons/examples 	/foss/examples
 
 
 ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh

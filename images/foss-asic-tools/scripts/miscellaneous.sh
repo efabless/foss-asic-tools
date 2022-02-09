@@ -13,11 +13,3 @@ ln -s ../*/*/bin/* .
 mkdir $STARTUPDIR/logs
 
 
-###############
-
-cd /foss/pdks
-ln -s ../tools/xschem/*/share xschem-share
-ln -s ../tools/xschem/*/share/xschem/xschem_library .
-
-###############
-
