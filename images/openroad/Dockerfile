@@ -1,5 +1,6 @@
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE} as builder
+FROM centos:centos7 as builder
+#FROM ${BASE_IMAGE} as builder
 
 ARG REPO_URL
 ARG REPO_COMMIT
