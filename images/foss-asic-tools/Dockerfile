@@ -54,13 +54,15 @@ FROM xyce as xyce
 FROM covered as covered
 FROM cvc as cvc
 FROM opensta as opensta
-FROM  dv as dv
+FROM efabless/dv as dv
 FROM irsim as irsim
+#FROM openroad as openroad
 FROM base
 
 
 COPY --from=pdk        		/foss/pdks/    /foss/pdks/
-COPY --from=openlane   		/openlane      /foss/tools/openlane
+COPY --from=openlane   	/openlane      /foss/tools/openlane
+#COPY --from=openroad   		/foss/tools/openroad      /foss/tools/
 COPY --from=gtkwave    		/foss/tools/   /foss/tools/
 COPY --from=iverilog   		/foss/tools/   /foss/tools/
 COPY --from=magic      		/foss/tools/   /foss/tools/

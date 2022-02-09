@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "xschem",
         "REPO_URL": "https://github.com/StefanSchippers/xschem.git",
-        "REPO_COMMIT": "432db0799ea068707cad65f84fe4b8f9b7c00ce5"
+        "REPO_COMMIT": "a0e7a9ed78f38cc8d5602161a1ebc97f763dcadd"
     }
 }

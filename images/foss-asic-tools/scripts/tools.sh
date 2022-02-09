@@ -28,5 +28,8 @@ yum install -y \
 	bzip2 \
 	mailcap \
 	numpy \
-	gedit
+	gedit \
+	xterm \
+	meld \
+	
 	

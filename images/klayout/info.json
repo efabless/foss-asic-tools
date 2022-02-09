@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "klayout",
         "REPO_URL": "https://github.com/KLayout/klayout",
-        "REPO_COMMIT": "ffb81a66eac7bddfc7dc8aef3edf22241f677d01"
+        "REPO_COMMIT": "d764adb1016f74d3e9cc8059cb183f5fc29b2a25"
     }
 }

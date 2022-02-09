@@ -11,7 +11,7 @@ FROM base
 COPY --from=iverilog   	/foss/tools/   /foss/tools/
 COPY --from=rv32i 	/foss/tools/   /foss/tools/
 COPY --from=opensta    	/foss/tools/   /foss/tools/
-COPY --from=cvc     	/foss/tools/   /foss/tools/simcvc
+COPY --from=cvc     	/foss/tools/   /foss/tools/
 
 ADD ./scripts/env.sh /root/.bashrc
 ADD ./scripts/env.sh /.bashrc
