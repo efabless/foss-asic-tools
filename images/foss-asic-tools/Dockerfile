@@ -84,11 +84,7 @@ COPY --from=irsim    		/foss/tools/   /foss/tools/
 ADD  ./addons/sak 		/foss/tools/sak
 COPY ./addons/.klayout/ 	/headless/.klayout/
 COPY ./addons/.gaw/ 	    	/headless/.gaw/
-COPY ./addons/examples 	/foss/examples
-
-
-ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
-RUN bash $STARTUPDIR/scripts/miscellaneous.sh
+COPY ./addons/examples 		/foss/examples
 
 ADD ./scripts/env.sh $HOME/.bashrc
 RUN bash $HOME/.bashrc
@@ -96,6 +92,9 @@ RUN bash $HOME/.bashrc
 ### configure startup
 RUN $STARTUPDIR/scripts/libnss_wrapper.sh
 RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
+
+ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
+RUN bash $STARTUPDIR/scripts/miscellaneous.sh
 
 WORKDIR $DESIGNS
 

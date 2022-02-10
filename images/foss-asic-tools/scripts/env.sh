@@ -28,28 +28,28 @@ export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export PDK_ROOT=/foss/pdks
 export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
-
-alias magic='magic -d XR'
-alias mmagic-sky130A='MAGTYPE=mag magic -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
-alias lmagic-sky130A='MAGTYPE=maglef magic -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
-
-alias k='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $SAK/klayout/tech/sky130A/sky130A.lyt -l $SAK/klayout/tech/sky130A/sky130A-eft.lyp'
-alias ke='klayout -e -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $SAK/klayout/tech/sky130A/sky130A.lyt -l $SAK/klayout/tech/sky130A/sky130A-eft.lyp'
-alias kf='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $SAK/klayout/tech/sky130A/sky130A.lyt -l $SAK/klayout/tech/sky130A/sky130A-fom.lyp'
-
-alias t='cd /foss/tools'
-alias d='cd /foss/designs'
-alias p='cd /foss/pdks'
+export PDK=sky130A
+export PDKPATH=$PDK_ROOT/$PDK
 
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'
 export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
 
 #----------------------------------------
-# Miscellaneous
+# Tool Aliases
 #----------------------------------------
 
-alias sh1='sha1sum'
+alias magic='magic -d XR 		      -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
+alias mmagic-sky130A='MAGTYPE=mag 	magic -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
+alias lmagic-sky130A='MAGTYPE=maglef	magic -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
+
+alias k='klayout      -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyp'
+alias ke='klayout -e  -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyp'
+alias kf='klayout     -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A-fom.lyp'
+
+alias tt='cd /foss/tools'
+alias dd='cd /foss/designs'
+alias pp='cd /foss/pdks'
 alias destroy='sudo \rm -rf'
 alias cp='cp -i'
 alias egrep='egrep '
@@ -62,7 +62,6 @@ alias llt='ls -lt'
 alias llta='ls -alt'
 alias du='du -skh'
 alias mv='mv -i'
-alias perlll='eval `perl -Mlocal::lib`'
 alias rm='rm -i'
 alias vrc='vi ~/.bashrc'
 alias dux='du -sh* | sort -h'
@@ -71,7 +70,6 @@ alias h='history'
 alias hh='history | grep'
 alias rc='source ~/.bashrc'
 alias m='less'
-alias c='vi ~/.commands'
 
 #----------------------------------------
 # Git

@@ -10,6 +10,13 @@ cd    /foss/tools/bin
 ln -s ../*/*/bin/* .
 
 
+ln -s $TOOLS/xschem/*/* $TOOLS/xschem/
+
+groupmod -n designers games    
+
+chown -R default:designers /headless
+
+
 mkdir $STARTUPDIR/logs
 
 
