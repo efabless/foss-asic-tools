@@ -15,7 +15,8 @@ git checkout -qf ${REPO_COMMIT}
 
 ##./configure --enable-sky130-pdk=$pdk_path/skywater-pdk/libraries --enable-sram-sky130="disabled"
 
-./configure --enable-sky130-pdk=$pdk_path/skywater-pdk/libraries --enable-alpha-sky130 --enable-xschem-sky130 --enable-sram-sky130 
+./configure --enable-sky130-pdk=$pdk_path/skywater-pdk/libraries --enable-alpha-sky130 --enable-xschem-sky130 \
+            --enable-sram-sky130 --with-sky130-variants= all --datadir=$pdk_path
 
 cd sky130
 make veryclean
@@ -25,5 +26,5 @@ make SHARED_PDKS_PATH=$pdk_path install
 make clean
 
 cd $pdk_path
-\rm -rf skywater-pdk open_pdks share
+#\rm -rf skywater-pdk open_pdks share
 

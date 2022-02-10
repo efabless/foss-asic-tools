@@ -11,5 +11,5 @@ git submodule update --init libraries/sky130_fd_sc_hd/latest && \
 git submodule update --init libraries/sky130_fd_io/latest && \
 git submodule update --init libraries/sky130_fd_sc_hvl/latest && \
 git submodule update --init libraries/sky130_fd_pr/latest && \
-make timing
+make -j$(nproc) timing
 
