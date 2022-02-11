@@ -59,7 +59,7 @@ docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabl
 
 ## Setting Screen Resolution and Custom Password:
 ```
-docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs -e VNC_PW=<your password> -e VNC_RESOLUTION=1920x1080 efabless/foss-asic-tools:alpha bash
+docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs -e VNC_PW=<your password> -e VNC_RESOLUTION=1920x1080 efabless/foss-asic-tools:beta bash
 ```
 ## Notes
 
