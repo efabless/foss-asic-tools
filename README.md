@@ -2,7 +2,7 @@
 
 FOSS-Tools Manager - building a docker container from s pecific set of commit ID for every tool on the list (receipe)
 
-## Quick Launch:
+## Quick Launch
 
 Download and install Docker for your operating system
 - [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
@@ -34,7 +34,7 @@ docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabl
     pip3 install -r requirements.txt
     ```
 
-## Installation and Running
+## Installation and Update
 
 - Using a recipe csv file
   ```
@@ -60,8 +60,6 @@ docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabl
     python3 run.py recipe --csv ./recipes/recipe.csv --update-reference
     ```
     
-
-
 ## Setting Screen Resolution and Custom Password:
 ```
 docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs -e VNC_PW=<your password> -e VNC_RESOLUTION=1920x1080 efabless/foss-asic-tools:beta bash
