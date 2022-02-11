@@ -89,12 +89,12 @@ COPY ./addons/examples 		/foss/examples
 ADD ./scripts/env.sh $HOME/.bashrc
 RUN bash $HOME/.bashrc
 
+ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
+RUN bash $STARTUPDIR/scripts/miscellaneous.sh
+
 ### configure startup
 RUN $STARTUPDIR/scripts/libnss_wrapper.sh
 RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
-
-ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
-RUN bash $STARTUPDIR/scripts/miscellaneous.sh
 
 WORKDIR $DESIGNS
 

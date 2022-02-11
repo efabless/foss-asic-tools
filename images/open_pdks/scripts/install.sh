@@ -13,8 +13,6 @@ git checkout master
 git pull
 git checkout -qf ${REPO_COMMIT}
 
-##./configure --enable-sky130-pdk=$pdk_path/skywater-pdk/libraries --enable-sram-sky130="disabled"
-
 ./configure --enable-sky130-pdk=$pdk_path/skywater-pdk/libraries --enable-alpha-sky130 --enable-xschem-sky130 \
             --enable-sram-sky130 --with-sky130-variants= all --datadir=$pdk_path
 
