@@ -24,5 +24,5 @@ make SHARED_PDKS_PATH=$pdk_path install
 make clean
 
 cd $pdk_path
-#\rm -rf skywater-pdk open_pdks share
+\rm -rf skywater-pdk open_pdks share
 
