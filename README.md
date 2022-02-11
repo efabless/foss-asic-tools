@@ -2,6 +2,23 @@
 
 FOSS-Tools Manager - building a docker container from s pecific set of commit ID for every tool on the list (receipe)
 
+## Quick Launch:
+
+Download and install Docker for your operating system
+- [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+- [Linux](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+- [Mac - Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+- [Mac - Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+```
+cd $HOME
+mkdir my-local-design-files
+export DESIGNS=$HOME/my-local-design-files
+docker pull efabless/foss-asic-tools:latest
+docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabless/foss-asic-tools:latest bash
+```
+- Open your browser of choice and go to https://localhost when asked for a password use "abc123" (default)
+- [Watch this 5min video](https://youtu.be/EP3ozAtTQDw) to kickstart your analog project (Draft - more detailed on is coming)
+
 ## Prerequisites
 
 - [docker](https://docs.docker.com/engine/install/)
@@ -43,21 +60,7 @@ FOSS-Tools Manager - building a docker container from s pecific set of commit ID
     python3 run.py recipe --csv ./recipes/recipe.csv --update-reference
     ```
     
-## Quick Launch:
 
-Download and install Docker for your operating system
-- [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
-- [Linux](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
-- [Mac - Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
-- [Mac - Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
-```
-cd $HOME
-mkdir my-local-design-files
-export DESIGNS=$HOME/my-local-design-files
-docker pull efabless/foss-asic-tools:latest
-docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabless/foss-asic-tools:latest bash
-```
-- Open your browser of choice and go to https://localhost when asked for a password use "abc123" which is the default You can change it below if needed.
 
 ## Setting Screen Resolution and Custom Password:
 ```
