@@ -1,5 +1,12 @@
-# FOSS-TOOLS
+# FOSS-ASIC-TOOLS 
+FOSS-ASIC-TOOLS is all in one container for SKY130 based design both Analog and Digital. Below is a list of the current tools already installed and ready to use.
 
+
+
+### For Designers
+Go the the Quick Launch instructions to get going. The container comes with project examples onboard.
+
+### For Developers
 FOSS-Tools Manager - building a docker container from s pecific set of commit ID for every tool on the list (receipe)
 
 ## Quick Launch
