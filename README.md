@@ -51,16 +51,19 @@ Download and install Docker for your operating system
 - [Mac - Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
 - [Mac - Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
 ```
-export DESIGNS=<host path for designs>
-docker pull efabless/foss-asic-tools:alpha
-docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabless/foss-asic-tools:alpha bash
+cd $HOME
+mkdir my-local-design-files
+export DESIGNS=$HOME/my-local-design-files
+docker pull efabless/foss-asic-tools:latest
+docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabless/foss-asic-tools:latest bash
 ```
-- Open your browser of choice and go to https://localhost when asked for a password use abc123 which is the default.
+- Open your browser of choice and go to https://localhost when asked for a password use "abc123" which is the default You can change it below if needed.
 
 ## Setting Screen Resolution and Custom Password:
 ```
 docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs -e VNC_PW=<your password> -e VNC_RESOLUTION=1920x1080 efabless/foss-asic-tools:beta bash
 ```
+
 ## Notes
 
 - Images are under images directory
