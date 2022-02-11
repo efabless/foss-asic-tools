@@ -1,8 +1,8 @@
 #!/bin/bash
 
-yum install -y centos-release-scl git devtoolset-8-gcc devtoolset-8-gcc-c++
-source scl_source enable devtoolset-8
-scl enable devtoolset-8 bash
+#yum install -y centos-release-scl git devtoolset-8-gcc devtoolset-8-gcc-c++
+#source scl_source enable devtoolset-8
+#scl enable devtoolset-8 bash
 
 
 git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD.git

@@ -1,5 +1,5 @@
 ARG BASE_IMAGE
-FROM centos:centos7 as builder
+FROM ubuntu:latest as builder
 #FROM ${BASE_IMAGE} as builder
 
 ARG REPO_URL
