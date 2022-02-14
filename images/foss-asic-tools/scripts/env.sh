@@ -30,6 +30,7 @@ export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
+export OPENLANE_ROOT=$TOOLS/openlane
 
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'

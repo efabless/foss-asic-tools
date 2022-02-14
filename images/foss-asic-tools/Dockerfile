@@ -39,7 +39,7 @@ RUN $STARTUPDIR/scripts/firefox.sh
 RUN $STARTUPDIR/scripts/xfce_ui.sh
 ADD ./addons/xfce/ $HOME/
 
-FROM efabless/openlane:latest as openlane
+FROM openlane:latest as openlane
 FROM klayout:latest as klayout
 FROM gtkwave:latest as gtkwave
 FROM iverilog:latest as iverilog
@@ -56,29 +56,30 @@ FROM cvc as cvc
 FROM opensta as opensta
 FROM efabless/dv as dv
 FROM irsim as irsim
-#FROM openroad as openroad
 FROM base
+#FROM openroad as openroad
 
 
-COPY --from=pdk        		/foss/pdks/    /foss/pdks/
-COPY --from=openlane   	/openlane      /foss/tools/openlane
-#COPY --from=openroad   		/foss/tools/openroad      /foss/tools/
-COPY --from=gtkwave    		/foss/tools/   /foss/tools/
-COPY --from=iverilog   		/foss/tools/   /foss/tools/
-COPY --from=magic      		/foss/tools/   /foss/tools/
-COPY --from=netgen     		/foss/tools/   /foss/tools/
-COPY --from=klayout    		/foss/tools/   /foss/tools/
-COPY --from=rv32i 	    	/foss/tools/   /foss/tools/
-COPY --from=gaw3-xschem        	/foss/tools/   /foss/tools/
-COPY --from=ngscope    		/foss/tools/   /foss/tools/
-COPY --from=ngspice	       	/foss/tools/   /foss/tools/
-COPY --from=xschem	       	/foss/tools/   /foss/tools/
-COPY --from=xyce	       	/foss/tools/   /foss/tools/
-COPY --from=covered	       	/foss/tools/   /foss/tools/
-COPY --from=opensta    		/foss/tools/   /foss/tools/
-COPY --from=cvc     	  	/foss/tools/   /foss/tools/
-COPY --from=dv   		/foss/tools/   /foss/tools/
-COPY --from=irsim    		/foss/tools/   /foss/tools/
+COPY --from=pdk        		/foss/pdks/    		/foss/pdks/
+COPY --from=openlane   	 	/foss/tools/openlane      		/foss/tools/openlane
+COPY --from=openlane   		/foss/tools/openlane_tools      	/foss/tools/openlane_tools
+COPY --from=gtkwave    		/foss/tools/   		/foss/tools/
+COPY --from=iverilog   		/foss/tools/   		/foss/tools/
+COPY --from=magic      		/foss/tools/   		/foss/tools/
+COPY --from=netgen     		/foss/tools/   		/foss/tools/
+COPY --from=klayout    		/foss/tools/   		/foss/tools/
+COPY --from=rv32i 	    	/foss/tools/   		/foss/tools/
+COPY --from=gaw3-xschem        	/foss/tools/   		/foss/tools/
+COPY --from=ngscope    		/foss/tools/   		/foss/tools/
+COPY --from=ngspice	       	/foss/tools/   		/foss/tools/
+COPY --from=xschem	       	/foss/tools/   		/foss/tools/
+COPY --from=xyce	       	/foss/tools/   		/foss/tools/
+COPY --from=covered	       	/foss/tools/   		/foss/tools/
+COPY --from=opensta    		/foss/tools/   		/foss/tools/
+COPY --from=cvc     	  	/foss/tools/   		/foss/tools/
+COPY --from=dv   		/foss/tools/   		/foss/tools/
+COPY --from=irsim    		/foss/tools/   		/foss/tools/
+#COPY --from=openroad   	/foss/tools/openroad   	/foss/tools/
 
 
 ADD  ./addons/sak 		/foss/tools/sak
