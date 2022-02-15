@@ -24,6 +24,8 @@ cvc_path=$(get_path "cvc")
 export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
+export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
+
 
 export PDK_ROOT=/foss/pdks
 export TOOLS=/foss/tools

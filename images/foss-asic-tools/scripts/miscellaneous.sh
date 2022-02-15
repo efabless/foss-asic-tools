@@ -1,11 +1,13 @@
 #!/bin/bash
 
 
-pip install click pyyaml
+############### Openlane / openroad
 
-yum install -y libQt5Widgets.so*  libtclreadline-2.1.0.*
+pip install click pyyaml panda
 
-export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
+yum install -y libQt5Widgets.so*  
+yum install -y libtclreadline-2.1.0.*
+
 
 ###############
 

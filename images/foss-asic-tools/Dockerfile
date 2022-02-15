@@ -54,10 +54,9 @@ FROM xyce as xyce
 FROM covered as covered
 FROM cvc as cvc
 FROM opensta as opensta
-FROM efabless/dv as dv
 FROM irsim as irsim
 FROM base
-#FROM openroad as openroad
+#FROM dv as dv
 
 
 COPY --from=pdk        		/foss/pdks/    		/foss/pdks/
@@ -77,9 +76,8 @@ COPY --from=xyce	       	/foss/tools/   		/foss/tools/
 COPY --from=covered	       	/foss/tools/   		/foss/tools/
 COPY --from=opensta    		/foss/tools/   		/foss/tools/
 COPY --from=cvc     	  	/foss/tools/   		/foss/tools/
-COPY --from=dv   		/foss/tools/   		/foss/tools/
 COPY --from=irsim    		/foss/tools/   		/foss/tools/
-#COPY --from=openroad   	/foss/tools/openroad   	/foss/tools/
+#COPY --from=dv   		/foss/tools/   		/foss/tools/
 
 
 ADD  ./addons/sak 		/foss/tools/sak

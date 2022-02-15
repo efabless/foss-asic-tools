@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "opensta",
         "REPO_URL": "https://github.com/The-OpenROAD-Project/OpenSTA",
-        "REPO_COMMIT": "8627c6826d752ed864faafb71461d3c24ae66655"
+        "REPO_COMMIT": "3481d3c48bdb02bc3fd6271c62daf582a522bfd0"
     }
 }
