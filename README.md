@@ -1,13 +1,7 @@
 # FOSS-ASIC-TOOLS 
 FOSS-ASIC-TOOLS is all in one container for SKY130 based design both Analog and Digital. Below is a list of the current tools already installed and ready to use.
 
-### For Designers
-Go the the Quick Launch instructions to get going. The container comes with project examples onboard.
-
-### For Developers
-FOSS-Tools Manager - building a docker container from s pecific set of commit ID for every tool on the list (receipe)
-
-## Quick Launch
+## Quick Launch for Designers
 
 Download and install Docker for your operating system
 - [Linux](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) ||  [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
