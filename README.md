@@ -19,9 +19,9 @@ docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabl
 
 ## Prerequisites
 
-- [docker](https://docs.docker.com/engine/install/)
-- python3
-- python virtualenv
+- [Docker](https://docs.docker.com/engine/install/)
+- Python3
+- Python virtualenv
   - `pip3 install virtualenv`
   - Setup the venv:
     ```
