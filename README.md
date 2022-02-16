@@ -72,4 +72,8 @@ docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs -e VN
 
 - Dependancies handling
 - Differentiate between git and non git based packages
+- Add guidance how-to add tools to the build
+- Compressed PDK
+- Add examples
+- 
 
