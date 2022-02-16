@@ -15,6 +15,8 @@ docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabl
 - Open your browser of choice and go to https://localhost when asked for a password use "abc123" (default)
 - [Watch this 5min video](https://youtu.be/EP3ozAtTQDw) to kickstart your analog project (Draft - more detailed on is coming)
 
+## Details for Developers and Contributor
+
 ## Prerequisites
 
 - [docker](https://docs.docker.com/engine/install/)
