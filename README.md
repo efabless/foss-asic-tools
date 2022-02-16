@@ -1,5 +1,6 @@
 # FOSS-ASIC-TOOLS 
-FOSS-ASIC-TOOLS is all in one container for SKY130 based design both Analog and Digital. Below is a list of the current tools already installed and ready to use.
+FOSS-ASIC-TOOLS is all in one container for SKY130 based design both Analog and Digital. Below is a list of the current tools already installed and ready to use. See here for a [list of Tools included in the container](https://github.com/efabless/foss-asic-tools/blob/main/recipes/recipe.csv)
+
 
 ## Quick Launch for Designers
 
