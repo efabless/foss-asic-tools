@@ -2,8 +2,8 @@ Name,Version
 base,alpha
 magic,7d60162
 skywater-pdk,c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
-open_pdks,7519dfb04400f224f140749cda44ee7de6f5e095
-openlane,2022.02.19_02.27.52
+open_pdks,52af776
+openlane,latest
 klayout,cee33a00991a70d39f7c0094c5494956be60f77a
 gtkwave,48c6409ed001f28eae9dc5fe87bb0b6b1a7c1217
 iverilog,cc0a8c8dd2fef69c4f7fb8219542b1c03a71a3b4

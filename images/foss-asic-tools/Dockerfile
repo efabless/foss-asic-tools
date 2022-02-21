@@ -59,7 +59,7 @@ FROM base
 #FROM dv as dv
 
 
-COPY --from=pdk        		/foss/pdks/share/pdk/    		/foss/pdks/
+COPY --from=pdk        		/foss/pdk/    		/foss/pdk/
 COPY --from=openlane   	 	/foss/tools/openlane      		/foss/tools/openlane
 COPY --from=openlane   		/foss/tools/openlane_tools      	/foss/tools/openlane_tools
 COPY --from=gtkwave    		/foss/tools/   		/foss/tools/
