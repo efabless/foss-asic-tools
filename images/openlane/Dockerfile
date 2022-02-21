@@ -10,7 +10,12 @@ ARG REPO_COMMIT
 ARG REPO_URL
 ARG NAME
 
-RUN mkdir -p /foss/tools/${NAME}_tools/${REPO_COMMIT}
-RUN mkdir -p /foss/tools/${NAME}/${REPO_COMMIT}
-COPY --from=openlane /build /foss/tools/${NAME}_tools/${REPO_COMMIT}
-RUN git clone ${REPO_URL} --branch=${REPO_COMMIT} /foss/tools/${NAME}/${REPO_COMMIT}
+#RUN mkdir -p /foss/tools/${NAME}_tools/${REPO_COMMIT}
+#RUN mkdir -p /foss/tools/${NAME}/${REPO_COMMIT}
+#COPY --from=openlane /build /foss/tools/${NAME}_tools/${REPO_COMMIT}
+#RUN git clone ${REPO_URL} --branch=${REPO_COMMIT} #/foss/tools/${NAME}/${REPO_COMMIT}RUN mkdir -p 
+
+RUN mkdir -p /foss/tools/${NAME}_tools/ 
+RUN mkdir -p /foss/tools/${NAME}/ 
+COPY --from=openlane /build /foss/tools/${NAME}_tools/ 
+RUN git clone ${REPO_URL} --branch=${REPO_COMMIT} /foss/tools/${NAME}/

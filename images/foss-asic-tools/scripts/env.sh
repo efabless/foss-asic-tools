@@ -27,7 +27,7 @@ export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
 
 
-export PDK_ROOT=/foss/pdks
+export PDK_ROOT=/foss/pdk
 export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
 export PDK=sky130A
@@ -52,7 +52,7 @@ alias kf='klayout     -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PD
 
 alias tt='cd /foss/tools'
 alias dd='cd /foss/designs'
-alias pp='cd /foss/pdks'
+alias pp='cd /foss/pdk'
 alias destroy='sudo \rm -rf'
 alias cp='cp -i'
 alias egrep='egrep '

@@ -13,31 +13,24 @@ git checkout master
 git pull
 git checkout -qf ${REPO_COMMIT}
 
-./configure --enable-sky130-pdk=$pdk_path/skywater-pdk --enable-alpha-sky130 --enable-xschem-sky130 \
-            --enable-sram-sky130 --with-sky130-variants=all 
-
-
-
-
-#make veryclean
-# deletes the staging areas vs. make clean which doesnt delete the staging areas
-
-# make prerequisites
-make 
+./configure --enable-sky130-pdk=$pdk_path/skywater-pdk  --enable-alpha-sky130 --enable-xschem-sky130 \
+            --enable-sram-sky130 --with-sky130-variants=all --with-sky130-local-path=$pdk_path
+	    
+make -j$(nproc)
 make SHARED_PDKS_PATH=$pdk_path install
 make distclean
 
 
+#touch $pdk_path/sky130A/SOURCES	
+#printf "skywater-pdk " >> $pdk_path/sky130A/SOURCES	
+#cd $pdk_path/skywater-pdk && git rev-parse HEAD >> $pdk_path/sky130A/SOURCES	
+#printf "open_pdks " >> $pdk_path/sky130A/SOURCES	
+#cd $pdk_path/open_pdks && git rev-parse HEAD >> $pdk_path/sky130A/SOURCES	
+#printf "magic $magic_version" >> $pdk_path/sky130A/SOURCES
 
-touch $pdk_path/sky130A/SOURCES	
-printf "skywater-pdk " >> $pdk_path/sky130A/SOURCES	
-cd $pdk_path/skywater-pdk && git rev-parse HEAD >> $pdk_path/sky130A/SOURCES	
-printf "open_pdks " >> $pdk_path/sky130A/SOURCES	
-cd $pdk_path/open_pdks && git rev-parse HEAD >> $pdk_path/sky130A/SOURCES	
-printf "magic $magic_version" >> $pdk_path/sky130A/SOURCES
-
-cp $pdk_path/sky130A/SOURCES $pdk_path/sky130B/SOURCES 
+#cp $pdk_path/sky130A/SOURCES $pdk_path/sky130B/SOURCES 
 
 cd $pdk_path
-\rm -rf skywater-pdk open_pdks share
+#\rm -rf skywater-pdk open_pdks 
+#\rm -rf skywater-pdk open_pdks share
 

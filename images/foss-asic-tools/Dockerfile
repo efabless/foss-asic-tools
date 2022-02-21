@@ -59,7 +59,7 @@ FROM base
 #FROM dv as dv
 
 
-COPY --from=pdk        		/foss/pdks/    		/foss/pdks/
+COPY --from=pdk        		/foss/pdks/share/pdk/    		/foss/pdks/
 COPY --from=openlane   	 	/foss/tools/openlane      		/foss/tools/openlane
 COPY --from=openlane   		/foss/tools/openlane_tools      	/foss/tools/openlane_tools
 COPY --from=gtkwave    		/foss/tools/   		/foss/tools/
@@ -84,6 +84,9 @@ ADD  ./addons/sak 		/foss/tools/sak
 COPY ./addons/.klayout/ 	/headless/.klayout/
 COPY ./addons/.gaw/ 	    	/headless/.gaw/
 COPY ./addons/examples 		/foss/examples
+COPY ./addons/.spiceinit 	/headless/.spiceinit
+COPY ./addons/spice.rc 		/headless/spice.rc
+
 
 ADD ./scripts/env.sh $HOME/.bashrc
 RUN bash $HOME/.bashrc

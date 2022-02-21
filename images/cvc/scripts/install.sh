@@ -12,4 +12,4 @@ git checkout ${REPO_COMMIT}
 cd src
 make -f makefile.cvc64
 cd ..
-cp src/cvc64 bin/cvc
+cp src/cvc64 bin/cvc64
