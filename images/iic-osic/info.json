@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "iic-osic",
+        "REPO_URL": "https://github.com/hpretl/iic-osic.git",
+        "REPO_COMMIT": "11743c6"
+    }
+}

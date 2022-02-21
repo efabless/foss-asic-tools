@@ -22,7 +22,7 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     DESIGNS=/foss/designs \
     TOOLS=/foss/tools \
-    PDK_ROOT=/foss/pdks
+    PDK_ROOT=/foss/pdk
 
 ADD ./scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +

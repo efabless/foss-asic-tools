@@ -4,8 +4,10 @@ ARG REPO_URL
 ARG REPO_COMMIT
 ARG NAME
 
-COPY corners/corners.yml /foss/pdks/corners.yml
-COPY corners/make_timing.py /foss/pdks/make_timing.py
+ENV PDK_ROOT=/foss/pdk
+
+COPY corners/corners.yml /foss/pdk/corners.yml
+COPY corners/make_timing.py /foss/pdk/make_timing.py
 
 ADD scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh

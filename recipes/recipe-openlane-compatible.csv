@@ -1,6 +1,6 @@
 Name,Version
 base,alpha
-magic,7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
+magic,7d60162
 skywater-pdk,c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
 open_pdks,7519dfb04400f224f140749cda44ee7de6f5e095
 openlane,2022.02.19_02.27.52
@@ -18,4 +18,5 @@ covered,93bee2e0d89c1beb5943a329109dcf24d59498e6
 irsim,3813495e55a21a024e62e21bd6993fac068a61b9
 opensta,3481d3c48bdb02bc3fd6271c62daf582a522bfd0
 cvc,d01c4abd446aaac3fe7f9465611d654536a20a7a
+iic-osic,11743c6
 foss-asic-tools,alpha
