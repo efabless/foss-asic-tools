@@ -21,16 +21,6 @@ make -j$(nproc)
 make install
 make distclean
 
-
-#touch $pdk_path/sky130A/SOURCES	
-#printf "skywater-pdk " >> $pdk_path/sky130A/SOURCES	
-#cd $pdk_path/skywater-pdk && git rev-parse HEAD >> $pdk_path/sky130A/SOURCES	
-#printf "open_pdks " >> $pdk_path/sky130A/SOURCES	
-#cd $pdk_path/open_pdks && git rev-parse HEAD >> $pdk_path/sky130A/SOURCES	
-#printf "magic $magic_version" >> $pdk_path/sky130A/SOURCES
-
-#cp $pdk_path/sky130A/SOURCES $pdk_path/sky130B/SOURCES 
-
 cd $PDK_ROOT 
 rm -rf skywater-pdk open_pdks 
 #\rm -rf skywater-pdk open_pdks share

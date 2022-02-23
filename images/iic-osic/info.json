@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "iic-osic",
         "REPO_URL": "https://github.com/hpretl/iic-osic.git",
-        "REPO_COMMIT": "11743c6"
+        "REPO_COMMIT": "11743c605ff5f8d638f7a495774ec59f44be5210"
     }
 }

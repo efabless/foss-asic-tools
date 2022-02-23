@@ -32,4 +32,14 @@ ln -s $TOOLS/xschem/*/* $TOOLS/xschem/
 ###############
 mkdir $STARTUPDIR/logs
 
+###############
+cd /tmp
+wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
+tar xvf Python-3.10.0.tgz
+cd Python-3.10.0
+./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions 
+make -j$(nproc)
+make altinstall
+cd /tmp
+rm -rf Python-3.10.0*
 

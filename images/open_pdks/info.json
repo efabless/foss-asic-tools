@@ -4,8 +4,8 @@
         "BASE_IMAGE": "base",
         "MAGIC_IMAGE": "magic",
         "NAME": "open_pdks",
-        "REPO_URL": "https://github.com/RTimothyEdwards/open_pdks",
-        "REPO_COMMIT": "7519dfb04400f224f140749cda44ee7de6f5e095",
+        "REPO_URL": "git://opencircuitdesign.com/open_pdks",
+        "REPO_COMMIT": "ae8d0f9f305148f9772b4ce7f7c4bc3325068594",
         "SKYWATER_IMAGE": "skywater-pdk"
     }
 }
