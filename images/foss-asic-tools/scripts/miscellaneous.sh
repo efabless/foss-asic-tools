@@ -22,11 +22,6 @@ cd    /foss/tools/bin
 ln -s ../*/*/bin/* .
 
 ###############
-groupmod -n designers games    
-chown -R default:designers /headless
-chown -R default:designers /foss/designs
-
-###############
 ln -s $TOOLS/xschem/*/* $TOOLS/xschem/
 
 ###############
@@ -42,4 +37,11 @@ make -j$(nproc)
 make altinstall
 cd /tmp
 rm -rf Python-3.10.0*
+
+
+###############
+groupmod -n designers games    
+chown -R 1000:designers /headless
+chown -R 1000:designers /foss/designs
+
 

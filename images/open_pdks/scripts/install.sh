@@ -15,7 +15,7 @@ git pull
 git checkout -qf ${REPO_COMMIT}
 
 ./configure --enable-sky130-pdk=$PDK_ROOT/skywater-pdk  --enable-alpha-sky130 --enable-xschem-sky130 \
-            --enable-sram-sky130 --with-sky130-variants=all --datadir=$PDK_ROOT/../
+            --enable-sram-sky130 --with-sky130-variants=all --datadir=/foss/
 	    
 make -j$(nproc)
 make install
