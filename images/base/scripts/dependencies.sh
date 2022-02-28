@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+yum update -y
+#yum upgrade -y
+
 yum install -y https://repo.ius.io/ius-release-el7.rpm 
 yum install centos-release-scl -y
 yum install -y \
