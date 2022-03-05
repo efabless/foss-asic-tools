@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "iverilog",
         "REPO_URL": "https://github.com/steveicarus/iverilog.git",
-        "REPO_COMMIT": "70637db4d35816e23246065f19593295921dd575"
+        "REPO_COMMIT": "8e25be99f9f072f7552d6bb256bc2ba71ad7dace"
     }
 }

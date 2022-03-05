@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "openlane",
         "REPO_URL": "https://github.com/The-OpenROAD-Project/OpenLane",
-        "REPO_COMMIT": "2022.02.23_02.50.41"
+        "REPO_COMMIT": "2022.03.03_02.36.44"
     }
 }
