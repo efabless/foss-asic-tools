@@ -14,8 +14,6 @@ $MAGIC -dnull -noconsole -rcfile $PDKPATH/libs.tech/magic/sky130A.magicrc  << EO
 path
 drc off
 load $1  
-flatten $1_flat
-load $1_flat
 select top cell
 extract do local
 extract all
