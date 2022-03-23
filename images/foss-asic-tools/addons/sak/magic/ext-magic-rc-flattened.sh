@@ -17,12 +17,17 @@ load $1
 select top cell
 extract do local
 extract all
+ext2sim labels on
+ext2sim
+extresist tolerance 10
+extresist
 ext2spice lvs
-	    
-ext2spice -o ${MAGTYPE}-extracted-${1%.mag}-no-rc.spice
-
-EOF
+ext2spice cthresh 0
+ext2spice extresist on
+ext2spice		    
+ext2spice -o ${MAGTYPE}-extracted-${1%.mag}-rc-flattened.spice
 
 #########
+EOF
 
-\rm *.ext
+\rm *.ext *.sim *.nodes *_flat*

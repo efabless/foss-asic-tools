@@ -32,4 +32,4 @@ ext2spice -o ${MAGTYPE}-extracted-${1%.mag}-rc.spice
 #########
 EOF
 
-\rm *.ext *.sim *.nodes 
+\rm *.ext *.sim *.nodes *_flat*
