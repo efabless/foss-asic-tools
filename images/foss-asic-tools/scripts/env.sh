@@ -20,9 +20,10 @@ xyce_path=$(get_path "xyce/Parallel")
 #covered_path=$(get_path "covered")
 opensta_path=$(get_path "opensta")
 cvc_path=$(get_path "cvc")
+openroad_path=$(realpath $base_path/openlane_tools/bin)
 
 #export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
-export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}
+export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
@@ -34,6 +35,8 @@ export DESIGNS=/foss/designs
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export OPENLANE_ROOT=$TOOLS/openlane
+#FIXME this is a WA until better solution is found for OpenLane version check
+export MISMATCHES_OK=1
 
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'
@@ -50,6 +53,8 @@ alias lmagic-sky130A='MAGTYPE=maglef	magic -rcfile ${PDK_ROOT}/sky130A/libs.tech
 alias k='klayout      -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyp'
 alias ke='klayout -e  -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyp'
 alias kf='klayout     -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A-fom.lyp'
+
+alias flow='/foss/tools/openlane/flow.tcl'
 
 alias tt='cd /foss/tools'
 alias dd='cd /foss/designs'
