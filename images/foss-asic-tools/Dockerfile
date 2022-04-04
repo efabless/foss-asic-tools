@@ -11,7 +11,7 @@ ENV DISPLAY=:1 \
     NO_VNC_PORT=80
 EXPOSE $VNC_PORT $NO_VNC_PORT
 
-### Envrionment config
+### Environment config
 ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
@@ -46,38 +46,38 @@ FROM iverilog:latest as iverilog
 FROM open_pdks:latest as pdk
 FROM magic:latest as magic
 FROM netgen:latest as netgen
-FROM riscv-gnu-toolchain-rv32i as rv32i
+#FROM riscv-gnu-toolchain-rv32i as rv32i
 FROM gaw3-xschem as gaw3-xschem
 FROM ngscope as ngscope
 FROM ngspice as ngspice
 FROM xyce as xyce
-FROM covered as covered
+#FROM covered as covered
 FROM cvc as cvc
 FROM opensta as opensta
-FROM irsim as irsim
+#FROM irsim as irsim
 FROM base
 #FROM dv as dv
 
 
-COPY --from=pdk        		/foss/pdk/    		/foss/pdk/
-COPY --from=openlane   	 	/foss/tools/openlane      		/foss/tools/openlane
-COPY --from=openlane   		/foss/tools/openlane_tools      	/foss/tools/openlane_tools
-COPY --from=gtkwave    		/foss/tools/   		/foss/tools/
-COPY --from=iverilog   		/foss/tools/   		/foss/tools/
-COPY --from=magic      		/foss/tools/   		/foss/tools/
-COPY --from=netgen     		/foss/tools/   		/foss/tools/
-COPY --from=klayout    		/foss/tools/   		/foss/tools/
-COPY --from=rv32i 	    	/foss/tools/   		/foss/tools/
-COPY --from=gaw3-xschem        	/foss/tools/   		/foss/tools/
-COPY --from=ngscope    		/foss/tools/   		/foss/tools/
-COPY --from=ngspice	       	/foss/tools/   		/foss/tools/
-COPY --from=xschem	       	/foss/tools/   		/foss/tools/
-COPY --from=xyce	       	/foss/tools/   		/foss/tools/
-COPY --from=covered	       	/foss/tools/   		/foss/tools/
-COPY --from=opensta    		/foss/tools/   		/foss/tools/
-COPY --from=cvc     	  	/foss/tools/   		/foss/tools/
-COPY --from=irsim    		/foss/tools/   		/foss/tools/
-#COPY --from=dv   		/foss/tools/   		/foss/tools/
+COPY --from=pdk        		/foss/pdk/    			/foss/pdk/
+COPY --from=openlane   	 	/foss/tools/openlane      	/foss/tools/openlane
+COPY --from=openlane   		/foss/tools/openlane_tools      /foss/tools/openlane_tools
+COPY --from=gtkwave    		/foss/tools/   			/foss/tools/
+COPY --from=iverilog   		/foss/tools/   			/foss/tools/
+COPY --from=magic      		/foss/tools/   			/foss/tools/
+COPY --from=netgen     		/foss/tools/   			/foss/tools/
+COPY --from=klayout    		/foss/tools/   			/foss/tools/
+#COPY --from=rv32i 	    	/foss/tools/   			/foss/tools/
+COPY --from=gaw3-xschem        	/foss/tools/   			/foss/tools/
+COPY --from=ngscope    		/foss/tools/   			/foss/tools/
+COPY --from=ngspice	       	/foss/tools/   			/foss/tools/
+COPY --from=xschem	       	/foss/tools/   			/foss/tools/
+COPY --from=xyce	       	/foss/tools/   			/foss/tools/
+#COPY --from=covered	       	/foss/tools/   			/foss/tools/
+COPY --from=opensta    		/foss/tools/   			/foss/tools/
+COPY --from=cvc     	  	/foss/tools/   			/foss/tools/
+#COPY --from=irsim    		/foss/tools/   			/foss/tools/
+#COPY --from=dv   		/foss/tools/   			/foss/tools/
 
 
 ADD  ./addons/sak 		/foss/tools/sak
@@ -87,6 +87,7 @@ COPY ./addons/examples 		/foss/examples
 COPY ./addons/.spiceinit 	/headless/.spiceinit
 COPY ./addons/spice.rc 		/headless/spice.rc
 
+RUN $STARTUPDIR/scripts/add_openlane_to_sources.sh
 
 ADD ./scripts/env.sh $HOME/.bashrc
 RUN bash $HOME/.bashrc
