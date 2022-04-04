@@ -6,6 +6,16 @@ FOSS-ASIC-TOOLS is all in one container for SKY130 based design both Analog and 
 
 Download and install Docker for your operating system
 - [Linux](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) ||  [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+
+Use this to start your local docker container:
+```
+cd $HOME
+mkdir my-local-design-files
+export DESIGNS=$HOME/my-local-design-files
+docker run -it -p 80:80 -p 5901:5901 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs foss-asic-tools:latest bash
+````
+
+Use this to use the pre-made docker container from efabless:
 ```
 cd $HOME
 mkdir my-local-design-files
