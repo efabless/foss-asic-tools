@@ -21,9 +21,10 @@ xyce_path=$(get_path "xyce/Parallel")
 opensta_path=$(get_path "opensta")
 cvc_path=$(get_path "cvc")
 openroad_path=$(realpath $base_path/openlane_tools/bin)
+osic_path=$(realpath $base_path/iic-osic )
 
 #export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
-export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}
+export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}:${osic_path}
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
@@ -35,6 +36,7 @@ export DESIGNS=/foss/designs
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export OPENLANE_ROOT=$TOOLS/openlane
+
 #FIXME this is a WA until better solution is found for OpenLane version check
 export MISMATCHES_OK=1
 
@@ -46,13 +48,15 @@ export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
 # Tool Aliases
 #----------------------------------------
 
-alias magic='magic -d XR 		      -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
-alias mmagic-sky130A='MAGTYPE=mag 	magic -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
-alias lmagic-sky130A='MAGTYPE=maglef	magic -rcfile ${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc'
+alias magic='magic -d XR -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+alias mmagic-$PDK='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+alias lmagic-$PDK='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 
-alias k='klayout      -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyp'
-alias ke='klayout -e  -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyp'
-alias kf='klayout     -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PDK/libs.tech/klayout/sky130A.lyt -l $PDK_ROOT/$PDK/libs.tech/klayout/sky130A-fom.lyp'
+alias k='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
+alias ke='klayout -e -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
+alias kf='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A-fom.lyp'
+
+alias xschem='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
 alias flow='/foss/tools/openlane/flow.tcl'
 

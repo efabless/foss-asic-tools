@@ -55,11 +55,12 @@ FROM xyce as xyce
 FROM cvc as cvc
 FROM opensta as opensta
 #FROM irsim as irsim
+FROM iic-osic:latest as iic-osic
 FROM base
 #FROM dv as dv
 
-
 COPY --from=pdk        		/foss/pdk/    			/foss/pdk/
+COPY --from=iic-osic		/foss/tools/			/foss/tools/
 COPY --from=openlane   	 	/foss/tools/openlane      	/foss/tools/openlane
 COPY --from=openlane   		/foss/tools/openlane_tools      /foss/tools/openlane_tools
 COPY --from=gtkwave    		/foss/tools/   			/foss/tools/
@@ -79,7 +80,6 @@ COPY --from=cvc     	  	/foss/tools/   			/foss/tools/
 #COPY --from=irsim    		/foss/tools/   			/foss/tools/
 #COPY --from=dv   		/foss/tools/   			/foss/tools/
 
-
 ADD  ./addons/sak 		/foss/tools/sak
 COPY ./addons/.klayout/ 	/headless/.klayout/
 COPY ./addons/.gaw/ 	    	/headless/.gaw/
@@ -88,6 +88,8 @@ COPY ./addons/.spiceinit 	/headless/.spiceinit
 COPY ./addons/spice.rc 		/headless/spice.rc
 
 RUN $STARTUPDIR/scripts/add_openlane_to_sources.sh
+RUN $STARTUPDIR/scripts/apply_spice_modellib_reducer.sh
+RUN $STARTUPDIR/scripts/add_custom_magic_bindkeys.sh
 
 ADD ./scripts/env.sh $HOME/.bashrc
 RUN bash $HOME/.bashrc
