@@ -11,17 +11,18 @@ gtkwave_path=$(get_path "gtkwave")
 iverilog_path=$(get_path "iverilog")
 klayout_path=$(realpath $base_path/klayout/* )
 netgen_path=$(get_path "netgen")
-riscv32i_path=$(get_path "riscv-gnu-toolchain-rv32i" )
+#riscv32i_path=$(get_path "riscv-gnu-toolchain-rv32i" )
 gaw3_path=$(get_path "gaw3-xschem")
 ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin )
 ngspice_path=$(get_path "ngspice")
 xschem_path=$(get_path "xschem")
 xyce_path=$(get_path "xyce/Parallel")
-covered_path=$(get_path "covered")
+#covered_path=$(get_path "covered")
 opensta_path=$(get_path "opensta")
 cvc_path=$(get_path "cvc")
 
-export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
+#export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
+export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
@@ -90,7 +91,4 @@ alias gr='git remote -v'
 alias gl='git log'
 alias gln='git log --name-status'
 alias gsss='git submodule status'
-
-
-
 
