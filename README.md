@@ -15,13 +15,13 @@ export DESIGNS=$HOME/my-local-design-files
 docker run -it -p 80:80 -p 5901:5901 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs foss-asic-tools:latest bash
 ````
 
-Use this to use the pre-made docker container from efabless:
+Use this to use the pre-made docker container from us (swap pretlhar for efabless for their container):
 ```
 cd $HOME
 mkdir my-local-design-files
 export DESIGNS=$HOME/my-local-design-files
 docker pull efabless/foss-asic-tools:latest
-docker run -it -p 80:80 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs efabless/foss-asic-tools:latest bash
+docker run -it -p 80:80 -p 5901:5901 --user $(id -u):$(id -g) -v $DESIGNS:/foss/designs pretlhar/foss-asic-tools:alpha bash
 ```
 - Open your browser of choice and go to https://localhost when asked for a password use "abc123" (default)
 - [Watch this 5min video](https://youtu.be/EP3ozAtTQDw) to kickstart your analog project (Draft - more detailed on is coming)
