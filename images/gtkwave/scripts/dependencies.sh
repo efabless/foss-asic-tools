@@ -1,5 +1,5 @@
 #!/bin/bash
-install_gpref() {
+install_gperf() {
 	wget http://ftp.gnu.org/pub/gnu/gperf/gperf-3.1.tar.gz
 	tar -xvzf gperf-3.1.tar.gz &&  \
 		cd gperf-3.1 &&  \
@@ -14,4 +14,4 @@ yum install -y \
 	bzip2-devel
 
 source scl_source enable devtoolset-8
-install_gpref
+install_gperf
