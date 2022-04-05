@@ -10,26 +10,24 @@ yum -y update
 
 yum install -y \
 	git \
-	qt-devel \
 	octave \
 	openmpi-devel \
 	ruby-devel \
 	tcl \
 	tk \
 	tcllib \
-	wxGTK-devel \
 	xorg-x11-server-Xvfb \
-	sudo  
-
-yum install -y \
+	sudo \  
+	htop \
 	wget \
 	net-tools \
 	nmap \
 	bzip2 \
 	mailcap \
-	numpy \
+	python3-numpy \
 	gedit \
 	xterm \
-	meld \
-	
-	
+	meld
+#	qt-devel
+#	wxGTK-devel
+
