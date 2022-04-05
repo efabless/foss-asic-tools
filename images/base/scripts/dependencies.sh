@@ -80,6 +80,8 @@ yum install -y \
 	openmpi \
 	openmpi-devel \
 	patch \
+	pciutils \
+	pciutils-libs \
 	pcre-devel \
 	python3 \
 	python3-devel \
