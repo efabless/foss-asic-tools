@@ -49,7 +49,7 @@ FROM netgen:latest as netgen
 #FROM riscv-gnu-toolchain-rv32i as rv32i
 FROM gaw3-xschem as gaw3-xschem
 FROM ngscope as ngscope
-#FIXME FROM ngspice as ngspice
+FROM ngspice as ngspice
 FROM xyce as xyce
 #FROM covered as covered
 #FROM cvc as cvc
@@ -71,7 +71,7 @@ COPY --from=klayout    		/foss/tools/   			/foss/tools/
 #COPY --from=rv32i 	    	/foss/tools/   			/foss/tools/
 COPY --from=gaw3-xschem        	/foss/tools/   			/foss/tools/
 COPY --from=ngscope    		/foss/tools/   			/foss/tools/
-#FIXME COPY --from=ngspice	       	/foss/tools/   			/foss/tools/
+COPY --from=ngspice	       	/foss/tools/   			/foss/tools/
 COPY --from=xschem	       	/foss/tools/   			/foss/tools/
 COPY --from=xyce	       	/foss/tools/   			/foss/tools/
 #COPY --from=covered	       	/foss/tools/   			/foss/tools/
