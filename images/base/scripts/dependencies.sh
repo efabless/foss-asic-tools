@@ -51,13 +51,13 @@ yum install -y \
 	ninja-build \
 	patch \
 	pcre-devel \
-	python38 \
-	python38-devel \
-	python38-pip \
-	python38-tkinter \
-	python38-numpy \
-	python38-Cython \
-	python38-jinja2 \
+	python3 \
+	python3-devel \
+	python3-pip \
+	python3-tkinter \
+	python3-numpy \
+	python3-Cython \
+	python3-jinja2 \
 	python3-matplotlib \
 	python3-pandas \
 	python3-xlsxwriter \
