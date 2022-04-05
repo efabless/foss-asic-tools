@@ -11,4 +11,3 @@ git checkout ${REPO_COMMIT}
 make clean
 make -j$(nproc)
 make install
-
