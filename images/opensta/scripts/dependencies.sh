@@ -11,5 +11,5 @@ install_cmake() {
 }
 
 
-install_cmake
-
+#install_cmake
+yum install -y cmake

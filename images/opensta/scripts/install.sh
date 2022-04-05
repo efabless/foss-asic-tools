@@ -1,7 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
-
+source scl_source enable gcc-toolset-9
 
 mkdir -p /foss/tools/
 git clone ${REPO_URL} /foss/tools/${NAME}/${REPO_COMMIT}
@@ -16,3 +15,4 @@ make -j$(nproc)
 cd ..
 mkdir bin
 cp app/sta bin
+
