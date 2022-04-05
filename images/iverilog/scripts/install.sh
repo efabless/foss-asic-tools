@@ -9,4 +9,3 @@ PATH=/opt/gperf/bin:$PATH ./autoconf.sh
 ./configure --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
 make -j$(nproc)
 make install
-
