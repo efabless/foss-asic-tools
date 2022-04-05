@@ -11,44 +11,74 @@ yum install epel-release -y
 
 #yum install centos-release-scl -y
 yum install -y \
+	alsa-lib \
+	alsa-lib-devel \
 	autoconf \
 	automake \
 	bison \
+	blas \
+	blas-devel \
 	boost-devel \
 	boost-static \
 	bzip2 \
+	bzip2-devel \
+	ca-certificates \
 	cairo \
 	cairo-devel \
 	clang \
+	cmake \
 	csh \
 	curl \
 	gcc-toolset-9 \
 	gcc-toolset-9-libatomic-devel \
+	gcc-toolset-9-gcc-gfortran \
+	fftw \
+	fftw-devel \
 	flex \
+	flex-devel \
 	gawk \
 	gcc \
+	gcc-c++ \
 	gdb \
 	gettext \
 	gettext-devel \
 	git \
 	glibc-static \
+	gperf \
 	graphviz \
+	gtk3 \
+	gtk3-devel \
 	help2man \
+	lapack \
+	lapack-devel \
 	libSM \
+	libX11 \
 	libX11-devel \
 	libXext \
 	libXft \
+	libXrender \
+	libXrender-devel \
+	libXpm \
+	libXpm-devel \
+	libxcb \
+	libxcb-devel \
 	libffi \
 	libffi-devel \
 	libgomp \
 	libjpeg \
+  	libmng \
 	libstdc++ \
+	libstdc++-static \
+	libtool \
 	libxml2-devel \
 	libxslt-devel \
+	libyaml \
 	make \
 	mesa-libGLU-devel \
 	ncurses-devel \
 	ninja-build \
+	openmpi \
+	openmpi-devel \
 	patch \
 	pcre-devel \
 	python3 \
@@ -60,8 +90,25 @@ yum install -y \
 	python3-jinja2 \
 	python3-matplotlib \
 	python3-pandas \
+	python3-pyyaml \
 	python3-xlsxwriter \
+	qt5-qtbase \
+	qt5-devel \
+	qt5-qttools \
+	qt5-qtmultimedia \
+	qt5-qtxmlpatterns \
+	qt5-qtsvg \
 	readline-devel \
+	ruby \
+	ruby-devel \
+	ruby-irb \
+	ruby-libs \
+	rubygem-bigdecimal \
+	rubygem-io-console \
+	rubygem-json \
+	rubygem-psych \
+	rubygem-rdoc \
+	rubygems \
 	strace \
 	swig \
 	tcl \
@@ -69,10 +116,15 @@ yum install -y \
 	texinfo \
 	tk \
 	tk-devel \
+	unzip \
 	vim-common \
 	wget \
 	which \
+	wxGTK3 \
+	wxGTK3-devel \
 	Xvfb \
+	xz-devel \
+	zip \
 	zlib-devel \
 	zlib-static
 # 	xdot
