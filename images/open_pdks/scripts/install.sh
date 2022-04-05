@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+source scl_source enable gcc-toolset-9
 
 magic_version=$(ls /foss/tools/magic/ )
 export PATH=$PATH:/foss/tools/magic/$magic_version/bin/
