@@ -14,18 +14,19 @@ netgen_path=$(get_path "netgen")
 #riscv32i_path=$(get_path "riscv-gnu-toolchain-rv32i" )
 gaw3_path=$(get_path "gaw3-xschem")
 ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin )
-ngspice_path=$(get_path "ngspice")
+#FIXME ngspice_path=$(get_path "ngspice")
 xschem_path=$(get_path "xschem")
 xyce_path=$(get_path "xyce/Parallel")
 #covered_path=$(get_path "covered")
 opensta_path=$(get_path "opensta")
-cvc_path=$(get_path "cvc")
-openroad_path=$(realpath $base_path/openlane_tools/bin )
-openlane_path=$(realpath $base_path/openlane )
+#cvc_path=$(get_path "cvc")
+#FIXME openroad_path=$(realpath $base_path/openlane_tools/bin )
+#FIXME openlane_path=$(realpath $base_path/openlane )
 osic_path=$(realpath $base_path/iic-osic )
 
 #export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
-export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}:${openlane_path}:${osic_path}
+#FIXME export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}:${openlane_path}:${osic_path}
+export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${gaw3_path}:${ngscope_path}:${xschem_path}:${xyce_path}:${opensta_path}:${osic_path}
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8

@@ -39,7 +39,7 @@ RUN $STARTUPDIR/scripts/firefox.sh
 RUN $STARTUPDIR/scripts/xfce_ui.sh
 ADD ./addons/xfce/ $HOME/
 
-FROM openlane:latest as openlane
+#FIXME FROM openlane:latest as openlane
 FROM klayout:latest as klayout
 FROM gtkwave:latest as gtkwave
 FROM iverilog:latest as iverilog
@@ -49,20 +49,20 @@ FROM netgen:latest as netgen
 #FROM riscv-gnu-toolchain-rv32i as rv32i
 FROM gaw3-xschem as gaw3-xschem
 FROM ngscope as ngscope
-FROM ngspice as ngspice
+#FIXME FROM ngspice as ngspice
 FROM xyce as xyce
 #FROM covered as covered
-FROM cvc as cvc
+#FROM cvc as cvc
 FROM opensta as opensta
-#FROM irsim as irsim
+FROM irsim as irsim
 FROM iic-osic:latest as iic-osic
 FROM base
 #FROM dv as dv
 
 COPY --from=pdk        		/foss/pdk/    			/foss/pdk/
 COPY --from=iic-osic		/foss/tools/			/foss/tools/
-COPY --from=openlane   	 	/foss/tools/openlane      	/foss/tools/openlane
-COPY --from=openlane   		/foss/tools/openlane_tools      /foss/tools/openlane_tools
+#FIXME COPY --from=openlane   	 	/foss/tools/openlane      	/foss/tools/openlane
+#FIXME COPY --from=openlane   		/foss/tools/openlane_tools      /foss/tools/openlane_tools
 COPY --from=gtkwave    		/foss/tools/   			/foss/tools/
 COPY --from=iverilog   		/foss/tools/   			/foss/tools/
 COPY --from=magic      		/foss/tools/   			/foss/tools/
@@ -71,13 +71,13 @@ COPY --from=klayout    		/foss/tools/   			/foss/tools/
 #COPY --from=rv32i 	    	/foss/tools/   			/foss/tools/
 COPY --from=gaw3-xschem        	/foss/tools/   			/foss/tools/
 COPY --from=ngscope    		/foss/tools/   			/foss/tools/
-COPY --from=ngspice	       	/foss/tools/   			/foss/tools/
+#FIXME COPY --from=ngspice	       	/foss/tools/   			/foss/tools/
 COPY --from=xschem	       	/foss/tools/   			/foss/tools/
 COPY --from=xyce	       	/foss/tools/   			/foss/tools/
 #COPY --from=covered	       	/foss/tools/   			/foss/tools/
 COPY --from=opensta    		/foss/tools/   			/foss/tools/
-COPY --from=cvc     	  	/foss/tools/   			/foss/tools/
-#COPY --from=irsim    		/foss/tools/   			/foss/tools/
+#COPY --from=cvc     	  	/foss/tools/   			/foss/tools/
+COPY --from=irsim    		/foss/tools/   			/foss/tools/
 #COPY --from=dv   		/foss/tools/   			/foss/tools/
 
 ADD  ./addons/sak 		/foss/tools/sak
@@ -87,7 +87,7 @@ COPY ./addons/examples 		/foss/examples
 COPY ./addons/.spiceinit 	/headless/.spiceinit
 COPY ./addons/spice.rc 		/headless/spice.rc
 
-RUN $STARTUPDIR/scripts/add_openlane_to_sources.sh
+#FIXME RUN $STARTUPDIR/scripts/add_openlane_to_sources.sh
 RUN $STARTUPDIR/scripts/apply_spice_modellib_reducer.sh
 RUN $STARTUPDIR/scripts/add_custom_magic_bindkeys.sh
 

@@ -2,7 +2,8 @@
 
 
 ############### 
-pip install click pyyaml panda
+yum install -y python3-pyyaml python3-click
+pip install panda
 
 ###############
 yum install -y libQt5Widgets.so*  
