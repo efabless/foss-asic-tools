@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+source scl_source enable gcc-toolset-9
 
 mkdir -p $PDK_ROOT 
 git clone ${REPO_URL} $PDK_ROOT/${NAME}/ 
@@ -25,3 +25,4 @@ mv $PDK_ROOT/corners.yml .
 python3 ./make_timing.py
 
 echo "$NAME $REPO_COMMIT" > "$PDK_ROOT/$NAME/SOURCES"
+
