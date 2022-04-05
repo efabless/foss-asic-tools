@@ -1,7 +1,7 @@
 {
     "args": {
         "GIT": "false",
-        "BASE_IMAGE": "centos:centos7",
+        "BASE_IMAGE": "rockylinux:8",
         "NAME": "base",
         "REPO_COMMIT": "alpha",
         "REPO_URL": "n/a"
