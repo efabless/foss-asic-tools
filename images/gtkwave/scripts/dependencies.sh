@@ -1,17 +1,20 @@
 #!/bin/bash
-install_gperf() {
-	wget http://ftp.gnu.org/pub/gnu/gperf/gperf-3.1.tar.gz
-	tar -xvzf gperf-3.1.tar.gz &&  \
-		cd gperf-3.1 &&  \
-		autoconf &&   \
-		./configure && \
-		make -j$(nproc) &&  \
-		make install
-}
+
+#install_gperf() {
+#	wget http://ftp.gnu.org/pub/gnu/gperf/gperf-3.1.tar.gz
+#	tar -xvzf gperf-3.1.tar.gz &&  \
+#		cd gperf-3.1 &&  \
+#		autoconf &&   \
+#		./configure && \
+#		make -j$(nproc) &&  \
+#		make install
+#}
 
 yum install -y \
 	gtk3-devel \
-	bzip2-devel
+	bzip2-devel \
+	gperf
 
-source scl_source enable devtoolset-8
-install_gperf
+source scl_source enable gcc-toolset-9
+
+#install_gperf

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+#source scl_source enable gcc-toolset-9
 
 git clone ${REPO_URL} ${NAME}
 cd ${NAME}/gtkwave3-gtk3/
