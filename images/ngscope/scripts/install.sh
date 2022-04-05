@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 wget https://sourceforge.net/projects/ngscope/files/rel_0_9/ngscope_0_9_5.tar.bz2
 
 tar -xvf ngscope_0_9_5.tar.bz2
