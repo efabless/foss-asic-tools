@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+source scl_source enable gcc-toolset-9
 
 mkdir -p /foss/tools
 cd /foss/tools
