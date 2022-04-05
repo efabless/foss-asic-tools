@@ -24,4 +24,3 @@ chmod +x reconfigure
 ./reconfigure
 make -j$(nproc)
 make install
-
