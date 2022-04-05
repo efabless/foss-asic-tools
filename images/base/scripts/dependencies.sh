@@ -9,6 +9,8 @@ yum install yum-utils -y
 dnf config-manager --set-enabled powertools
 yum install epel-release -y
 
+yum group install "Development Tools" -y
+
 #yum install centos-release-scl -y
 yum install -y \
 	alsa-lib \
@@ -54,6 +56,8 @@ yum install -y \
 	libSM \
 	libX11 \
 	libX11-devel \
+	libXaw \
+	libXaw-devel \
 	libXext \
 	libXft \
 	libXrender \
@@ -112,6 +116,8 @@ yum install -y \
 	rubygem-rdoc \
 	rubygems \
 	strace \
+	suitesparse \
+	suitesparse-devel \
 	swig \
 	tcl \
 	tcl-devel \
