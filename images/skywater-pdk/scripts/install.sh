@@ -25,4 +25,3 @@ mv $PDK_ROOT/corners.yml .
 python3 ./make_timing.py
 
 echo "$NAME $REPO_COMMIT" > "$PDK_ROOT/$NAME/SOURCES"
-
