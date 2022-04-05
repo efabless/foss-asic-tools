@@ -32,4 +32,3 @@ make distclean
 cd $PDK_ROOT 
 rm -rf skywater-pdk open_pdks 
 chmod -R 755 $PDK_ROOT 
-
