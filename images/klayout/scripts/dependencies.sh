@@ -21,4 +21,3 @@ yum install -y \
   rubygem-psych \
   rubygem-rdoc \
   rubygems
-

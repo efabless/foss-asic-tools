@@ -10,4 +10,3 @@ prefix=/foss/tools/${NAME}/${REPO_COMMIT}
 mkdir -p $prefix
 ./build.sh -j$(nproc) -prefix "$prefix"
 #./build.sh -j$(nproc) -prefix "$prefix"
-
