@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Harald Pretl, IIC, JKU
 set -e
 
 echo "Apply SPICE model library reducer"
