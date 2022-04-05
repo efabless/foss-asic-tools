@@ -5,10 +5,12 @@ yum install -y \
   libyaml \
   pciutils \
   pciutils-libs \
-  qt \
-  qt-devel \
-  qt-settings \
-  qt-x11 \
+  qt5-qtbase \
+  qt5-devel \
+  qt5-qttools \
+  qt5-qtmultimedia \
+  qt5-qtxmlpatterns \
+  qt5-qtsvg \
   ruby \
   ruby-devel \
   ruby-irb \
@@ -19,5 +21,4 @@ yum install -y \
   rubygem-psych \
   rubygem-rdoc \
   rubygems
-
 
