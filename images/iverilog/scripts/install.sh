@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 git clone ${REPO_URL} ${NAME}
 cd ${NAME}
 git checkout ${REPO_COMMIT}
