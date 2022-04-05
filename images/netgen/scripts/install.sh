@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+source scl_source enable gcc-toolset-9
 
 git clone ${REPO_URL} ${NAME}
 
@@ -11,5 +11,4 @@ git checkout ${REPO_COMMIT}
 make clean
 make -j$(nproc)
 make install
-
 
