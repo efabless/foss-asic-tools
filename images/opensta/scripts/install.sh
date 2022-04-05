@@ -15,4 +15,3 @@ make -j$(nproc)
 cd ..
 mkdir bin
 cp app/sta bin
-
