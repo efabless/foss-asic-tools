@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 yum update -y
 #yum upgrade -y
 
@@ -31,9 +30,6 @@ yum install -y \
 	cmake \
 	csh \
 	curl \
-	gcc-toolset-9 \
-	gcc-toolset-9-libatomic-devel \
-	gcc-toolset-9-gcc-gfortran \
 	fftw \
 	fftw-devel \
 	flex \
@@ -41,6 +37,9 @@ yum install -y \
 	gawk \
 	gcc \
 	gcc-c++ \
+	gcc-toolset-9 \
+	gcc-toolset-9-gcc-gfortran \
+	gcc-toolset-9-libatomic-devel \
 	gdb \
 	gettext \
 	gettext-devel \
@@ -53,28 +52,28 @@ yum install -y \
 	help2man \
 	lapack \
 	lapack-devel \
-	libSM \
-	libX11 \
-	libX11-devel \
-	libXaw \
-	libXaw-devel \
-	libXext \
-	libXft \
-	libXrender \
-	libXrender-devel \
-	libXpm \
-	libXpm-devel \
-	libxcb \
-	libxcb-devel \
 	libffi \
 	libffi-devel \
 	libgomp \
 	libjpeg \
-  	libmng \
+	libmng \
+	libSM \
 	libstdc++ \
 	libstdc++-static \
 	libtool \
+	libX11 \
+	libX11-devel \
+	libXaw \
+	libXaw-devel \
+	libxcb \
+	libxcb-devel \
+	libXext \
+	libXft \
 	libxml2-devel \
+	libXpm \
+	libXpm-devel \
+	libXrender \
+	libXrender-devel \
 	libxslt-devel \
 	libyaml \
 	make \
@@ -88,22 +87,22 @@ yum install -y \
 	pciutils-libs \
 	pcre-devel \
 	python3 \
-	python3-devel \
-	python3-pip \
-	python3-tkinter \
-	python3-numpy \
 	python3-Cython \
+	python3-devel \
 	python3-jinja2 \
 	python3-matplotlib \
+	python3-numpy \
 	python3-pandas \
+	python3-pip \
 	python3-pyyaml \
+	python3-tkinter \
 	python3-xlsxwriter \
-	qt5-qtbase \
 	qt5-devel \
-	qt5-qttools \
+	qt5-qtbase \
 	qt5-qtmultimedia \
-	qt5-qtxmlpatterns \
 	qt5-qtsvg \
+	qt5-qttools \
+	qt5-qtxmlpatterns \
 	readline-devel \
 	ruby \
 	ruby-devel \
