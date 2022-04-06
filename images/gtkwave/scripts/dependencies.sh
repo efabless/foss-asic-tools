@@ -15,6 +15,5 @@
 #	gperf \
 #	gtk3-devel
 
-source scl_source enable gcc-toolset-9
-
+#source scl_source enable gcc-toolset-9
 #install_gperf
