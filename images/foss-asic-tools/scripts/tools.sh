@@ -9,25 +9,26 @@ yum -y install epel-release
 yum -y update
 
 yum install -y \
+	bzip2 \
+	gedit \
 	git \
-	octave \
-	openmpi-devel \
-	ruby-devel \
-	tcl \
-	tk \
-	tcllib \
-	xorg-x11-server-Xvfb \
-	sudo \  
 	htop \
-	wget \
+	mailcap \
+	meld \
 	net-tools \
 	nmap \
-	bzip2 \
-	mailcap \
-	python3-numpy \
-	gedit \
-	xterm \
-	meld
+	octave \
+	sudo \
+	tcl \
+	tcllib \
+	tk \
+	vim \
+	wget \
+	xorg-x11-server-Xvfb \
+	xterm
+
+#	ruby-devel
+#	python3-numpy
+#	openmpi-devel
 #	qt-devel
 #	wxGTK-devel
-
