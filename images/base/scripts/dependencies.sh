@@ -50,6 +50,7 @@ yum install -y \
 	gtk3 \
 	gtk3-devel \
 	help2man \
+	install \
 	lapack \
 	lapack-devel \
 	libffi \

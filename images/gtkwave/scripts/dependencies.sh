@@ -10,10 +10,10 @@
 #		make install
 #}
 
-yum install -y \
-	gtk3-devel \
-	bzip2-devel \
-	gperf
+#yum install -y \
+#	bzip2-devel \
+#	gperf \
+#	gtk3-devel
 
 source scl_source enable gcc-toolset-9
 

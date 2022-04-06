@@ -1,7 +1,8 @@
 #!/bin/bash
 
-yum install -y \
-	autoconf automake make \
-	alsa-lib-devel \
-	gtk3-devel \
-
+#yum install -y \
+#	alsa-lib-devel \
+#	autoconf \
+#	automake \
+#	gtk3-devel \
+#	make
