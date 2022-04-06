@@ -1,7 +1,6 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
-
+source scl_source enable gcc-toolset-9
 
 install_openlane_tools() {
 	cd docker
@@ -17,4 +16,3 @@ cd /foss/tools/${NAME}/${REPO_COMMIT}
 git checkout ${REPO_COMMIT}
 
 install_openlane_tools
-
