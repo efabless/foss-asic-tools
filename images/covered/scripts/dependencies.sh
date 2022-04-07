@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yum install -y gperf
+#yum install -y gperf
