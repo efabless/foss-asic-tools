@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "qflow",
+        "REPO_URL": "https://github.com/RTimothyEdwards/qflow.git",
+        "REPO_COMMIT": "a550469b63e910ede6e3022e2886bca96462c540"
+    }
+}
