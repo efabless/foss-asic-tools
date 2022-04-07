@@ -18,18 +18,6 @@ git checkout ${REPO_COMMIT}
 #python3 ./env.py local-install
 #cd /foss/tools
 
-install_openroad () {
-	cd /tmp
-    	git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD.git
-    	cd OpenROAD
-    	git checkout 944855835623e651e7b9c7c50efcce1fb04b4fee
-    
-	mkdir -p build/
-    	cd build
-    	CFLAGS='-Wno-narrowing' cmake .. "-DCMAKE_INSTALL_PREFIX=/foss/tools/${NAME}/${REPO_COMMIT}"
-    	make -j$(nproc)
-}
-
 install_cugr () {
 	cd /tmp
 	git clone https://github.com/ax3ghazy/cu-gr
