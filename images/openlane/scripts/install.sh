@@ -71,14 +71,3 @@ install_vlogtoverilog () {
     	cp vlog2Verilog /foss/tools/${NAME}/${REPO_COMMIT}/bin
 }
 
-install_yosys () {
-	cd /tmp
-	git clone https://github.com/YosysHQ/yosys
-	cd yosys
-	git checkout cfe940a98b08f1a5d08fb44427db155ba1f18b62
-
-    	make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} config-gcc
-    	make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} -j$(nproc)
-    	make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} install
-}
-

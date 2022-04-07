@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "yosys",
+        "REPO_URL": "https://github.com/YosysHQ/yosys",
+        "REPO_COMMIT": "cfe940a98b08f1a5d08fb44427db155ba1f18b62"
+    }
+}
