@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "cugr",
+        "REPO_URL": "https://github.com/ax3ghazy/cu-gr.git",
+        "REPO_COMMIT": "1632b4b450cbd3e5b6bdc9bf92c96cadde6a01b9"
+    }
+}
