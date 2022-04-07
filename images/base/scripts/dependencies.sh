@@ -19,8 +19,6 @@ yum install -y \
 	bison \
 	blas \
 	blas-devel \
-	boost-devel \
-	boost-static \
 	bzip2 \
 	bzip2-devel \
 	ca-certificates \
@@ -115,6 +113,8 @@ yum install -y \
 	rubygem-psych \
 	rubygem-rdoc \
 	rubygems \
+	spdlog \
+	spdlog-devel \
 	strace \
 	suitesparse \
 	suitesparse-devel \
@@ -135,7 +135,10 @@ yum install -y \
 	zip \
 	zlib-devel \
 	zlib-static
-# 	xdot
+
+#	boost-devel \
+#	boost-static \
+#	xdot \
 
 #alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
 
@@ -148,3 +151,42 @@ yum install -y \
 #	XlsxWriter
 
 pip3 install --no-cache-dir install
+
+# eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (in OpenLane)
+#
+# Install boost-1.76.0
+#
+install_boost () {
+	cd /tmp
+	wget https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz
+	md5sum -c <(echo "e425bf1f1d8c36a3cd464884e74f007a  boost_1_76_0.tar.gz") || exit 1
+	tar -xf boost_1_76_0.tar.gz
+	cd boost_1_76_0
+	./bootstrap.sh
+	./b2 install
+}
+install_boost
+#
+# Install eigen-3.3
+#
+install_eigen () {
+	cd /tmp
+	git clone -b 3.3 https://gitlab.com/libeigen/eigen.git
+	cd eigen
+	cmake -B build .
+	cmake --build build -j $(nproc) --target install
+}
+install_eigen
+#
+# Install lemon-1.3.1
+#
+install_lemon () {
+	cd /tmp
+	wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
+	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-1.3.1.tar.gz") || exit 1
+	tar -xf lemon-1.3.1.tar.gz
+	cd lemon-1.3.1
+	cmake -B build .
+	cmake --build build -j $(nproc) --target install
+}
+install_lemon
