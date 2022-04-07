@@ -11,5 +11,5 @@ git checkout ${REPO_COMMIT}
 ./autogen.sh
 
 ./configure --disable-debug --enable-openmp --with-x --with-readline=no --enable-xspice --with-fftw3=yes --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
-make -j$(nproc)
+make 
 make install
