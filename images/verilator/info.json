@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "verilator",
+        "REPO_URL": "https://github.com/verilator/verilator",
+        "REPO_COMMIT": "89a0632ecc9e6a8811b2f5465f75dd4e885846af"
+    }
+}
