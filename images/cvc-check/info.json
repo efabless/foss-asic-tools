@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "cvc-check",
+        "REPO_URL": "https://github.com/d-m-bailey/cvc",
+        "REPO_COMMIT": "d172016a791af3089b28070d80ad92bdfef9c585"
+    }
+}

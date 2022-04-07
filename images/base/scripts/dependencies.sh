@@ -150,7 +150,7 @@ yum install -y \
 #	install \
 #	XlsxWriter
 
-pip3 install --no-cache-dir install
+pip3 install --no-cache-dir install wheel pyinstaller
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (in OpenLane)
 #

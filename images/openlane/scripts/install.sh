@@ -46,18 +46,6 @@ install_cugr () {
     	cp iccad19gr /foss/tools/${NAME}/${REPO_COMMIT}/bin/cugr
 }
 
-install_cvc () {
-	cd /tmp
-	git clone https://github.com/d-m-bailey/cvc
-	cd cvc
-	git checkout d172016a791af3089b28070d80ad92bdfef9c585
-
-	autoreconf -i
-    	./configure --disable-nls --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
-    	make -j$(nproc)
-    	make install
-}
-
 install_drcu () {
 	cd /tmp
 	git clone https://github.com/cuhk-eda/dr-cu
@@ -94,4 +82,3 @@ install_yosys () {
     	make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} install
 }
 
-install_cugr
