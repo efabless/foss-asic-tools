@@ -3,7 +3,7 @@
         "GIT": "true",
         "BASE_IMAGE": "base",
         "NAME": "covered",
-        "REPO_URL": "https://github.com/Manarabdelaty/verilog-covered",
-        "REPO_COMMIT": "93bee2e0d89c1beb5943a329109dcf24d59498e6"
+        "REPO_URL": "https://github.com/hpretl/verilog-covered",
+        "REPO_COMMIT": "19d30fc942642b14dc24e95331cd4777c8dcbad9"
     }
 }
