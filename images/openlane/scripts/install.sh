@@ -71,18 +71,6 @@ install_drcu () {
     	cp ispd19dr /foss/tools/${NAME}/${REPO_COMMIT}/bin/drcu
 }
 
-install_padring () {
-	cd /tmp
-	git clone https://github.com/donn/padring
-	cd padring
-	git checkout b2a64abcc8561d758c0bcb3945117dcb13bd9dca
-
-	bash ./bootstrap.sh
-    	cd build
-    	ninja
-    	cp padring /foss/tools/${NAME}/${REPO_COMMIT}/bin
-}
-
 install_vlogtoverilog () {
 	cd /tmp
 	git clone https://github.com/RTimothyEdwards/qflow

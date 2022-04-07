@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "padring",
+        "REPO_URL": "https://github.com/donn/padring",
+        "REPO_COMMIT": "b2a64abcc8561d758c0bcb3945117dcb13bd9dca"
+    }
+}
