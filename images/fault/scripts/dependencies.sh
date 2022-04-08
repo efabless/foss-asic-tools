@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source scl_source enable gcc-toolset-9
+
 set -x
 
 # Build atalanta
