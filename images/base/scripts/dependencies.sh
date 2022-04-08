@@ -160,9 +160,12 @@ pip3 install --no-cache-dir \
 #
 # Install boost-1.76.0
 #
+
+source scl_source enable gcc-toolset-9
+
 install_boost () {
 	cd /tmp
-	wget https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz
+	wget --no-verbose https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz
 	md5sum -c <(echo "e425bf1f1d8c36a3cd464884e74f007a  boost_1_76_0.tar.gz") || exit 1
 	tar -xf boost_1_76_0.tar.gz
 	cd boost_1_76_0
@@ -186,7 +189,7 @@ install_eigen
 #
 install_lemon () {
 	cd /tmp
-	wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
+	wget --no-verbose http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
 	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-1.3.1.tar.gz") || exit 1
 	tar -xf lemon-1.3.1.tar.gz
 	cd lemon-1.3.1

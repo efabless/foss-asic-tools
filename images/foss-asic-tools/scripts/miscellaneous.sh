@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source scl_source enable gcc-toolset-9
 
 ############### 
 yum install -y python3-pyyaml python3-click
