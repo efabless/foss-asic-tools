@@ -27,6 +27,9 @@ ln -s ../*/*/bin/* .
 ln -s $TOOLS/xschem/*/* $TOOLS/xschem/
 
 ###############
+cp /foss/tools/openlane/2022.04.07_02.53.08/dependencies/tool_metadata.yml /
+
+###############
 mkdir $STARTUPDIR/logs
 
 ###############
