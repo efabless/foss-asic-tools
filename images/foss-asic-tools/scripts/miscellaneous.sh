@@ -3,7 +3,7 @@
 
 ############### 
 yum install -y python3-pyyaml python3-click
-pip install panda
+pip3 install panda
 
 ###############
 yum install -y libQt5Widgets.so*  
@@ -30,7 +30,7 @@ mkdir $STARTUPDIR/logs
 
 ###############
 cd /tmp
-wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
+wget --no-verbose https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
 tar xvf Python-3.10.0.tgz
 cd Python-3.10.0
 ./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions 

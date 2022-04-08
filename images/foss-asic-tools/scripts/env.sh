@@ -6,27 +6,57 @@ function get_path() {
   echo $bin_path
 }
 
-magic_path=$(get_path "magic")
+
+cugr_path=$(get_path "cugr")
+export PATH=$PATH:${cugr_path}
+cvc_check_path=$(get_path "cvc-check")
+export PATH=$PATH:${cvc_check_path}
+dr_cu_path=$(get_path "dr-cu")
+export PATH=$PATH:${dr_cu_path}
+gaw3_xschem_path=$(get_path "gaw3-xschem")
+export PATH=$PATH:${gaw3_xschem_path}
 gtkwave_path=$(get_path "gtkwave")
+export PATH=$PATH:${gtkwave_path}
+iic_osic_path=$(realpath $base_path/iic-osic)
+export PATH=$PATH:${iic_osic_path}
+irsim_path=$(get_path "irsim")
+export PATH=$PATH:${irsim_path}
 iverilog_path=$(get_path "iverilog")
-klayout_path=$(realpath $base_path/klayout/* )
+export PATH=$PATH:${iverilog_path}
+klayout_path=$(realpath $base_path/klayout/*)
+export PATH=$PATH:${klayout_path}
+magic_path=$(get_path "magic")
+export PATH=$PATH:${magic_path}
 netgen_path=$(get_path "netgen")
-#riscv32i_path=$(get_path "riscv-gnu-toolchain-rv32i" )
-gaw3_path=$(get_path "gaw3-xschem")
-ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin )
-#FIXME ngspice_path=$(get_path "ngspice")
-xschem_path=$(get_path "xschem")
-xyce_path=$(get_path "xyce/Parallel")
-#covered_path=$(get_path "covered")
+export PATH=$PATH:${netgen_path}
+ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin)
+export PATH=$PATH:${ngscope_path}
+ngspice_path=$(get_path "ngspice")
+export PATH=$PATH:${ngspice_path}
+openlane_path=$(realpath $base_path/openlane/*/)
+export PATH=$PATH:${openlane_path}
+openroad_path=$(get_path "openroad")
+export PATH=$PATH:${openroad_path}
 opensta_path=$(get_path "opensta")
-#cvc_path=$(get_path "cvc")
-#FIXME openroad_path=$(realpath $base_path/openlane_tools/bin )
-#FIXME openlane_path=$(realpath $base_path/openlane )
-osic_path=$(realpath $base_path/iic-osic )
+export PATH=$PATH:${opensta_path}
+padring_path=$(get_path "padring")
+export PATH=$PATH:${padring_path}
+qflow_path=$(get_path "qflow")
+export PATH=$PATH:${qflow_path}
+verilator_path=$(get_path "verilator")
+export PATH=$PATH:${verilator_path}
+xschem_path=$(get_path "xschem")
+export PATH=$PATH:${xschem_path}
+xyce_path=$(get_path "xyce/Parallel")
+export PATH=$PATH:${xyce_path}
+yosys_path=$(get_path "yosys")
+export PATH=$PATH:${yosys_path}
 
 #export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
 #FIXME export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}:${openlane_path}:${osic_path}
-export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${gaw3_path}:${ngscope_path}:${xschem_path}:${xyce_path}:${opensta_path}:${osic_path}
+#export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${gaw3_path}:${ngscope_path}:${xschem_path}:${xyce_path}:${opensta_path}:${osic_path}
+echo "Final PATH variable:"
+echo $PATH
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
