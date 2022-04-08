@@ -20,4 +20,9 @@ python3 run.py build \
 	xyce \
 	klayout \
 	openroad yosys padring cvc-check \
+	openlane \
+	qflow \
+	verilator \
+	cugr \
+	dr-cu \
 	foss-asic-tools
