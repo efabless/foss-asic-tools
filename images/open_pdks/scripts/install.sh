@@ -11,24 +11,22 @@ export SKY130_VERSION=A
 cd $PDK_ROOT 
 git clone ${REPO_URL} ${NAME}
 cd ${NAME}
-git checkout master
-git pull
-git checkout -qf ${REPO_COMMIT}git clone https://github.com/RTimothyEdwards/open_pdks.git
+git checkout -qf ${REPO_COMMIT}
 
 ./configure --enable-sky130-pdk=$PDK_ROOT/skywater-pdk  --enable-alpha-sky130 --enable-xschem-sky130 \
             --enable-sram-sky130 --with-sky130-variants=$SKY130_VERSION --datadir=/foss/
-	    
-#make -j$(nproc)
-#make install
+
 make -j$(nproc)
 make install
+
+cp $PDK_ROOT/$NAME/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130$SKY130_VERSION
 
 echo "$NAME $REPO_COMMIT" 		> "$PDK_ROOT/sky130$SKY130_VERSION/SOURCES"
 echo "magic $magic_version" 		>> "$PDK_ROOT/sky130$SKY130_VERSION/SOURCES"
 cat "$PDK_ROOT/skywater-pdk/SOURCES" 	>> "$PDK_ROOT/sky130$SKY130_VERSION/SOURCES"
 
-make distclean
+make veryclean
 
 cd $PDK_ROOT 
 rm -rf skywater-pdk open_pdks 
-chmod -R 755 $PDK_ROOT 
+chmod -R 755 $PDK_ROOT
