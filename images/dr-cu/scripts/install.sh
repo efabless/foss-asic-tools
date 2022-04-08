@@ -6,9 +6,16 @@ git clone ${REPO_URL} ${NAME}
 cd ${NAME}
 git checkout ${REPO_COMMIT}
 
-mkdir -p build
-cd build
-cmake ../src
-make -j$(nproc)
+echo "Copying newly built liblef and libdef into place"
+cp ../OpenROAD/src/odb/src/lef/build/liblef.a rsyn/lib/linux/
+cp ../OpenROAD/src/odb/src/def/build/libdef.a rsyn/lib/linux/
+
+#mkdir -p build
+#cd build
+#cmake ../src
+#make -j$(nproc)
+
+python3 scripts/build.py -o release -m"-j$(nproc)"
+
 mkdir -p /foss/tools/${NAME}/${REPO_COMMIT}/bin/
-cp ispd19dr /foss/tools/${NAME}/${REPO_COMMIT}/bin/drcu
+cp run/ispd19dr /foss/tools/${NAME}/${REPO_COMMIT}/bin/drcu

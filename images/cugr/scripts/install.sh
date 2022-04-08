@@ -6,12 +6,16 @@ git clone ${REPO_URL} ${NAME}
 cd ${NAME}
 git checkout ${REPO_COMMIT}
 
-xxd -i src/flute/POST9.dat > src/flute/POST9.c
-xxd -i src/flute/POWV9.dat > src/flute/POWV9.c
+echo "Copying newly built liblef and libdef into place"
+cp ../OpenROAD/src/odb/src/lef/build/liblef.a rsyn/lib/linux/
+cp ../OpenROAD/src/odb/src/def/build/libdef.a rsyn/lib/linux/
 
-mkdir -p build
-cd build
-cmake ../src
-make -j$(nproc)
+#mkdir -p build
+#cd build
+#cmake ../src
+#make -j$(nproc)
+
+python3 scripts/build.py -o release -m"-j$(nproc)"
+
 mkdir -p /foss/tools/${NAME}/${REPO_COMMIT}/bin/
-cp iccad19gr /foss/tools/${NAME}/${REPO_COMMIT}/bin/cugr
+cp run/iccad19gr /foss/tools/${NAME}/${REPO_COMMIT}/bin/cugr
