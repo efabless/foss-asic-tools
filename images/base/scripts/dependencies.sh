@@ -93,7 +93,6 @@ yum install -y \
 	python3-numpy \
 	python3-pandas \
 	python3-pip \
-	python3-pyyaml \
 	python3-tkinter \
 	python3-xlsxwriter \
 	qt5-devel \
@@ -154,7 +153,8 @@ pip3 install --no-cache-dir install
 pip3 install --no-cache-dir wheel
 pip3 install --no-cache-dir \
 	pyinstaller \
-	pyverilog
+	pyverilog \
+	pyyaml
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (in OpenLane)
 #
