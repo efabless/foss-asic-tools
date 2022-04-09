@@ -157,12 +157,10 @@ pip3 install --no-cache-dir \
 	pyyaml
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (in OpenLane)
+source scl_source enable gcc-toolset-9
 #
 # Install boost-1.76.0
 #
-
-source scl_source enable gcc-toolset-9
-
 install_boost () {
 	cd /tmp
 	wget --no-verbose https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz
