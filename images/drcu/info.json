@@ -2,7 +2,7 @@
     "args": {
         "GIT": "true",
         "BASE_IMAGE": "base",
-        "NAME": "dr-cu",
+        "NAME": "drcu",
         "REPO_URL": "https://github.com/cuhk-eda/dr-cu.git",
         "REPO_COMMIT": "427b4a4f03bb98d8a78b1712fe9e52cfb83a8347"
     }
