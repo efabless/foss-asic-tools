@@ -20,7 +20,7 @@ install_atalanta
 # Build binutils-gold (for Swift)
 install_binutils_gold () {
 	cd /tmp
-	wget https://ftp.gnu.org/gnu/binutils/binutils-2.38.tar.xz
+	wget --no-verbose https://ftp.gnu.org/gnu/binutils/binutils-2.38.tar.xz
 	tar xf binutils-2.38.tar.xz
 	cd binutils-2.38
 	./configure --enable-gold
@@ -32,7 +32,7 @@ install_binutils_gold
 # Install Swift
 install_swift () {
 	cd /tmp
-	wget https://download.swift.org/swift-5.6-release/centos8-$(arch)/swift-5.6-RELEASE/swift-5.6-RELEASE-centos8-$(arch).tar.gz	
+	wget --no-verbose https://download.swift.org/swift-5.6-release/centos8-$(arch)/swift-5.6-RELEASE/swift-5.6-RELEASE-centos8-$(arch).tar.gz	
 	tar xf swift-5.6-RELEASE-centos8-$(arch).tar.gz
 	cp -rn swift-5.6-RELEASE-centos8-$(arch)/* /
 }
