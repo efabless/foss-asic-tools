@@ -6,7 +6,7 @@
       <property name="monitor0" type="empty">
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="0"/>
-          <property name="image-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="4"/>
           <property name="last-image" type="string" value="/headless/.config/IIC_JKU_Logo.png"/>
           <property name="color1" type="array">
             <value type="uint" value="8836"/>
