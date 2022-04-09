@@ -60,7 +60,6 @@ FROM opensta:latest as opensta
 FROM padring:latest as padring
 FROM qflow:latest as qflow
 FROM riscv-gnu-toolchain-rv32i:latest as r5-tools
-FROM spyci:latest as spyci
 FROM verilator:latest as verilator
 FROM xschem:latest as xschem
 FROM xyce:latest as xyce
@@ -90,7 +89,6 @@ COPY --from=opensta		/foss/tools/		/foss/tools/
 COPY --from=padring		/foss/tools/		/foss/tools/
 COPY --from=qflow		/foss/tools/		/foss/tools/
 COPY --from=r5-tools		/foss/tools/		/foss/tools/
-COPY --from=spyci		/foss/tools/		/foss/tools/
 COPY --from=verilator		/foss/tools/		/foss/tools/
 COPY --from=xschem		/foss/tools/		/foss/tools/
 COPY --from=xyce		/foss/tools/		/foss/tools/

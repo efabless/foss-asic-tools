@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "spyci",
-        "REPO_URL": "https://github.com/gmagno/spyci.git",
-        "REPO_COMMIT": "83935c3c07f1566fbdbaef31f7fbb1f6c92feaf5"
-    }
-}

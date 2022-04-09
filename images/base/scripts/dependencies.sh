@@ -154,7 +154,8 @@ pip3 install --no-cache-dir wheel
 pip3 install --no-cache-dir \
 	pyinstaller \
 	pyverilog \
-	pyyaml
+	pyyaml \
+	spyci
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (in OpenLane)
 source scl_source enable gcc-toolset-9
@@ -195,3 +196,5 @@ install_lemon () {
 	cmake --build build -j $(nproc) --target install
 }
 install_lemon
+
+rm -rf /tmp/*

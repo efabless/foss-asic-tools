@@ -26,7 +26,6 @@ python3 run.py build \
 	qflow \
 	riscv-gnu-toolchain-rv32i \
 	skywater-pdk open_pdks \
-	spyci \
 	verilator \
 	xschem \
 	xyce \
