@@ -1,7 +1,6 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE} as base
 
-
 ## Connection ports for controlling the UI:
 # VNC port:5901
 # noVNC webport, connect via http://IP:80/?password=start
@@ -39,9 +38,11 @@ RUN $STARTUPDIR/scripts/firefox.sh
 RUN $STARTUPDIR/scripts/xfce_ui.sh
 ADD ./addons/xfce/ $HOME/
 
-FROM cugr:latest as cugr
+#FROM cugr:latest as cugr
+#FROM drcu:latest as drcu
+FROM covered:latest as covered
 FROM cvc-check:latest as cvc-check
-FROM dr-cu:latest as dr-cu
+FROM fault:latest as fault
 FROM gaw3-xschem:latest as gaw3-xschem
 FROM gtkwave:latest as gtkwave
 FROM iic-osic:latest as iic-osic
@@ -52,25 +53,27 @@ FROM magic:latest as magic
 FROM netgen:latest as netgen
 FROM ngscope:latest as ngscope
 FROM ngspice:latest as ngspice
-FROM openlane:latest as openlane
 FROM open_pdks:latest as pdk
+FROM openlane:latest as openlane
 FROM openroad:latest as openroad
 FROM opensta:latest as opensta
 FROM padring:latest as padring
 FROM qflow:latest as qflow
+FROM riscv-gnu-toolchain-rv32i:latest as r5-tools
+FROM spyci:latest as spyci
 FROM verilator:latest as verilator
 FROM xschem:latest as xschem
 FROM xyce:latest as xyce
 FROM yosys:latest as yosys 
 
-
 FROM base
 
-COPY --from=pdk        		/foss/pdk/    			/foss/pdk/
+COPY --from=pdk			/foss/pdk/		/foss/pdk/
 
-COPY --from=cugr		/foss/tools/		/foss/tools/
+#COPY --from=cugr		/foss/tools/		/foss/tools/
+#COPY --from=drcu		/foss/tools/		/foss/tools/
+COPY --from=covered		/foss/tools/		/foss/tools/
 COPY --from=cvc-check		/foss/tools/		/foss/tools/
-COPY --from=dr-cu		/foss/tools/		/foss/tools/
 COPY --from=gaw3-xschem		/foss/tools/		/foss/tools/
 COPY --from=gtkwave		/foss/tools/		/foss/tools/
 COPY --from=iic-osic		/foss/tools/		/foss/tools/
@@ -86,6 +89,8 @@ COPY --from=openroad		/foss/tools/		/foss/tools/
 COPY --from=opensta		/foss/tools/		/foss/tools/
 COPY --from=padring		/foss/tools/		/foss/tools/
 COPY --from=qflow		/foss/tools/		/foss/tools/
+COPY --from=r5-tools		/foss/tools/		/foss/tools/
+COPY --from=spyci		/foss/tools/		/foss/tools/
 COPY --from=verilator		/foss/tools/		/foss/tools/
 COPY --from=xschem		/foss/tools/		/foss/tools/
 COPY --from=xyce		/foss/tools/		/foss/tools/

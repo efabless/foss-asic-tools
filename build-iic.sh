@@ -7,22 +7,28 @@
 source venv/bin/activate
 python3 run.py build \
 	base magic \
-	xschem gaw3-xschem \
+	covered \
+	cvc-check \
+	fault \
+	gaw3-xschem \
 	gtkwave \
-	netgen \
 	iic-osic \
 	irsim \
 	iverilog \
+	klayout \
+	netgen \
 	ngscope \
 	ngspice \
-	skywater-pdk open_pdks \
-	opensta \
-	xyce \
-	klayout \
-	openroad yosys padring cvc-check \
 	openlane \
+	openroad \
+	opensta \
+	padring \
 	qflow \
+	riscv-gnu-toolchain-rv32i \
+	skywater-pdk open_pdks \
+	spyci \
 	verilator \
-	cugr \
-	dr-cu \
+	xschem \
+	xyce \
+	yosys \
 	foss-asic-tools

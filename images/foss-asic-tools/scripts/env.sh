@@ -6,13 +6,16 @@ function get_path() {
   echo $bin_path
 }
 
-
-cugr_path=$(get_path "cugr")
-export PATH=$PATH:${cugr_path}
+#cugr_path=$(get_path "cugr")
+#export PATH=$PATH:${cugr_path}
+#drcu_path=$(get_path "drcu")
+#export PATH=$PATH:${drcu_path}
+covered_path=$(get_path "covered")
+export PATH=$PATH:${covered_path}
 cvc_check_path=$(get_path "cvc-check")
 export PATH=$PATH:${cvc_check_path}
-dr_cu_path=$(get_path "dr-cu")
-export PATH=$PATH:${dr_cu_path}
+fault_path=$(get_path "fault")
+export PATH=$PATH:${fault_path}
 gaw3_xschem_path=$(get_path "gaw3-xschem")
 export PATH=$PATH:${gaw3_xschem_path}
 gtkwave_path=$(get_path "gtkwave")
@@ -52,9 +55,6 @@ export PATH=$PATH:${xyce_path}
 yosys_path=$(get_path "yosys")
 export PATH=$PATH:${yosys_path}
 
-#export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${riscv32i_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${covered_path}:${opensta_path}:${cvc_path}
-#FIXME export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${openlane_tools_path}:${gaw3_path}:${ngscope_path}:${ngspice_path}:${xschem_path}:${xyce_path}:${opensta_path}:${cvc_path}:${openroad_path}:${openlane_path}:${osic_path}
-#export PATH=$PATH:${magic_path}:${gtkwave_path}:${iverilog_path}:${klayout_path}:${netgen_path}:${gaw3_path}:${ngscope_path}:${xschem_path}:${xyce_path}:${opensta_path}:${osic_path}
 echo "Final PATH variable:"
 echo $PATH
 
