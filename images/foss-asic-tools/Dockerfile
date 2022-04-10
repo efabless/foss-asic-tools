@@ -73,6 +73,7 @@ COPY --from=pdk			/foss/pdk/		/foss/pdk/
 #COPY --from=drcu		/foss/tools/		/foss/tools/
 COPY --from=covered		/foss/tools/		/foss/tools/
 COPY --from=cvc-check		/foss/tools/		/foss/tools/
+COPY --from=fault		/foss/tools/		/foss/tools/
 COPY --from=gaw3-xschem		/foss/tools/		/foss/tools/
 COPY --from=gtkwave		/foss/tools/		/foss/tools/
 COPY --from=iic-osic		/foss/tools/		/foss/tools/
@@ -106,10 +107,10 @@ RUN $STARTUPDIR/scripts/apply_spice_modellib_reducer.sh
 RUN $STARTUPDIR/scripts/add_custom_magic_bindkeys.sh
 
 ADD ./scripts/env.sh $HOME/.bashrc
-RUN bash $HOME/.bashrc
+#RUN bash $HOME/.bashrc
 
 ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
-RUN bash $STARTUPDIR/scripts/miscellaneous.sh
+RUN $STARTUPDIR/scripts/miscellaneous.sh
 
 ### configure startup
 RUN $STARTUPDIR/scripts/libnss_wrapper.sh
