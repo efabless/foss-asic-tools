@@ -2,7 +2,7 @@
 
 source scl_source enable gcc-toolset-9
 
-set -x
+set -e
 
 # Build atalanta
 install_atalanta () {
@@ -32,9 +32,21 @@ install_binutils_gold
 # Install Swift
 install_swift () {
 	cd /tmp
-	wget --no-verbose https://download.swift.org/swift-5.6-release/centos8-$(arch)/swift-5.6-RELEASE/swift-5.6-RELEASE-centos8-$(arch).tar.gz	
-	tar xf swift-5.6-RELEASE-centos8-$(arch).tar.gz
-	cp -rn swift-5.6-RELEASE-centos8-$(arch)/* /
+
+	if [ "$(arch)" == "x86_64" ]; then
+        	echo "Platform is x86_64"
+		wget --no-verbose https://download.swift.org/swift-5.6-release/centos8/swift-5.6-RELEASE/swift-5.6-RELEASE-centos8.tar.gz       
+        	tar xf swift-5.6-RELEASE-centos8.tar.gz
+        	cp -rn swift-5.6-RELEASE-centos8/* /
+	elif [ "$(arch)" == "aarch64" ]; then
+        	echo "Platform is aarch64"
+		wget --no-verbose https://download.swift.org/swift-5.6-release/centos8-aarch64/swift-5.6-RELEASE/swift-5.6-RELEASE-centos8-aarch64.tar.gz       
+        	tar xf swift-5.6-RELEASE-centos8-aarch64.tar.gz
+        	cp -rn swift-5.6-RELEASE-centos8-aarch64/* /
+	else
+        	echo "Unknown platform"
+		exit 1
+	fi
 }
 install_swift
 
