@@ -6,57 +6,63 @@ function get_path() {
   echo $bin_path
 }
 
-#cugr_path=$(get_path "cugr")
-#export PATH=$PATH:${cugr_path}
-#drcu_path=$(get_path "drcu")
-#export PATH=$PATH:${drcu_path}
-covered_path=$(get_path "covered")
-export PATH=$PATH:${covered_path}
-cvc_check_path=$(get_path "cvc-check")
-export PATH=$PATH:${cvc_check_path}
-fault_path=$(get_path "fault")
-export PATH=$PATH:${fault_path}
-gaw3_xschem_path=$(get_path "gaw3-xschem")
-export PATH=$PATH:${gaw3_xschem_path}
-gtkwave_path=$(get_path "gtkwave")
-export PATH=$PATH:${gtkwave_path}
-iic_osic_path=$(realpath $base_path/iic-osic)
-export PATH=$PATH:${iic_osic_path}
-irsim_path=$(get_path "irsim")
-export PATH=$PATH:${irsim_path}
-iverilog_path=$(get_path "iverilog")
-export PATH=$PATH:${iverilog_path}
-klayout_path=$(realpath $base_path/klayout/*)
-export PATH=$PATH:${klayout_path}
-magic_path=$(get_path "magic")
-export PATH=$PATH:${magic_path}
-netgen_path=$(get_path "netgen")
-export PATH=$PATH:${netgen_path}
-ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin)
-export PATH=$PATH:${ngscope_path}
-ngspice_path=$(get_path "ngspice")
-export PATH=$PATH:${ngspice_path}
-openlane_path=$(realpath $base_path/openlane/*/)
-export PATH=$PATH:${openlane_path}
-openroad_path=$(get_path "openroad")
-export PATH=$PATH:${openroad_path}
-opensta_path=$(get_path "opensta")
-export PATH=$PATH:${opensta_path}
-padring_path=$(get_path "padring")
-export PATH=$PATH:${padring_path}
-qflow_path=$(get_path "qflow")
-export PATH=$PATH:${qflow_path}
-verilator_path=$(get_path "verilator")
-export PATH=$PATH:${verilator_path}
-xschem_path=$(get_path "xschem")
-export PATH=$PATH:${xschem_path}
-xyce_path=$(get_path "xyce/Parallel")
-export PATH=$PATH:${xyce_path}
-yosys_path=$(get_path "yosys")
-export PATH=$PATH:${yosys_path}
+if [ -z ${FOSS_PATH_SET+x} ]; then
+	#cugr_path=$(get_path "cugr")
+	#export PATH=$PATH:${cugr_path}
+	#drcu_path=$(get_path "drcu")
+	#export PATH=$PATH:${drcu_path}
+	covered_path=$(get_path "covered")
+	export PATH=$PATH:${covered_path}
+	cvc_check_path=$(get_path "cvc-check")
+	export PATH=$PATH:${cvc_check_path}
+	fault_path=$(realpath $base_path/fault/*)
+	export PATH=$PATH:${fault_path}
+	gaw3_xschem_path=$(get_path "gaw3-xschem")
+	export PATH=$PATH:${gaw3_xschem_path}
+	gtkwave_path=$(get_path "gtkwave")
+	export PATH=$PATH:${gtkwave_path}
+	iic_osic_path=$(realpath $base_path/iic-osic)
+	export PATH=$PATH:${iic_osic_path}
+	irsim_path=$(get_path "irsim")
+	export PATH=$PATH:${irsim_path}
+	iverilog_path=$(get_path "iverilog")
+	export PATH=$PATH:${iverilog_path}
+	klayout_path=$(realpath $base_path/klayout/*)
+	export PATH=$PATH:${klayout_path}
+	magic_path=$(get_path "magic")
+	export PATH=$PATH:${magic_path}
+	netgen_path=$(get_path "netgen")
+	export PATH=$PATH:${netgen_path}
+	ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin)
+	export PATH=$PATH:${ngscope_path}
+	ngspice_path=$(get_path "ngspice")
+	export PATH=$PATH:${ngspice_path}
+	openlane_path=$(realpath $base_path/openlane/*)
+	export PATH=$PATH:${openlane_path}
+	openroad_path=$(get_path "openroad")
+	export PATH=$PATH:${openroad_path}
+	opensta_path=$(get_path "opensta")
+	export PATH=$PATH:${opensta_path}
+	padring_path=$(get_path "padring")
+	export PATH=$PATH:${padring_path}
+	qflow_path=$(get_path "qflow")
+	export PATH=$PATH:${qflow_path}
+	verilator_path=$(get_path "verilator")
+	export PATH=$PATH:${verilator_path}
+	xschem_path=$(get_path "xschem")
+	export PATH=$PATH:${xschem_path}
+	xyce_path=$(get_path "xyce/Parallel")
+	export PATH=$PATH:${xyce_path}
+	yosys_path=$(get_path "yosys")
+	export PATH=$PATH:${yosys_path}
 
-echo "Final PATH variable:"
-echo $PATH
+	export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
+
+	echo "Final PATH variable:"
+	echo $PATH
+
+	export FOSS_PATH_SET=1
+fi
 
 export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
@@ -76,7 +82,6 @@ export MISMATCHES_OK=1
 
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'
-export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
 
 #----------------------------------------
 # Tool Aliases
