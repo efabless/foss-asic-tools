@@ -75,10 +75,8 @@ export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
+export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export OPENLANE_ROOT=$TOOLS/openlane
-
-#FIXME this is a WA until better solution is found for OpenLane version check
-export MISMATCHES_OK=1
 
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'
