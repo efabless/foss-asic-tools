@@ -74,6 +74,7 @@ COPY --from=pdk			/foss/pdk/		/foss/pdk/
 COPY --from=covered		/foss/tools/		/foss/tools/
 COPY --from=cvc-check		/foss/tools/		/foss/tools/
 COPY --from=fault		/foss/tools/		/foss/tools/
+COPY --from=fault		/usr/lib/swift/linux/	/usr/lib/swift/linux/
 COPY --from=gaw3-xschem		/foss/tools/		/foss/tools/
 COPY --from=gtkwave		/foss/tools/		/foss/tools/
 COPY --from=iic-osic		/foss/tools/		/foss/tools/
