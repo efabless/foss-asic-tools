@@ -33,16 +33,8 @@ cp /foss/tools/openlane/2022.04.07_02.53.08/dependencies/tool_metadata.yml /
 mkdir $STARTUPDIR/logs
 
 ###############
-cd /tmp
-wget --no-verbose https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
-tar xvf Python-3.10.0.tgz
-cd Python-3.10.0
-./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions 
-make -j$(nproc)
-make altinstall
-cd /tmp
-rm -rf Python-3.10.0*
-
+# Set /usr/bin/python3 to provide "/usr/bin/python"
+update-alternatives --set python /usr/bin/python3
 
 ###############
 groupmod -n designers games    
