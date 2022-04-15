@@ -102,6 +102,8 @@ COPY ./addons/.gaw/ 	    	/headless/.gaw/
 COPY ./addons/examples 		/foss/examples
 COPY ./addons/.spiceinit 	/headless/.spiceinit
 COPY ./addons/spice.rc 		/headless/spice.rc
+COPY ./addons/.Xclients		/headless/.Xclients
+
 
 #FIXME RUN $STARTUPDIR/scripts/add_openlane_to_sources.sh
 RUN $STARTUPDIR/scripts/apply_spice_modellib_reducer.sh
@@ -110,7 +112,6 @@ RUN $STARTUPDIR/scripts/add_custom_magic_bindkeys.sh
 ADD ./scripts/env.sh $HOME/.bashrc
 #RUN bash $HOME/.bashrc
 
-ADD ./scripts/miscellaneous.sh  $STARTUPDIR/scripts/miscellaneous.sh
 RUN $STARTUPDIR/scripts/miscellaneous.sh
 
 ### configure startup
