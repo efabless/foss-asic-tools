@@ -81,6 +81,9 @@ export OPENLANE_ROOT=$TOOLS/openlane
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'
 
+#FIXME this is a WA until better solution is found for OpenLane version check
+export MISMATCHES_OK=1
+
 #----------------------------------------
 # Tool Aliases
 #----------------------------------------
