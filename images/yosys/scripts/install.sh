@@ -1,11 +1,13 @@
 #!/bin/bash
 
+set -e
 source scl_source enable gcc-toolset-9
+
+REPO_COMMIT_SHORT=$(echo $REPO_COMMIT | cut -c 1-7)
 
 git clone ${REPO_URL} ${NAME}
 cd ${NAME}
 git checkout ${REPO_COMMIT}
-
-make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} config-gcc
-make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} -j$(nproc)
-make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT} install
+make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT_SHORT} config-gcc
+make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT_SHORT} -j$(nproc)
+make PREFIX=/foss/tools/${NAME}/${REPO_COMMIT_SHORT} install

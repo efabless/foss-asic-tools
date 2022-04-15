@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 source scl_source enable gcc-toolset-9
 
 mkdir -p $PDK_ROOT 

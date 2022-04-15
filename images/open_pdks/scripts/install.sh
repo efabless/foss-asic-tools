@@ -1,29 +1,36 @@
 #!/bin/bash
 
+set -e
 source scl_source enable gcc-toolset-9
 
-magic_version=$(ls /foss/tools/magic/ )
-export PATH=$PATH:/foss/tools/magic/$magic_version/bin/
+magic_version=$(ls /foss/tools/magic/)
+export PATH=$PATH:/foss/tools/magic/$magic_version/bin
 
 export PDK_ROOT=/foss/pdk
+# select version 'A', or 'B', or 'all'
 export SKY130_VERSION=A
 
-cd $PDK_ROOT 
+cd $PDK_ROOT
 git clone ${REPO_URL} ${NAME}
 cd ${NAME}
 git checkout -qf ${REPO_COMMIT}
 
-./configure --enable-sky130-pdk=$PDK_ROOT/skywater-pdk  --enable-alpha-sky130 --enable-xschem-sky130 \
-            --enable-sram-sky130 --with-sky130-variants=$SKY130_VERSION --datadir=/foss/
+./configure \
+	--enable-sky130-pdk=$PDK_ROOT/skywater-pdk \
+       	--enable-alpha-sky130 \
+	--enable-xschem-sky130 \
+	--enable-sram-sky130 \
+	--with-sky130-variants=$SKY130_VERSION \
+	--datadir=/foss/
 
 make -j$(nproc)
 make install
 
-cp $PDK_ROOT/$NAME/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130$SKY130_VERSION
+cp $PDK_ROOT/$NAME/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130${SKY130_VERSION}
 
-echo "$NAME $REPO_COMMIT" 		> "$PDK_ROOT/sky130$SKY130_VERSION/SOURCES"
-echo "magic $magic_version" 		>> "$PDK_ROOT/sky130$SKY130_VERSION/SOURCES"
-cat "$PDK_ROOT/skywater-pdk/SOURCES" 	>> "$PDK_ROOT/sky130$SKY130_VERSION/SOURCES"
+echo "$NAME $REPO_COMMIT" 			> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
+cat "$PDK_ROOT/skywater-pdk/SOURCES" 		>> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
+cat "/foss/tools/magic/$magic_version/SOURCES" 	>> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
 
 make veryclean
 
