@@ -135,5 +135,5 @@ docker run -it -p 80:80 -p 5901:5901 --user $(id -u):$(id -g) -v $DESIGNS:/foss/
 - Differentiate between git and non git based packages
 - Compressed PDK
 - Add more examples and documentation
-- Fix `fault` (missing libs), `cugr` and `drcu` (failing build on aarch64)
+- Fix `cugr` and `drcu` (failing build on aarch64)
 - Allow direct connection to X server in addition to VNC and browser
