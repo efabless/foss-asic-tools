@@ -1,9 +1,10 @@
 #!/bin/bash
 
 yum update -y
-#yum upgrade -y
 
+#yum upgrade -y
 #yum install -y https://repo.ius.io/ius-release-el7.rpm 
+
 yum install yum-utils -y
 dnf config-manager --set-enabled powertools
 yum install epel-release -y
@@ -35,6 +36,7 @@ yum install -y \
 	gawk \
 	gcc \
 	gcc-c++ \
+	gcc-gnat \
 	gcc-toolset-9 \
 	gcc-toolset-9-gcc-gfortran \
 	gcc-toolset-9-libatomic-devel \

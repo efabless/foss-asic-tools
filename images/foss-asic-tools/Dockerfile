@@ -44,6 +44,7 @@ FROM covered:latest as covered
 FROM cvc-check:latest as cvc-check
 FROM fault:latest as fault
 FROM gaw3-xschem:latest as gaw3-xschem
+FROM ghdl:latest as ghdl
 FROM gtkwave:latest as gtkwave
 FROM iic-osic:latest as iic-osic
 FROM irsim:latest as irsim
@@ -64,6 +65,7 @@ FROM verilator:latest as verilator
 FROM xschem:latest as xschem
 FROM xyce:latest as xyce
 FROM yosys:latest as yosys 
+FROM ghdl-yosys-plugin:latest as gs-plugin
 
 FROM base
 
@@ -76,6 +78,7 @@ COPY --from=cvc-check		/foss/tools/		/foss/tools/
 COPY --from=fault		/foss/tools/		/foss/tools/
 COPY --from=fault		/usr/lib/swift/linux/	/usr/lib/swift/linux/
 COPY --from=gaw3-xschem		/foss/tools/		/foss/tools/
+COPY --from=ghdl		/foss/tools/		/foss/tools/
 COPY --from=gtkwave		/foss/tools/		/foss/tools/
 COPY --from=iic-osic		/foss/tools/		/foss/tools/
 COPY --from=irsim		/foss/tools/		/foss/tools/
@@ -95,6 +98,7 @@ COPY --from=verilator		/foss/tools/		/foss/tools/
 COPY --from=xschem		/foss/tools/		/foss/tools/
 COPY --from=xyce		/foss/tools/		/foss/tools/
 COPY --from=yosys		/foss/tools/		/foss/tools/
+COPY --from=gs-plugin		/foss/tools_add/	/foss/tools/	
 
 ADD  ./addons/sak 		/foss/tools/sak
 COPY ./addons/.klayout/ 	/headless/.klayout/

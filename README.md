@@ -12,6 +12,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [dr-cu](https://github.com/cuhk-eda/dr-cu.git) detail router *(not yet included, build failing)*
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
 * [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for xschem
+* [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
 * [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and docs
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
@@ -32,7 +33,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [verilator](https://github.com/verilator/verilator) fast Verilog simulator
 * [xschem](https://github.com/StefanSchippers/xschem.git) schematic editor
 * [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator
-* [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool
+* [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)
 
 The tool versions used for `OpenLane` are documented in `tool_metadata.yml`.
 

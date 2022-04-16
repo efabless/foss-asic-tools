@@ -1,0 +1,11 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+	"YOSYS_IMAGE": "yosys",
+	"GHDL_IMAGE": "ghdl",
+        "NAME": "ghdl-yosys-plugin",
+        "REPO_URL": "https://github.com/ghdl/ghdl-yosys-plugin.git",
+        "REPO_COMMIT": "c9b05e481423c55ffcbb856fd5296701f670808c"
+    }
+}

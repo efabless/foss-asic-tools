@@ -19,6 +19,8 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
 	export PATH=$PATH:${fault_path}
 	gaw3_xschem_path=$(get_path "gaw3-xschem")
 	export PATH=$PATH:${gaw3_xschem_path}
+	ghdl_path=$(get_path "ghdl")
+	export PATH=$PATH:${ghdl_path}
 	gtkwave_path=$(get_path "gtkwave")
 	export PATH=$PATH:${gtkwave_path}
 	iic_osic_path=$(realpath $base_path/iic-osic)

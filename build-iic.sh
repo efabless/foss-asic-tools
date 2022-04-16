@@ -29,5 +29,5 @@ python3 run.py build \
 	verilator \
 	xschem \
 	xyce \
-	yosys \
+	ghdl yosys ghdl-yosys-plugin \
 	foss-asic-tools
