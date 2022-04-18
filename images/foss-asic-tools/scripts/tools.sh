@@ -12,6 +12,7 @@ yum install -y \
 	bzip2 \
 	gedit \
 	git \
+	gvim \
 	htop \
 	mailcap \
 	meld \
@@ -27,8 +28,3 @@ yum install -y \
 	xorg-x11-server-Xvfb \
 	xterm
 
-#	ruby-devel
-#	python3-numpy
-#	openmpi-devel
-#	qt-devel
-#	wxGTK-devel
