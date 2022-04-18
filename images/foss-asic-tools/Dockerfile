@@ -64,6 +64,7 @@ FROM riscv-gnu-toolchain-rv32i:latest as r5-tools
 FROM verilator:latest as verilator
 FROM xschem:latest as xschem
 FROM xyce:latest as xyce
+FROM xyce-xdm:latest as xyce-xdm
 FROM yosys:latest as yosys 
 FROM ghdl-yosys-plugin:latest as gs-plugin
 
@@ -97,6 +98,7 @@ COPY --from=r5-tools		/foss/tools/		/foss/tools/
 COPY --from=verilator		/foss/tools/		/foss/tools/
 COPY --from=xschem		/foss/tools/		/foss/tools/
 COPY --from=xyce		/foss/tools/		/foss/tools/
+COPY --from=xyce-xdm		/foss/tools/		/foss/tools/
 COPY --from=yosys		/foss/tools/		/foss/tools/
 COPY --from=gs-plugin		/foss/tools_add/	/foss/tools/	
 

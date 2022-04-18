@@ -36,6 +36,6 @@ python3 run.py build \
 	skywater-pdk open_pdks \
 	verilator \
 	xschem \
-	xyce \
+	xyce xyce-xdm \
 	ghdl yosys ghdl-yosys-plugin \
 	foss-asic-tools
