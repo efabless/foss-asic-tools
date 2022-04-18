@@ -170,7 +170,9 @@ install_boost () {
 	md5sum -c <(echo "e425bf1f1d8c36a3cd464884e74f007a  boost_1_76_0.tar.gz") || exit 1
 	tar -xf boost_1_76_0.tar.gz
 	cd boost_1_76_0
-	./bootstrap.sh
+	#FIXME somehow Python is not found by build script, thus need this WA
+	./bootstrap.sh --with-python=python3 --with-python-version=3.6 --with-python-root=/usr/bin/python3
+	sed -i 's+"/usr/bin/python3"+/usr/bin/python3 : /usr/include/python3.6m : /usr/lib+g' project-config.jam
 	./b2 install
 }
 install_boost
