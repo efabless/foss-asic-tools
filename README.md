@@ -7,9 +7,9 @@ FOSS-ASIC-TOOLS is an all-in-one Docker container for SKY130-based design for bo
 Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless):
 
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
-* [cu-gr](https://github.com/ax3ghazy/cu-gr.git) global router *(not yet included, build failing)*
+* [cu-gr](https://github.com/ax3ghazy/cu-gr.git) global router
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
-* [dr-cu](https://github.com/cuhk-eda/dr-cu.git) detail router *(not yet included, build failing)*
+* [dr-cu](https://github.com/cuhk-eda/dr-cu.git) detail router
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
 * [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for xschem
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
@@ -32,7 +32,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [sky130](https://github.com/google/skywater-pdk.git) SkyWater Technologies 130nm CMOS PDK
 * [verilator](https://github.com/verilator/verilator) fast Verilog simulator
 * [xschem](https://github.com/StefanSchippers/xschem.git) schematic editor
-* [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator
+* [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. xdm netlist conversion tool)
 * [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)
 
 The tool versions used for `OpenLane` are documented in `tool_metadata.yml`.
@@ -135,5 +135,4 @@ docker run -it -p 80:80 -p 5901:5901 --user $(id -u):$(id -g) -v $DESIGNS:/foss/
 - Differentiate between git and non git based packages
 - Compressed PDK
 - Add more examples and documentation
-- Fix `cugr` and `drcu` (failing build on aarch64)
 - Allow direct connection to X server in addition to VNC and browser

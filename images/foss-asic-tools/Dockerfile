@@ -38,10 +38,10 @@ RUN $STARTUPDIR/scripts/firefox.sh
 RUN $STARTUPDIR/scripts/xfce_ui.sh
 ADD ./addons/xfce/ $HOME/
 
-#FROM cugr:latest as cugr
-#FROM drcu:latest as drcu
 FROM covered:latest as covered
+FROM cugr:latest as cugr
 FROM cvc-check:latest as cvc-check
+FROM drcu:latest as drcu
 FROM fault:latest as fault
 FROM gaw3-xschem:latest as gaw3-xschem
 FROM ghdl:latest as ghdl
@@ -72,10 +72,10 @@ FROM base
 
 COPY --from=pdk			/foss/pdk/		/foss/pdk/
 
-#COPY --from=cugr		/foss/tools/		/foss/tools/
-#COPY --from=drcu		/foss/tools/		/foss/tools/
 COPY --from=covered		/foss/tools/		/foss/tools/
+COPY --from=cugr		/foss/tools/		/foss/tools/
 COPY --from=cvc-check		/foss/tools/		/foss/tools/
+COPY --from=drcu		/foss/tools/		/foss/tools/
 COPY --from=fault		/foss/tools/		/foss/tools/
 COPY --from=fault		/usr/lib/swift/linux/	/usr/lib/swift/linux/
 COPY --from=gaw3-xschem		/foss/tools/		/foss/tools/

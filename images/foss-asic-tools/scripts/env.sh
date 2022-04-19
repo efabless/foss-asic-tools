@@ -7,10 +7,10 @@ function get_path() {
 }
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
-	#cugr_path=$(get_path "cugr")
-	#export PATH=$PATH:${cugr_path}
-	#drcu_path=$(get_path "drcu")
-	#export PATH=$PATH:${drcu_path}
+	cugr_path=$(get_path "cugr")
+	export PATH=$PATH:${cugr_path}
+	drcu_path=$(get_path "drcu")
+	export PATH=$PATH:${drcu_path}
 	covered_path=$(get_path "covered")
 	export PATH=$PATH:${covered_path}
 	cvc_check_path=$(get_path "cvc-check")

@@ -16,7 +16,9 @@ fi
 python3 run.py build \
 	base magic \
 	covered \
+	cugr \
 	cvc-check \
+	drcu \
 	fault \
 	gaw3-xschem \
 	gtkwave \
