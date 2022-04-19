@@ -8,6 +8,6 @@ REPO_COMMIT_SHORT=$(echo $REPO_COMMIT | cut -c 1-7)
 git clone ${REPO_URL} ${NAME}
 cd ${NAME}
 git checkout ${REPO_COMMIT}
-./configure --prefix=/foss/tools/${NAME}/${REPO_COMMIT_SHORT}
+./configure  --with-llvm-config --prefix=/foss/tools/${NAME}/${REPO_COMMIT_SHORT}
 make -j$(nproc)
 make install

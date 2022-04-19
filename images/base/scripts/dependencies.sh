@@ -77,6 +77,8 @@ yum install -y \
 	libXrender-devel \
 	libxslt-devel \
 	libyaml \
+	llvm \
+	llvm-devel \
 	make \
 	mesa-libGLU-devel \
 	ncurses-devel \
