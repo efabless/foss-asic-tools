@@ -2,16 +2,6 @@
 
 source scl_source enable gcc-toolset-9
 
-############### 
-yum install -y python3-pyyaml python3-click
-pip3 install panda
-
-###############
-yum install -y libQt5Widgets.so*  
-yum install -y libtclreadline-2.1.0.*
-yum install -y hub
-
-
 ###############
 mkdir -p /foss/designs
 mkdir -p /foss/pdk
@@ -37,8 +27,11 @@ mkdir $STARTUPDIR/logs
 update-alternatives --set python /usr/bin/python3
 
 ###############
-groupmod -n designers games    
+groupmod -n designers games
 chown -R 1000:designers /headless
 chown -R 1000:designers /foss/designs
 
-
+# FIXME
+#/bin/bash $STARTUPDIR/scripts/add_openlane_to_sources.sh
+/bin/bash $STARTUPDIR/scripts/apply_spice_modellib_reducer.sh
+/bin/bash $STARTUPDIR/scripts/add_custom_magic_bindkeys.sh

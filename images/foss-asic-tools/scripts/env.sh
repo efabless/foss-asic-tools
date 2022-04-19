@@ -141,3 +141,5 @@ alias gl='git log'
 alias gln='git log --name-status'
 alias gsss='git submodule status'
 
+# From libnss_wrapper.sh
+source $STARTUPDIR/scripts/generate_container_user
