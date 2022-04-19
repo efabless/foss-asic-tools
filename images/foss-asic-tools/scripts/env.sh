@@ -7,57 +7,109 @@ function get_path() {
 }
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
-	cugr_path=$(get_path "cugr")
-	export PATH=$PATH:${cugr_path}
-	drcu_path=$(get_path "drcu")
-	export PATH=$PATH:${drcu_path}
-	covered_path=$(get_path "covered")
-	export PATH=$PATH:${covered_path}
-	cvc_check_path=$(get_path "cvc-check")
-	export PATH=$PATH:${cvc_check_path}
-	fault_path=$(realpath $base_path/fault/*)
-	export PATH=$PATH:${fault_path}
-	gaw3_xschem_path=$(get_path "gaw3-xschem")
-	export PATH=$PATH:${gaw3_xschem_path}
-	ghdl_path=$(get_path "ghdl")
-	export PATH=$PATH:${ghdl_path}
-	gtkwave_path=$(get_path "gtkwave")
-	export PATH=$PATH:${gtkwave_path}
-	iic_osic_path=$(realpath $base_path/iic-osic)
-	export PATH=$PATH:${iic_osic_path}
-	irsim_path=$(get_path "irsim")
-	export PATH=$PATH:${irsim_path}
-	iverilog_path=$(get_path "iverilog")
-	export PATH=$PATH:${iverilog_path}
-	klayout_path=$(realpath $base_path/klayout/*)
-	export PATH=$PATH:${klayout_path}
-	magic_path=$(get_path "magic")
-	export PATH=$PATH:${magic_path}
+        covered_path=$(get_path "covered")
+        if [ -n "$covered_path" ]; then
+                export PATH=$PATH:${covered_path}
+        fi
+        cugr_path=$(get_path "cugr")
+        if [ -n "$cugr_path" ]; then
+                export PATH=$PATH:${cugr_path}
+        fi
+        cvc_check_path=$(get_path "cvc-check")
+        if [ -n "$cvc_check_path" ]; then
+                export PATH=$PATH:${cvc_check_path}
+        fi
+        drcu_path=$(get_path "drcu")
+        if [ -n "$drcu_path" ]; then
+                export PATH=$PATH:${drcu_path}
+        fi
+        fault_path=$(realpath $base_path/fault/*)
+        if [ -n "$fault_path" ]; then
+                export PATH=$PATH:${fault_path}
+        fi
+        gaw3_xschem_path=$(get_path "gaw3-xschem")
+        if [ -n "$gaw3_xschem_path" ]; then
+                export PATH=$PATH:${gaw3_xschem_path}
+        fi
+        ghdl_path=$(get_path "ghdl")
+        if [ -n "$ghdl_path" ]; then
+                export PATH=$PATH:${ghdl_path}
+        fi
+        gtkwave_path=$(get_path "gtkwave")
+        if [ -n "$gtkwave_path" ]; then
+                export PATH=$PATH:${gtkwave_path}
+        fi
+        iic_osic_path=$(realpath $base_path/iic-osic)
+        if [ -n "$iic_osic_path" ]; then
+                export PATH=$PATH:${iic_osic_path}
+        fi
+        irsim_path=$(get_path "irsim")
+        if [ -n "$irsim_path" ]; then
+                export PATH=$PATH:${irsim_path}
+        fi
+        iverilog_path=$(get_path "iverilog")
+        if [ -n "$iverilog_path" ]; then
+                export PATH=$PATH:${iverilog_path}
+        fi
+        klayout_path=$(realpath $base_path/klayout/*)
+        if [ -n "$klayout_path" ]; then
+                export PATH=$PATH:${klayout_path}
+        fi
+        magic_path=$(get_path "magic")
+        if [ -n "$magic_path" ]; then
+                export PATH=$PATH:${magic_path}
+        fi
 	netgen_path=$(get_path "netgen")
-	export PATH=$PATH:${netgen_path}
-	ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin)
-	export PATH=$PATH:${ngscope_path}
-	ngspice_path=$(get_path "ngspice")
-	export PATH=$PATH:${ngspice_path}
-	openlane_path=$(realpath $base_path/openlane/*)
-	export PATH=$PATH:${openlane_path}
-	openroad_path=$(get_path "openroad")
-	export PATH=$PATH:${openroad_path}
-	opensta_path=$(get_path "opensta")
-	export PATH=$PATH:${opensta_path}
-	padring_path=$(get_path "padring")
-	export PATH=$PATH:${padring_path}
-	qflow_path=$(get_path "qflow")
-	export PATH=$PATH:${qflow_path}
-	verilator_path=$(get_path "verilator")
-	export PATH=$PATH:${verilator_path}
-	xschem_path=$(get_path "xschem")
-	export PATH=$PATH:${xschem_path}
-	xyce_path=$(get_path "xyce/Parallel")
-	export PATH=$PATH:${xyce_path}
-	yosys_path=$(get_path "yosys")
-	export PATH=$PATH:${yosys_path}
+	if [ -n "$netgen_path" ]; then
+                export PATH=$PATH:${netgen_path}
+        fi
+        ngscope_path=$(realpath $base_path/ngscope/*/usr/local/bin)
+        if [ -n "$ngscope_path" ]; then
+                export PATH=$PATH:${ngscope_path}
+        fi
+        ngspice_path=$(get_path "ngspice")
+        if [ -n "$ngspice_path" ]; then
+                export PATH=$PATH:${ngspice_path}
+        fi
+        openlane_path=$(realpath $base_path/openlane/*)
+        if [ -n "$openlane_path" ]; then
+                export PATH=$PATH:${openlane_path}
+        fi
+        openroad_path=$(get_path "openroad")
+        if [ -n "$openroad_path" ]; then
+                export PATH=$PATH:${openroad_path}
+        fi
+        opensta_path=$(get_path "opensta")
+        if [ -n "$opensta_path" ]; then
+                export PATH=$PATH:${opensta_path}
+        fi
+        padring_path=$(get_path "padring")
+        if [ -n "$padring_path" ]; then
+                export PATH=$PATH:${padring_path}
+        fi
+        qflow_path=$(get_path "qflow")
+        if [ -n "$qflow_path" ]; then
+                export PATH=$PATH:${qflow_path}
+        fi
+        verilator_path=$(get_path "verilator")
+        if [ -n "$verilator_path" ]; then
+                export PATH=$PATH:${verilator_path}
+        fi
+        xschem_path=$(get_path "xschem")
+        if [ -n "$xschem_path" ]; then
+                export PATH=$PATH:${xschem_path}
+        fi
+        xyce_path=$(get_path "xyce/Parallel")
+        if [ -n "$xyce_path" ]; then
+                export PATH=$PATH:${xyce_path}
+        fi
+        yosys_path=$(get_path "yosys")
+        if [ -n "$yosys_path" ]; then
+                export PATH=$PATH:${yosys_path}
+        fi
 
+
+	export SAK=$TOOLS/sak/
 	export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
 
 	echo "Final PATH variable:"
@@ -80,7 +132,6 @@ export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export OPENLANE_ROOT=$TOOLS/openlane
 
-export SAK=$TOOLS/sak/
 export EDITOR='gedit'
 
 #FIXME this is a WA until better solution is found for OpenLane version check
