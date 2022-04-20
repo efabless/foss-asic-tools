@@ -8,7 +8,7 @@ if [ -z ${VNC_PORT+z} ]; then
 	VNC_PORT=0
 fi
 if [ -z ${DESIGNS+z} ]; then
-	DESIGNS="~/designs"
+	DESIGNS=`realpath "$HOME/eda/designs"`
 fi
 
 PORT_PARAMS=""
