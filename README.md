@@ -135,4 +135,3 @@ docker run -it -p 80:80 -p 5901:5901 --user $(id -u):$(id -g) -v $DESIGNS:/foss/
 - Differentiate between git and non git based packages
 - Compressed PDK
 - Add more examples and documentation
-- Allow direct connection to X server in addition to VNC and browser
