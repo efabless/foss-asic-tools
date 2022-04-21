@@ -1,8 +1,15 @@
 #!/bin/bash
+# Harald Pretl & Georg Zachl, IIC, JKU, 2022
 
 # SET YOU DESIGN PATH RIGHT!
 if [ -z ${DESIGNS+z} ]; then
-        DESIGNS=`realpath "$HOME/eda/designs"`
+        DESIGNS=$HOME/eda/designs
+
+	if [ ! -d "$DESIGNS" ]; then
+		mkdir -p "$DESIGNS"
+	fi
+
+	echo "Design directory auto-set to $DESIGNS"
 fi
 
 PARAMS=""
@@ -10,8 +17,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "Auto detected Linux"
 	# Senseful defaults (uses XAUTHORITY Shell variable if set, or the default .Xauthority -file in the caller home directory)
 	if [ -z ${XAUTHORITY+z} ]; then
-		if [ -f "~/.Xauthority" ]; then
-			XAUTH="~/.Xauthority"
+		if [ -f "$HOME/.Xauthority" ]; then
+			XAUTH="$HOME/.Xauthority"
 		else
 			echo "Xauthority could not be found. Please set manually!"
 			exit 1
@@ -19,7 +26,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	else
 		XAUTH=$XAUTHORITY
 	fi
-	PARAMS = "$PARAMS -v $XAUTH:/headless/.xauthority:rw -e XAUTHORITY=/headless/.xauthority"
+	PARAMS="$PARAMS -v $XAUTH:/headless/.xauthority:rw -e XAUTHORITY=/headless/.xauthority"
 	# Should also be a senseful default
 	if [ -z ${XSOCK+z} ]; then
                 if [ -f "/tmp/.X11-unix" ]; then
@@ -29,7 +36,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
                         exit 1
                 fi
 	fi
-	PARAMS = "$PARAMS -v $XSOCK:/tmp/.X11-unix:rw"
+	PARAMS="$PARAMS -v $XSOCK:/tmp/.X11-unix:rw"
         if [ -z ${DISP+z} ]; then
 		if [ -z ${DISPLAY+z} ]; then
 			echo "No DISPLAY set"
@@ -49,4 +56,4 @@ fi
 
 
 # Finally, run the container, sets DISPLAY to the local display number
-docker run -d --user $(id -u):$(id -g) -e DISPLAY=$DISP -v $DESIGNS:/foss/designs:rw $PARAMS foss-asic-tools:alpha
+docker run -d --user "$(id -u)":"$(id -g)" -e DISPLAY=$DISP -v "$DESIGNS":/foss/designs:rw "$PARAMS" foss-asic-tools:alpha
