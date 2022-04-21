@@ -9,8 +9,5 @@ ENV PDK_ROOT=/foss/pdk
 COPY corners/corners.yml /foss/pdk/corners.yml
 COPY corners/make_timing.py /foss/pdk/make_timing.py
 
-ADD scripts/dependencies.sh dependencies.sh
-RUN bash dependencies.sh
-
 ADD scripts/install.sh install.sh
 RUN bash install.sh

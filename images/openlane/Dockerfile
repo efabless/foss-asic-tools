@@ -20,9 +20,5 @@ ARG NAME
 #COPY --from=openlane /build /foss/tools/${NAME}_tools/ 
 #RUN git clone ${REPO_URL} --branch=${REPO_COMMIT} /foss/tools/${NAME}/
 
-ADD scripts/dependencies.sh dependencies.sh
-RUN bash dependencies.sh
-
 ADD scripts/install.sh install.sh
 RUN bash install.sh
-
