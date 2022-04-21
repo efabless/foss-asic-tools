@@ -56,4 +56,4 @@ fi
 
 
 # Finally, run the container, sets DISPLAY to the local display number
-docker run -d --user "$(id -u)":"$(id -g)" -e DISPLAY=$DISP -v "$DESIGNS":/foss/designs:rw "$PARAMS" foss-asic-tools:alpha
+docker run -d --user $(id -u):$(id -g) -e DISPLAY=$DISP -v $DESIGNS:/foss/designs:rw $PARAMS foss-asic-tools:alpha
