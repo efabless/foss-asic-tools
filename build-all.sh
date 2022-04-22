@@ -40,4 +40,4 @@ python3 run.py build \
 	xschem \
 	xyce xyce-xdm \
 	ghdl yosys ghdl-yosys-plugin \
-	foss-asic-tools
+	iic-osic-tools

@@ -2,8 +2,8 @@
     "args": {
         "GIT": "false",
         "BASE_IMAGE": "base",
-        "NAME": "foss-asic-tools",
-        "REPO_URL": "https://github.com/efabless/foss-asic-tools",
+        "NAME": "iic-osic-tools",
+        "REPO_URL": "https://github.com/hpretl/iic-osic-tools",
         "REPO_COMMIT": "alpha"
     }
 }
