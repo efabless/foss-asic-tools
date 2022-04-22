@@ -1,8 +1,8 @@
-# FOSS-ASIC-TOOLS
+# IIC-OSIC-TOOLS
 
-FOSS-ASIC-TOOLS is an all-in-one Docker container for SKY130-based design for both analog and digital circuit design flows. Both `x86_64` and `aarch64` are available based on RockyLinux 8.5.
+**This environment is based on the efabless.com FOSS-ASIC-TOOLS https://github.com/efabless/foss-asic-tools**
 
-**This environment is based on the efabless.com container and adapted and curated by the Institute for Integrated Circuits, Johannes Kepler University**.
+IIC-OSIC-TOOLS is an all-in-one Docker container for SKY130-based integrated circuit designs for both analog and digital circuit flows. The CPU architectures `x86_64` and `aarch64` are natively supported based on RockyLinux 8.5. This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
 
 Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless):
 
