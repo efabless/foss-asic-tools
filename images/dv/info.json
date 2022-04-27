@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "false",
-        "BASE_IMAGE": "base",
-        "NAME": "efabless/dv",
-        "REPO_URL": "n/a",
-        "REPO_COMMIT": "alpha"
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "drcu",
-        "REPO_URL": "https://github.com/MrHighVoltage/dr-cu.git",
-        "REPO_COMMIT": "5a08ed8d0677ad23f07d17feb78a8a6f5a5b37e9"
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "cugr",
-        "REPO_URL": "https://github.com/MrHighVoltage/cu-gr.git",
-        "REPO_COMMIT": "76e8363477792e8efda48da43fb8e0a8765f0160"
-    }
-}

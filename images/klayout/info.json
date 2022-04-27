@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "klayout",
-        "REPO_URL": "https://github.com/KLayout/klayout",
-        "REPO_COMMIT": "428d0fe8c941faece4eceebc54170cc04d916c03"
-    }
-}

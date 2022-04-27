@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "false",
-        "BASE_IMAGE": "base",
-        "NAME": "kicad",
-        "REPO_URL": "n/a",
-        "REPO_COMMIT": "6.0.2"
-    }
-}

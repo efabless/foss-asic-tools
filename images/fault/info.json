@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "fault",
-        "REPO_URL": "https://github.com/Cloud-V/Fault",
-        "REPO_COMMIT": "5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
-    }
-}

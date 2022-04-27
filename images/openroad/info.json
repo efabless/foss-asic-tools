@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "openroad",
-        "REPO_URL": "https://github.com/The-OpenROAD-Project/OpenROAD.git",
-        "REPO_COMMIT": "944855835623e651e7b9c7c50efcce1fb04b4fee"
-    }
-}

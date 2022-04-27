@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "xschem",
-        "REPO_URL": "https://github.com/StefanSchippers/xschem.git",
-        "REPO_COMMIT": "eb6eeebe7ff816ed9cd8abcf65ffaf3bd9c26df3"
-    }
-}

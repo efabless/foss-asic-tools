@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "ghdl",
-        "REPO_URL": "https://github.com/ghdl/ghdl.git",
-        "REPO_COMMIT": "8185ed878df5054a9624af97ae4c73bbd3e906ef"
-    }
-}

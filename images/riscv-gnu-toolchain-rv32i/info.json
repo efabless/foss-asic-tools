@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "riscv-gnu-toolchain-rv32i",
-        "REPO_URL": "https://github.com/riscv/riscv-gnu-toolchain",
-        "REPO_COMMIT": "cc1075c916491ac5bd6cae419f6ca371a268b10d"
-    }
-}

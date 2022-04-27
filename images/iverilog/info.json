@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "iverilog",
-        "REPO_URL": "https://github.com/steveicarus/iverilog.git",
-        "REPO_COMMIT": "42de9e646af5037f4fdf83ea58e67cd0934f6b7a"
-    }
-}

@@ -10,7 +10,7 @@ cd ngscope
 mkdir build
 cd build
 
-prefix=/foss/tools/${NAME}/${REPO_COMMIT}
+prefix=/foss/tools/${NGSCOPE_NAME}/${NGSCOPE_REPO_COMMIT}
 cmake -DCMAKE_INSTALL_PREFIX=$prefix ..
 make -j$(nproc)
 make DESTDIR=$prefix install

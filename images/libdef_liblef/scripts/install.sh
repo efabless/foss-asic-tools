@@ -2,6 +2,9 @@
 
 source scl_source enable gcc-toolset-9
 
+set -e
+set -u
+
 echo "Getting OpenROAD source for liblef and libdef"
 git clone https://github.com/The-OpenROAD-Project/OpenROAD.git
 cd OpenROAD/src/odb/src

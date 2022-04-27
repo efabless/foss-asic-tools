@@ -3,9 +3,9 @@
 set -e
 source scl_source enable gcc-toolset-9
 
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}
-git checkout ${REPO_COMMIT}
+git clone ${XYCE_REPO_URL} ${XYCE_NAME}
+cd ${XYCE_NAME}
+git checkout ${XYCE_REPO_COMMIT}
 ./bootstrap
 
 git clone https://github.com/trilinos/Trilinos trilinos
@@ -18,7 +18,7 @@ chmod +x reconfigure
 make -j$(nproc)
 make install
 
-cd /${NAME}
+cd /${XYCE_NAME}
 mkdir -p parallel_build && cd parallel_build
 cp /xyce.reconfigure.sh ./reconfigure
 chmod +x reconfigure

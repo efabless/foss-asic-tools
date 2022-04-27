@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "false",
-        "BASE_IMAGE": "base",
-        "NAME": "iic-osic-tools",
-        "REPO_URL": "https://github.com/hpretl/iic-osic-tools",
-        "REPO_COMMIT": "alpha"
-    }
-}

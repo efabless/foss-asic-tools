@@ -1,9 +1,0 @@
-{
-    "args": {
-        "GIT": "true",
-        "BASE_IMAGE": "base",
-        "NAME": "xyce-xdm",
-        "REPO_URL": "https://github.com/Xyce/XDM",
-        "REPO_COMMIT": "c87548b0bdd4d696ea103008d452082907951fc3"
-    }
-}

@@ -11,9 +11,9 @@ export PDK_ROOT=/foss/pdk
 export SKY130_VERSION=A
 
 cd $PDK_ROOT
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}
-git checkout -qf ${REPO_COMMIT}
+git clone ${OPEN_PDKS_REPO_URL} ${OPEN_PDKS_NAME}
+cd ${OPEN_PDKS_NAME}
+git checkout -qf ${OPEN_PDKS_REPO_COMMIT}
 
 ./configure \
 	--enable-sky130-pdk=$PDK_ROOT/skywater-pdk \
@@ -26,9 +26,9 @@ git checkout -qf ${REPO_COMMIT}
 make -j$(nproc)
 make install
 
-cp $PDK_ROOT/$NAME/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130${SKY130_VERSION}
+cp $PDK_ROOT/$OPEN_PDKS_NAME/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130${SKY130_VERSION}
 
-echo "$NAME $REPO_COMMIT" 			> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
+echo "$OPEN_PDKS_NAME $OPEN_PDKS_REPO_COMMIT" 	> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
 cat "$PDK_ROOT/skywater-pdk/SOURCES" 		>> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
 cat "/foss/tools/magic/$magic_version/SOURCES" 	>> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
 

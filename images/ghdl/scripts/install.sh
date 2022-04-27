@@ -3,11 +3,11 @@
 set -e
 source scl_source enable gcc-toolset-9
 
-REPO_COMMIT_SHORT=$(echo $REPO_COMMIT | cut -c 1-7)
+REPO_COMMIT_SHORT=$(echo $GHDL_REPO_COMMIT | cut -c 1-7)
 
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}
-git checkout ${REPO_COMMIT}
-./configure  --with-llvm-config --prefix=/foss/tools/${NAME}/${REPO_COMMIT_SHORT}
+git clone ${GHDL_REPO_URL} ${GHDL_NAME}
+cd ${GHDL_NAME}
+git checkout ${GHDL_REPO_COMMIT}
+./configure  --with-llvm-config --prefix=/foss/tools/${GHDL_NAME}/${REPO_COMMIT_SHORT}
 make -j$(nproc)
 make install
