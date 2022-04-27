@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="89a0632ecc9e6a8811b2f5465f75dd4e885846afVERILATOR_"
+ARG VERILATOR_REPO_COMMIT="89a0632ecc9e6a8811b2f5465f75dd4e885846af"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
