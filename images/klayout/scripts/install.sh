@@ -10,4 +10,4 @@ cd ${KLAYOUT_NAME}
 git checkout ${KLAYOUT_REPO_COMMIT}
 prefix=/foss/tools/${KLAYOUT_NAME}/${REPO_COMMIT_SHORT}
 mkdir -p "$prefix"
-./build.sh -j$(nproc) -prefix "$prefix"
+./build.sh -j$(($(nproc) / 2)) -prefix "$prefix"

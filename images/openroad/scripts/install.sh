@@ -11,5 +11,5 @@ git checkout ${OPENROAD_REPO_COMMIT}
 mkdir -p build/
 cd build
 CFLAGS='-Wno-narrowing' cmake .. "-DCMAKE_INSTALL_PREFIX=/foss/tools/${OPENROAD_NAME}/${REPO_COMMIT_SHORT}"
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

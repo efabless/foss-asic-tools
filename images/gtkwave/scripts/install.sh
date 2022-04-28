@@ -11,5 +11,5 @@ git checkout ${GTKWAVE_REPO_COMMIT}
 ./autogen.sh
 #FIXME Need to disable TCL due to compile error
 ./configure --prefix=/foss/tools/${GTKWAVE_NAME}/${REPO_COMMIT_SHORT} --enable-gtk3 --disable-tcl
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

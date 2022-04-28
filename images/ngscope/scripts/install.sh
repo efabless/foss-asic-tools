@@ -12,5 +12,5 @@ cd build
 
 prefix=/foss/tools/${NGSCOPE_NAME}/${NGSCOPE_REPO_COMMIT}
 cmake -DCMAKE_INSTALL_PREFIX=$prefix ..
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make DESTDIR=$prefix install

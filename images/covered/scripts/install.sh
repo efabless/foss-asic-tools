@@ -9,5 +9,5 @@ git clone ${COVERED_REPO_URL} ${COVERED_NAME}
 cd ${COVERED_NAME}
 git checkout ${COVERED_REPO_COMMIT}
 ./configure --prefix=/foss/tools/${COVERED_NAME}/${REPO_COMMIT_SHORT}
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

@@ -12,4 +12,4 @@ git submodule update --init --recursive
 mkdir build
 cd build
 ../configure --with-arch=rv32ia --prefix=/foss/tools/${RV_TOOLCHAIN_NAME}/${REPO_COMMIT_SHORT}
-make linux -j$(nproc)
+make linux -j$(($(nproc) / 2))

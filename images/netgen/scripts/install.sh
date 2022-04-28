@@ -10,5 +10,5 @@ cd ${NETGEN_NAME}
 git checkout ${NETGEN_REPO_COMMIT}
 ./configure CFLAGS="-O2 -g" --prefix=/foss/tools/${NETGEN_NAME}/${REPO_COMMIT_SHORT}
 make clean
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

@@ -15,7 +15,7 @@ echo "Copying newly built liblef and libdef into place"
 cp ../OpenROAD/src/odb/src/lef/build/liblef.a rsyn/lib/linux/
 cp ../OpenROAD/src/odb/src/def/build/libdef.a rsyn/lib/linux/
 
-python3 scripts/build.py -o release -m"-j$(nproc)"
+python3 scripts/build.py -o release -m"-j$(($(nproc) / 2))"
 
 mkdir -p /foss/tools/${CUGR_NAME}/${REPO_COMMIT_SHORT}/bin/
 cp run/iccad19gr /foss/tools/${CUGR_NAME}/${REPO_COMMIT_SHORT}/bin/cugr

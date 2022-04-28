@@ -9,5 +9,5 @@ git clone ${XSCHEM_REPO_URL} ${XSCHEM_NAME}
 cd ${XSCHEM_NAME}
 git checkout ${XSCHEM_REPO_COMMIT}
 ./configure --prefix=/foss/tools/${XSCHEM_NAME}/${REPO_COMMIT_SHORT}
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

@@ -13,12 +13,12 @@ cd lef
 mkdir build
 cd build
 cmake ..
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 
 echo "Building libdef"
 cd ../../def
 mkdir build
 cd build
 cmake ..
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 

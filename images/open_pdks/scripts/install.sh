@@ -23,7 +23,7 @@ git checkout -qf ${OPEN_PDKS_REPO_COMMIT}
 	--with-sky130-variants=$SKY130_VERSION \
 	--datadir=/foss/
 
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install
 
 cp $PDK_ROOT/$OPEN_PDKS_NAME/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130${SKY130_VERSION}

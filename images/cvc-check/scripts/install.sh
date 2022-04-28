@@ -12,5 +12,5 @@ cd ${CVC_CHECK_NAME}
 git checkout ${CVC_CHECK_REPO_COMMIT}
 autoreconf -i
 ./configure --disable-nls --prefix=/foss/tools/${CVC_CHECK_NAME}/${REPO_COMMIT_SHORT}
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

@@ -11,5 +11,5 @@ git checkout ${VERILATOR_REPO_COMMIT}
 autoconf
 unset VERILATOR_ROOT
 ./configure --prefix=/foss/tools/${VERILATOR_NAME}/${REPO_COMMIT_SHORT}
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install

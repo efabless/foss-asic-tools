@@ -15,7 +15,7 @@ mkdir -p parallel_build && cd parallel_build
 cp /trilinos.reconfigure.sh ./reconfigure
 chmod +x reconfigure
 ./reconfigure
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install
 
 cd /${XYCE_NAME}
@@ -23,5 +23,5 @@ mkdir -p parallel_build && cd parallel_build
 cp /xyce.reconfigure.sh ./reconfigure
 chmod +x reconfigure
 ./reconfigure
-make -j$(nproc)
+make -j$(($(nproc) / 2))
 make install
