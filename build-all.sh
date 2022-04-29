@@ -8,5 +8,5 @@ if [ -z ${DOCKER_USER+z} ]; then
 fi
 
 set -e
-echo docker buildx create --name iic-osic-tools-builder --node iic-osic-tools-builder0 --bootstrap --config ./buildkitd.toml
-echo docker buildx build --platform linux/amd64,linux/arm64/v8 --builder iic-osic-tools-builder --push --tag ${DOCKER_USER}/iic-osic-tools:latest .
+docker buildx create --name iic-osic-tools-builder --node iic-osic-tools-builder0 --bootstrap --config ./buildkitd.toml
+docker buildx build --platform linux/amd64,linux/arm64/v8 --builder iic-osic-tools-builder --push --tag ${DOCKER_USER}/iic-osic-tools:latest .
