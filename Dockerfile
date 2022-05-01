@@ -7,7 +7,6 @@ FROM ${BASE_IMAGE} as base
 ADD images/base/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
 
-
 #######################################################################
 # Compile magic
 #######################################################################
@@ -76,7 +75,6 @@ ARG CUGR_NAME="cugr"
 ADD images/cugr/scripts/install.sh install.sh
 RUN bash install.sh
 
-
 #######################################################################
 # Compile cvc-check
 #######################################################################
@@ -104,16 +102,17 @@ RUN bash install.sh
 # Compile fault
 #######################################################################
 # FIXME build dependencies clean as stand-alone stages
-FROM base as fault
-ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-ARG FAULT_REPO_COMMIT="5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
-ARG FAULT_NAME="fault"
+#FROM base as fault
+#ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
+#ARG FAULT_REPO_COMMIT="5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
+#ARG FAULT_NAME="fault"
 
-ADD images/fault/scripts/dependencies.sh dependencies.sh
-RUN bash dependencies.sh
+#ADD images/fault/scripts/dependencies.sh dependencies.sh
+#RUN bash dependencies.sh
 
-ADD images/fault/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/fault/scripts/install.sh install.sh
+#RUN bash install.sh
+
 #######################################################################
 # Compile gaw3-xschem
 #######################################################################
@@ -124,6 +123,7 @@ ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 
 ADD images/gaw3-xschem/scripts/install.sh install.sh
 RUN bash install.sh
+
 #######################################################################
 # Compile ghdl
 #######################################################################
@@ -189,6 +189,7 @@ ARG KLAYOUT_NAME="klayout"
 
 ADD images/klayout/scripts/install.sh install.sh
 RUN bash install.sh
+
 #######################################################################
 # Compile netgen
 #######################################################################
@@ -319,7 +320,6 @@ ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
 ARG XYCE_REPO_COMMIT="f8dc8f79f7dec99f3b0b5ce600fb36c1e203c602"
 ARG XYCE_NAME="xyce"
 
-
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
 COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh
 ADD images/xyce/scripts/install.sh install.sh
@@ -332,6 +332,7 @@ ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
 RUN bash install.sh
+
 #######################################################################
 # Compile yosys & yosys-ghdl-plugin
 #######################################################################
@@ -395,8 +396,8 @@ COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
 COPY --from=cugr                         /foss/tools/            /foss/tools/
 COPY --from=cvc-check                    /foss/tools/            /foss/tools/
 COPY --from=drcu                         /foss/tools/            /foss/tools/
-COPY --from=fault                        /foss/tools/            /foss/tools/
-COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
+#COPY --from=fault                        /foss/tools/            /foss/tools/
+#COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/

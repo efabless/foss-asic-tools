@@ -12,5 +12,5 @@ git checkout ${NGSPICE_REPO_COMMIT}
 set -e
 ./autogen.sh
 ./configure --disable-debug --enable-openmp --with-x --with-readline=no --enable-xspice --with-fftw3=yes --prefix=/foss/tools/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}
-make -j$(($(nproc) / 2)) 
+make -j$(nproc)
 make install

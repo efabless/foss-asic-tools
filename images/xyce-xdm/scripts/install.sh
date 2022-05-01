@@ -17,5 +17,5 @@ sed -i 's/isnan/std::isnan/g' src/c_boost/expr/spectre_expr_parser_interface.cpp
 mkdir build && cd build
 PREFIX=/foss/tools/${XYCE_XDM_NAME}/${REPO_COMMIT_SHORT}
 cmake -DCMAKE_INSTALL_PREFIX=$PREFIX ..
-make -j$(($(nproc) / 2))
+make -j$(nproc)
 make install

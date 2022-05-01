@@ -11,5 +11,5 @@ git checkout ${IVERILOG_REPO_COMMIT}
 chmod +x autoconf.sh
 ./autoconf.sh
 ./configure --prefix=/foss/tools/${IVERILOG_NAME}/${REPO_COMMIT_SHORT}
-make -j$(($(nproc) / 2))
+make -j$(nproc)
 make install

@@ -9,7 +9,7 @@ git clone ${MAGIC_REPO_URL} ${MAGIC_NAME}
 cd ${MAGIC_NAME}
 git checkout ${MAGIC_REPO_COMMIT}
 ./configure --prefix=/foss/tools/${MAGIC_NAME}/${REPO_COMMIT_SHORT}
-make -j$(($(nproc) / 2))
+make -j$(nproc)
 make install
 
 echo "$MAGIC_NAME $MAGIC_REPO_COMMIT" > /foss/tools/${MAGIC_NAME}/${REPO_COMMIT_SHORT}/SOURCES

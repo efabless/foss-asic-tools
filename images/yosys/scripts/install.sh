@@ -9,5 +9,5 @@ git clone ${YOSYS_REPO_URL} ${YOSYS_NAME}
 cd ${YOSYS_NAME}
 git checkout ${YOSYS_REPO_COMMIT}
 make PREFIX=/foss/tools/${YOSYS_NAME}/${REPO_COMMIT_SHORT} config-gcc
-make PREFIX=/foss/tools/${YOSYS_NAME}/${REPO_COMMIT_SHORT} -j$(($(nproc) / 2))
+make PREFIX=/foss/tools/${YOSYS_NAME}/${REPO_COMMIT_SHORT} -j$(nproc)
 make PREFIX=/foss/tools/${YOSYS_NAME}/${REPO_COMMIT_SHORT} install

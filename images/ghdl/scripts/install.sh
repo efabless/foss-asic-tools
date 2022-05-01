@@ -9,5 +9,5 @@ git clone ${GHDL_REPO_URL} ${GHDL_NAME}
 cd ${GHDL_NAME}
 git checkout ${GHDL_REPO_COMMIT}
 ./configure  --with-llvm-config --prefix=/foss/tools/${GHDL_NAME}/${REPO_COMMIT_SHORT}
-make -j$(($(nproc) / 2))
+make -j$(nproc)
 make install

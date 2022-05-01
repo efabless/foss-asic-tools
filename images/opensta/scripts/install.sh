@@ -14,7 +14,7 @@ git checkout ${OPENSTA_REPO_COMMIT}
 mkdir build
 cd build
 cmake ..
-make -j$(($(nproc) / 2))
+make -j$(nproc)
 cd ..
 mkdir bin
 cp app/sta bin
