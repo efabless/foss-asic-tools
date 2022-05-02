@@ -19,4 +19,4 @@ if [ $VNC_PORT -gt 0 ]; then
 	PORT_PARAMS="$PORT_PARAMS -p $VNC_PORT:5901"
 fi
 
-docker run -d --user $(id -u):$(id -g) $PORT_PARAMS -v $DESIGNS:/foss/designs:rw foss-asic-tools:alpha
+docker run -d --user $(id -u):$(id -g) $PORT_PARAMS -v $DESIGNS:/foss/designs:rw hpretl/iic-osic-tools
