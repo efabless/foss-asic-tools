@@ -19,6 +19,8 @@ if [ -z ${DOCKER_PLATFORMS+z} ]; then
 	DOCKER_PLATFORMS="linux/amd64,linux/arm64/v8"
 fi
 
+DATE_TAG=$(date +"%Y.%m")
+
 set -e
 docker buildx create --name iic-osic-tools-builder --node iic-osic-tools-builder0 --bootstrap --config ./buildkitd.toml
-docker buildx build --platform ${DOCKER_PLATFORMS} --builder iic-osic-tools-builder --push --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} .
+docker buildx build --platform ${DOCKER_PLATFORMS} --builder iic-osic-tools-builder --push --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DATE_TAG} .
