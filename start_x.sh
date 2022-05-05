@@ -12,48 +12,78 @@ if [ -z ${DESIGNS+z} ]; then
 	echo "Design directory auto-set to $DESIGNS"
 fi
 
+if [ -z ${DOCKER_USER+z} ]; then
+	DOCKER_USER="hpretl"
+fi
+
+if [ -z ${DOCKER_IMAGE+z} ]; then
+	DOCKER_IMAGE="iic-osic-tools"
+fi
+
+if [ -z ${DOCKER_TAG+z} ]; then
+	DOCKER_TAG="latest"
+fi
+
+
+exec_exists() {
+	type "$1" >/dev/null >/dev/null
+}
+
 PARAMS=""
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "Auto detected Linux"
-	# Senseful defaults (uses XAUTHORITY Shell variable if set, or the default .Xauthority -file in the caller home directory)
-	if [ -z ${XAUTHORITY+z} ]; then
-		if [ -f "$HOME/.Xauthority" ]; then
-			XAUTH="$HOME/.Xauthority"
-		else
-			echo "Xauthority could not be found. Please set manually!"
-			exit 1
-		fi
-	else
-		XAUTH=$XAUTHORITY
-	fi
-	PARAMS="$PARAMS -v $XAUTH:/headless/.xauthority:rw -e XAUTHORITY=/headless/.xauthority"
 	# Should also be a senseful default
 	if [ -z ${XSOCK+z} ]; then
-                if [ -f "/tmp/.X11-unix" ]; then
+		if [ -d "/tmp/.X11-unix" ]; then
 			XSOCK="/tmp/.X11-unix"
-                else
-                        echo "X socket could not be found. Please set manually!"
-                        exit 1
-                fi
+		else
+			echo "X socket could not be found. Please set manually!"
+			exit 1
+		fi
 	fi
 	PARAMS="$PARAMS -v $XSOCK:/tmp/.X11-unix:rw"
-        if [ -z ${DISP+z} ]; then
+	if [ -z ${DISP+z} ]; then
 		if [ -z ${DISPLAY+z} ]; then
 			echo "No DISPLAY set"
 			exit 1
 		else
-	                DISP=$DISPLAY
+			DISP=$DISPLAY
 		fi
-        fi
+	fi
+	if [ -z ${XAUTH+z} ]; then
+		# Senseful defaults (uses XAUTHORITY Shell variable if set, or the default .Xauthority -file in the caller home directory)
+		if [ -z ${XAUTHORITY+z} ]; then
+			if [ -f "$HOME/.Xauthority" ]; then
+				XAUTH="$HOME/.Xauthority"
+			else
+				echo "Xauthority could not be found. Please set manually!"
+				exit 1
+			fi
+		else
+			XAUTH=$XAUTHORITY
+		fi
+		XAUTH_TMP="/tmp/.iic-osic-docker_xauthority"
+		#create empty file
+		echo -n > ${XAUTH_TMP}
+		xauth -f ${XAUTH} nlist ${DISP} | sed -e 's/^..../ffff/' | xauth -f ${XAUTH_TMP} nmerge -
+		XAUTH=${XAUTH_TMP}
+	fi
+	PARAMS="$PARAMS -v $XAUTH:/headless/.xauthority:rw -e XAUTHORITY=/headless/.xauthority"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	if [ -z ${DISP+z} ]; then
-        	DISP="host.docker.internal:0"
+		DISP="host.docker.internal:0"
+		if [[ $(type -P "xhost") ]]; then
+			xhost localhost
+		else
+			echo "WARNING: xhost could not be found, access control to the X server must be managed manually!"
+		fi
 	fi
 else
-        echo "Not setup for $OSTYPE"
+	echo "Not setup for $OSTYPE"
 	exit 1
 fi
 
 
 # Finally, run the container, sets DISPLAY to the local display number
-docker run -d --user $(id -u):$(id -g) -e DISPLAY=$DISP -v $DESIGNS:/foss/designs:rw $PARAMS hpretl/iic-osic-tools
+docker run -d --user $(id -u):$(id -g) -e DISPLAY=$DISP -v $DESIGNS:/foss/designs:rw $PARAMS ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+
