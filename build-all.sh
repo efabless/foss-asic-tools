@@ -28,11 +28,11 @@ else
 fi
 
 if [ -z ${ARM64_BUILDER_STR+z} ]; then
-	AMD64_BUILDER_STR="host=unix:///var/run/docker.sock"
+	ARM64_BUILDER_STR="host=unix:///var/run/docker.sock"
 fi
 
 if [ -z ${AMD64_BUILDER_STR+z} ]; then
-	ARM64_BUILDER_STR="host=ssh://pretl@buildx86"
+	AMD64_BUILDER_STR="host=ssh://pretl@buildx86"
 fi
 
 if [ -z ${BUILDER_NAME+z} ]; then
