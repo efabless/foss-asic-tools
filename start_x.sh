@@ -62,6 +62,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		else
 			XAUTH=$XAUTHORITY
 		fi
+		# Thanks to https://stackoverflow.com/a/25280523
 		XAUTH_TMP="/tmp/.iic-osic-docker_xauthority"
 		#create empty file
 		echo -n > ${XAUTH_TMP}
