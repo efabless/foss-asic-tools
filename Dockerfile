@@ -48,13 +48,13 @@ RUN bash install.sh
 #######################################################################
 # Compile covered
 #######################################################################
-#FROM base as covered
-#ARG COVERED_REPO_URL="https://github.com/hpretl/verilog-covered"
-#ARG COVERED_REPO_COMMIT="19d30fc942642b14dc24e95331cd4777c8dcbad9"
-#ARG COVERED_NAME="covered"
+FROM base as covered
+ARG COVERED_REPO_URL="https://github.com/hpretl/verilog-covered"
+ARG COVERED_REPO_COMMIT="19d30fc942642b14dc24e95331cd4777c8dcbad9"
+ARG COVERED_NAME="covered"
 
-#ADD images/covered/scripts/install.sh install.sh
-#RUN bash install.sh
+ADD images/covered/scripts/install.sh install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile liblef and libdef
@@ -102,16 +102,16 @@ RUN bash install.sh
 # Compile fault
 #######################################################################
 # FIXME build dependencies clean as stand-alone stages
-#FROM base as fault
-#ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-#ARG FAULT_REPO_COMMIT="5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
-#ARG FAULT_NAME="fault"
+FROM base as fault
+ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
+ARG FAULT_REPO_COMMIT="5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
+ARG FAULT_NAME="fault"
 
-#ADD images/fault/scripts/dependencies.sh dependencies.sh
-#RUN bash dependencies.sh
+ADD images/fault/scripts/dependencies.sh dependencies.sh
+RUN bash dependencies.sh
 
-#ADD images/fault/scripts/install.sh install.sh
-#RUN bash install.sh
+ADD images/fault/scripts/install.sh install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile gaw3-xschem
