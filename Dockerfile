@@ -392,12 +392,12 @@ ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
 COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
 
-#COPY --from=covered                      /foss/tools/            /foss/tools/
+COPY --from=covered                      /foss/tools/            /foss/tools/
 COPY --from=cugr                         /foss/tools/            /foss/tools/
 COPY --from=cvc-check                    /foss/tools/            /foss/tools/
 COPY --from=drcu                         /foss/tools/            /foss/tools/
-#COPY --from=fault                        /foss/tools/            /foss/tools/
-#COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
+COPY --from=fault                        /foss/tools/            /foss/tools/
+COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/
