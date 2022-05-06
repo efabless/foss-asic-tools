@@ -1,0 +1,190 @@
+
+blink.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+10000000 <start>:
+10000000:	4085                	li	ra,1
+10000002:	20000137          	lui	sp,0x20000
+10000006:	41200193          	li	gp,1042
+1000000a:	03f00213          	li	tp,63
+1000000e:	c00e                	sw	gp,0(sp)
+10000010:	c212                	sw	tp,4(sp)
+10000012:	c406                	sw	ra,8(sp)
+
+10000014 <done>:
+10000014:	00000063          	beqz	zero,10000014 <done>
+10000018:	00000093          	li	ra,0
+1000001c:	00000193          	li	gp,0
+10000020:	00000213          	li	tp,0
+10000024:	00000293          	li	t0,0
+10000028:	00000313          	li	t1,0
+1000002c:	00000393          	li	t2,0
+10000030:	00000413          	li	s0,0
+10000034:	00000493          	li	s1,0
+10000038:	00000513          	li	a0,0
+1000003c:	00000593          	li	a1,0
+10000040:	00000613          	li	a2,0
+10000044:	00000693          	li	a3,0
+10000048:	00000713          	li	a4,0
+1000004c:	00000793          	li	a5,0
+10000050:	00000813          	li	a6,0
+10000054:	00000893          	li	a7,0
+10000058:	00000913          	li	s2,0
+1000005c:	00000993          	li	s3,0
+10000060:	00000a13          	li	s4,0
+10000064:	00000a93          	li	s5,0
+10000068:	00000b13          	li	s6,0
+1000006c:	00000b93          	li	s7,0
+10000070:	00000c13          	li	s8,0
+10000074:	00000c93          	li	s9,0
+10000078:	00000d13          	li	s10,0
+1000007c:	00000d93          	li	s11,0
+10000080:	00000e13          	li	t3,0
+10000084:	00000e93          	li	t4,0
+10000088:	00000f13          	li	t5,0
+1000008c:	00000f93          	li	t6,0
+10000090:	00000517          	auipc	a0,0x0
+10000094:	15050513          	addi	a0,a0,336 # 100001e0 <_etext>
+10000098:	00000593          	li	a1,0
+1000009c:	00000613          	li	a2,0
+100000a0:	00c5d863          	bge	a1,a2,100000b0 <end_init_data>
+
+100000a4 <loop_init_data>:
+100000a4:	4114                	lw	a3,0(a0)
+100000a6:	c194                	sw	a3,0(a1)
+100000a8:	0511                	addi	a0,a0,4
+100000aa:	0591                	addi	a1,a1,4
+100000ac:	fec5cce3          	blt	a1,a2,100000a4 <loop_init_data>
+
+100000b0 <end_init_data>:
+100000b0:	00000513          	li	a0,0
+100000b4:	00000593          	li	a1,0
+100000b8:	00b55763          	bge	a0,a1,100000c6 <end_init_bss>
+
+100000bc <loop_init_bss>:
+100000bc:	00052023          	sw	zero,0(a0)
+100000c0:	0511                	addi	a0,a0,4
+100000c2:	feb54de3          	blt	a0,a1,100000bc <loop_init_bss>
+
+100000c6 <end_init_bss>:
+100000c6:	2871                	jal	10000162 <main>
+
+100000c8 <loop>:
+100000c8:	a001                	j	100000c8 <loop>
+100000ca:	0001                	nop
+
+100000cc <flashio_worker_begin>:
+100000cc:	280002b7          	lui	t0,0x28000
+100000d0:	12000313          	li	t1,288
+100000d4:	00629023          	sh	t1,0(t0) # 28000000 <_etext+0x17fffe20>
+100000d8:	000281a3          	sb	zero,3(t0)
+100000dc:	c605                	beqz	a2,10000104 <flashio_worker_L1>
+100000de:	4f21                	li	t5,8
+100000e0:	0ff67393          	andi	t2,a2,255
+
+100000e4 <flashio_worker_L4>:
+100000e4:	0073de93          	srli	t4,t2,0x7
+100000e8:	01d28023          	sb	t4,0(t0)
+100000ec:	010eee93          	ori	t4,t4,16
+100000f0:	01d28023          	sb	t4,0(t0)
+100000f4:	0386                	slli	t2,t2,0x1
+100000f6:	0ff3f393          	andi	t2,t2,255
+100000fa:	1f7d                	addi	t5,t5,-1
+100000fc:	fe0f14e3          	bnez	t5,100000e4 <flashio_worker_L4>
+10000100:	00628023          	sb	t1,0(t0)
+
+10000104 <flashio_worker_L1>:
+10000104:	c9a1                	beqz	a1,10000154 <flashio_worker_L3>
+10000106:	02000f13          	li	t5,32
+1000010a:	00052383          	lw	t2,0(a0)
+
+1000010e <flashio_worker_LY>:
+1000010e:	4fa1                	li	t6,8
+
+10000110 <flashio_worker_L2>:
+10000110:	01f3de93          	srli	t4,t2,0x1f
+10000114:	01d28023          	sb	t4,0(t0)
+10000118:	010eee93          	ori	t4,t4,16
+1000011c:	01d28023          	sb	t4,0(t0)
+10000120:	0002ce83          	lbu	t4,0(t0)
+10000124:	002efe93          	andi	t4,t4,2
+10000128:	001ede93          	srli	t4,t4,0x1
+1000012c:	0386                	slli	t2,t2,0x1
+1000012e:	01d3e3b3          	or	t2,t2,t4
+10000132:	1f7d                	addi	t5,t5,-1
+10000134:	000f1763          	bnez	t5,10000142 <flashio_worker_LX>
+10000138:	00752023          	sw	t2,0(a0)
+1000013c:	0511                	addi	a0,a0,4
+1000013e:	00052383          	lw	t2,0(a0)
+
+10000142 <flashio_worker_LX>:
+10000142:	1ffd                	addi	t6,t6,-1
+10000144:	fc0f96e3          	bnez	t6,10000110 <flashio_worker_L2>
+10000148:	15fd                	addi	a1,a1,-1
+1000014a:	f1f1                	bnez	a1,1000010e <flashio_worker_LY>
+1000014c:	000f0463          	beqz	t5,10000154 <flashio_worker_L3>
+10000150:	00752023          	sw	t2,0(a0)
+
+10000154 <flashio_worker_L3>:
+10000154:	08000313          	li	t1,128
+10000158:	006281a3          	sb	t1,3(t0)
+1000015c:	8082                	ret
+1000015e:	0001                	nop
+
+10000160 <flashio_worker_end>:
+	...
+
+10000162 <main>:
+10000162:	1101                	addi	sp,sp,-32
+10000164:	ce22                	sw	s0,28(sp)
+10000166:	1000                	addi	s0,sp,32
+10000168:	210007b7          	lui	a5,0x21000
+1000016c:	0791                	addi	a5,a5,4
+1000016e:	0007a023          	sw	zero,0(a5) # 21000000 <_etext+0x10fffe20>
+10000172:	210007b7          	lui	a5,0x21000
+10000176:	07b1                	addi	a5,a5,12
+10000178:	4705                	li	a4,1
+1000017a:	c398                	sw	a4,0(a5)
+1000017c:	210007b7          	lui	a5,0x21000
+10000180:	0007a023          	sw	zero,0(a5) # 21000000 <_etext+0x10fffe20>
+10000184:	fe042623          	sw	zero,-20(s0)
+10000188:	a031                	j	10000194 <main+0x32>
+1000018a:	fec42783          	lw	a5,-20(s0)
+1000018e:	0785                	addi	a5,a5,1
+10000190:	fef42623          	sw	a5,-20(s0)
+10000194:	fec42703          	lw	a4,-20(s0)
+10000198:	67a5                	lui	a5,0x9
+1000019a:	8b778793          	addi	a5,a5,-1865 # 88b7 <_edata+0x88b7>
+1000019e:	fee7d6e3          	bge	a5,a4,1000018a <main+0x28>
+100001a2:	fe042623          	sw	zero,-20(s0)
+100001a6:	a031                	j	100001b2 <main+0x50>
+100001a8:	fec42783          	lw	a5,-20(s0)
+100001ac:	0785                	addi	a5,a5,1
+100001ae:	fef42623          	sw	a5,-20(s0)
+100001b2:	fec42703          	lw	a4,-20(s0)
+100001b6:	67c5                	lui	a5,0x11
+100001b8:	16f78793          	addi	a5,a5,367 # 1116f <_edata+0x1116f>
+100001bc:	fee7d6e3          	bge	a5,a4,100001a8 <main+0x46>
+100001c0:	fe042623          	sw	zero,-20(s0)
+100001c4:	a031                	j	100001d0 <main+0x6e>
+100001c6:	fec42783          	lw	a5,-20(s0)
+100001ca:	0785                	addi	a5,a5,1
+100001cc:	fef42623          	sw	a5,-20(s0)
+100001d0:	fec42703          	lw	a4,-20(s0)
+100001d4:	67c5                	lui	a5,0x11
+100001d6:	16f78793          	addi	a5,a5,367 # 1116f <_edata+0x1116f>
+100001da:	fee7d6e3          	bge	a5,a4,100001c6 <main+0x64>
+100001de:	b7d1                	j	100001a2 <main+0x40>
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347          	fmsub.d	ft6,ft6,ft4,ft7,rmm
+   4:	2820                	fld	fs0,80(s0)
+   6:	29554e47          	fmsub.s	ft8,fa0,fs5,ft5,rmm
+   a:	3820                	fld	fs0,112(s0)
+   c:	322e                	fld	ft4,232(sp)
+   e:	302e                	fld	ft0,232(sp)
+	...

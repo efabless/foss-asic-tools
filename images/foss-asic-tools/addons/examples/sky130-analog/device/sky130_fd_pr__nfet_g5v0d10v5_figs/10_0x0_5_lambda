@@ -1,0 +1,242 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: nutmeg
+%%BoundingBox: 54 54 612 612
+1 1 scale
+/Helvetica findfont 10 scalefont setfont
+
+[] 0 setdash
+[1 2] 0 setdash
+[] 0 setdash
+243 66 moveto
+(v(v_drain)) show
+[1 2] 0 setdash
+newpath
+90 104 moveto
+90 544 lineto
+stroke
+[] 0 setdash
+81 87 moveto
+(0.4) show
+[1 2] 0 setdash
+newpath
+133 104 moveto
+133 544 lineto
+stroke
+[] 0 setdash
+124 87 moveto
+(0.6) show
+[1 2] 0 setdash
+newpath
+176 104 moveto
+176 544 lineto
+stroke
+[] 0 setdash
+167 87 moveto
+(0.8) show
+[1 2] 0 setdash
+newpath
+219 104 moveto
+219 544 lineto
+stroke
+[] 0 setdash
+210 87 moveto
+(1.0) show
+[1 2] 0 setdash
+newpath
+262 104 moveto
+262 544 lineto
+stroke
+[] 0 setdash
+253 87 moveto
+(1.2) show
+[1 2] 0 setdash
+newpath
+305 104 moveto
+305 544 lineto
+stroke
+[] 0 setdash
+296 87 moveto
+(1.4) show
+[1 2] 0 setdash
+newpath
+348 104 moveto
+348 544 lineto
+stroke
+[] 0 setdash
+339 87 moveto
+(1.6) show
+[1 2] 0 setdash
+newpath
+391 104 moveto
+391 544 lineto
+stroke
+[] 0 setdash
+382 87 moveto
+(1.8) show
+[1 2] 0 setdash
+newpath
+434 104 moveto
+434 544 lineto
+stroke
+[] 0 setdash
+425 87 moveto
+(2.0) show
+[1 2] 0 setdash
+newpath
+477 104 moveto
+477 544 lineto
+stroke
+[] 0 setdash
+468 87 moveto
+(2.2) show
+[1 2] 0 setdash
+newpath
+520 104 moveto
+520 544 lineto
+stroke
+[] 0 setdash
+511 87 moveto
+(2.4) show
+[1 2] 0 setdash
+newpath
+563 104 moveto
+563 544 lineto
+stroke
+[] 0 setdash
+554 87 moveto
+(2.6) show
+[1 2] 0 setdash
+[] 0 setdash
+382 66 moveto
+(V) show
+[1 2] 0 setdash
+newpath
+90 104 moveto
+563 104 lineto
+stroke
+[] 0 setdash
+60 101 moveto
+(150.0) show
+[1 2] 0 setdash
+newpath
+90 159 moveto
+563 159 lineto
+stroke
+[] 0 setdash
+60 156 moveto
+(200.0) show
+[1 2] 0 setdash
+newpath
+90 214 moveto
+563 214 lineto
+stroke
+[] 0 setdash
+60 211 moveto
+(250.0) show
+[1 2] 0 setdash
+newpath
+90 269 moveto
+563 269 lineto
+stroke
+[] 0 setdash
+60 266 moveto
+(300.0) show
+[1 2] 0 setdash
+newpath
+90 324 moveto
+563 324 lineto
+stroke
+[] 0 setdash
+60 321 moveto
+(350.0) show
+[1 2] 0 setdash
+newpath
+90 379 moveto
+563 379 lineto
+stroke
+[] 0 setdash
+60 376 moveto
+(400.0) show
+[1 2] 0 setdash
+newpath
+90 434 moveto
+563 434 lineto
+stroke
+[] 0 setdash
+60 431 moveto
+(450.0) show
+[1 2] 0 setdash
+newpath
+90 489 moveto
+563 489 lineto
+stroke
+[] 0 setdash
+60 486 moveto
+(500.0) show
+[1 2] 0 setdash
+newpath
+90 544 moveto
+563 544 lineto
+stroke
+[] 0 setdash
+60 541 moveto
+(550.0) show
+[1 2] 0 setdash
+[] 0 setdash
+54 582 moveto
+(mUnits) show
+[1 2] 0 setdash
+[7 7] 0 setdash
+newpath
+284 586 moveto
+307 586 lineto
+stroke
+[] 0 setdash
+313 582 moveto
+(@m.xm1.msky130_fd_pr__nfet_g5v0d10v5[gds]/i(@m.xm1.msky130_fd_pr__nfet_g5v0d10v5[id])) show
+[7 7] 0 setdash
+newpath
+111 519 moveto
+122 472 lineto
+133 435 lineto
+144 404 lineto
+155 378 lineto
+165 356 lineto
+176 337 lineto
+187 320 lineto
+198 306 lineto
+208 292 lineto
+219 281 lineto
+230 270 lineto
+241 260 lineto
+251 251 lineto
+262 243 lineto
+273 236 lineto
+284 229 lineto
+294 222 lineto
+305 216 lineto
+316 210 lineto
+327 205 lineto
+337 200 lineto
+348 195 lineto
+359 191 lineto
+370 187 lineto
+380 183 lineto
+391 179 lineto
+402 175 lineto
+413 172 lineto
+423 168 lineto
+434 165 lineto
+445 162 lineto
+456 159 lineto
+466 156 lineto
+477 153 lineto
+488 151 lineto
+499 148 lineto
+509 146 lineto
+520 144 lineto
+531 141 lineto
+541 139 lineto
+stroke
+showpage
+%%EOF
