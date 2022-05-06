@@ -24,11 +24,6 @@ if [ -z ${DOCKER_TAG+z} ]; then
 	DOCKER_TAG="latest"
 fi
 
-
-exec_exists() {
-	type "$1" >/dev/null >/dev/null
-}
-
 PARAMS=""
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "Auto detected Linux"
@@ -74,7 +69,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	if [ -z ${DISP+z} ]; then
 		DISP="host.docker.internal:0"
 		if [[ $(type -P "xhost") ]]; then
-			xhost localhost
+			xhost +localhost
 		else
 			echo "WARNING: xhost could not be found, access control to the X server must be managed manually!"
 		fi
