@@ -1,0 +1,30 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -130 -50 130 -50 {}
+L 4 -130 50 130 50 {}
+L 4 -130 -50 -130 50 {}
+L 4 130 -50 130 50 {}
+L 7 0 -70 0 -50 {}
+L 7 0 50 0 70 {}
+L 7 -150 0 -130 0 {}
+L 7 130 -20 150 -20 {}
+L 7 130 20 150 20 {}
+B 5 -152.5 -2.5 -147.5 2.5 {name=iramp dir=inout }
+B 5 147.5 17.5 152.5 22.5 {name=timeout_int dir=inout }
+B 5 -2.5 -72.5 2.5 -67.5 {name=vpwr dir=inout }
+B 5 147.5 -22.5 152.5 -17.5 {name=vramp dir=inout }
+B 5 -2.5 67.5 2.5 72.5 {name=vgnd dir=inout }
+T {@symname} -63 -6 0 0 0.3 0.3 {}
+T {@name} 135 -62 0 0 0.2 0.2 {}
+T {vpwr} 15 -44 0 1 0.2 0.2 {}
+T {vgnd} 15 36 0 1 0.2 0.2 {}
+T {iramp} -95 -4 0 1 0.2 0.2 {}
+T {vramp} 125 -24 0 1 0.2 0.2 {}
+T {timeout_int} 125 16 0 1 0.2 0.2 {}

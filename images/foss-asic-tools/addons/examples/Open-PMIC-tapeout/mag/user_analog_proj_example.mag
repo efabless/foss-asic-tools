@@ -1,0 +1,13 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1620310959
+use example_por  example_por_0
+timestamp 1620310959
+transform -1 0 11285 0 1 -14
+box 0 0 11344 8338
+use example_por  example_por_1
+timestamp 1620310959
+transform 1 0 14132 0 1 -22
+box 0 0 11344 8338
+<< end >>
