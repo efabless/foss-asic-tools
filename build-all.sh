@@ -29,16 +29,13 @@ DATE_TAG=$(date +"%Y.%m")
 
 set -e
 
-BUILDER_NAME="iic-osic-tools-builder"
+BUILDER_NAME="iic-builder"
 
-#Todo for remote build!
-# remove qemu-user-static!
-# Create the local build context
-echo docker context create ${BUILDER_NAME}-amd64
-# create the remote build context
-echo docker context create ${BUILDER_NAME}-arm64 --docker host=ssh://ubuntu@193.122.149.200
+# Create the local build context (on arm)
+docker context create ${BUILDER_NAME}-arm64
+# Create the remote build context (on x86)
+docker context create ${BUILDER_NAME}-amd64 --docker host=ssh://pretl@buildx86
 
-#docker buildx create --name iic-osic-tools-builder --node iic-osic-tools-builder0 --bootstrap --config ./buildkitd.toml
-echo docker buildx create --name ${BUILDER_NAME} --config ./buildkitd.toml ${BUILDER_NAME}-amd64
-echo docker buildx create --name ${BUILDER_NAME} --config ./buildkitd.toml --append ${BUILDER_NAME}-arm64
-echo docker buildx build --platform ${DOCKER_PLATFORMS} --builder ${BUILDER_NAME} ${load_or_push} --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DATE_TAG} .
+docker buildx create --name ${BUILDER_NAME} --config ./buildkitd.toml --platform linux/arm64 ${BUILDER_NAME}-arm64
+docker buildx create --name ${BUILDER_NAME} --config ./buildkitd.toml --platform linux/amd64 --append ${BUILDER_NAME}-amd64
+docker buildx build --platform ${DOCKER_PLATFORMS} --builder ${BUILDER_NAME} ${load_or_push} --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DATE_TAG} .
