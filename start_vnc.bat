@@ -2,7 +2,7 @@
 
 SETLOCAL
 
-SET DEFAULT_DESIGNS=%HOMEDRIVE%%HOMEPATH%\eda\designs
+SET DEFAULT_DESIGNS=%USERPROFILE%\eda\designs
 
 IF "%DESIGNS%"=="" (
   echo Design directory auto-set to %DEFAULT_DESIGNS%
@@ -18,6 +18,30 @@ IF "%DOCKER_TAG%"=="" SET DOCKER_TAG=latest
 IF "%CONTAINER_USER%"=="" SET CONTAINER_USER=1000
 IF "%CONTAINER_GROUP%"=="" SET CONTAINER_GROUP=1000
 
+IF "%WEBSERVER_PORT%"=="" (
+  SET /a WEBSERVER_PORT=80
+) ELSE (
+  SET /a WEBSERVER_PORT=%WEBSERVER_PORT%
+)
+echo Webserver port set to %WEBSERVER_PORT%
+
+IF "%VNC_PORT%"=="" (
+  SET /a VNC_PORT=5901
+) ELSE (
+  SET /a VNC_PORT=%VNC_PORT%
+)
+echo VNC port set to %VNC_PORT%
+
+SET PARAMS=
+
+IF %WEBSERVER_PORT% GTR 0 (
+  SET PARAMS=%PARAMS% -p %WEBSERVER_PORT%:80
+)
+
+IF %VNC_PORT% GTR 0 (
+  SET PARAMS=%PARAMS% -p %VNC_PORT%:5901
+)
+
 IF "%DISP%"=="" SET DISP=host.docker.internal:0
 
 where /q xhost
@@ -28,4 +52,4 @@ IF ERRORLEVEL 1 (
     xhost +localhost
 )
 
-docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% -e DISPLAY=%DISP% -v "%DESIGNS%":/foss/designs  %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
+docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% %PARAMS% -v "%DESIGNS%":/foss/designs  %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
