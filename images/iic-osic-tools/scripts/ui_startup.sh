@@ -6,24 +6,24 @@ set -e
 help (){
 echo "
 USAGE:
-docker run -it -p 80:80 --user \$(id -u):\$(id -g) foss-asic-tools:alpha bash
+docker run -d -p 80:80 --user \$(id -u):\$(id -g) hpretl/iic-osic-tools:latest --wait
 
-TAGS:
-latest  alpha
+TAGS (See https://hub.docker.com/r/hpretl/iic-osic-tools/tags):
+latest  year.month
 
 This script autodetects if "\$DISPLAY" is set. If it is set, it uses the given X-Server to display the output, or starts VNC otherwise.
 
 OPTIONS:
 -X, --x11       Force to use local X11 forwarding, requires a working combination of $DISPLAY, an either port forwards or mounted XAUTHORITY and .X11_unix socket.
 -V, --vnc       Force use of VNC server, with noVNC and websockify.
--w, --wait      (default) keeps the UI and the vncserver up until SIGINT or SIGTERM will received
+-w, --wait      Runs the selected UI and waits for them to exit (or until SIGINT or SIGTERM received). The script will only return then.
 -s, --skip      skip the ui startup and just execute the assigned command. WARNING: this must be the first parameter to the script or it is ignored!
-                example: docker run foss-asic-tools --skip bash
+                example: docker run hpretl/iic-osic-tools --skip bash
 -d, --debug     enables more detailed startup output
-                e.g. 'docker run foss-asic-tools --debug bash'
+                e.g. 'docker run hpretl/iic-osic-tools --debug bash'
 -h, --help      print out this help
 
-Fore source information see: https://github.com/hpretl/foss-asic-tools
+For source information see: https://github.com/hpretl/iic-osic-tools
 "
 }
 
@@ -134,9 +134,9 @@ fi
 
 if [ "$start_x" = true ]; then
   xfce4-terminal &
+  PID_SUB=$!
   # add empty newline so one can see that this script is done.
   echo
-  PID_SUB=$!
 fi
 
 if [ "$par_wait" = true ]; then
