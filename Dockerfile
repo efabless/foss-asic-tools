@@ -48,13 +48,13 @@ RUN bash install.sh
 #######################################################################
 # Compile covered
 #######################################################################
-FROM base as covered
-ARG COVERED_REPO_URL="https://github.com/hpretl/verilog-covered"
-ARG COVERED_REPO_COMMIT="19d30fc942642b14dc24e95331cd4777c8dcbad9"
-ARG COVERED_NAME="covered"
+#FROM base as covered
+#ARG COVERED_REPO_URL="https://github.com/hpretl/verilog-covered"
+#ARG COVERED_REPO_COMMIT="19d30fc942642b14dc24e95331cd4777c8dcbad9"
+#ARG COVERED_NAME="covered"
 
-ADD images/covered/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/covered/scripts/install.sh install.sh
+#FIXME RUN bash install.sh
 
 #######################################################################
 # Compile liblef and libdef
@@ -151,7 +151,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="3a2b8da1c9bcbcb86175aef30f2ac16e58047c3c"
+ARG IIC_OSIC_REPO_COMMIT="d8339b8114ae4fe0a36e64c71e2a569969e962cf"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -392,7 +392,7 @@ ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
 COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
 
-COPY --from=covered                      /foss/tools/            /foss/tools/
+#FIXME COPY --from=covered                      /foss/tools/            /foss/tools/
 COPY --from=cugr                         /foss/tools/            /foss/tools/
 COPY --from=cvc-check                    /foss/tools/            /foss/tools/
 COPY --from=drcu                         /foss/tools/            /foss/tools/
