@@ -13,11 +13,11 @@ git submodule update --init libraries/sky130_fd_io/latest && \
 git submodule update --init libraries/sky130_fd_sc_hvl/latest && \
 git submodule update --init libraries/sky130_fd_pr/latest && \
 git submodule update --init libraries/sky130_fd_pr_reram/latest && \
-#git submodule update --init libraries/sky130_fd_sc_lp/latest  && \
-#git submodule update --init libraries/sky130_fd_sc_hs/latest  && \
-#git submodule update --init libraries/sky130_fd_sc_ms/latest  && \
-#git submodule update --init libraries/sky130_fd_sc_ls/latest  && \
-#git submodule update --init libraries/sky130_fd_sc_hdll/latest && \
+git submodule update --init libraries/sky130_fd_sc_lp/latest  && \
+git submodule update --init libraries/sky130_fd_sc_hs/latest  && \
+git submodule update --init libraries/sky130_fd_sc_ms/latest  && \
+git submodule update --init libraries/sky130_fd_sc_ls/latest  && \
+git submodule update --init libraries/sky130_fd_sc_hdll/latest && \
 git submodule update
 
 python3 -m pip install -e scripts/python-skywater-pdk
