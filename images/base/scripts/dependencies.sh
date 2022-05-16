@@ -159,6 +159,8 @@ pip3 install --no-cache-dir \
 	pyinstaller \
 	pyverilog \
 	pyyaml \
+	click \
+	volare>=0.1.3 \
 	spyci
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (in OpenLane)
