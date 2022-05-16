@@ -30,9 +30,9 @@ function path_add_tool_custom() {
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
         path_add_tool_bin "covered"
-        path_add_tool_bin "cugr"
+#FIXME  path_add_tool_bin "cugr"
         path_add_tool_bin "cvc-check"
-        path_add_tool_bin "drcu"
+#FIXME  path_add_tool_bin "drcu"
         path_add_tool "fault"
         path_add_tool_bin "cvc-check"
         path_add_tool_bin "gaw3-xschem"

@@ -13,9 +13,9 @@ It supports two *modes of operation*:
 Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless):
 
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
-* [cu-gr](https://github.com/ax3ghazy/cu-gr.git) global router (Note: segfaults when using with openlane)
+* [cu-gr](https://github.com/ax3ghazy/cu-gr.git) *global router (removed from current distribution)*
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
-* [dr-cu](https://github.com/cuhk-eda/dr-cu.git) detail router (Note: segfaults when using with openlane)
+* [dr-cu](https://github.com/cuhk-eda/dr-cu.git) *detail router (removed from current distribution)*
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
 * [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for xschem
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator

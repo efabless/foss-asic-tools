@@ -59,21 +59,23 @@ RUN bash install.sh
 #######################################################################
 # Compile liblef and libdef
 #######################################################################
-FROM base as libdef_liblef
+#FIXME removed CUGR and DRCU, will be deleted in next release
+#FROM base as libdef_liblef
 
-ADD images/libdef_liblef/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/libdef_liblef/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Compile cugr
 #######################################################################
-FROM libdef_liblef as cugr
-ARG CUGR_REPO_URL="https://github.com/MrHighVoltage/cu-gr.git"
-ARG CUGR_REPO_COMMIT="76e8363477792e8efda48da43fb8e0a8765f0160"
-ARG CUGR_NAME="cugr"
+#FIXME removed CUGR and DRCU, will be deleted in next release
+#FROM libdef_liblef as cugr
+#ARG CUGR_REPO_URL="https://github.com/MrHighVoltage/cu-gr.git"
+#ARG CUGR_REPO_COMMIT="76e8363477792e8efda48da43fb8e0a8765f0160"
+#ARG CUGR_NAME="cugr"
 
-ADD images/cugr/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/cugr/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Compile cvc-check
@@ -90,13 +92,14 @@ RUN bash install.sh
 #######################################################################
 # Compile drcu
 #######################################################################
-FROM libdef_liblef as drcu
-ARG DRCU_REPO_URL="https://github.com/MrHighVoltage/dr-cu.git"
-ARG DRCU_REPO_COMMIT="5a08ed8d0677ad23f07d17feb78a8a6f5a5b37e9"
-ARG DRCU_NAME="drcu"
+#FIXME removed CUGR and DRCU, will be deleted in next release
+#FROM libdef_liblef as drcu
+#ARG DRCU_REPO_URL="https://github.com/MrHighVoltage/dr-cu.git"
+#ARG DRCU_REPO_COMMIT="5a08ed8d0677ad23f07d17feb78a8a6f5a5b37e9"
+#ARG DRCU_NAME="drcu"
 
-ADD images/drcu/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/drcu/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Compile fault
@@ -393,9 +396,9 @@ ADD images/iic-osic-tools/addons/xfce/ $HOME/
 COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
 
 COPY --from=covered                      /foss/tools/            /foss/tools/
-COPY --from=cugr                         /foss/tools/            /foss/tools/
+#COPY --from=cugr                         /foss/tools/            /foss/tools/
 COPY --from=cvc-check                    /foss/tools/            /foss/tools/
-COPY --from=drcu                         /foss/tools/            /foss/tools/
+#COPY --from=drcu                         /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
