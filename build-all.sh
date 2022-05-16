@@ -39,7 +39,13 @@ if [ -z ${BUILDER_NAME+z} ]; then
 	BUILDER_NAME="iic-osic-tools-builder"
 fi
 
-DATE_TAG=$(date +"%Y.%m")
+if [ -z ${DATE_TAG+z} ]; then
+	DATE_TAG=$(date +"%Y.%m")
+fi
+
+# print build tags
+echo "Using DOCKER_TAG=$DOCKER_TAG"
+echo "Using DATE_TAG=$DATE_TAG"
 
 set -e
 
