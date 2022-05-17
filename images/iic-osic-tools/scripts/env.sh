@@ -1,9 +1,10 @@
+# shellcheck shell=bash
 
 base_path=/foss/tools
 
 function path_add_tool_bin() {
         tool_name=$1
-        for d in $base_path/$tool_name/*/ ; do
+        for d in "$base_path/$tool_name"/*/ ; do
                 if [ -d "${d}bin" ]; then
                         export PATH=$PATH:${d}bin
                 fi
@@ -12,7 +13,7 @@ function path_add_tool_bin() {
 
 function path_add_tool() {
         tool_name=$1
-        for d in $base_path/$tool_name/*/ ; do
+        for d in "$base_path/$tool_name"/*/ ; do
                 if [ -d "${d}" ]; then
                         export PATH=$PATH:${d}
                 fi
@@ -64,12 +65,13 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
 
         echo "Final PATH variable:"
-        echo $PATH
+        echo "$PATH"
 
         export FOSS_PATH_SET=1
 fi
 
-export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
+LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
+export LD_LIBRARY_PATH
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
 #FIXME Fix warning when KLayout starts, maybe there is a cleaner solution
 export XDG_RUNTIME_DIR=/tmp/runtime-default
@@ -87,13 +89,18 @@ export EDITOR='gedit'
 
 #FIXME this is a WA until better solution is found for OpenLane version check
 export MISMATCHES_OK=1
+# this get's rid of a few libGL errors
+# https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
+export LIBGL_ALWAYS_INDIRECT=1
 
 #----------------------------------------
 # Tool Aliases
 #----------------------------------------
 
 alias magic='magic -d XR -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+# shellcheck disable=SC2139
 alias mmagic-$PDK='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+# shellcheck disable=SC2139
 alias lmagic-$PDK='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 
 alias k='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
@@ -144,4 +151,5 @@ alias gln='git log --name-status'
 alias gsss='git submodule status'
 
 # From libnss_wrapper.sh
-source $STARTUPDIR/scripts/generate_container_user
+# shellcheck disable=SC1091
+source "$STARTUPDIR/scripts/generate_container_user"
