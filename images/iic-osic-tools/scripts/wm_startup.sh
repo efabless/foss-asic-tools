@@ -4,6 +4,6 @@ set -e
 
 echo -e "\n------------------ startup of Xfce4 window manager ------------------"
 
-/usr/bin/startxfce4 > $STARTUPDIR/logs/wm.log &
+/usr/bin/startxfce4 > "$STARTUPDIR"/logs/wm.log &
 sleep 1
-cat $STARTUPDIR/logs/wm.log
+cat "$STARTUPDIR"/logs/wm.log

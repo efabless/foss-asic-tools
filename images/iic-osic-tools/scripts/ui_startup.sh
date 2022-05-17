@@ -28,12 +28,14 @@ For source information see: https://github.com/hpretl/iic-osic-tools
 }
 
 # should also source $STARTUPDIR/generate_container_user
-source $HOME/.bashrc
+# shellcheck disable=SC1091
+source "$HOME/.bashrc"
 
 
 # if the first parameter is skip,
 if [[ $1 =~ -s|--skip ]]; then
     echo -e "\n\n---------------- SKIPPING UI STARTUP ----------------"
+    # shellcheck disable=SC2145
     echo "Executing command: '${@:2}'"
     exec "${@:2}"
     exit $?
@@ -101,23 +103,23 @@ if [ "$start_vnc" = true ]; then
   # first entry is control, second is view (if only one is valid for both)
   mkdir -p "$HOME/.vnc"
   PASSWD_PATH="$HOME/.vnc/passwd"
-  echo "$VNC_PW" | vncpasswd -f > $PASSWD_PATH
-  chmod 600 $PASSWD_PATH
+  echo "$VNC_PW" | vncpasswd -f > "$PASSWD_PATH"
+  chmod 600 "$PASSWD_PATH"
 
   ## start vncserver and noVNC webclient
   echo -e "\n------------------ start noVNC  ----------------------------"
 
-  $NO_VNC_HOME/utils/novnc_proxy --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT &> $STARTUPDIR/logs/no_vnc_startup.log &
+  "$NO_VNC_HOME"/utils/novnc_proxy --vnc localhost:"$VNC_PORT" --listen "$NO_VNC_PORT" &> "$STARTUPDIR"/logs/no_vnc_startup.log &
   #WAIT for VNC server, not for novnc proxy
   #PID_SUB=$!
 
   echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 
-  vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/logs/vnc_startup.log
+  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
 
   echo -e "start window manager\n..."
-  $STARTUPDIR/scripts/wm_startup.sh &> $STARTUPDIR/logs/wm_startup.log
+  "$STARTUPDIR"/scripts/wm_startup.sh &> "$STARTUPDIR"/logs/wm_startup.log
 
   ## log connect options
   echo -e "\n\n------------------ VNC environment started ------------------"
@@ -128,7 +130,7 @@ if [ "$start_vnc" = true ]; then
   if [[ $DEBUG == true ]] || [[ $1 =~ -t|--tail-log ]]; then
           echo -e "\n------------------ $HOME/.vnc/*$DISPLAY.log ------------------"
           # if option `-t` or `--tail-log` block the execution and tail the VNC log
-          tail -f $STARTUPDIR/logs/*.log $HOME/.vnc/*$DISPLAY.log
+          tail -f "$STARTUPDIR"/logs/*.log "$HOME"/.vnc/*$DISPLAY.log
   fi
 fi
 

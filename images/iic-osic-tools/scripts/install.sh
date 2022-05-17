@@ -40,6 +40,7 @@ yum install -y \
 echo "Install Xfce4 UI components and disable xfce-polkit" 
 yum --enablerepo=epel -y -x gnome-keyring --skip-broken groupinstall "Xfce"
 yum -y groups install "Fonts"
+# shellcheck disable=SC2035
 yum erase -y *power*
 rm /etc/xdg/autostart/xfce-polkit*
 /bin/dbus-uuidgen > /etc/machine-id
@@ -52,11 +53,11 @@ pip3 install panda
 
 echo "Install noVNC - HTML5 based VNC viewer"
 
-mkdir -p $NO_VNC_HOME/utils/websockify
-wget -qO- https://github.com/novnc/noVNC/archive/refs/tags/v1.3.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME
+mkdir -p "$NO_VNC_HOME"/utils/websockify
+wget -qO- https://github.com/novnc/noVNC/archive/refs/tags/v1.3.0.tar.gz | tar xz --strip 1 -C "$NO_VNC_HOME"
 
-wget -qO- https://github.com/novnc/websockify/archive/refs/tags/v0.10.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify
+wget -qO- https://github.com/novnc/websockify/archive/refs/tags/v0.10.0.tar.gz | tar xz --strip 1 -C "$NO_VNC_HOME"/utils/websockify
 
-chmod +x -v $NO_VNC_HOME/utils/novnc_proxy
+chmod +x -v "$NO_VNC_HOME"/utils/novnc_proxy
 ## create index.html to forward automatically to `vnc_lite.html`
-ln -s $NO_VNC_HOME/vnc_lite.html $NO_VNC_HOME/index.html
+ln -s "$NO_VNC_HOME"/vnc_lite.html "$NO_VNC_HOME"/index.html
