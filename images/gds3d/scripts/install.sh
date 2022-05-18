@@ -14,5 +14,5 @@ mkdir -p /foss/tools/${GDS3D_NAME}/${REPO_COMMIT_SHORT}/bin
 cp linux/GDS3D /foss/tools/${GDS3D_NAME}/${REPO_COMMIT_SHORT}/bin
 
 #FIXME get paths from Dockerfile
-mkdir -p /foss/pdk/sky130A
-cp techfiles/sky130.txt /foss/pdk/sky130A/gds3d_tech.txt
+mkdir -p /foss/pdk/sky130A/libs.tech/gds3d
+cp techfiles/sky130.txt /foss/pdk/sky130A/libs.tech/gds3d/gds3d_tech.txt
