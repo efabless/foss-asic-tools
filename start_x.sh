@@ -98,8 +98,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 		fi
 	fi
 	if defaults read org.xquartz.x11 enable_igl | grep -q "0" ; then
-		echo "Enabling XQuartz OpenGL to allow indirect rendering."
 		${ECHO_IF_DRY_RUN} defaults write org.xquartz.x11 enable_iglx 1
+		echo "Enabled XQuartz OpenGL for indirect rendering."
+		echo "WARNING: Please restart XQuartz!"
+		exit 1
 	fi
 	FORCE_LIBGL_INDIRECT=1
 else
