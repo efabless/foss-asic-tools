@@ -5,7 +5,7 @@ SETLOCAL
 SET DEFAULT_DESIGNS=%USERPROFILE%\eda\designs
 
 IF DEFINED DRY_RUN (
-	echo This is a dry run, all commands will be printed to the shell (Commands printed but not executed are marked with $)!
+	echo This is a dry run, all commands will be printed to the shell ^(Commands printed but not executed are marked with ^$^)!
 	SET ECHO_IF_DRY_RUN=ECHO $
 )
 

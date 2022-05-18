@@ -5,7 +5,7 @@ SETLOCAL
 SET DEFAULT_DESIGNS=%USERPROFILE%\eda\designs
 
 IF DEFINED DRY_RUN (
-	echo This is a dry run, all commands will be printed to the shell (Commands printed but not executed are marked with $)!
+	echo This is a dry run, all commands will be printed to the shell ^(Commands printed but not executed are marked with ^$^)!
 	SET ECHO_IF_DRY_RUN=ECHO $
 )
 
@@ -32,4 +32,4 @@ IF ERRORLEVEL 1 (
     %ECHO_IF_DRY_RUN% xhost +localhost
 )
 
-%ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% -e -e DISPLAY=%DISP% -e LIBGL_ALWAYS_INDIRECT=1 -v "%DESIGNS%":/foss/designs  %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
+%ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% -e DISPLAY=%DISP% -e LIBGL_ALWAYS_INDIRECT=1 -v "%DESIGNS%":/foss/designs  %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
