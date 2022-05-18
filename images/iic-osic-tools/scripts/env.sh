@@ -37,6 +37,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         path_add_tool "fault"
         path_add_tool_bin "cvc-check"
         path_add_tool_bin "gaw3-xschem"
+        path_add_tool_bin "gds3d"
         path_add_tool_bin "ghdl"
         path_add_tool_bin "gtkwave"
 

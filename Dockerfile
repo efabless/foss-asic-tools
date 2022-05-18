@@ -128,6 +128,19 @@ ADD images/gaw3-xschem/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile GDS3D
+#######################################################################
+FROM base as gds3d
+ARG GDS3D_REPO_URL="https://github.com/trilomix/GDS3D.git"
+ARG GDS3D_REPO_COMMIT="173da0cc2f3804984b7e77862fbb0c3f4e308a4b"
+ARG GDS3D_NAME="gds3d"
+
+ADD images/gds3d/scripts/install.sh install.sh
+ADD images/gds3d/scripts/gds3d.sh gds3d.sh
+
+RUN bash install.sh
+
+#######################################################################
 # Compile ghdl
 #######################################################################
 FROM base as ghdl
@@ -402,6 +415,8 @@ COPY --from=cvc-check                    /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
+COPY --from=gds3d                        /foss/tools/            /foss/tools/
+COPY --from=gds3d                        /foss/pdk/              /foss/pdk/
 COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/
 COPY --from=iic-osic                     /foss/tools/            /foss/tools/
