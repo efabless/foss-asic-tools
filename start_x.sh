@@ -28,11 +28,11 @@ if [ -z ${DOCKER_TAG+z} ]; then
 fi
 
 if [ -z ${CONTAINER_USER+z} ]; then
-	CONTAINER_USER=`id -u`
+	CONTAINER_USER=$(id -u)
 fi
 
 if [ -z ${CONTAINER_GROUP+z} ]; then
-	CONTAINER_GROUP=`id -g`
+	CONTAINER_GROUP=$(id -g)
 fi
 
 PARAMS=""
@@ -73,7 +73,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		#create empty file
 		${ECHO_IF_DRY_RUN} echo -n > ${XAUTH_TMP}
 		if [ -z "${ECHO_IF_DRY_RUN}" ]; then
-			xauth -f ${XAUTH} nlist ${DISP} | sed -e 's/^..../ffff/' | xauth -f ${XAUTH_TMP} nmerge -
+			xauth -f "${XAUTH}" nlist "${DISP}" | sed -e 's/^..../ffff/' | xauth -f ${XAUTH_TMP} nmerge -
 		else
 			${ECHO_IF_DRY_RUN} "xauth -f ${XAUTH} nlist ${DISP} | sed -e 's/^..../ffff/' | xauth -f ${XAUTH_TMP} nmerge -"
 		fi
@@ -97,7 +97,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 			echo "WARNING: xhost could not be found, access control to the X server must be managed manually!"
 		fi
 	fi
-	if defaults read org.xquartz.x11 enable_igl | grep -q "0" ; then
+	if [ "$(defaults read org.xquartz.x11 enable_iglx)" = 0 ]; then
 		${ECHO_IF_DRY_RUN} defaults write org.xquartz.x11 enable_iglx 1
 		echo "Enabled XQuartz OpenGL for indirect rendering."
 		echo "WARNING: Please restart XQuartz!"
@@ -115,5 +115,6 @@ if [ -n "${FORCE_LIBGL_INDIRECT}" ]; then
 fi
 
 # Finally, run the container, sets DISPLAY to the local display number
-${ECHO_IF_DRY_RUN} docker run -d --user ${CONTAINER_USER}:${CONTAINER_GROUP} -e DISPLAY=${DISP} -v ${DESIGNS}:/foss/designs:rw ${PARAMS} ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+# shellcheck disable=SC2086
+${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e DISPLAY=${DISP} -v "${DESIGNS}:/foss/designs:rw" ${PARAMS} ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
 
