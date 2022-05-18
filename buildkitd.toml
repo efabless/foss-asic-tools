@@ -1,3 +1,21 @@
 [worker.oci]
   # limit the number of parallel build steps that can run at the same time
   max-parallelism = 2
+
+  [[worker.oci.gcpolicy]]
+    all = false
+    keepBytes = 2048000000
+    # keep the cache for 4 weeks
+    keepDuration = 2419200
+    filters = [ "type==source.local", "type==exec.cachemount", "type==source.git.checkout"]
+  [[worker.oci.gcpolicy]]
+    all = false
+    # keep for 4*3 weeks
+    keepDuration = 7257600
+    keepBytes = 32768000000
+  [[worker.oci.gcpolicy]]
+    all = false
+    keepBytes = 32768000000
+  [[worker.oci.gcpolicy]]
+    all = true
+    keepBytes = 32768000000
