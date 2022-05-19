@@ -12,10 +12,10 @@
     all = false
     # keep for 4*3 weeks
     keepDuration = 7257600
-    keepBytes = 32768000000
+    keepBytes = 51200000000
   [[worker.oci.gcpolicy]]
     all = false
-    keepBytes = 32768000000
+    keepBytes = 51200000000
   [[worker.oci.gcpolicy]]
     all = true
-    keepBytes = 32768000000
+    keepBytes = 51200000000
