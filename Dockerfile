@@ -136,8 +136,6 @@ ARG GDS3D_REPO_COMMIT="173da0cc2f3804984b7e77862fbb0c3f4e308a4b"
 ARG GDS3D_NAME="gds3d"
 
 ADD images/gds3d/scripts/install.sh install.sh
-ADD images/gds3d/scripts/gds3d.sh gds3d.sh
-
 RUN bash install.sh
 
 #######################################################################
@@ -167,7 +165,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="d8339b8114ae4fe0a36e64c71e2a569969e962cf"
+ARG IIC_OSIC_REPO_COMMIT="42af0dd6f37d561ba2e6e2a973b8da7d0208505c"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
