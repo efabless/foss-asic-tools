@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="47df9da0d3dfe551b5b67e69cd346b040e7e079f"
+ARG MAGIC_REPO_COMMIT="a205a0e9419f973346740171618956afe08b2d74"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -23,7 +23,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as skywater-pdk
 ARG SKYWATER_PDK_REPO_URL="https://github.com/google/skywater-pdk.git"
-ARG SKYWATER_PDK_REPO_COMMIT="c094b6e83a4f9298e47f696ec5a7fd53535ec5eb"
+ARG SKYWATER_PDK_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
 ARG SKYWATER_PDK_NAME="skywater-pdk"
 
 ENV PDK_ROOT=/foss/pdk
@@ -38,8 +38,8 @@ RUN bash install.sh
 # Create open_pdks
 #######################################################################
 FROM skywater-pdk as open_pdks
-ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="7519dfb04400f224f140749cda44ee7de6f5e095"
+ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
+ARG OPEN_PDKS_REPO_COMMIT="41c0908b47130d5675ff8484255b43f66463a7d6"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ADD images/open_pdks/scripts/install.sh install.sh
@@ -121,7 +121,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
-ARG GAW3_XSCHEM_REPO_COMMIT="a3239fdcc700e7b33331051eb22f47904112e849"
+ARG GAW3_XSCHEM_REPO_COMMIT="98bfc8636f8642ae60e89fde009f83abe3cee9f1"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 
 ADD images/gaw3-xschem/scripts/install.sh install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="8185ed878df5054a9624af97ae4c73bbd3e906ef"
+ARG GHDL_REPO_COMMIT="ca53fab7cf13635747450b16525f5545c4b8bfe1"
 ARG GHDL_NAME="ghdl"
 
 ADD images/ghdl/scripts/install.sh install.sh
@@ -165,7 +165,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="16965ea6ff85a0d7c2b5654a74048ad3481f1932"
+ARG IIC_OSIC_REPO_COMMIT="a98da34600c0f6ed74a6e29133db770d81bf2760"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -187,7 +187,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="42de9e646af5037f4fdf83ea58e67cd0934f6b7a"
+ARG IVERILOG_REPO_COMMIT="5d97405724d7755ecfbe2bfc25f6e6e81f2d029a"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -231,7 +231,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="1a6a9e6bb60ad8d07ecbfb3f35dea22379fb73e9"
+ARG NGSPICE_REPO_COMMIT="c4efe2e3ac264b6889e844f935410f9a795f1a68"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/ngspice/scripts/install.sh install.sh
@@ -242,7 +242,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.04.07_02.53.08"
+ARG OPENLANE_REPO_COMMIT="2022.05.18_02.12.32"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -253,7 +253,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad
 ARG OPENROAD_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_REPO_COMMIT="944855835623e651e7b9c7c50efcce1fb04b4fee"
+ARG OPENROAD_REPO_COMMIT="79a46b62da64bbebc18f06b20c42211046de719a"
 ARG OPENROAD_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -264,7 +264,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as opensta
 ARG OPENSTA_REPO_URL="https://github.com/The-OpenROAD-Project/OpenSTA"
-ARG OPENSTA_REPO_COMMIT="e76578116ccfc59c653c1b0c8064d4b9e3894b11"
+ARG OPENSTA_REPO_COMMIT="489ffac144d5661b963105f89cb9097e1fd2f8cf"
 ARG OPENSTA_NAME="opensta"
 
 ADD images/opensta/scripts/install.sh install.sh
@@ -297,7 +297,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RV_TOOLCHAIN_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RV_TOOLCHAIN_REPO_COMMIT="cc1075c916491ac5bd6cae419f6ca371a268b10d"
+ARG RV_TOOLCHAIN_REPO_COMMIT="1342cd731cf072ca610d7a5a4c54d2153b6bad63"
 ARG RV_TOOLCHAIN_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
@@ -308,7 +308,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="89a0632ecc9e6a8811b2f5465f75dd4e885846af"
+ARG VERILATOR_REPO_COMMIT="aa86c777f4787db7d10fbbbb5019ed4d20a7fcfb"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -319,7 +319,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="eb6eeebe7ff816ed9cd8abcf65ffaf3bd9c26df3"
+ARG XSCHEM_REPO_COMMIT="2f3d6e0c884a9748721000188553153893ec493c"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -331,7 +331,7 @@ RUN bash install.sh
 #FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
-ARG XYCE_REPO_COMMIT="f8dc8f79f7dec99f3b0b5ce600fb36c1e203c602"
+ARG XYCE_REPO_COMMIT="45685cc71754ad7b71bc0b32e0a09f99c29e5401"
 ARG XYCE_NAME="xyce"
 
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
@@ -341,7 +341,7 @@ RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="c87548b0bdd4d696ea103008d452082907951fc3"
+ARG XYCE_XDM_REPO_COMMIT="0c5b79b622e00f66d23221113dee6394c16c6d30"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
