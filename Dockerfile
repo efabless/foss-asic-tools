@@ -8,7 +8,7 @@ ADD images/base/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
 
 #######################################################################
-# Compile magic
+# Compile magic (part of OpenLane)
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
@@ -19,7 +19,7 @@ ADD images/magic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# create skywater-pdk
+# create skywater-pdk (part of OpenLane)
 #######################################################################
 FROM magic as skywater-pdk
 ARG SKYWATER_PDK_REPO_URL="https://github.com/google/skywater-pdk.git"
@@ -35,7 +35,7 @@ ADD images/skywater-pdk/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Create open_pdks
+# Create open_pdks (part of OpenLane)
 #######################################################################
 FROM skywater-pdk as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
@@ -46,7 +46,7 @@ ADD images/open_pdks/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile covered
+# Compile covered 
 #######################################################################
 FROM base as covered
 ARG COVERED_REPO_URL="https://github.com/hpretl/verilog-covered"
@@ -66,7 +66,7 @@ RUN bash install.sh
 #RUN bash install.sh
 
 #######################################################################
-# Compile cugr
+# Compile cugr (part of OpenLane)
 #######################################################################
 #FIXME removed CUGR and DRCU, will be deleted in next release
 #FROM libdef_liblef as cugr
@@ -78,7 +78,7 @@ RUN bash install.sh
 #RUN bash install.sh
 
 #######################################################################
-# Compile cvc-check
+# Compile cvc-check (part of OpenLane)
 #######################################################################
 FROM base as cvc-check
 
@@ -90,7 +90,7 @@ ADD images/cvc-check/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile drcu
+# Compile drcu (part of OpenLane)
 #######################################################################
 #FIXME removed CUGR and DRCU, will be deleted in next release
 #FROM libdef_liblef as drcu
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="ca53fab7cf13635747450b16525f5545c4b8bfe1"
+ARG GHDL_REPO_COMMIT="v2.0.0"
 ARG GHDL_NAME="ghdl"
 
 ADD images/ghdl/scripts/install.sh install.sh
@@ -187,14 +187,14 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="5d97405724d7755ecfbe2bfc25f6e6e81f2d029a"
+ARG IVERILOG_REPO_COMMIT="e8bc3bf8ddf3aee6c64047560e2fd2453ec56732"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile klayout
+# Compile klayout (part of OpenLane)
 #######################################################################
 FROM base as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
@@ -205,7 +205,7 @@ ADD images/klayout/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile netgen
+# Compile netgen (part of OpenLane)
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
@@ -231,14 +231,14 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="c4efe2e3ac264b6889e844f935410f9a795f1a68"
+ARG NGSPICE_REPO_COMMIT="ngspice-37"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/ngspice/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile openlane
+# Compile openlane (part of OpenLane)
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
@@ -249,7 +249,7 @@ ADD images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile openroad
+# Compile openroad (part of OpenLane)
 #######################################################################
 FROM base as openroad
 ARG OPENROAD_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
@@ -260,7 +260,7 @@ ADD images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile opensta
+# Compile opensta (part of OpenLane)
 #######################################################################
 FROM base as opensta
 ARG OPENSTA_REPO_URL="https://github.com/The-OpenROAD-Project/OpenSTA"
@@ -271,7 +271,7 @@ ADD images/opensta/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile padring
+# Compile padring (part of OpenLane)
 #######################################################################
 FROM base as padring
 ARG PADRING_REPO_URL="https://github.com/donn/padring"
@@ -282,7 +282,7 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile qflow
+# Compile qflow (part of OpenLane)
 #######################################################################
 FROM base as qflow
 ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
@@ -308,7 +308,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="aa86c777f4787db7d10fbbbb5019ed4d20a7fcfb"
+ARG VERILATOR_REPO_COMMIT="v4.222"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -331,7 +331,7 @@ RUN bash install.sh
 #FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
-ARG XYCE_REPO_COMMIT="45685cc71754ad7b71bc0b32e0a09f99c29e5401"
+ARG XYCE_REPO_COMMIT="Release-7.5.0"
 ARG XYCE_NAME="xyce"
 
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
@@ -341,14 +341,14 @@ RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="0c5b79b622e00f66d23221113dee6394c16c6d30"
+ARG XYCE_XDM_REPO_COMMIT="Release-2.4.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile yosys & yosys-ghdl-plugin
+# Compile yosys (part of OpenLane) & yosys-ghdl-plugin
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
