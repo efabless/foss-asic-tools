@@ -69,24 +69,21 @@ You can now access the Desktop-Environment through your browser ([http://localho
 #### Variables
 Both scripts will use default settings, which you can tweak the following by settings shell variables (VARIABLE=default is shown):
 
+ * ```DRY_RUN``` (unset by default), if set to any value (also 0, false etc.), makes the start scripts print all executed commands instead of actually executing. Useful for debugging/testing or just creating "template commands" for special setups.
  * ```DESIGNS=$HOME/eda/designs``` (```DESIGNS=%USERPROFILE%\eda\designs``` for .bat) sets the directory that holds your design files. This directory is mounted into the container on ```/foss/eda```.
  * ```WEBSERVER_PORT=80``` sets the port on which the Docker daemon will map the webserver port of the container to be reachable from localhost and the outside world. 0 disables the mapping.
  * ```VNC_PORT=5901``` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required if you want to access the UI with a different VNC client. 0 disabled the mapping.
  * ```DOCKER_USER="hpretl"``` Username for the Docker Hub repository of which the images is pulled from. Normally no change required.
  * ```DOCKER_IMAGE="iic-osic-tools"``` Docker Hub image name to pull. Normally no change required.
  * ```DOCKER_TAG="latest"``` Docker Hub image tag. By default it pulls the newest version, this might be handy to change if you want to match a specific Version set.
-
-#### Windows specific variables
-For the batch script, there are two additional parameters to control the User and Group that is used inside the container. Note: for the shellscript, the Unix Group and User of the user starting the script are automatically used, so the file owner and groups are set right on your host system. For Windows, this is not required.
-
- * ```CONTAINER_USER=1000```
- * ```CONTAINER_GROUP=1000```
+ * ```CONTAINER_USER=$(id -u)``` (the current users ID, ```CONTAINER_USER=1000``` for .bat) the user ID (and also group id) is especially important on Linux and Mac, because those are the IDs used to write files in the DESIGNS directory. For debugging/testing, user and group ID can be set to 0 to gain root access inside the container.
+ * ```CONTAINER_GROUP=$(id -g)``` (the current users group ID, ```CONTAINER_GROUP=1000``` for .bat)
 
 To overwrite the default settings, see [Overwriting Shell Variables](#overwriting-shell-variables)
 
 ### Using a local X-server
 
-This mode is recommended, if the container is run in the local machine. It is significantly faster then the VNC (renders locally), is more lightweight (no full DE is running) and integrates with the Desktop (copy paste etc.)
+This mode is recommended, if the container is run in the local machine. It is significantly faster then the VNC (renders locally), is more lightweight (no full DE is running) and integrates with the Desktop (copy paste etc.). To start the container run
 
     ./start_x.sh
 
@@ -94,14 +91,15 @@ or
 
     .\start_x.bat
 
-
 #### Variables
 The following environment variables are used for configuration:
+ * ```DRY_RUN``` (unset by default), if set to any value (also 0, false etc.), makes the start scripts print all executed commands instead of actually executing. Useful for debugging/testing or just creating "template commands" for special setups.
  * ```DESIGNS=$HOME/eda/designs``` (```DESIGNS=%USERPROFILE%\eda\designs``` for .bat) sets the directory that holds your design files. This directory is mounted into the container on ```/foss/eda```.
  * ```DOCKER_USER="hpretl"``` Username for the Docker Hub repository of which the images is pulled from. Normally no change required.
  * ```DOCKER_IMAGE="iic-osic-tools"``` Docker Hub image name to pull. Normally no change required.
  * ```DOCKER_TAG="latest"``` Docker Hub image tag. By default it pulls the newest version, this might be handy to change if you want to match a specific Version set.
-
+ * ```CONTAINER_USER=$(id -u)``` (the current users ID, ```CONTAINER_USER=1000``` for .bat) The User ID (and also group id) is especially important on Linux and Mac, because those are the IDs used to write files in the DESIGNS directory.
+ * ```CONTAINER_GROUP=$(id -g)``` (te current users group ID, ```CONTAINER_GROUP=1000``` for .bat)
 
 #### Mac and Windows specific variables
 For Mac and Windows, the X server is accessed through TCP (:0, aka port 6000). To control the server's address, you can set the following variable:
@@ -118,6 +116,21 @@ For Linux, the local X server is accessed through a unix socket. There are multi
  * ```XAUTH``` defines the file, that holds the cookies for authentication through the socket. If it is unset, the contents of the hosts "XAUTHORITY" are used. If those are unset too, then it will use $HOME/.Xauthority.
 
 The defaults for this variables are tested on native X servers, X2Go sessions and also wayland. The script copies and modifies the cookie out of the .Xauthority file into a seperate, temporary file. This file is then mounted into the container.
+
+#### Installing X-Server
+
+On Linux with a desktop environment / UI running, everything should be ready to go (This setup has been tested on X11 and XWayland). For Windows and Mac, the installation of an X-Server is typically required. Due to the common protocol, every X-Server should work, altough the following are tested:
+
+ * For Windows: [VcXsrc](https://sourceforge.net/projects/vcxsrv/)
+ * For Mac: [XQuartz](https://www.xquartz.org/)
+
+For both X-Servers, it is strongly recommended to enable OpenGL:
+ * The start_x.sh script will take care of that on Mac and set the according configuration values. Only a manual restart of XQuartz is required after the script is run once (watch the output carefully!).
+ * On Windows with VcXsrv we recommend to use the utility "XLaunch" (installed with VcXsrv):
+    * Multiple windows mode
+    * Set the Display-Number to 0
+    * Start no client
+    * Tick all "Extra settings": "Clipboard", "Primary Selection", "Native opengl" and "Disable access control"
 
 ### Overwriting Shell Variables
 
