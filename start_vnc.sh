@@ -36,11 +36,11 @@ if [ -z ${DOCKER_TAG+z} ]; then
 fi
 
 if [ -z ${CONTAINER_USER+z} ]; then
-	CONTAINER_USER=`id -u`
+	CONTAINER_USER=$(id -u)
 fi
 
 if [ -z ${CONTAINER_GROUP+z} ]; then
-	CONTAINER_GROUP=`id -g`
+	CONTAINER_GROUP=$(id -g)
 fi
 
 # Processing ports
@@ -52,4 +52,5 @@ if [ $VNC_PORT -gt 0 ]; then
 	PORT_PARAMS="$PORT_PARAMS -p $VNC_PORT:5901"
 fi
 
-${ECHO_IF_DRY_RUN} docker run -d --user ${CONTAINER_USER}:${CONTAINER_GROUP} $PORT_PARAMS -v $DESIGNS:/foss/designs:rw ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+#shellcheck disable=SC2086
+${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" $PORT_PARAMS -v "$DESIGNS:/foss/designs:rw" ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}

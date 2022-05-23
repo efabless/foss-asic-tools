@@ -116,5 +116,5 @@ fi
 
 # Finally, run the container, sets DISPLAY to the local display number
 # shellcheck disable=SC2086
-${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e DISPLAY=${DISP} -v "${DESIGNS}:/foss/designs:rw" ${PARAMS} ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e "DISPLAY=${DISP}" -v "${DESIGNS}:/foss/designs:rw" ${PARAMS} ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
 
