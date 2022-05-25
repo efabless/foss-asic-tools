@@ -1,0 +1,77 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"}
+V {}
+S {}
+E {}
+L 4 -60 -240 -60 -200 {}
+L 4 60 -240 60 -200 {}
+L 4 -180 -100 -140 -100 {}
+L 4 -180 -60 -140 -60 {}
+L 4 -180 -20 -140 -20 {}
+L 4 -180 20 -140 20 {}
+L 4 -180 60 -140 60 {}
+L 4 -80 200 -80 240 {}
+L 4 60 200 60 240 {}
+L 4 -180 120 -140 120 {}
+L 4 -140 -200 140 -200 {}
+L 4 140 -200 140 160 {}
+L 4 -140 200 140 200 {}
+L 4 -140 -200 -140 160 {}
+L 4 140 0 180 0 {}
+L 4 -140 160 -140 200 {}
+L 4 140 160 140 200 {}
+L 4 140 80 180 80 {}
+L 4 140 -60 180 -60 {}
+L 4 -20 200 -20 240 {}
+L 4 -180 -140 -140 -140 {}
+B 5 177.5 -2.5 182.5 2.5 {name=CYCLE_END
+dir=inout}
+B 5 -82.5 237.5 -77.5 242.5 {name=IBIAS
+dir=inout}
+B 5 177.5 77.5 182.5 82.5 {name=IMON
+dir=inout}
+B 5 -22.5 237.5 -17.5 242.5 {name=IOC
+dir=inout}
+B 5 57.5 237.5 62.5 242.5 {name=ISLOPE
+dir=inout}
+B 5 177.5 -62.5 182.5 -57.5 {name=OVERCURRENT
+dir=inout}
+B 5 -182.5 -102.5 -177.5 -97.5 {name=SENSE_FET
+dir=inout}
+B 5 -182.5 -142.5 -177.5 -137.5 {name=SENSE_FET_KELVIN
+dir=inout}
+B 5 -182.5 -62.5 -177.5 -57.5 {name=SW_NODE
+dir=inout}
+B 5 -182.5 117.5 -177.5 122.5 {name=TIMEOUT
+dir=inout}
+B 5 -182.5 57.5 -177.5 62.5 {name=VCOMP
+dir=inout}
+B 5 -62.5 -242.5 -57.5 -237.5 {name=VDD
+dir=inout}
+B 5 -182.5 17.5 -177.5 22.5 {name=VFB
+dir=inout}
+B 5 -182.5 -22.5 -177.5 -17.5 {name=VREF
+dir=inout}
+B 5 57.5 -242.5 62.5 -237.5 {name=VSS
+dir=inout}
+T {VDD} -80 -190 0 0 0.4 0.4 {}
+T {VSS} 40 -190 0 0 0.4 0.4 {}
+T {IBIAS} -120 170 0 0 0.4 0.4 {}
+T {ISLOPE} 40 170 0 0 0.4 0.4 {}
+T {SENSE_FET} -120 -110 0 0 0.4 0.4 {}
+T {SW_NODE} -120 -70 0 0 0.4 0.4 {}
+T {VREF} -120 -30 0 0 0.4 0.4 {}
+T {VFB} -120 10 0 0 0.4 0.4 {}
+T {VCOMP} -120 40 0 0 0.4 0.4 {}
+T {TIMEOUT} -120 110 0 0 0.4 0.4 {}
+T {@symname} 160 -200 0 0 0.4 0.4 {}
+T {@name} 160 -170 0 0 0.4 0.4 {}
+T {CYCLE_END} 10 -10 0 0 0.4 0.4 {}
+T {IMON} 70 70 0 0 0.4 0.4 {}
+T {OVER
+CURRENT} 30 -80 0 0 0.4 0.4 {}
+T {IOC} -40 170 0 0 0.4 0.4 {}
+T {SENSE_FET_KELVIN} -120 -150 0 0 0.4 0.4 {}

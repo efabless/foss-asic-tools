@@ -14,8 +14,6 @@ $MAGIC -dnull -noconsole -rcfile $PDKPATH/libs.tech/magic/sky130A.magicrc  << EO
 path
 drc off
 load $1  
-flatten $1_flat
-load $1_flat
 select top cell
 extract do local
 extract all
@@ -27,9 +25,9 @@ ext2spice lvs
 ext2spice cthresh 0
 ext2spice extresist on
 ext2spice		    
-ext2spice -o ${MAGTYPE}-extracted-${1%.mag}-rc.spice
+ext2spice -o ${1%.mag}-extracted-${MAGTYPE}-rc.spice
 
 #########
 EOF
 
-\rm *.ext *.sim *.nodes *_flat*
+\rm *.ext *.sim *.nodes 

@@ -1,0 +1,47 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"}
+V {}
+S {}
+E {}
+L 4 -200 -140 -160 -140 {}
+L 4 -200 -60 -160 -60 {}
+L 4 -200 40 -160 40 {}
+L 4 -200 80 -160 80 {}
+L 4 -200 140 -160 140 {}
+L 4 -200 180 -160 180 {}
+L 4 160 -20 200 -20 {}
+L 4 160 20 200 20 {}
+L 4 -160 -160 -160 200 {}
+L 4 -160 -160 160 -160 {}
+L 4 160 -160 160 200 {}
+L 4 -160 200 160 200 {}
+L 4 160 80 200 80 {}
+L 4 160 -60 200 -60 {}
+B 5 -202.5 137.5 -197.5 142.5 {name=N_IN dir=in}
+B 5 -202.5 177.5 -197.5 182.5 {name=N_IN_N
+dir=in}
+B 5 -202.5 37.5 -197.5 42.5 {name=P_IN dir=in}
+B 5 -202.5 77.5 -197.5 82.5 {name=P_IN_N dir=in}
+B 5 197.5 -22.5 202.5 -17.5 {name=REF_CURRENT dir=OUT}
+B 5 197.5 -62.5 202.5 -57.5 {name=REF_CURRENT_KELVIN
+dir=inout}
+B 5 197.5 17.5 202.5 22.5 {name=SW_NODE dir=out}
+B 5 197.5 77.5 202.5 82.5 {name=SW_NODE_ESD
+dir=inout}
+B 5 -202.5 -142.5 -197.5 -137.5 {name=VDD_PWR dir=in}
+B 5 -202.5 -62.5 -197.5 -57.5 {name=VSS dir=in}
+T {VDD_PWR} -140 -150 0 0 0.4 0.4 {}
+T {VSS} -140 -70 0 0 0.4 0.4 {}
+T {P_IN} -140 30 0 0 0.4 0.4 {}
+T {P_IN_N} -140 70 0 0 0.4 0.4 {}
+T {N_IN} -140 130 0 0 0.4 0.4 {}
+T {N_IN_N} -140 170 0 0 0.4 0.4 {}
+T {REF_CURRENT} 0 -30 0 0 0.4 0.4 {}
+T {SW_NODE} 40 10 0 0 0.4 0.4 {}
+T {@symname} 30 -190 0 0 0.4 0.4 {}
+T {@name} 30 -220 0 0 0.4 0.4 {}
+T {SW_NODE_ESD} -10 70 0 0 0.4 0.4 {}
+T {REF_CURRENT_KELVIN} -80 -70 0 0 0.4 0.4 {}

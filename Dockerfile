@@ -16,6 +16,7 @@ ARG MAGIC_REPO_COMMIT="a205a0e9419f973346740171618956afe08b2d74"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
+ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################

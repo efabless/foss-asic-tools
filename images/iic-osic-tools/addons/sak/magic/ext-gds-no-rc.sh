@@ -27,7 +27,7 @@ select top cell
 extract do local
 extract all
 ext2spice lvs
-ext2spice -o gds-extracted-${1%.gds}.spice
+ext2spice -o ${1%.gds}-extracted-no-rc.spice
 
 EOF
 

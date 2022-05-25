@@ -1,0 +1,50 @@
+* NGSPICE file created from /home/wbraun/projects/sky130-analog/designs/ringosc/layout/ringosc_flat.ext - technology: sky130A
+
+.subckt pex out
++ vdd gnd
+X0 sky130_fd_sc_hd__inv_1_0[4]/A sky130_fd_sc_hd__inv_1_0[3]/A vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=1.82e+12p ps=1.764e+07u w=1e+06u l=150000u
+X1 sky130_fd_sc_hd__inv_1_0[2]/A sky130_fd_sc_hd__inv_1_0[1]/A gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=1.183e+12p ps=1.274e+07u w=650000u l=150000u
+X2 sky130_fd_sc_hd__inv_1_0[5]/A sky130_fd_sc_hd__inv_1_0[4]/A gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=0p ps=0u w=650000u l=150000u
+X3 sky130_fd_sc_hd__inv_1_0[3]/A sky130_fd_sc_hd__inv_1_0[2]/A gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=0p ps=0u w=650000u l=150000u
+X4 sky130_fd_sc_hd__inv_1_0[1]/A out vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=0p ps=0u w=1e+06u l=150000u
+X5 sky130_fd_sc_hd__inv_1_0[1]/A out gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=0p ps=0u w=650000u l=150000u
+X6 sky130_fd_sc_hd__inv_1_0[3]/A sky130_fd_sc_hd__inv_1_0[2]/A vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=0p ps=0u w=1e+06u l=150000u
+X7 sky130_fd_sc_hd__inv_1_0[6]/A sky130_fd_sc_hd__inv_1_0[5]/A vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=0p ps=0u w=1e+06u l=150000u
+X8 sky130_fd_sc_hd__inv_1_0[5]/A sky130_fd_sc_hd__inv_1_0[4]/A vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=0p ps=0u w=1e+06u l=150000u
+X9 sky130_fd_sc_hd__inv_1_0[6]/A sky130_fd_sc_hd__inv_1_0[5]/A gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=0p ps=0u w=650000u l=150000u
+X10 out sky130_fd_sc_hd__inv_1_0[6]/A vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=0p ps=0u w=1e+06u l=150000u
+X11 sky130_fd_sc_hd__inv_1_0[2]/A sky130_fd_sc_hd__inv_1_0[1]/A vdd vdd sky130_fd_pr__pfet_01v8_hvt ad=2.6e+11p pd=2.52e+06u as=0p ps=0u w=1e+06u l=150000u
+X12 sky130_fd_sc_hd__inv_1_0[4]/A sky130_fd_sc_hd__inv_1_0[3]/A gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=0p ps=0u w=650000u l=150000u
+X13 out sky130_fd_sc_hd__inv_1_0[6]/A gnd gnd sky130_fd_pr__nfet_01v8 ad=1.69e+11p pd=1.82e+06u as=0p ps=0u w=650000u l=150000u
+C0 vdd sky130_fd_sc_hd__inv_1_0[2]/A 0.41fF
+C1 sky130_fd_sc_hd__inv_1_0[2]/A sky130_fd_sc_hd__inv_1_0[4]/A 0.01fF
+C2 sky130_fd_sc_hd__inv_1_0[5]/A sky130_fd_sc_hd__inv_1_0[3]/A 0.01fF
+C3 sky130_fd_sc_hd__inv_1_0[1]/A out 0.35fF
+C4 sky130_fd_sc_hd__inv_1_0[5]/A sky130_fd_sc_hd__inv_1_0[6]/A 0.22fF
+C5 sky130_fd_sc_hd__inv_1_0[5]/A vdd 0.41fF
+C6 sky130_fd_sc_hd__inv_1_0[5]/A sky130_fd_sc_hd__inv_1_0[4]/A 0.22fF
+C7 sky130_fd_sc_hd__inv_1_0[1]/A sky130_fd_sc_hd__inv_1_0[2]/A 0.22fF
+C8 out sky130_fd_sc_hd__inv_1_0[2]/A 0.20fF
+C9 vdd sky130_fd_sc_hd__inv_1_0[3]/A 0.41fF
+C10 sky130_fd_sc_hd__inv_1_0[4]/A sky130_fd_sc_hd__inv_1_0[3]/A 0.22fF
+C11 vdd sky130_fd_sc_hd__inv_1_0[6]/A 0.43fF
+C12 sky130_fd_sc_hd__inv_1_0[6]/A sky130_fd_sc_hd__inv_1_0[4]/A 0.01fF
+C13 sky130_fd_sc_hd__inv_1_0[5]/A out 0.20fF
+C14 vdd sky130_fd_sc_hd__inv_1_0[4]/A 0.41fF
+C15 sky130_fd_sc_hd__inv_1_0[1]/A sky130_fd_sc_hd__inv_1_0[3]/A 0.01fF
+C16 out sky130_fd_sc_hd__inv_1_0[3]/A 0.19fF
+C17 sky130_fd_sc_hd__inv_1_0[2]/A sky130_fd_sc_hd__inv_1_0[3]/A 0.22fF
+C18 out sky130_fd_sc_hd__inv_1_0[6]/A 0.40fF
+C19 vdd out 0.85fF
+C20 sky130_fd_sc_hd__inv_1_0[1]/A vdd 0.43fF
+C21 out sky130_fd_sc_hd__inv_1_0[4]/A 0.19fF
+C22 sky130_fd_sc_hd__inv_1_0[6]/A gnd 0.40fF
+C23 sky130_fd_sc_hd__inv_1_0[5]/A gnd 0.04fF
+C24 sky130_fd_sc_hd__inv_1_0[4]/A gnd 0.40fF
+C25 sky130_fd_sc_hd__inv_1_0[3]/A gnd 0.40fF
+C26 sky130_fd_sc_hd__inv_1_0[2]/A gnd 0.40fF
+C27 sky130_fd_sc_hd__inv_1_0[1]/A gnd 0.40fF
+C28 out gnd 0.50fF
+C29 vdd gnd 4.74fF
+.ends
+

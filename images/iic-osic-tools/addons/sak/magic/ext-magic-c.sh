@@ -25,9 +25,9 @@ ext2spice lvs
 ext2spice cthresh 0
 #ext2spice extresist on
 ext2spice		    
-ext2spice -o ${MAGTYPE}-extracted-${1%.mag}-c.spice
+ext2spice -o ${1%.mag}-extracted-${MAGTYPE}-c.spice
 
 #########
 EOF
 
-\rm *.ext *.nodes *.sim
+\rm *.ext *.nodes *.sim ${1%.gds}.spice

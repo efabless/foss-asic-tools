@@ -32,7 +32,7 @@ ext2spice lvs
 ext2spice cthresh 0
 ext2spice extresist on
 ext2spice		    
-ext2spice -o gds-extracted-${1%.gds}.spice
+ext2spice -o ${1%.gds}-extracted-gds-rc.spice
 
 #########
 EOF

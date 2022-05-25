@@ -12,4 +12,6 @@ git checkout ${MAGIC_REPO_COMMIT}
 make -j$(nproc)
 make install
 
+cp ../magic-cheatsheet.txt /foss/tools/${MAGIC_NAME}/${REPO_COMMIT_SHORT}/
+
 echo "$MAGIC_NAME $MAGIC_REPO_COMMIT" > /foss/tools/${MAGIC_NAME}/${REPO_COMMIT_SHORT}/SOURCES

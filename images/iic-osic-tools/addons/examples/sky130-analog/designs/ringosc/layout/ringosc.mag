@@ -1,0 +1,44 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1614649810
+<< locali >>
+rect 230 201 360 249
+rect 506 201 636 249
+rect 782 201 912 249
+rect 1058 201 1188 249
+rect 1334 201 1464 249
+rect 1610 202 1806 249
+rect 1841 241 2083 244
+rect 1841 207 1846 241
+rect 1880 207 2083 241
+rect 1841 196 2083 207
+<< viali >>
+rect 91 207 125 241
+rect 1846 207 1880 241
+<< metal1 >>
+rect 2044 482 2082 578
+rect 79 241 1892 253
+rect 79 207 91 241
+rect 125 207 1846 241
+rect 1880 207 1892 241
+rect 79 195 1892 207
+rect 2044 -62 2082 34
+use sky130_fd_sc_hd__tapvpwrvgnd_1  sky130_fd_sc_hd__tapvpwrvgnd_1_1 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
+timestamp 1614649810
+transform 1 0 1952 0 1 -14
+box -38 -48 130 592
+use sky130_fd_sc_hd__tapvpwrvgnd_1  sky130_fd_sc_hd__tapvpwrvgnd_1_0
+timestamp 1614649810
+transform 1 0 -72 0 1 -14
+box -38 -48 130 592
+use sky130_fd_sc_hd__inv_1  sky130_fd_sc_hd__inv_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
+array 0 6 276 0 0 544
+timestamp 1614649810
+transform 1 0 20 0 1 -14
+box -38 -48 314 592
+<< labels >>
+flabel locali 1841 196 2083 244 1 FreeSans 400 0 0 0 out
+flabel metal1 2044 482 2082 578 1 FreeSans 400 0 0 0 vdd
+flabel metal1 2044 -62 2082 34 1 FreeSans 400 0 0 0 gnd
+<< end >>

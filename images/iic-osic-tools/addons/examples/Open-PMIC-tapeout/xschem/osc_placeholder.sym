@@ -1,0 +1,30 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"}
+V {}
+S {}
+E {}
+L 4 -50 -100 -50 -60 {}
+L 4 70 -100 70 -60 {}
+L 4 -150 20 -110 20 {}
+L 4 130 20 170 20 {}
+L 4 -110 -60 130 -60 {}
+L 4 130 -60 130 80 {}
+L 4 -110 80 130 80 {}
+L 4 -110 -60 -110 80 {}
+B 5 -152.5 17.5 -147.5 22.5 {name=IOSC
+dir=inout}
+B 5 167.5 17.5 172.5 22.5 {name=TIMEOUT
+dir=inout}
+B 5 -52.5 -102.5 -47.5 -97.5 {name=VDD
+dir=inout}
+B 5 67.5 -102.5 72.5 -97.5 {name=VSS
+dir=inout}
+T {VDD} -70 -50 0 0 0.4 0.4 {}
+T {VSS} 50 -50 0 0 0.4 0.4 {}
+T {IOSC} -90 10 0 0 0.4 0.4 {}
+T {TIMEOUT} 20 10 0 0 0.4 0.4 {}
+T {@symname} 140 -80 0 0 0.4 0.4 {}
+T {@name} 140 -50 0 0 0.4 0.4 {}

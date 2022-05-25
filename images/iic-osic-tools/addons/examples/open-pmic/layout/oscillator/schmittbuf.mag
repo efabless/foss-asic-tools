@@ -1,0 +1,9 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1622329157
+use sky130_fd_sc_hvl__schmittbuf_1  sky130_fd_sc_hvl__schmittbuf_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hvl/mag
+timestamp 1621624387
+transform 1 0 0 0 1 0
+box -66 -43 1122 897
+<< end >>

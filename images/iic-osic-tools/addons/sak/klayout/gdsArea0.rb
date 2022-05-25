@@ -1,12 +1,16 @@
 #!/bin/bash
-# usage: gdsArea0.rb [-n] <gdsFileIn> [ <gdsFileOut> ]
+# usage: gdsArea0.rb [-n] [-keepZLpath] <gdsFileIn> [ <gdsFileOut> ]
 #
 # Process all layers, all cells, all cells: Find zero-area shapes.
 # If gdsFileOut given: then delete such zero-area shapes and write new output file.
+#
 # Else report count of number of such shapes found.
+# If -keepZLPath is NOT given, then by default delete (& count) zero-langth-paths.
+#   Zero-langth-paths are determind by having all points identical (typically just two).
+#
+# NOTE: With --keepZLpath less work is done (FASTER: don't examine path point-list).
+# This is regardless if passive or not, so reporting of counts is accurate.
 # 
-# Intent is (default) deep-mode retains hier. as much as possible, just
-# merging each layer of each cell "in-place".
 # WARNING: if outFile is RELATIVE-PATH it is written in SAME-DIR as input-GDS.
 #
 # Exit status (does not work in klayout 0.23.11; does in 0.24 and later):
@@ -25,14 +29,15 @@ x=%{
   [[ "$1" == "--version" || "$1" == "-v" ]] && exec klayout -b -v    # pass-thru -v
 
   export _M0=
-  for i in "$@" ; do _M0="$_M0${_M0:+,}\"${i//\"/\\\"}\""; done
+  for i in "$@" ; do i=${i//\\/\\\\}; _M0="$_M0${_M0:+,}'${i//\'/\'}'"; done
+
   exec klayout -e -b -r "$0" -rd tag="$_M0"
   # tag= is NOT USED, cosmetic: So process-listing shows the arguments, and a
   # user can distinguish one process from another, despite running same klayout-script.
 }
 # for-ruby:
 
-argv=eval("[ #{ENV["_M0"]} ]")   # re-parse args from env-var
+argv=eval("[ " + ENV["_M0"] +" ]")   # re-parse args from env-var
 # puts "argv.size=#{argv.size}"
 # argv.each{ |v| puts v }
 
@@ -46,11 +51,14 @@ argv=eval("[ #{ENV["_M0"]} ]")   # re-parse args from env-var
     argv << '--help'
   end
 
-  o = {:writeAlways=>true}
+  o = {:writeAlways=>true, :delZLp=>true}
   OptionParser.new do |opts|
     opts.banner = usage
     opts.on("-n", "Don't write gdsOutFile IF NO SHAPES DELETED. Default, if outFile given: always write.") do
       o[:writeAlways] = false
+    end
+    opts.on("--keepZLpath", "Don't delete Zero-Length paths. Default: delete them. Determine by all points are the same.") do
+      o[:delZLp] = false
     end
 
     opts.on("-v", "--version", "version: pass-thru, JUST show klayout version") do
@@ -97,7 +105,10 @@ end
 puts "  args: #{ENV["_M0"]}"
 
 STDOUT.flush
+delZLp = o[:delZLp]
 $errs = 0
+len0 = 0
+len0Del = 0
 del = 0
 
 # based in part on: https://www.klayout.de/forum/discussion/173/use-klayout-in-batch-mode
@@ -110,8 +121,11 @@ ly.read(f)
 # target(fout)
 
 ly.layer_indices.each { |li|
+  # layer_info = ly.get_info(li)
+
   ly.each_cell { |cell|
     cell.shapes(li).each { |shape|
+
       # TODO: must we check that shape is one of: box, polygon, path? What happens to text?
       if shape.is_valid? && (!shape.is_null?) &&
           (shape.is_box? || shape.is_path? || shape.is_polygon?) &&
@@ -121,10 +135,33 @@ ly.layer_indices.each { |li|
           shape.delete
           del += 1
         end
+
+      elsif delZLp && shape.is_valid? && (!shape.is_null?) && shape.is_path?
+        # puts "path on layer:#{layer_info} area:#{shape.area}"
+        lastpt = nil
+        same = true
+        # walk the points. First time we identify at least two unique-points, skip: not a zero-length path.
+        shape.each_point { |pt|
+          if lastpt && lastpt != pt
+            same = false
+            break
+          end
+          lastpt = pt
+        }
+        if same
+          # puts "zero-length path on layer:#{layer_info} area:#{shape.area} path:#{shape.to_s}"
+          len0 += 1
+          $errs += 1
+          if doDel
+            shape.delete
+            len0Del += 1
+          end
+        end
       end
     }
   }
 }
+del += len0Del
 
 if fout && fout != ""
   if (! o[:writeAlways] ) && del == 0
@@ -135,7 +172,11 @@ if fout && fout != ""
   end
 end
 
-puts "#{$errs} zero-area shapes,  #{del} shapes deleted."
+
+if delZLp 
+  puts "#{len0} zero-length paths,  #{len0Del} zero-length paths deleted."
+end
+puts "#{$errs} total zero-area objects,  #{del} total objects deleted."
 
 # if we roll-over to 256, exit-status seen by shell is zero.
 # uncaught I/O errors will yield (built-in) exit status of 1.
