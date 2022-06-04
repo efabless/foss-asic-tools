@@ -1,13 +1,15 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+set -e
+source scl_source enable gcc-toolset-9
 
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}/gtkwave3-gtk3/
+REPO_COMMIT_SHORT=$(echo $GTKWAVE_REPO_COMMIT | cut -c 1-7)
 
-git checkout ${REPO_COMMIT}
-
+git clone ${GTKWAVE_REPO_URL} ${GTKWAVE_NAME}
+cd ${GTKWAVE_NAME}/gtkwave3-gtk3/
+git checkout ${GTKWAVE_REPO_COMMIT}
 ./autogen.sh
-./configure --prefix=/foss/tools/${NAME}/${REPO_COMMIT} --enable-gtk3
+#FIXME Need to disable TCL due to compile error
+./configure --prefix=/foss/tools/${GTKWAVE_NAME}/${REPO_COMMIT_SHORT} --enable-gtk3 --disable-tcl
 make -j$(nproc)
 make install

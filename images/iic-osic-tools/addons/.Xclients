@@ -1,0 +1,3 @@
+#!/bin/bash
+# Replaces /etc/X11/xinit/Xclients
+# intentionally empty, so no firefox or xterm gets started automatically.

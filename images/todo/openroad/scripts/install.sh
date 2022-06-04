@@ -12,8 +12,6 @@ git submodule update --init --recursive
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX="/foss/tools/openroad"
-make
+make -j$(nproc)
 make install
-
-
  

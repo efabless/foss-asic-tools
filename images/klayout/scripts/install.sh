@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+set -e
+source scl_source enable gcc-toolset-9
 
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}
-git checkout ${REPO_COMMIT}
+REPO_COMMIT_SHORT=$(echo $KLAYOUT_REPO_COMMIT | cut -c 1-7)
 
-prefix=/foss/tools/${NAME}/${REPO_COMMIT}
-mkdir -p $prefix
+git clone ${KLAYOUT_REPO_URL} ${KLAYOUT_NAME}
+cd ${KLAYOUT_NAME}
+git checkout ${KLAYOUT_REPO_COMMIT}
+prefix=/foss/tools/${KLAYOUT_NAME}/${REPO_COMMIT_SHORT}
+mkdir -p "$prefix"
 ./build.sh -j$(nproc) -prefix "$prefix"
-./build.sh -j$(nproc) -prefix "$prefix"
-

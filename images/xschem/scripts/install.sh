@@ -1,14 +1,13 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+set -e
+source scl_source enable gcc-toolset-9
 
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}
+REPO_COMMIT_SHORT=$(echo $XSCHEM_REPO_COMMIT | cut -c 1-7)
 
-autoreconf -f -i
-
-git checkout ${REPO_COMMIT}
-
-./configure --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
+git clone ${XSCHEM_REPO_URL} ${XSCHEM_NAME}
+cd ${XSCHEM_NAME}
+git checkout ${XSCHEM_REPO_COMMIT}
+./configure --prefix=/foss/tools/${XSCHEM_NAME}/${REPO_COMMIT_SHORT}
 make -j$(nproc)
 make install

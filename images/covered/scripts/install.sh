@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+set -e
+source scl_source enable gcc-toolset-9
 
-git clone ${REPO_URL} ${NAME}
+REPO_COMMIT_SHORT=$(echo $COVERED_REPO_COMMIT | cut -c 1-7)
 
-cd ${NAME}
-git checkout ${REPO_COMMIT}
-
-./configure --prefix=/foss/tools/${NAME}/${REPO_COMMIT}
-make -j$(nproc)
+git clone ${COVERED_REPO_URL} ${COVERED_NAME}
+cd ${COVERED_NAME}
+git checkout ${COVERED_REPO_COMMIT}
+./configure --prefix=/foss/tools/${COVERED_NAME}/${REPO_COMMIT_SHORT}
+make # -j$(nproc) Using -j option leads to random fails on many-core machines
 make install
-

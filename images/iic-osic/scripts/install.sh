@@ -1,7 +1,10 @@
 #!/bin/bash
 
-source scl_source enable devtoolset-8
+set -e
+source scl_source enable gcc-toolset-9
 
-git clone ${REPO_URL} ${NAME}
-cd ${NAME}
-git checkout ${REPO_COMMIT}
+mkdir -p /foss/tools
+cd /foss/tools
+git clone ${IIC_OSIC_REPO_URL} ${IIC_OSIC_NAME}
+cd ${IIC_OSIC_NAME}
+git checkout ${IIC_OSIC_REPO_COMMIT}
