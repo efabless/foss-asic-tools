@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "true",
+        "BASE_IMAGE": "base",
+        "NAME": "skywater-pdk",
+        "REPO_URL": "https://github.com/google/skywater-pdk.git",
+        "REPO_COMMIT": "5a57f505cd4cd65d10e9f37dd2d259a526bc9bf7"
+    }
+}

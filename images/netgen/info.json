@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "netgen",
         "REPO_URL": "https://github.com/rtimothyedwards/netgen",
-        "REPO_COMMIT": "89ef83c597d799be7777cdde7af6a6fb9f96bc29"
+        "REPO_COMMIT": "f8ed4e42e272a4fb6b69321114516b374d3d4183"
     }
 }

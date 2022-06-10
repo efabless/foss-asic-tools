@@ -43,7 +43,7 @@ FROM openlane:latest as openlane
 FROM klayout:latest as klayout
 FROM gtkwave:latest as gtkwave
 FROM iverilog:latest as iverilog
-FROM open_pdks:latest as pdk
+FROM pdks-volare:latest as pdk
 FROM magic:latest as magic
 FROM netgen:latest as netgen
 FROM riscv-gnu-toolchain-rv32i as rv32i

@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "gaw3-xschem",
         "REPO_URL": "https://github.com/StefanSchippers/xschem-gaw.git",
-        "REPO_COMMIT": "a3239fdcc700e7b33331051eb22f47904112e849"
+        "REPO_COMMIT": "98bfc8636f8642ae60e89fde009f83abe3cee9f1"
     }
 }

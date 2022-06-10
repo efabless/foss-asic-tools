@@ -1,0 +1,9 @@
+{
+    "args": {
+        "GIT": "false",
+        "BASE_IMAGE": "base",
+        "NAME": "pdks-volare",
+        "REPO_URL": "https://github.com/RTimothyEdwards/open_pdks",
+        "REPO_COMMIT": "8fe7f760ece2bb49b1c310e60243f0558977dae5"
+    }
+}

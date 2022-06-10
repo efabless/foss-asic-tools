@@ -19,5 +19,6 @@ yum install -y \
   rubygem-psych \
   rubygem-rdoc \
   rubygems
+  yum -y install qt5-qtxmlpatterns-devel qt5-qtxmlpatterns
 
 
