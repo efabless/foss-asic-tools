@@ -92,6 +92,7 @@ yum install -y \
 	python3 \
 	python3-Cython \
 	python3-devel \
+	python3-gobject \
 	python3-jinja2 \
 	python3-matplotlib \
 	python3-numpy \
@@ -142,7 +143,6 @@ yum install -y \
 
 #	boost-devel \
 #	boost-static \
-#	xdot \
 
 #alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
 
@@ -162,7 +162,8 @@ pip3 install --no-cache-dir \
 	pyyaml \
 	click \
 	volare>=0.1.3 \
-	spyci
+	spyci \
+	xdot
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
