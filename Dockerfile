@@ -20,12 +20,12 @@ ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################
-# create skywater-pdk (part of OpenLane)
+# create sky130 (part of OpenLane)
 #######################################################################
-FROM magic as skywater-pdk
-ARG SKYWATER_PDK_REPO_URL="https://github.com/google/skywater-pdk.git"
-ARG SKYWATER_PDK_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
-ARG SKYWATER_PDK_NAME="skywater-pdk"
+FROM magic as sky130
+ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
+ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
+ARG SKY130_NAME="skywater-pdk"
 
 ENV PDK_ROOT=/foss/pdk
 
@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
-FROM skywater-pdk as open_pdks
+FROM sky130 as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="41c0908b47130d5675ff8484255b43f66463a7d6"
 ARG OPEN_PDKS_NAME="open_pdks"
@@ -81,11 +81,11 @@ RUN bash install.sh
 #######################################################################
 # Compile cvc-check (part of OpenLane)
 #######################################################################
-FROM base as cvc-check
+FROM base as cvc
 
-ARG CVC_CHECK_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_CHECK_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
-ARG CVC_CHECK_NAME="cvc-check"
+ARG CVC_REPO_URL="https://github.com/d-m-bailey/cvc"
+ARG CVC_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
+ARG CVC_NAME="cvc-check"
 
 ADD images/cvc-check/scripts/install.sh install.sh
 RUN bash install.sh
@@ -252,10 +252,10 @@ RUN bash install.sh
 #######################################################################
 # Compile openroad (part of OpenLane)
 #######################################################################
-FROM base as openroad
-ARG OPENROAD_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_REPO_COMMIT="79a46b62da64bbebc18f06b20c42211046de719a"
-ARG OPENROAD_NAME="openroad"
+FROM base as openroad_app
+ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
+ARG OPENROAD_APP_REPO_COMMIT="79a46b62da64bbebc18f06b20c42211046de719a"
+ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,12 +283,12 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile qflow (part of OpenLane)
+# Compile vlogtoverilog (part of QFLOW)
 #######################################################################
-FROM base as qflow
-ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG QFLOW_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
-ARG QFLOW_NAME="qflow"
+FROM base as vlogtoverilog
+ARG VLOGTOVERILOG_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
+ARG VLOGTOVERILOG_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
+ARG VLOGTOVERILOG_NAME="qflow"
 
 ADD images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
@@ -409,7 +409,7 @@ COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
 
 COPY --from=covered                      /foss/tools/            /foss/tools/
 #COPY --from=cugr                         /foss/tools/            /foss/tools/
-COPY --from=cvc-check                    /foss/tools/            /foss/tools/
+COPY --from=cvc                          /foss/tools/            /foss/tools/
 #COPY --from=drcu                         /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
@@ -427,10 +427,10 @@ COPY --from=netgen                       /foss/tools/            /foss/tools/
 COPY --from=ngscope                      /foss/tools/            /foss/tools/
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
-COPY --from=openroad                     /foss/tools/            /foss/tools/
+COPY --from=openroad_app                 /foss/tools/            /foss/tools/
 COPY --from=opensta                      /foss/tools/            /foss/tools/
 COPY --from=padring                      /foss/tools/            /foss/tools/
-COPY --from=qflow                        /foss/tools/            /foss/tools/
+COPY --from=vlogtoverilog                /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
