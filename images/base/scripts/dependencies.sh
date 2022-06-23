@@ -122,7 +122,6 @@ yum install -y \
 	strace \
 	suitesparse \
 	suitesparse-devel \
-	swig \
 	tcl \
 	tcl-devel \
 	texinfo \
@@ -143,6 +142,7 @@ yum install -y \
 
 #	boost-devel \
 #	boost-static \
+#	swig \
 
 #alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
 
@@ -165,18 +165,33 @@ pip3 install --no-cache-dir \
 	spyci \
 	xdot
 
-# eigen-3.3, lemon-1.3.1, boost-1.76.0 are required for OpenROAD (which is used in OpenLane)
+# eigen-3.3, lemon-1.3.1, boost-1.76.0, swig-4.0.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
 source scl_source enable gcc-toolset-9
+#
+# Install swig-4.0.1
+#
+install_swig () {
+	cd /tmp || exit 1
+        wget --no-verbose https://github.com/swig/swig/archive/rel-4.0.1.tar.gz
+        md5sum -c <(echo "ef6a6d1dec755d867e7f5e860dc961f7  rel-4.0.1.tar.gz") || exit 1
+        tar -xf rel-4.0.1.tar.gz
+        cd swig-rel-4.0.1 || exit 1
+        ./autogen.sh
+        ./configure --prefix=/usr
+        make -j "$(nproc)"
+        make -j "$(nproc)" install
+}
+install_swig
 #
 # Install boost-1.76.0
 #
 install_boost () {
-	cd /tmp || exit
+	cd /tmp || exit 1
 	wget --no-verbose https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz
 	md5sum -c <(echo "e425bf1f1d8c36a3cd464884e74f007a  boost_1_76_0.tar.gz") || exit 1
 	tar -xf boost_1_76_0.tar.gz
-	cd boost_1_76_0 || exit
+	cd boost_1_76_0 || exit 1
 	#FIXME somehow Python is not found by build script, thus need this WA
 	./bootstrap.sh --with-python=python3 --with-python-version=3.6 --with-python-root=/usr/bin/python3
 	sed -i 's+"/usr/bin/python3"+/usr/bin/python3 : /usr/include/python3.6m : /usr/lib+g' project-config.jam
@@ -187,9 +202,9 @@ install_boost
 # Install eigen-3.3
 #
 install_eigen () {
-	cd /tmp || exit
+	cd /tmp || exit 1
 	git clone -b 3.3 https://gitlab.com/libeigen/eigen.git
-	cd eigen || exit
+	cd eigen || exit 1
 	cmake -B build .
 	cmake --build build -j "$(nproc)" --target install
 }
@@ -198,11 +213,11 @@ install_eigen
 # Install lemon-1.3.1
 #
 install_lemon () {
-	cd /tmp || exit
+	cd /tmp || exit 1
 	wget --no-verbose http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
 	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-1.3.1.tar.gz") || exit 1
 	tar -xf lemon-1.3.1.tar.gz
-	cd lemon-1.3.1 || exit
+	cd lemon-1.3.1 || exit 1
 	cmake -B build .
 	cmake --build build -j "$(nproc)" --target install
 }
