@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="a205a0e9419f973346740171618956afe08b2d74"
+ARG MAGIC_REPO_COMMIT="085131b090cb511d785baf52a10cf6df8a657d44"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -243,7 +243,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.05.18_02.12.32"
+ARG OPENLANE_REPO_COMMIT="2022.06.24_01.37.58"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -254,7 +254,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="79a46b62da64bbebc18f06b20c42211046de719a"
+ARG OPENROAD_APP_REPO_COMMIT="0b8b7ae255f8fbbbefa57d443949b84e73eed757"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh

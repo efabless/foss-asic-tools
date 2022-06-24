@@ -1,4 +1,4 @@
-#!/bin/python3
+#!python3
 # For HTTP stuff
 import urllib3
 
