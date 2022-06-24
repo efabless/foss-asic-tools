@@ -13,7 +13,7 @@ import yaml
 
 
 OPENLANE_TOOL_METADATA_URL_FSTR = "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenLane/{0}/dependencies/tool_metadata.yml"
-OPENLANE_DEFAULT_TAG = "ebad315d1def25d9d253eb2ec1c56d7b4e59d7ca"
+OPENLANE_DEFAULT_TAG = "mpw-6b"
 
 def load_revisions(tag=OPENLANE_DEFAULT_TAG):
     dl_url=OPENLANE_TOOL_METADATA_URL_FSTR.format(tag)
