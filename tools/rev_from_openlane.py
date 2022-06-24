@@ -10,18 +10,16 @@ except ImportError:
     from yaml import Loader, Dumper
 
 import yaml
-
+import argparse
 
 OPENLANE_TOOL_METADATA_URL_FSTR = "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenLane/{0}/dependencies/tool_metadata.yml"
-OPENLANE_DEFAULT_TAG = "mpw-6b"
 
-def load_revisions(tag=OPENLANE_DEFAULT_TAG):
-    dl_url=OPENLANE_TOOL_METADATA_URL_FSTR.format(tag)
-    print(f"Loading tool metadata from:\"{dl_url}\"")
+def load_revisions(tag="", url_fstr=OPENLANE_TOOL_METADATA_URL_FSTR):
+    dl_url=url_fstr.format(tag)
     http = urllib3.PoolManager()
     res = http.request("GET", dl_url)
     if res.status!=200:
-        print(f"Loading file failed with HTTP status{res.status}!")
+        print(f"Loading file failed with HTTP status {res.status}!")
         return None
     data = yaml.load(res.data, Loader=Loader)
     return data
@@ -66,9 +64,19 @@ def update_revision(df_contents, tool_name, new_rev):
     return False
 
 if __name__ == "__main__":
-    data = load_revisions()
+    prs = argparse.ArgumentParser(description="Update the tool commits/revisions from the openlane-Repository")
+    prs.add_argument("--url", action="store", type=str, required=False, default=OPENLANE_TOOL_METADATA_URL_FSTR, help="This is the URL from which the metadata YAML file is loaded. Can include {0}, where the commit/tag of the repository is added.")
+    prs.add_argument("--dry-run", action="store_true", help="Disable writing the Dockerfile, just print the results.")
+    prs.add_argument("--file-path", action="store", type=str, default="./Dockerfile", help="Change the location of the Dockerfile involved.")
+    prs.add_argument("commit", metavar="commit", type=str, help="The commit (can be tag or hash) to load the metadata YAML from.")
+
+    args = prs.parse_args()
+
+    print(f"Loading tool metadata from: \"{args.url.format(args.commit)}\"")
+    data = load_revisions(tag=args.commit, url_fstr=args.url)
     if data is not None:
-        df_contents = read_dockerfile()
+        print(f"Loading Dockerfile from: \"{args.file_path}\"")
+        df_contents = read_dockerfile(path=args.file_path)
         if df_contents is not None:
             tools = get_existing_tools(df_contents)
             for tool in tools:
@@ -80,10 +88,12 @@ if __name__ == "__main__":
                         print(f"ERROR: updating the revision for {tool} failed!")
                         print( "###########################################################")
         #print(df_contents)
-            print(f"Updating openlane to revision {OPENLANE_DEFAULT_TAG}.")
-            if not update_revision(df_contents, "openlane", OPENLANE_DEFAULT_TAG):
+            print(f"Updating openlane to revision {args.commit}.")
+            if not update_revision(df_contents, "openlane", args.commit):
                 print("###########################################################")
                 print("ERROR: updating the revision for openlane failed!")
-                print("###########################################################")            
-            write_dockerfile(df_contents)
+                print("###########################################################")
+            if not args.dry_run:
+                print(f"Writing Dockerfile to {args.file_path}")
+                write_dockerfile(df_contents, path=args.file_path)
     #print([x for x in data if x['name'] == 'drcu'][0])
