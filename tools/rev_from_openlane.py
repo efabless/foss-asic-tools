@@ -14,14 +14,17 @@ import argparse
 
 OPENLANE_TOOL_METADATA_URL_FSTR = "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenLane/{0}/dependencies/tool_metadata.yml"
 
-def load_revisions(tag="", url_fstr=OPENLANE_TOOL_METADATA_URL_FSTR):
+def metadata_load(tag="", url_fstr=OPENLANE_TOOL_METADATA_URL_FSTR):
     dl_url=url_fstr.format(tag)
     http = urllib3.PoolManager()
     res = http.request("GET", dl_url)
     if res.status!=200:
         print(f"Loading file failed with HTTP status {res.status}!")
         return None
-    data = yaml.load(res.data, Loader=Loader)
+    return res.data
+
+def metadata_parse(raw_data):
+    data = yaml.load(raw_data, Loader=Loader)
     return data
 
 def get_revision(data, tool_name):
@@ -42,6 +45,10 @@ def read_dockerfile(path="Dockerfile"):
 def write_dockerfile(df_contents, path="Dockerfile"):
     with open(path, mode="w") as f:
         f.writelines(df_contents)
+
+def metadata_write(raw_data, path="metadata.yml"):
+    with open(path, mode="wb") as f:
+        f.write(raw_data)
 
 # Every Dockerfile line that defines a new build-stage is defined by FROM <basename> AS <stagename>
 # This greps all those lines and gives a list of stagenames
@@ -67,16 +74,18 @@ if __name__ == "__main__":
     prs = argparse.ArgumentParser(description="Update the tool commits/revisions from the openlane-Repository")
     prs.add_argument("--url", action="store", type=str, required=False, default=OPENLANE_TOOL_METADATA_URL_FSTR, help="This is the URL from which the metadata YAML file is loaded. Can include {0}, where the commit/tag of the repository is added.")
     prs.add_argument("--dry-run", action="store_true", help="Disable writing the Dockerfile, just print the results.")
-    prs.add_argument("--file-path", action="store", type=str, default="./Dockerfile", help="Change the location of the Dockerfile involved.")
+    prs.add_argument("--dockerfile-path", action="store", type=str, default="./Dockerfile", help="Change the location of the Dockerfile involved.")
+    prs.add_argument("--metadata-path", action="store", type=str, default="tool_metadata.yml", help="Change the location of the tool_metadata.yml output file. Write disabled if the filename is empty.")
     prs.add_argument("commit", metavar="commit", type=str, help="The commit (can be tag or hash) to load the metadata YAML from.")
 
     args = prs.parse_args()
 
     print(f"Loading tool metadata from: \"{args.url.format(args.commit)}\"")
-    data = load_revisions(tag=args.commit, url_fstr=args.url)
-    if data is not None:
-        print(f"Loading Dockerfile from: \"{args.file_path}\"")
-        df_contents = read_dockerfile(path=args.file_path)
+    raw_meta = metadata_load(tag=args.commit, url_fstr=args.url)
+    if raw_meta is not None:
+        data = metadata_parse(raw_meta)
+        print(f"Loading Dockerfile from: \"{args.dockerfile_path}\"")
+        df_contents = read_dockerfile(path=args.dockerfile_path)
         if df_contents is not None:
             tools = get_existing_tools(df_contents)
             for tool in tools:
@@ -94,6 +103,8 @@ if __name__ == "__main__":
                 print("ERROR: updating the revision for openlane failed!")
                 print("###########################################################")
             if not args.dry_run:
-                print(f"Writing Dockerfile to {args.file_path}")
-                write_dockerfile(df_contents, path=args.file_path)
+                print(f"Writing Dockerfile to {args.dockerfile_path}")
+                write_dockerfile(df_contents, path=args.dockerfile_path)
+                if len(args.metadata_path)>0:
+                    metadata_write(raw_meta, path=args.metadata_path)
     #print([x for x in data if x['name'] == 'drcu'][0])
