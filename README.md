@@ -70,7 +70,7 @@ You can now access the Desktop-Environment through your browser ([http://localho
 Both scripts will use default settings, which you can tweak the following by settings shell variables (VARIABLE=default is shown):
 
  * ```DRY_RUN``` (unset by default), if set to any value (also 0, false etc.), makes the start scripts print all executed commands instead of actually executing. Useful for debugging/testing or just creating "template commands" for special setups.
- * ```DESIGNS=$HOME/eda/designs``` (```DESIGNS=%USERPROFILE%\eda\designs``` for .bat) sets the directory that holds your design files. This directory is mounted into the container on ```/foss/eda```.
+ * ```DESIGNS=$HOME/eda/designs``` (```DESIGNS=%USERPROFILE%\eda\designs``` for .bat) sets the directory that holds your design files. This directory is mounted into the container on ```/foss/designs```.
  * ```WEBSERVER_PORT=80``` sets the port on which the Docker daemon will map the webserver port of the container to be reachable from localhost and the outside world. 0 disables the mapping.
  * ```VNC_PORT=5901``` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required if you want to access the UI with a different VNC client. 0 disabled the mapping.
  * ```DOCKER_USER="hpretl"``` Username for the Docker Hub repository of which the images is pulled from. Normally no change required.
@@ -94,7 +94,7 @@ or
 #### Variables
 The following environment variables are used for configuration:
  * ```DRY_RUN``` (unset by default), if set to any value (also 0, false etc.), makes the start scripts print all executed commands instead of actually executing. Useful for debugging/testing or just creating "template commands" for special setups.
- * ```DESIGNS=$HOME/eda/designs``` (```DESIGNS=%USERPROFILE%\eda\designs``` for .bat) sets the directory that holds your design files. This directory is mounted into the container on ```/foss/eda```.
+ * ```DESIGNS=$HOME/eda/designs``` (```DESIGNS=%USERPROFILE%\eda\designs``` for .bat) sets the directory that holds your design files. This directory is mounted into the container on ```/foss/designs```.
  * ```DOCKER_USER="hpretl"``` Username for the Docker Hub repository of which the images is pulled from. Normally no change required.
  * ```DOCKER_IMAGE="iic-osic-tools"``` Docker Hub image name to pull. Normally no change required.
  * ```DOCKER_TAG="latest"``` Docker Hub image tag. By default it pulls the newest version, this might be handy to change if you want to match a specific Version set.
@@ -162,7 +162,7 @@ In "CMD" you can't set the variables directly when running the script. So for th
 
 ### Building the container
 
-The installation slightly differs from the original foss-asic-tools install by efabless. For this image, the build is replaced with a single Dockerfile for convenience when doing a multi-architecture build. For a basic single(native)-architecture build, just run
+The installation slightly differs from the original foss-asic-tools install by efabless. For this image, the build is replaced with a single Dockerfile for convenience when doing a multi-architecture build. For a basic single (native)-architecture build, just run
 
     docker build .
 
@@ -173,7 +173,7 @@ The predefined settings are for the IIC build-machines and the image gets pushed
 For specific usecases, the containers can be started without the help of the start-scripts. A few things to note down:
 
 #### Environment Variables
-The container makes use of a number of environment variables, to control the behaviour. WARNING: those values maybe impact the functionallity of the container. Do not change them unless you know what you are doing.
+The container makes use of a number of environment variables, to control the behaviour. WARNING: those values maybe impact the functionality of the container. Do not change them unless you know what you are doing.
 
 The internal VNC and Webserver ports are defined by environment variables (not to be confused with the variables in the start script, those manage the external ports, to which the Docker daemon mappes the ports! It works *best* if those are matched.). Those are used in the Dockerfile for the exposed ports and in the configuration of the services.
 
