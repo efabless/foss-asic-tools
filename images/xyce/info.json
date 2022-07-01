@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "xyce",
         "REPO_URL": "https://github.com/Xyce/Xyce.git",
-        "REPO_COMMIT": "437c914dd529173aa693f3e26e33517b9c28b323"
+        "REPO_COMMIT": "320b43d104cfe559be5acc4d04afd90f7a179096"
     }
 }

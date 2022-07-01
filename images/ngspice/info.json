@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "ngspice",
         "REPO_URL": "https://git.code.sf.net/p/ngspice/ngspice",
-        "REPO_COMMIT": "c4efe2e3ac264b6889e844f935410f9a795f1a68"
+        "REPO_COMMIT": "0faf386d45521f7ed82f621266b3990adc982b50"
     }
 }

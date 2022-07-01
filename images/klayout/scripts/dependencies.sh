@@ -1,5 +1,6 @@
 #!/bin/bash
-yum install -y \
+#yum install -y \
+  gcc-c++ \
   alsa-lib \
   libmng \
   libyaml \

@@ -4,6 +4,6 @@
         "BASE_IMAGE": "base",
         "NAME": "gtkwave",
         "REPO_URL": "https://github.com/gtkwave/gtkwave",
-        "REPO_COMMIT": "48c6409ed001f28eae9dc5fe87bb0b6b1a7c1217"
+        "REPO_COMMIT": "49a2a53caee83890dff503c15815fb53d5ccde74"
     }
 }
