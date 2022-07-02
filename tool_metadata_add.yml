@@ -3,10 +3,10 @@
   commit: 19d30fc942642b14dc24e95331cd4777c8dcbad9
 - name: fault
   repo: https://github.com/Cloud-V/Fault
-  commit: 5e1545ee361c3f71ba07675c2489fd4b192b7c4e
+  commit: 080f4be01d236af438566ce0b28089531f21a997
 - name: gaw3-xschem
   repo: https://github.com/StefanSchippers/xschem-gaw.git
-  commit: 98bfc8636f8642ae60e89fde009f83abe3cee9f1
+  commit: 854bee4cf20663a632840256737d0d68b5eca417 
 - name: gds3d
   repo: https://github.com/trilomix/GDS3D.git
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
@@ -15,7 +15,7 @@
   commit: v2.0.0
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: 48c6409ed001f28eae9dc5fe87bb0b6b1a7c1217
+  commit: 49a2a53caee83890dff503c15815fb53d5ccde74
 - name: iic-osic
   repo: https://github.com/hpretl/iic-osic.git
   commit: a98da34600c0f6ed74a6e29133db770d81bf2760
@@ -24,25 +24,25 @@
   commit: 3813495e55a21a024e62e21bd6993fac068a61b9
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: e8bc3bf8ddf3aee6c64047560e2fd2453ec56732
+  commit: c7cb13d302e13cac77701045fd7935a9b81b9e89
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-37
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: 1342cd731cf072ca610d7a5a4c54d2153b6bad63
+  commit: 409b951ba6621f2f115aebddfb15ce2dd78ec24f
 - name: verilator
   repo: https://github.com/verilator/verilator
-  commit: v4.222
+  commit: v4.224
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 2f3d6e0c884a9748721000188553153893ec493c
+  commit: 635b6caa60287f8eaa08cded547217d3adfafab9
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.5.0
 - name: xyce-xdm
   repo: https://github.com/Xyce/XDM
-  commit: Release-2.4.0
+  commit: Release-2.5.0
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: c9b05e481423c55ffcbb856fd5296701f670808c
