@@ -108,7 +108,7 @@ RUN bash install.sh
 # FIXME build dependencies clean as stand-alone stages
 FROM base as fault
 ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-ARG FAULT_REPO_COMMIT="5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
+ARG FAULT_REPO_COMMIT="080f4be01d236af438566ce0b28089531f21a997"
 ARG FAULT_NAME="fault"
 
 ADD images/fault/scripts/dependencies.sh dependencies.sh
@@ -122,7 +122,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
-ARG GAW3_XSCHEM_REPO_COMMIT="98bfc8636f8642ae60e89fde009f83abe3cee9f1"
+ARG GAW3_XSCHEM_REPO_COMMIT="854bee4cf20663a632840256737d0d68b5eca417"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 
 ADD images/gaw3-xschem/scripts/install.sh install.sh
@@ -155,7 +155,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="48c6409ed001f28eae9dc5fe87bb0b6b1a7c1217"
+ARG GTKWAVE_REPO_COMMIT="49a2a53caee83890dff503c15815fb53d5ccde74"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -188,7 +188,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="e8bc3bf8ddf3aee6c64047560e2fd2453ec56732"
+ARG IVERILOG_REPO_COMMIT="c7cb13d302e13cac77701045fd7935a9b81b9e89"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -298,7 +298,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RV_TOOLCHAIN_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RV_TOOLCHAIN_REPO_COMMIT="1342cd731cf072ca610d7a5a4c54d2153b6bad63"
+ARG RV_TOOLCHAIN_REPO_COMMIT="409b951ba6621f2f115aebddfb15ce2dd78ec24f"
 ARG RV_TOOLCHAIN_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
@@ -309,7 +309,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v4.222"
+ARG VERILATOR_REPO_COMMIT="v4.224"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -320,7 +320,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="2f3d6e0c884a9748721000188553153893ec493c"
+ARG XSCHEM_REPO_COMMIT="635b6caa60287f8eaa08cded547217d3adfafab9"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -342,7 +342,7 @@ RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="Release-2.4.0"
+ARG XYCE_XDM_REPO_COMMIT="Release-2.5.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
