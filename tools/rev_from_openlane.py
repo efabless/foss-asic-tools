@@ -5,10 +5,6 @@ import tools_lib.yaml_manipulator as yaml_man
 
 OPENLANE_TOOL_METADATA_URL_FSTR = "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenLane/{0}/dependencies/tool_metadata.yml"
 
-# Every Dockerfile line that defines a new build-stage is defined by FROM <basename> AS <stagename>
-# This greps all those lines and gives a list of stagenames
-
-
 if __name__ == "__main__":
     prs = argparse.ArgumentParser(description="Update the tool commits/revisions from the openlane-Repository")
     prs.add_argument("--url", action="store", type=str, required=False, default=OPENLANE_TOOL_METADATA_URL_FSTR, help="This is the URL from which the metadata YAML file is loaded. Can include {0}, where the commit/tag of the repository is added.")

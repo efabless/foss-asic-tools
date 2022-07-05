@@ -1,4 +1,5 @@
-
+# Every Dockerfile line that defines a new build-stage is defined by FROM <basename> AS <stagename>
+# This greps all those lines and gives a list of stagenames
 
 def get_existing_tools(df_contents):
     tools = list()
