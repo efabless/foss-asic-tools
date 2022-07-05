@@ -166,7 +166,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="a98da34600c0f6ed74a6e29133db770d81bf2760"
+ARG IIC_OSIC_REPO_COMMIT="d0e2f4926b68c7718a25f0d871704f9e5791d64d"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
