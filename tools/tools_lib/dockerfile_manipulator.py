@@ -10,7 +10,7 @@ def get_existing_tools(df_contents):
     return tools
 
 def update_revision(df_contents, tool_name, new_rev):
-    search_str=tool_name.upper()+"_REPO_COMMIT"
+    search_str=tool_name.upper().replace("-", "_") + "_REPO_COMMIT"
     for i,line in enumerate(df_contents):
         elem=line.split()
         if len(elem)>=2 and elem[0].upper()=="ARG" and elem[1].startswith(search_str):

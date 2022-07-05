@@ -264,9 +264,9 @@ RUN bash install.sh
 # Compile riscv-gnu-toolchain-rv32i
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
-ARG RV_TOOLCHAIN_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RV_TOOLCHAIN_REPO_COMMIT="409b951ba6621f2f115aebddfb15ce2dd78ec24f"
-ARG RV_TOOLCHAIN_NAME="riscv-gnu-toolchain-rv32i"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="409b951ba6621f2f115aebddfb15ce2dd78ec24f"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -327,9 +327,9 @@ ADD images/yosys/scripts/install.sh install.sh
 RUN bash install.sh
 
 FROM base as ghdl-yosys-plugin
-ARG GHDL_YOSYS_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
-ARG GHDL_YOSYS_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
-ARG GHDL_YOSYS_NAME="ghdl-yosys-plugin"
+ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
+ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
+ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 
 COPY --from=yosys	/foss/tools/	/foss/tools/
 COPY --from=ghdl	/foss/tools/	/foss/tools/

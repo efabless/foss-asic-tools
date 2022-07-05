@@ -10,6 +10,11 @@ except ImportError:
 
 import yaml
 
+def metadata_read(path):
+    with open(path, mode="r") as f:
+        return f.read()
+    return None
+
 def metadata_load(tag, url_fstr):
     dl_url=url_fstr.format(tag)
     http = urllib3.PoolManager()
@@ -33,6 +38,6 @@ def get_revision(data, tool_name):
     commit = result.get("commit")
     return commit
 
-def metadata_write(raw_data, path="metadata.yml"):
+def metadata_write(raw_data, path):
     with open(path, mode="wb") as f:
         f.write(raw_data)
