@@ -41,5 +41,6 @@ if __name__ == "__main__":
                 print(f"Writing Dockerfile to {args.dockerfile_path}")
                 df_man.write_dockerfile(df_contents, path=args.dockerfile_path)
                 if len(args.metadata_path)>0:
+                    print(f"Writing metadata yaml to {args.metadata_path}")
                     yaml_man.metadata_write(raw_meta, path=args.metadata_path)
     #print([x for x in data if x['name'] == 'drcu'][0])
