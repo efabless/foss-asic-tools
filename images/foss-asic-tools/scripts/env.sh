@@ -27,11 +27,8 @@ export LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
 
 
-export PDK_ROOT=/foss/pdk
 export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
-export PDK=sky130A
-export PDKPATH=$PDK_ROOT/$PDK
 export OPENLANE_ROOT=$TOOLS/openlane
 
 export SAK=$TOOLS/sak/
