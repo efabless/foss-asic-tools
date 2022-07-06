@@ -31,7 +31,6 @@ if __name__ == "__main__":
                         print( "###########################################################")
                         print(f"ERROR: updating the revision for {tool} failed!")
                         print( "###########################################################")
-        #print(df_contents)
             print(f"Updating openlane to revision {args.commit}.")
             if not df_man.update_revision(df_contents, "openlane", args.commit):
                 print("###########################################################")
@@ -43,4 +42,3 @@ if __name__ == "__main__":
                 if len(args.metadata_path)>0:
                     print(f"Writing metadata yaml to {args.metadata_path}")
                     yaml_man.metadata_write(raw_meta, path=args.metadata_path)
-    #print([x for x in data if x['name'] == 'drcu'][0])
