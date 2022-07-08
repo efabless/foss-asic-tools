@@ -157,6 +157,7 @@ yum install -y \
 pip3 install --no-cache-dir install
 pip3 install --no-cache-dir wheel
 pip3 install --no-cache-dir \
+	gdsfactory \
 	pyinstaller \
 	pyverilog \
 	pyyaml \
