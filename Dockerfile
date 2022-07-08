@@ -296,7 +296,7 @@ RUN bash install.sh
 #######################################################################
 # Compile xyce & xyce-xdm
 #######################################################################
-#FIXME build trilinos as own image, clean with commit etc.
+# FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
 ARG XYCE_REPO_COMMIT="Release-7.5.0"
