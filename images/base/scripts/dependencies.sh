@@ -164,6 +164,9 @@ pip3 install --no-cache-dir \
 	volare>=0.1.3 \
 	spyci \
 	xdot
+pip3 install --no-cache-dir gdspy
+pip3 install --no-cache-dir gdsfactory
+pip3 install --no-cache-dir siliconcompiler
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0, swig-4.0.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
