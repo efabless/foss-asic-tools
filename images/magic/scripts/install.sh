@@ -9,6 +9,7 @@ git clone ${MAGIC_REPO_URL} ${MAGIC_NAME}
 cd ${MAGIC_NAME}
 git checkout ${MAGIC_REPO_COMMIT}
 ./configure --prefix=/foss/tools/${MAGIC_NAME}/${REPO_COMMIT_SHORT}
+make database/database.h
 make -j$(nproc)
 make install
 

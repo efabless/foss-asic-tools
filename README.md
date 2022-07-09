@@ -13,32 +13,33 @@ It supports two *modes of operation*:
 Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless):
 
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
-* [cu-gr](https://github.com/ax3ghazy/cu-gr.git) *global router (removed from current distribution)*
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
-* [dr-cu](https://github.com/cuhk-eda/dr-cu.git) *detail router (removed from current distribution)*
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
-* [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for xschem
+* [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for `xschem`
+* [gdsfactory](https://github.com/gdsfactory/gdsfactory) Python library for GDS generation
+* [gdspy](https://github.com/heitzmann/gdspy) Python module for creation and manipulation of GDS files
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
-* [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and docs
+* [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and documentation
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
 * [klayout](https://github.com/KLayout/klayout) layout tool
 * [magic](https://github.com/rtimothyedwards/magic) layout tool with DRC and PEX
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
-* [ngscope](https://sourceforge.net/projects/ngscope/) waveform plot tool for ngspice
+* [ngscope](https://sourceforge.net/projects/ngscope/) waveform plot tool for `ngspice`
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog simulator
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow
-* [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) collection of tools for openlane
+* [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) collection of tools for `openlane`
 * [opensta](https://github.com/The-OpenROAD-Project/OpenSTA) static timing analyzer for digital flow
 * [padring](https://github.com/donn/padring) padring generation tool
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion
 * [risc-v toolchain](https://github.com/riscv/riscv-gnu-toolchain) GNU compiler toolchain for RISC-V RV32I cores
+* [siliconcompiler](https://github.com/siliconcompiler/siliconcompiler) modular build system for hardware
 * [sky130](https://github.com/google/skywater-pdk.git) SkyWater Technologies 130nm CMOS PDK
 * [verilator](https://github.com/verilator/verilator) fast Verilog simulator
 * [xschem](https://github.com/StefanSchippers/xschem.git) schematic editor
-* [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. xdm netlist conversion tool)
+* [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. `xdm` netlist conversion tool)
 * [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)
 
 The tool versions used for `OpenLane` are documented in `tool_metadata.yml`.

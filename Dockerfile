@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="a205a0e9419f973346740171618956afe08b2d74"
+ARG MAGIC_REPO_COMMIT="085131b090cb511d785baf52a10cf6df8a657d44"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -20,12 +20,12 @@ ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################
-# create skywater-pdk (part of OpenLane)
+# create sky130 (part of OpenLane)
 #######################################################################
-FROM magic as skywater-pdk
-ARG SKYWATER_PDK_REPO_URL="https://github.com/google/skywater-pdk.git"
-ARG SKYWATER_PDK_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
-ARG SKYWATER_PDK_NAME="skywater-pdk"
+FROM magic as sky130
+ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
+ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
+ARG SKY130_NAME="skywater-pdk"
 
 ENV PDK_ROOT=/foss/pdk
 
@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
-FROM skywater-pdk as open_pdks
+FROM sky130 as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="41c0908b47130d5675ff8484255b43f66463a7d6"
 ARG OPEN_PDKS_NAME="open_pdks"
@@ -58,49 +58,16 @@ ADD images/covered/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile liblef and libdef
-#######################################################################
-#FIXME removed CUGR and DRCU, will be deleted in next release
-#FROM base as libdef_liblef
-
-#ADD images/libdef_liblef/scripts/install.sh install.sh
-#RUN bash install.sh
-
-#######################################################################
-# Compile cugr (part of OpenLane)
-#######################################################################
-#FIXME removed CUGR and DRCU, will be deleted in next release
-#FROM libdef_liblef as cugr
-#ARG CUGR_REPO_URL="https://github.com/MrHighVoltage/cu-gr.git"
-#ARG CUGR_REPO_COMMIT="76e8363477792e8efda48da43fb8e0a8765f0160"
-#ARG CUGR_NAME="cugr"
-
-#ADD images/cugr/scripts/install.sh install.sh
-#RUN bash install.sh
-
-#######################################################################
 # Compile cvc-check (part of OpenLane)
 #######################################################################
-FROM base as cvc-check
+FROM base as cvc
 
-ARG CVC_CHECK_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_CHECK_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
-ARG CVC_CHECK_NAME="cvc-check"
+ARG CVC_REPO_URL="https://github.com/d-m-bailey/cvc"
+ARG CVC_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
+ARG CVC_NAME="cvc-check"
 
 ADD images/cvc-check/scripts/install.sh install.sh
 RUN bash install.sh
-
-#######################################################################
-# Compile drcu (part of OpenLane)
-#######################################################################
-#FIXME removed CUGR and DRCU, will be deleted in next release
-#FROM libdef_liblef as drcu
-#ARG DRCU_REPO_URL="https://github.com/MrHighVoltage/dr-cu.git"
-#ARG DRCU_REPO_COMMIT="5a08ed8d0677ad23f07d17feb78a8a6f5a5b37e9"
-#ARG DRCU_NAME="drcu"
-
-#ADD images/drcu/scripts/install.sh install.sh
-#RUN bash install.sh
 
 #######################################################################
 # Compile fault
@@ -108,7 +75,7 @@ RUN bash install.sh
 # FIXME build dependencies clean as stand-alone stages
 FROM base as fault
 ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-ARG FAULT_REPO_COMMIT="5e1545ee361c3f71ba07675c2489fd4b192b7c4e"
+ARG FAULT_REPO_COMMIT="080f4be01d236af438566ce0b28089531f21a997"
 ARG FAULT_NAME="fault"
 
 ADD images/fault/scripts/dependencies.sh dependencies.sh
@@ -122,7 +89,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
-ARG GAW3_XSCHEM_REPO_COMMIT="98bfc8636f8642ae60e89fde009f83abe3cee9f1"
+ARG GAW3_XSCHEM_REPO_COMMIT="854bee4cf20663a632840256737d0d68b5eca417"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 
 ADD images/gaw3-xschem/scripts/install.sh install.sh
@@ -155,7 +122,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="48c6409ed001f28eae9dc5fe87bb0b6b1a7c1217"
+ARG GTKWAVE_REPO_COMMIT="49a2a53caee83890dff503c15815fb53d5ccde74"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -166,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="a98da34600c0f6ed74a6e29133db770d81bf2760"
+ARG IIC_OSIC_REPO_COMMIT="d0e2f4926b68c7718a25f0d871704f9e5791d64d"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -188,7 +155,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="e8bc3bf8ddf3aee6c64047560e2fd2453ec56732"
+ARG IVERILOG_REPO_COMMIT="c7cb13d302e13cac77701045fd7935a9b81b9e89"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -243,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.05.18_02.12.32"
+ARG OPENLANE_REPO_COMMIT="2022.07.02_01.38.08"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -252,10 +219,10 @@ RUN bash install.sh
 #######################################################################
 # Compile openroad (part of OpenLane)
 #######################################################################
-FROM base as openroad
-ARG OPENROAD_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_REPO_COMMIT="79a46b62da64bbebc18f06b20c42211046de719a"
-ARG OPENROAD_NAME="openroad"
+FROM base as openroad_app
+ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
+ARG OPENROAD_APP_REPO_COMMIT="0b8b7ae255f8fbbbefa57d443949b84e73eed757"
+ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,12 +250,12 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile qflow (part of OpenLane)
+# Compile vlogtoverilog (part of QFLOW)
 #######################################################################
-FROM base as qflow
-ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG QFLOW_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
-ARG QFLOW_NAME="qflow"
+FROM base as vlogtoverilog
+ARG VLOGTOVERILOG_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
+ARG VLOGTOVERILOG_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
+ARG VLOGTOVERILOG_NAME="qflow"
 
 ADD images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
@@ -297,9 +264,9 @@ RUN bash install.sh
 # Compile riscv-gnu-toolchain-rv32i
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
-ARG RV_TOOLCHAIN_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RV_TOOLCHAIN_REPO_COMMIT="1342cd731cf072ca610d7a5a4c54d2153b6bad63"
-ARG RV_TOOLCHAIN_NAME="riscv-gnu-toolchain-rv32i"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="409b951ba6621f2f115aebddfb15ce2dd78ec24f"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -309,7 +276,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v4.222"
+ARG VERILATOR_REPO_COMMIT="v4.224"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -320,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="2f3d6e0c884a9748721000188553153893ec493c"
+ARG XSCHEM_REPO_COMMIT="635b6caa60287f8eaa08cded547217d3adfafab9"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -329,7 +296,7 @@ RUN bash install.sh
 #######################################################################
 # Compile xyce & xyce-xdm
 #######################################################################
-#FIXME build trilinos as own image, clean with commit etc.
+# FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
 ARG XYCE_REPO_COMMIT="Release-7.5.0"
@@ -342,7 +309,7 @@ RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="Release-2.4.0"
+ARG XYCE_XDM_REPO_COMMIT="Release-2.5.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
@@ -360,9 +327,9 @@ ADD images/yosys/scripts/install.sh install.sh
 RUN bash install.sh
 
 FROM base as ghdl-yosys-plugin
-ARG GHDL_YOSYS_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
-ARG GHDL_YOSYS_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
-ARG GHDL_YOSYS_NAME="ghdl-yosys-plugin"
+ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
+ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
+ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 
 COPY --from=yosys	/foss/tools/	/foss/tools/
 COPY --from=ghdl	/foss/tools/	/foss/tools/
@@ -408,9 +375,7 @@ ADD images/iic-osic-tools/addons/xfce/ $HOME/
 COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
 
 COPY --from=covered                      /foss/tools/            /foss/tools/
-#COPY --from=cugr                         /foss/tools/            /foss/tools/
-COPY --from=cvc-check                    /foss/tools/            /foss/tools/
-#COPY --from=drcu                         /foss/tools/            /foss/tools/
+COPY --from=cvc                          /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
@@ -427,10 +392,10 @@ COPY --from=netgen                       /foss/tools/            /foss/tools/
 COPY --from=ngscope                      /foss/tools/            /foss/tools/
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
-COPY --from=openroad                     /foss/tools/            /foss/tools/
+COPY --from=openroad_app                 /foss/tools/            /foss/tools/
 COPY --from=opensta                      /foss/tools/            /foss/tools/
 COPY --from=padring                      /foss/tools/            /foss/tools/
-COPY --from=qflow                        /foss/tools/            /foss/tools/
+COPY --from=vlogtoverilog                /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
