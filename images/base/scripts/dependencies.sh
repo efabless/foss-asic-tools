@@ -44,6 +44,7 @@ yum install -y \
 	gettext \
 	gettext-devel \
 	git \
+	glibc-langpack-en \
 	glibc-static \
 	gperf \
 	graphviz \
