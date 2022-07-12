@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
+source scl_source enable gcc-toolset-11
 
 REPO_COMMIT_SHORT=$(echo $IVERILOG_REPO_COMMIT | cut -c 1-7)
 

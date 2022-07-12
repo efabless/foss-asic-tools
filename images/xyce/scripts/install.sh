@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
+source scl_source enable gcc-toolset-11
 
 git clone ${XYCE_REPO_URL} ${XYCE_NAME}
 cd ${XYCE_NAME}

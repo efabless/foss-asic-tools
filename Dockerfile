@@ -184,15 +184,15 @@ ADD images/netgen/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile ngscope
+# Compile ngscope (retired)
 #######################################################################
-FROM base as ngscope
-ARG NGSCOPE_REPO_URL="n/a"
-ARG NGSCOPE_REPO_COMMIT="0.9.5"
-ARG NGSCOPE_NAME="ngscope"
+#FROM base as ngscope
+#ARG NGSCOPE_REPO_URL="n/a"
+#ARG NGSCOPE_REPO_COMMIT="0.9.5"
+#ARG NGSCOPE_NAME="ngscope"
 
-ADD images/ngscope/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/ngscope/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Compile ngspice
@@ -389,7 +389,7 @@ COPY --from=iverilog                     /foss/tools/            /foss/tools/
 COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
-COPY --from=ngscope                      /foss/tools/            /foss/tools/
+#RETIRED COPY --from=ngscope                      /foss/tools/            /foss/tools/
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
