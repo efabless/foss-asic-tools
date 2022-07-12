@@ -26,7 +26,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [klayout](https://github.com/KLayout/klayout) layout tool
 * [magic](https://github.com/rtimothyedwards/magic) layout tool with DRC and PEX
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
-* [ngscope](https://sourceforge.net/projects/ngscope/) waveform plot tool for `ngspice`
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog simulator
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow

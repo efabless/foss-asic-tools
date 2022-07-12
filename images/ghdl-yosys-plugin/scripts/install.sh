@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
+source scl_source enable gcc-toolset-11
 
 yosys_version=$(ls /foss/tools/yosys/)
 ghdl_version=$(ls /foss/tools/ghdl/)

@@ -37,9 +37,9 @@ yum install -y \
 	gcc \
 	gcc-c++ \
 	gcc-gnat \
-	gcc-toolset-9 \
-	gcc-toolset-9-gcc-gfortran \
-	gcc-toolset-9-libatomic-devel \
+	gcc-toolset-11 \
+	gcc-toolset-11-gcc-gfortran \
+	gcc-toolset-11-libatomic-devel \
 	gdb \
 	gettext \
 	gettext-devel \
@@ -171,7 +171,7 @@ pip3 install --no-cache-dir siliconcompiler
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0, swig-4.0.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
-source scl_source enable gcc-toolset-9
+source scl_source enable gcc-toolset-11
 #
 # Install swig-4.0.1
 #

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # shellcheck disable=SC1091
-source scl_source enable gcc-toolset-9
+source scl_source enable gcc-toolset-11
 
 ###############
 mkdir -p /foss/designs
