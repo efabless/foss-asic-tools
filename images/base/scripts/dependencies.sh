@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 yum update -y
 
 #yum upgrade -y
@@ -25,10 +27,12 @@ yum install -y \
 	ca-certificates \
 	cairo \
 	cairo-devel \
+	cargo \
 	clang \
 	cmake \
 	csh \
 	curl \
+	curl-devel \
 	fftw \
 	fftw-devel \
 	flex \
@@ -86,6 +90,8 @@ yum install -y \
 	ninja-build \
 	openmpi \
 	openmpi-devel \
+	openssl \
+	openssl-devel \
 	patch \
 	pciutils \
 	pciutils-libs \
@@ -118,6 +124,7 @@ yum install -y \
 	rubygem-psych \
 	rubygem-rdoc \
 	rubygems \
+	rust \
 	spdlog \
 	spdlog-devel \
 	strace \
@@ -167,6 +174,8 @@ pip3 install --no-cache-dir \
 	xdot
 pip3 install --no-cache-dir gdspy
 pip3 install --no-cache-dir gdsfactory
+pip3 install --no-cache-dir scikit-build # fixes skbuild not found in siliconcompiler
+pip3 install --no-cache-dir setuptools-rust
 pip3 install --no-cache-dir siliconcompiler
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0, swig-4.0.1 are required for OpenROAD (which is used in OpenLane)
