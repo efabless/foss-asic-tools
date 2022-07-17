@@ -3,7 +3,7 @@ base,alpha
 magic,f7df5e7c86fb47c5fd445c846afddc6fbabad6ae
 pdks-volare,8fe7f760ece2bb49b1c310e60243f0558977dae5
 openlane,2022.05.30_01.41.33
-klayout,0.27.10-0
+klayout,24e8db996cd598df9c2dcedcb0846f3964fb077f
 gtkwave,49a2a53caee83890dff503c15815fb53d5ccde74
 iverilog,e3a9591960d53e546d5834506b229a5d56995ed7
 netgen,2056b37c95e11ea802f8b06c8948e874a298808a

@@ -20,6 +20,6 @@
   rubygem-psych \
   rubygem-rdoc \
   rubygems
-  yum -y install qt5-qtxmlpatterns-devel qt5-qtxmlpatterns
+  yum -y install qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-designer qt5-qtsvg-devel  qt5-qttools-devel
 
 
