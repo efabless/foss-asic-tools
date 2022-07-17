@@ -1,76 +1,70 @@
 #!/bin/bash
 
 
-yum update -y
-#yum upgrade -y
+apt update -y
+apt upgrade -y
 
-yum install -y https://repo.ius.io/ius-release-el7.rpm 
-yum install centos-release-scl -y
-yum install -y \
+apt install -y \
 	autoconf \
 	automake \
 	bison \
-	boost169-devel \
-	boost169-static \
 	bzip2 \
-	cairo \
-	cairo-devel \
 	clang \
 	csh \
 	curl \
 	devtoolset-8 \
-	devtoolset-8-libatomic-devel \
+	devtoolset-8-libatomic-dev \
 	flex \
 	gawk \
 	gcc \
 	gdb \
 	gettext \
-	gettext-devel \
+	gettext-dev \
 	git \
 	glibc-static \
 	graphviz \
 	help2man \
 	libSM \
-	libX11-devel \
+	libX11-dev \
 	libXext \
 	libXft \
 	libffi \
-	libffi-devel \
+	libffi-dev \
 	libgomp \
 	libjpeg \
 	libstdc++ \
-	libxml2-devel \
-	libxslt-devel \
+	libxml2-dev \
+	libxslt-dev \
 	make \
-	mesa-libGLU-devel \
-	ncurses-devel \
+	mesa-libGLU-dev \
+	ncurses-dev \
 	ninja-build \
 	patch \
-	pcre-devel \
-	python-devel \
+	pcre-dev \
+	python-dev \
 	python36u \
-	python36u-devel \
+	python36u-dev \
 	python36u-libs \
 	python36u-pip \
 	python36u-tkinter \
-	readline-devel \
+	readline-dev \
 	rh-python35 \
 	strace \
-	spdlog-devel \
+	spdlog-dev \
 	swig3 \
 	tcl \
-	tcl-devel \
+	tcl-dev \
 	tcllib \
 	tclx \
 	texinfo \
 	tk \
-	tk-devel \
+	tk-dev \
 	vim-common \
 	wget \
 	which \
 	xdot \
 	Xvfb \
-	zlib-devel \
+	zlib-dev \
 	zlib-static
 
 alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
@@ -82,3 +76,13 @@ pip install --no-cache-dir \
 	pandas \
 	install \
 	XlsxWriter
+	
+	
+	
+	
+
+#	boost169-dev \
+#	boost169-static \
+#	cairo \
+#	cairo-dev \
+

@@ -1,8 +1,8 @@
 {
     "args": {
         "GIT": "false",
-        "BASE_IMAGE": "ubuntu:20.10",
-        "NAME": "base",
+        "BASE_IMAGE": "ubuntu:focal",
+        "NAME": "base-ubuntu",
         "REPO_COMMIT": "alpha",
         "REPO_URL": "n/a"
     }
