@@ -3,11 +3,8 @@
 
 apt update -y
 apt upgrade -y
-apt install software-properties-common -y
-add-apt-repository ppa:deadsnakes/ppa -y
 
 apt install -y \
-	wget \
 	autoconf \
 	automake \
 	bison \
@@ -15,23 +12,46 @@ apt install -y \
 	clang \
 	csh \
 	curl \
+	devtoolset-8 \
+	devtoolset-8-libatomic-dev \
 	flex \
 	gawk \
 	gcc \
 	gdb \
 	gettext \
+	gettext-dev \
 	git \
+	glibc-static \
 	graphviz \
 	help2man \
+	libSM \
+	libX11-dev \
+	libXext \
+	libXft \
+	libffi \
+	libffi-dev \
+	libgomp \
+	libjpeg \
+	libstdc++ \
 	libxml2-dev \
 	libxslt-dev \
 	make \
-	python3.10 \
-	python3-pip \
+	mesa-libGLU-dev \
 	ncurses-dev \
 	ninja-build \
 	patch \
+	pcre-dev \
+	python-dev \
+	python36u \
+	python36u-dev \
+	python36u-libs \
+	python36u-pip \
+	python36u-tkinter \
+	readline-dev \
+	rh-python35 \
 	strace \
+	spdlog-dev \
+	swig3 \
 	tcl \
 	tcl-dev \
 	tcllib \
@@ -41,11 +61,14 @@ apt install -y \
 	tk-dev \
 	vim-common \
 	wget \
-	xdot 
+	which \
+	xdot \
+	Xvfb \
+	zlib-dev \
+	zlib-static
 
 
-pip3 install --no-cache-dir --upgrade pip
-
+pip3.6 install --no-cache-dir --upgrade pip
 pip install --no-cache-dir \
 	matplotlib \
 	"jinja2<3.0.0" \
