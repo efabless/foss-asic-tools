@@ -4,16 +4,12 @@ set -e
 
 yum update -y
 
-#yum upgrade -y
-#yum install -y https://repo.ius.io/ius-release-el7.rpm 
-
 yum install yum-utils -y
 dnf config-manager --set-enabled powertools
 yum install epel-release -y
 
 yum group install "Development Tools" -y
 
-#yum install centos-release-scl -y
 yum install -y \
 	alsa-lib \
 	alsa-lib-devel \
@@ -50,6 +46,7 @@ yum install -y \
 	git \
 	glibc-langpack-en \
 	glibc-static \
+	gobject-introspection-devel \
 	gperf \
 	graphviz \
 	gtk3 \
@@ -96,17 +93,11 @@ yum install -y \
 	pciutils \
 	pciutils-libs \
 	pcre-devel \
-	python3 \
-	python3-Cython \
-	python3-devel \
-	python3-gobject \
-	python3-jinja2 \
-	python3-matplotlib \
-	python3-numpy \
-	python3-pandas \
-	python3-pip \
-	python3-tkinter \
-	python3-xlsxwriter \
+	python39 \
+        python39-devel \
+        python39-numpy \
+	python39-pip \
+        python39-tkinter \
 	qt5-devel \
 	qt5-qtbase \
 	qt5-qtmultimedia \
@@ -152,31 +143,36 @@ yum install -y \
 #	boost-static \
 #	swig \
 
+        #python3-gobject \
+        #python3-jinja2 \
+        #python3-matplotlib \
+        #python3-pandas \
+        #python3-xlsxwriter \
+
 #alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
 
 #pip3.6 install --no-cache-dir --upgrade pip
-#pip install --no-cache-dir \
-#	matplotlib \
-#	"jinja2<3.0.0" \
-#	pandas \
-#	install \
-#	XlsxWriter
 
-pip3 install --no-cache-dir install
-pip3 install --no-cache-dir wheel
+pip3 install --no-cache-dir install wheel setuptools scikit-build setuptools-rust
+
+# Cython version from Rocky too old.
 pip3 install --no-cache-dir \
+	PyGObject \
+	matplotlib \
+	"jinja2<3.0.0" \
+	pandas \
+	XlsxWriter \
+	Cython \
 	pyinstaller \
 	pyverilog \
 	pyyaml \
 	click \
 	volare>=0.1.3 \
 	spyci \
-	xdot
-pip3 install --no-cache-dir gdspy
-pip3 install --no-cache-dir gdsfactory
-pip3 install --no-cache-dir scikit-build # fixes skbuild not found in siliconcompiler
-pip3 install --no-cache-dir setuptools-rust
-pip3 install --no-cache-dir siliconcompiler
+	xdot \
+	gdspy \
+	gdsfactory \
+	siliconcompiler
 
 # eigen-3.3, lemon-1.3.1, boost-1.76.0, swig-4.0.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
@@ -206,8 +202,8 @@ install_boost () {
 	tar -xf boost_1_76_0.tar.gz
 	cd boost_1_76_0 || exit 1
 	#FIXME somehow Python is not found by build script, thus need this WA
-	./bootstrap.sh --with-python=python3 --with-python-version=3.6 --with-python-root=/usr/bin/python3
-	sed -i 's+"/usr/bin/python3"+/usr/bin/python3 : /usr/include/python3.6m : /usr/lib+g' project-config.jam
+	./bootstrap.sh --with-python=python3 --with-python-version=3.9 --with-python-root=/usr/bin/python3
+	sed -i 's+"/usr/bin/python3"+/usr/bin/python3 : /usr/include/python3.9 : /usr/lib+g' project-config.jam
 	./b2 install
 }
 install_boost
