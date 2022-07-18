@@ -1,4 +1,4 @@
 #! /bin/bash
 
-python3 run.py recipe --csv ./recipes/recipe.csv --update
+python3 run.py recipe --csv recipe.csv --update
 
