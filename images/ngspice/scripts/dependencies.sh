@@ -1,9 +1,7 @@
 #!/bin/bash
 
-yum -y install bison flex gawk zlib-devel libtool wget git curl zip unzip
-yum -y install autoconf automake make gcc-c++ libstdc++-static.x86_64
-yum -y install curl libffi-devel readline-devel tcl tcl-devel graphviz xdot tk tk-devel bzip2-devel xz-devel gtk2*
-yum -y install wxGTK-devel libXaw-devel
+apt -y install bison flex gawk zlib* libtool wget git curl zip unzip autoconf automake make 
+apt -y install curl libffi-dev libreadline6* tcl tcl-dev libxaw* graphviz xdot tk tk-dev bzip2* xz*  gtk2* libwxgtk* libwxgtk3
 
 cmakeVersionBig=3.14
 cmakeVersionSmall=${cmakeVersionBig}.0

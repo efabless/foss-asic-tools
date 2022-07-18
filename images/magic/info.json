@@ -1,7 +1,7 @@
 {
     "args": {
         "GIT": "true",
-        "BASE_IMAGE": "base",
+        "BASE_IMAGE": "base-ubuntu",
         "NAME": "magic",
         "REPO_URL": "https://github.com/rtimothyedwards/magic",
         "REPO_COMMIT": "f7df5e7c86fb47c5fd445c846afddc6fbabad6ae"

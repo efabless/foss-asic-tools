@@ -1,7 +1,7 @@
 {
     "args": {
         "GIT": "true",
-        "BASE_IMAGE": "base",
+        "BASE_IMAGE": "base-ubuntu",
         "NAME": "ngspice",
         "REPO_URL": "https://git.code.sf.net/p/ngspice/ngspice",
         "REPO_COMMIT": "0faf386d45521f7ed82f621266b3990adc982b50"

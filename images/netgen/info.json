@@ -1,7 +1,7 @@
 {
     "args": {
         "GIT": "true",
-        "BASE_IMAGE": "base",
+        "BASE_IMAGE": "base-ubuntu",
         "NAME": "netgen",
         "REPO_URL": "https://github.com/rtimothyedwards/netgen",
         "REPO_COMMIT": "2056b37c95e11ea802f8b06c8948e874a298808a"
