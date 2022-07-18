@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
 
 wget --no-verbose https://sourceforge.net/projects/ngscope/files/rel_0_9/ngscope_0_9_5.tar.bz2
 

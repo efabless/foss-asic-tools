@@ -184,15 +184,15 @@ ADD images/netgen/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile ngscope (retired)
+# Compile ngscope
 #######################################################################
-#FROM base as ngscope
-#ARG NGSCOPE_REPO_URL="n/a"
-#ARG NGSCOPE_REPO_COMMIT="0.9.5"
-#ARG NGSCOPE_NAME="ngscope"
+FROM base as ngscope
+ARG NGSCOPE_REPO_URL="n/a"
+ARG NGSCOPE_REPO_COMMIT="0.9.5"
+ARG NGSCOPE_NAME="ngscope"
 
-#ADD images/ngscope/scripts/install.sh install.sh
-#RUN bash install.sh
+ADD images/ngscope/scripts/install.sh install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile ngspice
