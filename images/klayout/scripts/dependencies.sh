@@ -1,5 +1,6 @@
 #!/bin/bash
-#yum install -y \
+
+yum install -y \
   gcc-c++ \
   alsa-lib \
   libmng \
@@ -20,6 +21,7 @@
   rubygem-psych \
   rubygem-rdoc \
   rubygems
-  yum -y install qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-designer qt5-qtsvg-devel  qt5-qttools-devel
+
+yum -y install qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-designer qt5-qtsvg-devel  qt5-qttools-devel
 
 
