@@ -24,15 +24,18 @@ yum install -y \
 	nano \
         net-tools \
         nmap \
-        octave \
         sudo \
         tcl \
-        tcllib \
         tk \
         vim \
         wget \
         xorg-x11-server-Xvfb \
         xterm
+
+# Not (yet) available in EPEL 9
+#       tcllib \
+#       octave \
+
 
 #FIXME package: hub
 

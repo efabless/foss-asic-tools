@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-11
 
 magic_version=$(ls /foss/tools/magic/)
 export PATH=$PATH:/foss/tools/magic/$magic_version/bin

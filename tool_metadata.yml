@@ -1,6 +1,6 @@
 - name: cvc
   repo: https://github.com/d-m-bailey/cvc
-  commit: d172016a791af3089b28070d80ad92bdfef9c585
+  commit: 6295fd962aa0fbd11937018867797d01aff17778
   build: |
     autoreconf -i
     ./configure --disable-nls --prefix=$PREFIX

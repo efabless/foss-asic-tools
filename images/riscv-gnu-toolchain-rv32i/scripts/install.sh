@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-11
 
 REPO_COMMIT_SHORT=$(echo $RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT | cut -c 1-7)
 

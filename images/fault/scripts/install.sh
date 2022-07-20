@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-11
 
 REPO_COMMIT_SHORT=$(echo $FAULT_REPO_COMMIT | cut -c 1-7)
 

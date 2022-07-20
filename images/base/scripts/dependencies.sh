@@ -5,11 +5,13 @@ set -e
 yum update -y
 
 yum install yum-utils -y
-dnf config-manager --set-enabled powertools
+# powertools is crb from Rocky 9 and (hopefully) up.
+dnf config-manager --set-enabled crb
 yum install epel-release -y
 
 yum group install "Development Tools" -y
 
+# Notes: Only install curl-devel and openssl-devel because of version mismatches in Rocky 9!
 yum install -y \
 	alsa-lib \
 	alsa-lib-devel \
@@ -18,6 +20,8 @@ yum install -y \
 	bison \
 	blas \
 	blas-devel \
+	boost \
+	boost-devel \
 	bzip2 \
 	bzip2-devel \
 	ca-certificates \
@@ -27,8 +31,10 @@ yum install -y \
 	clang \
 	cmake \
 	csh \
-	curl \
 	curl-devel \
+	eigen3-devel \
+	expat \
+	expat-devel \
 	fftw \
 	fftw-devel \
 	flex \
@@ -37,9 +43,7 @@ yum install -y \
 	gcc \
 	gcc-c++ \
 	gcc-gnat \
-	gcc-toolset-11 \
-	gcc-toolset-11-gcc-gfortran \
-	gcc-toolset-11-libatomic-devel \
+	gcc-gfortran \
 	gdb \
 	gettext \
 	gettext-devel \
@@ -87,17 +91,20 @@ yum install -y \
 	ninja-build \
 	openmpi \
 	openmpi-devel \
-	openssl \
 	openssl-devel \
 	patch \
 	pciutils \
 	pciutils-libs \
 	pcre-devel \
-	python39 \
-        python39-devel \
-        python39-numpy \
-	python39-pip \
-        python39-tkinter \
+	python3 \
+	python3-Cython \
+        python3-devel \
+        python3-numpy \
+	python3-pip \
+        python3-tkinter \
+        python3-gobject \
+        python3-jinja2 \
+	python3-pyyaml \
 	qt5-devel \
 	qt5-qtbase \
 	qt5-qtmultimedia \
@@ -121,6 +128,7 @@ yum install -y \
 	strace \
 	suitesparse \
 	suitesparse-devel \
+	swig \
 	tcl \
 	tcl-devel \
 	texinfo \
@@ -139,33 +147,15 @@ yum install -y \
 	zlib-devel \
 	zlib-static
 
-#	boost-devel \
-#	boost-static \
-#	swig \
-
-        #python3-gobject \
-        #python3-jinja2 \
-        #python3-matplotlib \
-        #python3-pandas \
-        #python3-xlsxwriter \
-
-#alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
-
-#pip3.6 install --no-cache-dir --upgrade pip
 
 pip3 install --no-cache-dir install wheel setuptools scikit-build setuptools-rust
 
-# Cython version from Rocky too old.
 pip3 install --no-cache-dir \
-	PyGObject \
 	matplotlib \
-	"jinja2<3.0.0" \
 	pandas \
 	XlsxWriter \
-	Cython \
 	pyinstaller \
 	pyverilog \
-	pyyaml \
 	click \
 	volare>=0.1.3 \
 	spyci \
@@ -174,50 +164,8 @@ pip3 install --no-cache-dir \
 	gdsfactory \
 	siliconcompiler
 
-# eigen-3.3, lemon-1.3.1, boost-1.76.0, swig-4.0.1 are required for OpenROAD (which is used in OpenLane)
+# lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
-source scl_source enable gcc-toolset-11
-#
-# Install swig-4.0.1
-#
-install_swig () {
-	cd /tmp || exit 1
-        wget --no-verbose https://github.com/swig/swig/archive/rel-4.0.1.tar.gz
-        md5sum -c <(echo "ef6a6d1dec755d867e7f5e860dc961f7  rel-4.0.1.tar.gz") || exit 1
-        tar -xf rel-4.0.1.tar.gz
-        cd swig-rel-4.0.1 || exit 1
-        ./autogen.sh
-        ./configure --prefix=/usr
-        make -j "$(nproc)"
-        make -j "$(nproc)" install
-}
-install_swig
-#
-# Install boost-1.76.0
-#
-install_boost () {
-	cd /tmp || exit 1
-	wget --no-verbose https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz
-	md5sum -c <(echo "e425bf1f1d8c36a3cd464884e74f007a  boost_1_76_0.tar.gz") || exit 1
-	tar -xf boost_1_76_0.tar.gz
-	cd boost_1_76_0 || exit 1
-	#FIXME somehow Python is not found by build script, thus need this WA
-	./bootstrap.sh --with-python=python3 --with-python-version=3.9 --with-python-root=/usr/bin/python3
-	sed -i 's+"/usr/bin/python3"+/usr/bin/python3 : /usr/include/python3.9 : /usr/lib+g' project-config.jam
-	./b2 install
-}
-install_boost
-#
-# Install eigen-3.3
-#
-install_eigen () {
-	cd /tmp || exit 1
-	git clone -b 3.3 https://gitlab.com/libeigen/eigen.git
-	cd eigen || exit 1
-	cmake -B build .
-	cmake --build build -j "$(nproc)" --target install
-}
-install_eigen
 #
 # Install lemon-1.3.1
 #

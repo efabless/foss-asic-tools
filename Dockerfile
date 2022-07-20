@@ -1,7 +1,7 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=rockylinux:8
+ARG BASE_IMAGE=rockylinux:9.0
 FROM ${BASE_IMAGE} as base
 
 ADD images/base/scripts/dependencies.sh dependencies.sh
@@ -63,7 +63,7 @@ RUN bash install.sh
 FROM base as cvc
 
 ARG CVC_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
+ARG CVC_REPO_COMMIT="6295fd962aa0fbd11937018867797d01aff17778"
 ARG CVC_NAME="cvc-check"
 
 ADD images/cvc-check/scripts/install.sh install.sh
