@@ -98,12 +98,12 @@ yum install -y \
 	pcre-devel \
 	python3 \
 	python3-Cython \
-        python3-devel \
-        python3-numpy \
+    python3-devel \
+    python3-numpy \
 	python3-pip \
-        python3-tkinter \
-        python3-gobject \
-        python3-jinja2 \
+    python3-tkinter \
+    python3-gobject \
+    python3-jinja2 \
 	python3-pyyaml \
 	qt5-devel \
 	qt5-qtbase \
@@ -179,5 +179,17 @@ install_lemon () {
 	cmake --build build -j "$(nproc)" --target install
 }
 install_lemon
+
+
+install_tcllib () {
+	cd /tmp || exit 1
+	wget --no-verbose https://core.tcl-lang.org/tcllib/uv/tcllib-1.21.tar.xz
+	sha256sum -c <(echo "10c7749e30fdd6092251930e8a1aa289b193a3b7f1abf17fee1d4fa89814762f  tcllib-1.21.tar.xz") || exit 1
+	tar -xf tcllib-1.21.tar.xz
+	cd tcllib-1.21
+	tclsh installer.tcl -no-gui -no-html -no-nroff -no-examples -pkg-path /usr/share/tk8.6/tcllib1.21 -app-path /usr/share/bin -no-wait
+}
+
+install_tcllib
 
 rm -rf /tmp/*
