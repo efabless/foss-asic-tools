@@ -17,6 +17,7 @@ yum install -y \
 	alsa-lib-devel \
 	autoconf \
 	automake \
+	binutils-gold \
 	bison \
 	blas \
 	blas-devel \
