@@ -108,7 +108,8 @@ alias k='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech
 alias ke='klayout -e -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
 alias kf='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A-fom.lyp'
 
-alias xschem='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
+alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
+alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
 alias tt='cd /foss/tools'
 alias dd='cd /foss/designs'
