@@ -33,7 +33,7 @@ export OPENLANE_ROOT=$TOOLS/openlane
 
 export SAK=$TOOLS/sak/
 export EDITOR='gedit'
-export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
+export PATH=$TOOLS/bin:$SAK/bin:/usr/local/sbin:$PATH
 
 #----------------------------------------
 # Tool Aliases
@@ -49,7 +49,7 @@ alias kf='klayout     -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDK_ROOT/$PD
 
 alias tt='cd /foss/tools'
 alias dd='cd /foss/designs'
-alias pp='cd /foss/pdk'
+alias pp='cd /foss/pdks'
 alias destroy='sudo \rm -rf'
 alias cp='cp -i'
 alias egrep='egrep '

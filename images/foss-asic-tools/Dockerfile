@@ -22,7 +22,7 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     DESIGNS=/foss/designs \
     TOOLS=/foss/tools \
-    PDK_ROOT=/foss/pdk
+    PDK_ROOT=/foss/pdks
 
 ADD ./scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
@@ -43,7 +43,7 @@ FROM openlane:latest as openlane
 FROM klayout:latest as klayout
 FROM gtkwave:latest as gtkwave
 FROM iverilog:latest as iverilog
-FROM pdks-volare:latest as pdk
+FROM pdks-volare:latest as pdks
 FROM magic:latest as magic
 FROM netgen:latest as netgen
 FROM riscv-gnu-toolchain-rv32i as rv32i
@@ -59,7 +59,7 @@ FROM base
 #FROM dv as dv
 
 
-COPY --from=pdk        		/foss/pdks/    		/foss/pdks/
+COPY --from=pdks        	/foss/pdks/    		/foss/pdks/
 COPY --from=openlane   	 	/foss/tools/openlane      		/foss/tools/openlane
 COPY --from=openlane   		/foss/tools/openlane_tools      	/foss/tools/openlane_tools
 COPY --from=gtkwave    		/foss/tools/   		/foss/tools/

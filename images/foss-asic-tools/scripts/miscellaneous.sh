@@ -12,7 +12,7 @@ yum install -y hub
 
 ###############
 mkdir -p /foss/designs
-mkdir -p /foss/pdk
+mkdir -p /foss/pdks
 
 cp -a $TOOLS/sak/openlane/spef_extractor $TOOLS/
 

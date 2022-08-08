@@ -5,7 +5,7 @@ source scl_source enable devtoolset-8
 magic_version=$(ls /foss/tools/magic/ )
 export PATH=$PATH:/foss/tools/magic/$magic_version/bin/
 
-export PDK_ROOT=/foss/pdk
+export PDK_ROOT=/foss/pdks
 
 cd $PDK_ROOT 
 git clone ${REPO_URL} ${NAME}

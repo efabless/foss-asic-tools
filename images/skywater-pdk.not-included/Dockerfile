@@ -4,7 +4,7 @@ ARG REPO_URL
 ARG REPO_COMMIT
 ARG NAME
 
-ENV PDK_ROOT=/foss/pdk
+ENV PDK_ROOT=/foss/pdks
 
 COPY corners/corners.yml /foss/pdk/corners.yml
 COPY corners/make_timing.py /foss/pdk/make_timing.py
