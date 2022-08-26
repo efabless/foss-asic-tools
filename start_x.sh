@@ -36,7 +36,7 @@ if [ -z ${CONTAINER_GROUP+z} ]; then
 fi
 
 PARAMS=""
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OSTYPE" == "linux"* ]]; then
 	echo "Auto detected Linux"
 	# Should also be a senseful default
 	if [ -z ${XSOCK+z} ]; then
