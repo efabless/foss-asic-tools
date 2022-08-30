@@ -115,6 +115,10 @@ if [ "$start_vnc" = true ]; then
 
   echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 
+  #workaround, lock files are not removed if container is re-run otherwise which makes vncserver unaccessible
+  rm -rf /tmp/.X1-lock
+  rm -rf /tmp/.X11-unix/X1
+  
   vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
 
