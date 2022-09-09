@@ -152,6 +152,18 @@ alias gl='git log'
 alias gln='git log --name-status'
 alias gsss='git submodule status'
 
+#----------------------------------------
+# Source user configs from $DESIGNS
+#----------------------------------------
+
+if [ -f "$DESIGNS/.designinit" ]; then
+        # shellcheck source=/dev/null
+        source "$DESIGNS/.designinit"
+fi
+
+#----------------------------------------
 # From libnss_wrapper.sh
+#----------------------------------------
+
 # shellcheck disable=SC1091
 source "$STARTUPDIR/scripts/generate_container_user"

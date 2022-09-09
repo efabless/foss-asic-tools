@@ -54,6 +54,12 @@ Download and install Docker for your operating system:
 
 The following start scripts are intended as helper scripts for local or small-scale (single instance) deployment. If you need to run a bulk of instances, consider starting the containers with a custom start script.
 
+### Customizing Environment
+
+All user data is persistently placed in the directory pointed to by the environment variable `DESIGNS` (the default is `$HOME/eda/designs` for Linux/macOS and `%USERPROFILE%\eda\designs` for Windows, respectively).
+
+If a file `.designinit` is put in this directory, it is sourced last when starting the Docker environment. In this way, users can adapt settings to their needs.
+
 ### Using VNC and noVNC
 
 This mode is recommended for remote operation on a separate server or if you prefer the convenience of a full desktop environment. To start it up you can just use (in a Bash/Unix Shell):
