@@ -206,6 +206,17 @@ ADD images/ngspice/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile ngspice shared library
+#######################################################################
+FROM base as libngspice
+ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
+ARG NGSPICE_REPO_COMMIT="ngspice-37"
+ARG NGSPICE_NAME="ngspice"
+
+ADD images/libngspice/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile openlane (part of OpenLane)
 #######################################################################
 FROM base as openlane
@@ -391,6 +402,7 @@ COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
 COPY --from=ngscope                      /foss/tools/            /foss/tools/
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
+COPY --from=libngspice                   /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
 COPY --from=opensta                      /foss/tools/            /foss/tools/
@@ -411,6 +423,13 @@ COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
+
+#This is needed by ngspyce
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${TOOLS_INSTALL_PATH}/ngspice/lib"
+
+#Install ignamv/ngspyce from source
+ADD images/ngspyce/install.sh install.sh
+RUN install.sh
 
 # Copy bashrc into place
 ADD images/iic-osic-tools/scripts/env.sh $HOME/.bashrc
