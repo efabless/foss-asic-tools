@@ -425,11 +425,11 @@ COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 
 #This is needed by ngspyce
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${TOOLS_INSTALL_PATH}/ngspice/lib"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
 
-#Install ignamv/ngspyce from source
-ADD images/ngspyce/install.sh install.sh
-RUN install.sh
+#Install ignamv/ngspyce python lib from source
+ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
+RUN install_ngspyce.sh
 
 # Copy bashrc into place
 ADD images/iic-osic-tools/scripts/env.sh $HOME/.bashrc
