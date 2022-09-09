@@ -2,7 +2,7 @@
 
 **This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>**
 
-IIC-OSIC-TOOLS is an all-in-one Docker container for SKY130-based integrated circuit designs for both analog and digital circuit flows. The CPU architectures `x86_64` and `aarch64` are natively supported based on RockyLinux 8.6. This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+IIC-OSIC-TOOLS is an all-in-one Docker container for SKY130-based integrated circuit designs for both analog and digital circuit flows. The CPU architectures `x86_64` and `aarch64` are natively supported based on RockyLinux 9. This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
 It supports two *modes of operation*:
 
 1. Using a full desktop environment (XFCE) in Xvnc (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs directly in your browser.
@@ -12,7 +12,7 @@ It supports two *modes of operation*:
 
 ## Installed Tools
 
-Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless):
+Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless.com):
 
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
@@ -28,7 +28,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [klayout](https://github.com/KLayout/klayout) layout tool
 * [magic](https://github.com/rtimothyedwards/magic) layout tool with DRC and PEX
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
-* [ngscope](https://sourceforge.net/projects/ngscope/) waveform plot tool for `ngspice`
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog simulator
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow
@@ -57,9 +56,15 @@ Download and install **Docker** for your operating system:
 
 The following start scripts are intended as helper scripts for local or small-scale (single instance) deployment. If you need to run a bulk of instances, consider starting the containers with a custom start script.
 
+### Customizing Environment
+
+All user data is persistently placed in the directory pointed to by the environment variable `DESIGNS` (the default is `$HOME/eda/designs` for Linux/macOS and `%USERPROFILE%\eda\designs` for Windows, respectively).
+
+If a file `.designinit` is put in this directory, it is sourced last when starting the Docker environment. In this way, users can adapt settings to their needs.
+
 ### Using VNC and noVNC
 
-This mode is recommended for remote operation on a separate server or if you prefer the convenience of a full desktop environment. Basically, to start it up you can just use (in a Bash/Unix shell):
+This mode is recommended for remote operation on a separate server or if you prefer the convenience of a full desktop environment. To start it up you can just use (in a Bash/Unix shell):
 
 `./start_vnc.sh`
 
@@ -73,7 +78,7 @@ You can now access the Desktop Environment through your browser ([http://localho
 
 Both scripts will use default settings, which you can tweak by settings shell variables (VARIABLE=default is shown):
 
-* `DRY_RUN` (unset by default); if set to any value (also 0, false, etc.), makes the start scripts print all executed commands instead of actually executing. Useful for debugging/testing or just creating "template commands" for special setups.
+* `DRY_RUN` (unset by default); if set to any value (also 0, false, etc.), makes the start scripts print all executed commands instead of executing. Useful for debugging/testing or just creating "template commands" for special setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `WEBSERVER_PORT=80` sets the port on which the Docker daemon will map the webserver port of the container to be reachable from localhost and the outside world. `0` disables the mapping.
 * `VNC_PORT=5901` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required if you want to access the UI with a different VNC client. `0` disabled the mapping.
@@ -99,7 +104,7 @@ or
 
 The following environment variables are used for configuration:
 
-* `DRY_RUN` (unset by default), if set to any value (also 0, false etc.), makes the start scripts print all executed commands instead of actually executing. Useful for debugging/testing or just creating "template commands" for special setups.
+* `DRY_RUN` (unset by default), if set to any value (also 0, false etc.), makes the start scripts print all executed commands instead of executing. Useful for debugging/testing or just creating "template commands" for special setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `DOCKER_USER="hpretl"` username for the Docker Hub repository from which the images are pulled. Normally no change is required.
 * `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Normally no change is required.
@@ -191,9 +196,9 @@ For specific use cases, the containers can be started without the help of the st
 
 #### Environment Variables
 
-The container makes use of a number of environment variables, to control the behavior. **WARNING:** those values maybe impact the functionality of the container. Do not change them unless you know what you are doing.
+The container makes use of several environment variables, to control the behavior. **WARNING:** those values maybe impact the functionality of the container. Do not change them unless you know what you are doing.
 
-The internal VNC and webserver ports are defined by environment variables (not to be confused with the variables in the start script, those manage the external ports, to which the Docker daemon maps the ports! It works *best* if those are matched.). Those are used in the Dockerfile for the exposed ports and in the configuration of the services.
+The internal VNC and webserver ports are defined by environment variables (not to be confused with the variables in the start script, those manage the external ports, to which the Docker daemon maps the ports! It works *best* if those are matched.). Those are used in the Dockerfile for the exposed ports and the configuration of the services.
 
 * `VNC_PORT=5901` The default internal VNC port.
 * `NO_VNC_PORT=80` The default internal webserver port.
@@ -214,7 +219,7 @@ Furthermore, the following variables can be set:
 
 #### Entrypoint script
 
-The entry point for this container is the [ui_startup.sh](https://github.com/hpretl/iic-osic-tools/blob/main/images/iic-osic-tools/scripts/ui_startup.sh) script. Basically, it controls, which kind of UI (Xvnc or connecting to local X11 server) is used. The control logic for the automatic mode is simple. If the environment variable `DISPLAY` is set, an already existing X11 server is assumed and the startup script just runs an XFCE4 terminal. If the `DISPLAY` is not set, it starts Xvnc and the noVNC web interface. This behavior can be overwritten with command line arguments.
+The entry point for this container is the [ui_startup.sh](https://github.com/hpretl/iic-osic-tools/blob/main/images/iic-osic-tools/scripts/ui_startup.sh) script. It controls, which kind of UI (Xvnc or connecting to local X11 server) is used. The control logic for the automatic mode is simple. If the environment variable `DISPLAY` is set, an already existing X11 server is assumed and the startup script just runs an XFCE4 terminal. If the `DISPLAY` is not set, it starts Xvnc and the noVNC web interface. This behavior can be overwritten with command line arguments.
 
 The following command line arguments are supported:
 

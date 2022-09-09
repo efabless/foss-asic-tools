@@ -1,7 +1,7 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=rockylinux:8
+ARG BASE_IMAGE=rockylinux:9.0
 FROM ${BASE_IMAGE} as base
 
 ADD images/base/scripts/dependencies.sh dependencies.sh
@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="085131b090cb511d785baf52a10cf6df8a657d44"
+ARG MAGIC_REPO_COMMIT="4afc476d928b138a2d7bd709b52d145cce781394"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -40,7 +40,7 @@ RUN bash install.sh
 #######################################################################
 FROM sky130 as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="41c0908b47130d5675ff8484255b43f66463a7d6"
+ARG OPEN_PDKS_REPO_COMMIT="fa87f8f4bbcc7255b6f0c0fb506960f531ae2392"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ADD images/open_pdks/scripts/install.sh install.sh
@@ -63,7 +63,7 @@ RUN bash install.sh
 FROM base as cvc
 
 ARG CVC_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
+ARG CVC_REPO_COMMIT="6295fd962aa0fbd11937018867797d01aff17778"
 ARG CVC_NAME="cvc-check"
 
 ADD images/cvc-check/scripts/install.sh install.sh
@@ -122,7 +122,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="49a2a53caee83890dff503c15815fb53d5ccde74"
+ARG GTKWAVE_REPO_COMMIT="860e9772055d00ef147143634893979c0132ca52"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="d0e2f4926b68c7718a25f0d871704f9e5791d64d"
+ARG IIC_OSIC_REPO_COMMIT="9f078f9da7653ecd03b764aaacc50b5dd3b1d00f"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -155,7 +155,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="c7cb13d302e13cac77701045fd7935a9b81b9e89"
+ARG IVERILOG_REPO_COMMIT="542da11669194f65f5da181ecf14c2147d849c85"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -177,7 +177,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="bfb01e032f668c09ff43e889f35d611ef0e4a317"
+ARG NETGEN_REPO_COMMIT="2056b37c95e11ea802f8b06c8948e874a298808a"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.07.02_01.38.08"
+ARG OPENLANE_REPO_COMMIT="2022.09.08"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="0b8b7ae255f8fbbbefa57d443949b84e73eed757"
+ARG OPENROAD_APP_REPO_COMMIT="4174c3ad802d2ac1d04d387d2c4b883903f6647e"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -265,7 +265,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="409b951ba6621f2f115aebddfb15ce2dd78ec24f"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="f62900f19330b0279a74af48366eb2863a9c9196"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
@@ -276,7 +276,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v4.224"
+ARG VERILATOR_REPO_COMMIT="v4.226"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="635b6caa60287f8eaa08cded547217d3adfafab9"
+ARG XSCHEM_REPO_COMMIT="907315191d5b3a14316d78dbfd18a022bb85294f"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -320,7 +320,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
-ARG YOSYS_REPO_COMMIT="cfe940a98b08f1a5d08fb44427db155ba1f18b62"
+ARG YOSYS_REPO_COMMIT="6e907acf86d9ff0edd9a1c10274e62690e19e939"
 ARG YOSYS_NAME="yosys"
 
 ADD images/yosys/scripts/install.sh install.sh
@@ -389,7 +389,7 @@ COPY --from=iverilog                     /foss/tools/            /foss/tools/
 COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
-COPY --from=ngscope                      /foss/tools/            /foss/tools/
+#RETIRED COPY --from=ngscope                      /foss/tools/            /foss/tools/
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
 
 # Build atalanta
 install_atalanta () {
@@ -15,18 +14,6 @@ install_atalanta () {
 	cp -R atalanta /usr/local/share
 }
 install_atalanta
-
-# Build binutils-gold (for Swift)
-install_binutils_gold () {
-	cd /tmp
-	wget --no-verbose https://ftp.gnu.org/gnu/binutils/binutils-2.38.tar.xz
-	tar xf binutils-2.38.tar.xz
-	cd binutils-2.38
-	./configure --enable-gold
-	make -j$(nproc)
-	make install
-}
-install_binutils_gold
 
 # Install Swift
 install_swift () {
@@ -48,4 +35,3 @@ install_swift () {
 	fi
 }
 install_swift
-

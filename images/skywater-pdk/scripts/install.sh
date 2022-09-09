@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
 
 mkdir -p $PDK_ROOT 
 git clone ${SKY130_REPO_URL} $PDK_ROOT/${SKY130_NAME}/ 

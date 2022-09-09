@@ -108,11 +108,12 @@ alias k='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech
 alias ke='klayout -e -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
 alias kf='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A-fom.lyp'
 
-alias xschem='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
+alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
+alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
-alias tt='cd /foss/tools'
-alias dd='cd /foss/designs'
-alias pp='cd /foss/pdk'
+alias tt='cd $TOOLS'
+alias dd='cd $DESIGNS'
+alias pp='cd $PDK_ROOT'
 alias destroy='sudo \rm -rf'
 alias cp='cp -i'
 alias egrep='egrep '
@@ -151,6 +152,18 @@ alias gl='git log'
 alias gln='git log --name-status'
 alias gsss='git submodule status'
 
+#----------------------------------------
+# Source user configs from $DESIGNS
+#----------------------------------------
+
+if [ -f "$DESIGNS/.designinit" ]; then
+        # shellcheck source=/dev/null
+        source "$DESIGNS/.designinit"
+fi
+
+#----------------------------------------
 # From libnss_wrapper.sh
+#----------------------------------------
+
 # shellcheck disable=SC1091
 source "$STARTUPDIR/scripts/generate_container_user"

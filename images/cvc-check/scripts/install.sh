@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source scl_source enable gcc-toolset-9
 
 set -e
 set -u

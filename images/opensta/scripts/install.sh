@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-source scl_source enable gcc-toolset-9
 
 REPO_COMMIT_SHORT=$(echo $OPENSTA_REPO_COMMIT | cut -c 1-7)
 
