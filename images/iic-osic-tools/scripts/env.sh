@@ -111,9 +111,9 @@ alias kf='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tec
 alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
-alias tt='cd /foss/tools'
-alias dd='cd /foss/designs'
-alias pp='cd /foss/pdk'
+alias tt='cd $TOOLS'
+alias dd='cd $DESIGNS'
+alias pp='cd $PDK_ROOT'
 alias destroy='sudo \rm -rf'
 alias cp='cp -i'
 alias egrep='egrep '
