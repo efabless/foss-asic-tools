@@ -164,7 +164,13 @@ pip3 install --no-cache-dir \
 	click \
 	volare>=0.1.3 \
 	spyci \
-	xdot
+	xdot \
+	tk \		##These packages were missing or needed upgrading in the :latest container
+	scipy \
+	pandas \
+	plotly \
+	matplotlib
+	
 pip3 install --no-cache-dir gdspy
 pip3 install --no-cache-dir gdsfactory
 pip3 install --no-cache-dir siliconcompiler
