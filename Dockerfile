@@ -429,7 +429,7 @@ ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
 
 #Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
-RUN install_ngspyce.sh
+RUN bash install_ngspyce.sh
 
 # Copy bashrc into place
 ADD images/iic-osic-tools/scripts/env.sh $HOME/.bashrc
