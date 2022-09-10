@@ -132,7 +132,7 @@ RUN bash install.sh
 # Compile iic-osic
 #######################################################################
 FROM base as iic-osic
-ARG IIC_OSIC_REPO_URL="https://github.com/hpretl/iic-osic.git"
+ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
 ARG IIC_OSIC_REPO_COMMIT="9f078f9da7653ecd03b764aaacc50b5dd3b1d00f"
 ARG IIC_OSIC_NAME="iic-osic"
 
