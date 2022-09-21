@@ -43,8 +43,8 @@ yum install -y \
 	gawk \
 	gcc \
 	gcc-c++ \
-	gcc-gnat \
 	gcc-gfortran \
+	gcc-gnat \
 	gdb \
 	gettext \
 	gettext-devel \
@@ -99,14 +99,9 @@ yum install -y \
 	pcre-devel \
 	python3 \
 	python3-Cython \
-    python3-devel \
-    python3-numpy \
 	python3-pip \
-	python3-scipy \
-    python3-tkinter \
-    python3-gobject \
-    python3-jinja2 \
 	python3-pyyaml \
+	python3-scipy \
 	qt5-devel \
 	qt5-qtbase \
 	qt5-qtmultimedia \
@@ -147,26 +142,32 @@ yum install -y \
 	xz-devel \
 	zip \
 	zlib-devel \
-	zlib-static
+	zlib-static \
+    python3-devel \
+    python3-gobject \
+    python3-jinja2 \
+    python3-numpy \
+    python3-tkinter
 
 
 pip3 install --no-cache-dir install wheel setuptools scikit-build setuptools-rust
 
 pip3 install --no-cache-dir \
+	click \
+	gdsfactory \
+	gdspy \
 	matplotlib \
 	pandas \
-	XlsxWriter \
+	plotly \
 	pyinstaller \
+	pyspice \
 	pyverilog \
-	click \
-	volare>=0.1.3 \
-	spyci \
-	xdot \
-	gdspy \
-	gdsfactory \
 	siliconcompiler \
+	spyci \
 	tk \
- 	plotly
+	volare>=0.1.3 \
+	xdot \
+	XlsxWriter
 
 # lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
@@ -193,7 +194,6 @@ install_tcllib () {
 	cd tcllib-1.21
 	tclsh installer.tcl -no-gui -no-html -no-nroff -no-examples -pkg-path /usr/share/tk8.6/tcllib1.21 -app-path /usr/share/bin -no-wait
 }
-
 install_tcllib
 
 rm -rf /tmp/*
