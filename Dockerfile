@@ -207,6 +207,8 @@ RUN bash install.sh
 
 #######################################################################
 # Compile ngspice shared library
+# FIXE Compiling the shared library in one run together with ngspice
+# does not work. Maybe patch build script.
 #######################################################################
 FROM base as libngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
