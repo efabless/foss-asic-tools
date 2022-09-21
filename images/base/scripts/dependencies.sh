@@ -102,6 +102,7 @@ yum install -y \
     python3-devel \
     python3-numpy \
 	python3-pip \
+	python3-scipy \
     python3-tkinter \
     python3-gobject \
     python3-jinja2 \
@@ -163,7 +164,9 @@ pip3 install --no-cache-dir \
 	xdot \
 	gdspy \
 	gdsfactory \
-	siliconcompiler
+	siliconcompiler \
+	tk \
+ 	plotly
 
 # lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
