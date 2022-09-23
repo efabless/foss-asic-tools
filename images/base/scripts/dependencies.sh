@@ -48,6 +48,7 @@ yum install -y \
 	gdb \
 	gettext \
 	gettext-devel \
+	ghostscript \
 	git \
 	glibc-langpack-en \
 	glibc-static \
