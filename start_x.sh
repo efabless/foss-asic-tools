@@ -35,6 +35,17 @@ if [ -z ${CONTAINER_GROUP+z} ]; then
 	CONTAINER_GROUP=$(id -g)
 fi
 
+if [ -z ${CONTAINER_NAME+z} ]; then
+	CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)
+fi
+
+
+# Check if the container exists and if Status is running. (|& redirects both stderr and stdout, -q makes the output quiet)
+if docker container inspect "${CONTAINER_NAME}" |& grep "Status" | grep -i -q "running" ; then
+	echo "Container is running! If required, stop with \"docker stop ${CONTAINER_NAME}\" and remove with \"docker rm ${CONTAINER_NAME}\""
+	exit
+fi
+
 PARAMS=""
 if [[ "$OSTYPE" == "linux"* ]]; then
 	echo "Auto detected Linux"
@@ -69,11 +80,11 @@ if [[ "$OSTYPE" == "linux"* ]]; then
 			XAUTH=$XAUTHORITY
 		fi
 		# Thanks to https://stackoverflow.com/a/25280523
-		XAUTH_TMP="/tmp/.iic-osic-docker_xauthority"
+		XAUTH_TMP="/tmp/.${CONTAINER_NAME}_xauthority"
 		#create empty file
-		${ECHO_IF_DRY_RUN} echo -n > ${XAUTH_TMP}
+		${ECHO_IF_DRY_RUN} echo -n > "${XAUTH_TMP}"
 		if [ -z "${ECHO_IF_DRY_RUN}" ]; then
-			xauth -f "${XAUTH}" nlist "${DISP}" | sed -e 's/^..../ffff/' | xauth -f ${XAUTH_TMP} nmerge -
+			xauth -f "${XAUTH}" nlist "${DISP}" | sed -e 's/^..../ffff/' | xauth -f "${XAUTH_TMP}" nmerge -
 		else
 			${ECHO_IF_DRY_RUN} "xauth -f ${XAUTH} nlist ${DISP} | sed -e 's/^..../ffff/' | xauth -f ${XAUTH_TMP} nmerge -"
 		fi
@@ -114,7 +125,16 @@ if [ -n "${FORCE_LIBGL_INDIRECT}" ]; then
 	PARAMS="${PARAMS} -e LIBGL_ALWAYS_INDIRECT=1"
 fi
 
-# Finally, run the container, sets DISPLAY to the local display number
-# shellcheck disable=SC2086
-${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e "DISPLAY=${DISP}" -v "${DESIGNS}:/foss/designs:rw" ${PARAMS} ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+# If the container exists but is exited, it is restarted.
+if docker container inspect "${CONTAINER_NAME}" |& grep "Status" | grep -i -q "exited" ; then
+	echo "Container ${CONTAINER_NAME} exists, restarting... (remove with \"docker rm ${CONTAINER_NAME}\" if required, e.g. for updating)"
+	${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
+else
+	echo "Container does not exist, creating ${CONTAINER_NAME} ..."
+	# Finally, run the container, sets DISPLAY to the local display number
+	${ECHO_IF_DRY_RUN} docker pull "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+	# Disable SC2086, $PARAMS must be globbed and splitted.
+	# shellcheck disable=SC2086
+	${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e "DISPLAY=${DISP}" -v "${DESIGNS}:/foss/designs:rw" ${PARAMS} --name "${CONTAINER_NAME}" "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+fi
 

@@ -22,6 +22,8 @@ IF "%DOCKER_TAG%"=="" SET DOCKER_TAG=latest
 IF "%CONTAINER_USER%"=="" SET CONTAINER_USER=1000
 IF "%CONTAINER_GROUP%"=="" SET CONTAINER_GROUP=1000
 
+IF "%CONTAINER_NAME%"=="" SET CONTAINER_NAME=iic-osic-tools_xserver
+
 IF "%DISP%"=="" SET DISP=host.docker.internal:0
 
 where /q xhost
@@ -32,4 +34,16 @@ IF ERRORLEVEL 1 (
     %ECHO_IF_DRY_RUN% xhost +localhost
 )
 
-%ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% -e DISPLAY=%DISP% -e LIBGL_ALWAYS_INDIRECT=1 -v "%DESIGNS%":/foss/designs  %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
+docker container inspect %CONTAINER_NAME% 2>&1 | find "Status" | find /i "running"
+IF NOT ERRORLEVEL 1 (
+    ECHO Container is running! Stop if required with \"docker stop %CONTAINER_NAME%\"
+) ELSE (
+    docker container inspect %CONTAINER_NAME% 2>&1 | find "Status" | find /i "exited"
+    IF NOT ERRORLEVEL 1 (
+        echo Container %CONTAINER_NAME% exists, restarting...
+        %ECHO_IF_DRY_RUN% docker start %CONTAINER_NAME%
+    ) ELSE (
+        echo Container does not exist, creating %CONTAINER_NAME% ...
+        %ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% -e DISPLAY=%DISP% -e LIBGL_ALWAYS_INDIRECT=1 -v "%DESIGNS%":/foss/designs --name %CONTAINER_NAME% %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
+    )
+)
