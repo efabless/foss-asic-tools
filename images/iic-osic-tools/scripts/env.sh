@@ -134,6 +134,7 @@ alias h='history'
 alias hh='history | grep'
 alias rc='source ~/.bashrc'
 alias m='less'
+alias term='xfce4-terminal'
 
 #----------------------------------------
 # Git
