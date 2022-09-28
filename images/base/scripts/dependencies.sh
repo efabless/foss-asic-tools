@@ -98,6 +98,7 @@ yum install -y \
 	pciutils \
 	pciutils-libs \
 	pcre-devel \
+	perl-FindBin \
 	python3 \
 	python3-Cython \
 	python3-pip \
