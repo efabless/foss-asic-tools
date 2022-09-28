@@ -6,6 +6,24 @@ if [ -n "${DRY_RUN}" ]; then
 	ECHO_IF_DRY_RUN="echo $"
 fi
 
+if [ -z ${CONTAINER_NAME+z} ]; then
+	CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)
+fi
+
+# Check if the container exists and if it is running.
+if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
+	echo "Container is running! (Hint: It can also be stopped with \"docker stop ${CONTAINER_NAME}\" and removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
+	echo -n "Press \"s\" to stop, and \"r\" to stop & remove: "
+	read -n 1 k <&1
+	echo ""
+	if [[ $k = s ]] ; then
+		${ECHO_IF_DRY_RUN} docker stop "${CONTAINER_NAME}"
+	elif [[ $k = r ]] ; then
+		${ECHO_IF_DRY_RUN} docker stop "${CONTAINER_NAME}"
+		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
+	fi
+fi
+
 # SET YOU DESIGN PATH RIGHT!
 if [ -z ${DESIGNS+z} ]; then
 	DESIGNS=$HOME/eda/designs
@@ -33,17 +51,6 @@ fi
 
 if [ -z ${CONTAINER_GROUP+z} ]; then
 	CONTAINER_GROUP=$(id -g)
-fi
-
-if [ -z ${CONTAINER_NAME+z} ]; then
-	CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)
-fi
-
-
-# Check if the container exists and if it is running.
-if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
-	echo "Container is running! If required, stop with \"docker stop ${CONTAINER_NAME}\" and remove with \"docker rm ${CONTAINER_NAME}\""
-	exit
 fi
 
 PARAMS=""
@@ -125,10 +132,17 @@ if [ -n "${FORCE_LIBGL_INDIRECT}" ]; then
 	PARAMS="${PARAMS} -e LIBGL_ALWAYS_INDIRECT=1"
 fi
 
-# If the container exists but is exited, it is restarted.
+# If the container exists but is exited, it can restarted.
 if [ "$(docker ps -aq -f name="${CONTAINER_NAME}")" ]; then
-	echo "Container ${CONTAINER_NAME} exists, restarting... (remove with \"docker rm ${CONTAINER_NAME}\" if required, e.g. for updating)"
-	${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
+	echo    "Container ${CONTAINER_NAME} exists. (Hint: It can also be restarted with \"docker start ${CONTAINER_NAME}\" or removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
+	echo -n "Press \"s\" to start, and \"r\" to remove: "
+	read -n 1 k <&1
+	echo ""
+	if [[ $k = s ]] ; then
+		${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
+	elif [[ $k = r ]] ; then
+		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
+	fi
 else
 	echo "Container does not exist, creating ${CONTAINER_NAME} ..."
 	# Finally, run the container, sets DISPLAY to the local display number

@@ -60,12 +60,11 @@ IF ERRORLEVEL 1 (
 
 docker container inspect %CONTAINER_NAME% 2>&1 | find "Status" | find /i "running"
 IF NOT ERRORLEVEL 1 (
-    ECHO Container is running! Stop if required with \"docker stop %CONTAINER_NAME%\"
+    ECHO Container is running! Stop with \"docker stop %CONTAINER_NAME%\" and remove with \"docker rm %CONTAINER_NAME%\" if required.
 ) ELSE (
     docker container inspect %CONTAINER_NAME% 2>&1 | find "Status" | find /i "exited"
     IF NOT ERRORLEVEL 1 (
-        echo Container %CONTAINER_NAME% exists, restarting...
-        %ECHO_IF_DRY_RUN% docker start %CONTAINER_NAME%
+        echo Container %CONTAINER_NAME% exists. Restart with \"docker start %CONTAINER_NAME%\" or remove with \"docker rm %CONTAINER_NAME%\" if required.
     ) ELSE (
         echo Container does not exist, creating %CONTAINER_NAME% ...
         %ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% %PARAMS% -v "%DESIGNS%":/foss/designs --name %CONTAINER_NAME% %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG%
