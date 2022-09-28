@@ -56,11 +56,11 @@ if [ $VNC_PORT -gt 0 ]; then
 	PORT_PARAMS="$PORT_PARAMS -p $VNC_PORT:5901"
 fi
 
-# Check if the container exists and if Status is running. (|& redirects both stderr and stdout, -q makes the output quiet)
-if docker container inspect "${CONTAINER_NAME}" |& grep "Status" | grep -i -q "running" ; then
+# Check if the container exists and if it is running.
+if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
 	echo "Container is running! If required, stop with \"docker stop ${CONTAINER_NAME}\" and remove with \"docker rm ${CONTAINER_NAME}\""
 # If the container exists but is exited, it is restarted.
-elif docker container inspect "${CONTAINER_NAME}" |& grep "Status" | grep -i -q "exited" ; then
+elif [ "$(docker ps -aq -f name="${CONTAINER_NAME}")" ]; then
 	echo "Container ${CONTAINER_NAME} exists, restarting... (remove with \"docker rm ${CONTAINER_NAME}\" if required, e.g. for updating)"
 	${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
 else

@@ -40,8 +40,8 @@ if [ -z ${CONTAINER_NAME+z} ]; then
 fi
 
 
-# Check if the container exists and if Status is running. (|& redirects both stderr and stdout, -q makes the output quiet)
-if docker container inspect "${CONTAINER_NAME}" |& grep "Status" | grep -i -q "running" ; then
+# Check if the container exists and if it is running.
+if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
 	echo "Container is running! If required, stop with \"docker stop ${CONTAINER_NAME}\" and remove with \"docker rm ${CONTAINER_NAME}\""
 	exit
 fi
@@ -126,7 +126,7 @@ if [ -n "${FORCE_LIBGL_INDIRECT}" ]; then
 fi
 
 # If the container exists but is exited, it is restarted.
-if docker container inspect "${CONTAINER_NAME}" |& grep "Status" | grep -i -q "exited" ; then
+if [ "$(docker ps -aq -f name="${CONTAINER_NAME}")" ]; then
 	echo "Container ${CONTAINER_NAME} exists, restarting... (remove with \"docker rm ${CONTAINER_NAME}\" if required, e.g. for updating)"
 	${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
 else
