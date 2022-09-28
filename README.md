@@ -54,6 +54,8 @@ Download and install **Docker** for your operating system:
 * [Mac with Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg)
 * [Mac with Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg)
 
+Note for Linux: Do not run docker commands or the start scripts as root (sudo)! Follow the instructions in [Post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/)
+
 The following start scripts are intended as helper scripts for local or small-scale (single instance) deployment. If you need to run a bulk of instances, consider starting the containers with a custom start script.
 
 ### Customizing Environment
@@ -87,6 +89,7 @@ Both scripts will use default settings, which you can tweak by settings shell va
 * `DOCKER_TAG="latest"` Docker Hub image tag. By default it pulls the latest version, this might be handy to change if you want to match a specific version set.
 * `CONTAINER_USER=$(id -u)` (the current user's ID, `CONTAINER_USER=1000` for `.bat`) the user ID (and also group ID) is especially important on Linux and macOS because those are the IDs used to write files in the `DESIGNS` directory. For debugging/testing, user and group ID can be set to `0` to gain root access inside the container.
 * `CONTAINER_GROUP=$(id -g)` (the current user's group ID, `CONTAINER_GROUP=1000` for `.bat`)
+* `CONTAINER_NAME="iic-osic-tools_xvnc_uid_"$(id -u)` (attaches the executing users id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xvnc` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
 
 To overwrite the default settings, see [Overwriting Shell Variables](#overwriting-shell-variables)
 
@@ -111,6 +114,7 @@ The following environment variables are used for configuration:
 * `DOCKER_TAG="latest"` Docker Hub image tag. By default it pulls the latest version, this might be handy to change if you want to match a specific Version set.
 * `CONTAINER_USER=$(id -u)` (the current user's ID, `CONTAINER_USER=1000` for `.bat`) The user ID (and also group ID) is especially important on Linux and macOS because those are the IDs used to write files in the DESIGNS directory.
 * `CONTAINER_GROUP=$(id -g)` (the current user's group ID, `CONTAINER_GROUP=1000` for `.bat`)
+* `CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)` (attaches the executing users id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xserver` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
 
 #### macOS and Windows-specific Variables
 
