@@ -37,16 +37,36 @@ if [ -z ${CONTAINER_GROUP+z} ]; then
 fi
 
 if [ -z ${CONTAINER_NAME+z} ]; then
-	CONTAINER_NAME="iic_osic_tools_shell"
+	CONTAINER_NAME="iic-osic-tools_shell_uid_"$(id -u)
 fi
 
-# Finally, run the container, sets DISPLAY to the local display number
-# shellcheck disable=SC2086
-if [ "$(docker ps -aq -f name=${CONTAINER_NAME})" ]; then
-	echo "Container exists, restarting existing container..."
-	${ECHO_IF_DRY_RUN} docker start -a -i ${CONTAINER_NAME}
+# Check if the container exists and if it is running.
+if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
+	echo "Container is running! (Hint: It can also be stopped with \"docker stop ${CONTAINER_NAME}\" and removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
+	echo -n "Press \"s\" to stop, and \"r\" to stop & remove: "
+	read -n 1 k <&1
+	echo ""
+	if [[ $k = s ]] ; then
+		${ECHO_IF_DRY_RUN} docker stop "${CONTAINER_NAME}"
+	elif [[ $k = r ]] ; then
+		${ECHO_IF_DRY_RUN} docker stop "${CONTAINER_NAME}"
+		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
+	fi
+# If the container exists but is exited, it is restarted.
+elif [ "$(docker ps -aq -f name="${CONTAINER_NAME}")" ]; then
+	echo    "Container ${CONTAINER_NAME} exists. (Hint: It can also be restarted with \"docker start ${CONTAINER_NAME}\" or removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
+	echo -n "Press \"s\" to start, and \"r\" to remove: "
+	read -n 1 k <&1
+	echo ""
+	if [[ $k = s ]] ; then
+		${ECHO_IF_DRY_RUN} docker start -a -i "${CONTAINER_NAME}"
+	elif [[ $k = r ]] ; then
+		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
+	fi
 else
-	echo "No container exists, creating new one..."
-	${ECHO_IF_DRY_RUN} docker run -it --name "${CONTAINER_NAME}" --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e "DISPLAY=${DISP}" -v "${DESIGNS}:/foss/designs:rw" ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} -s /bin/bash
+	echo "Container does not exist, creating ${CONTAINER_NAME} ..."
+	# Finally, run the container, sets DISPLAY to the local display number
+	#${ECHO_IF_DRY_RUN} docker pull "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+	# Disable SC2086, $PARAMS must be globbed and splitted.
+	${ECHO_IF_DRY_RUN} docker run -it --name "${CONTAINER_NAME}" --user "${CONTAINER_USER}:${CONTAINER_GROUP}" -e "DISPLAY=${DISP}" -v "${DESIGNS}:/foss/designs:rw" "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}" -s /bin/bash
 fi
-

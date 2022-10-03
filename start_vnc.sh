@@ -43,6 +43,10 @@ if [ -z ${CONTAINER_GROUP+z} ]; then
 	CONTAINER_GROUP=$(id -g)
 fi
 
+if [ -z ${CONTAINER_NAME+z} ]; then
+	CONTAINER_NAME="iic-osic-tools_xvnc_uid_"$(id -u)
+fi
+
 # Processing ports
 PORT_PARAMS=""
 if [ $WEBSERVER_PORT -gt 0 ]; then
@@ -52,5 +56,34 @@ if [ $VNC_PORT -gt 0 ]; then
 	PORT_PARAMS="$PORT_PARAMS -p $VNC_PORT:5901"
 fi
 
-#shellcheck disable=SC2086
-${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" $PORT_PARAMS -v "$DESIGNS:/foss/designs:rw" ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+# Check if the container exists and if it is running.
+if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
+	echo "Container is running! (Hint: It can also be stopped with \"docker stop ${CONTAINER_NAME}\" and removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
+	echo -n "Press \"s\" to stop, and \"r\" to stop & remove: "
+	read -n 1 k <&1
+	echo ""
+	if [[ $k = s ]] ; then
+		${ECHO_IF_DRY_RUN} docker stop "${CONTAINER_NAME}"
+	elif [[ $k = r ]] ; then
+		${ECHO_IF_DRY_RUN} docker stop "${CONTAINER_NAME}"
+		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
+	fi
+# If the container exists but is exited, it is restarted.
+elif [ "$(docker ps -aq -f name="${CONTAINER_NAME}")" ]; then
+	echo    "Container ${CONTAINER_NAME} exists. (Hint: It can also be restarted with \"docker start ${CONTAINER_NAME}\" or removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
+	echo -n "Press \"s\" to start, and \"r\" to remove: "
+	read -n 1 k <&1
+	echo ""
+	if [[ $k = s ]] ; then
+		${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
+	elif [[ $k = r ]] ; then
+		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
+	fi
+else
+	echo "Container does not exist, creating ${CONTAINER_NAME} ..."
+	# Finally, run the container, sets DISPLAY to the local display number
+	#${ECHO_IF_DRY_RUN} docker pull "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+	# Disable SC2086, $PARAMS must be globbed and splitted.
+	# shellcheck disable=SC2086
+	${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" $PORT_PARAMS -v "$DESIGNS:/foss/designs:rw" --name "${CONTAINER_NAME}" "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+fi

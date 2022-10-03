@@ -9,6 +9,6 @@ git checkout ${NGSPICE_REPO_COMMIT}
 #FIXME 2nd run of autogen needed
 set -e
 ./autogen.sh
-./configure --disable-debug --enable-openmp --with-x --with-readline=no --enable-pss --enable-xspice --with-fftw3=yes --prefix=/foss/tools/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}
+./configure --disable-debug --enable-openmp --with-ngshared --with-x --with-readline=no --enable-pss --enable-xspice --with-fftw3=yes --prefix=/foss/tools/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}
 make -j$(nproc)
 make install
