@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="4afc476d928b138a2d7bd709b52d145cce781394"
+ARG MAGIC_REPO_COMMIT="7905e15ae3b66ed26349fb701b475ef93b566de5"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -122,7 +122,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="860e9772055d00ef147143634893979c0132ca52"
+ARG GTKWAVE_REPO_COMMIT="73f2f70b69f1af462de460a2ca768f2cf0fda04f"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="9f078f9da7653ecd03b764aaacc50b5dd3b1d00f"
+ARG IIC_OSIC_REPO_COMMIT="405701a10bc88109005608d3b2176e742e21a81b"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -144,7 +144,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as irsim
 ARG IRSIM_REPO_URL="https://github.com/rtimothyedwards/irsim"
-ARG IRSIM_REPO_COMMIT="3813495e55a21a024e62e21bd6993fac068a61b9"
+ARG IRSIM_REPO_COMMIT="25fe8217663c06a141156c2e9255e243d308794a"
 ARG IRSIM_NAME="irsim"
 
 ADD images/irsim/scripts/install.sh install.sh
@@ -155,7 +155,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="542da11669194f65f5da181ecf14c2147d849c85"
+ARG IVERILOG_REPO_COMMIT="fd69d4e09c87184a0f5a87958643df3f1a58a238"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.09.08"
+ARG OPENLANE_REPO_COMMIT="2022.09.16"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -289,7 +289,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v4.226"
+ARG VERILATOR_REPO_COMMIT="v4.228"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -300,7 +300,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="907315191d5b3a14316d78dbfd18a022bb85294f"
+ARG XSCHEM_REPO_COMMIT="4bbed85d2389ce8c7e3dd2babf73e0141d05443f"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
