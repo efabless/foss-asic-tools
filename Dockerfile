@@ -122,7 +122,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="73f2f70b69f1af462de460a2ca768f2cf0fda04f"
+ARG GTKWAVE_REPO_COMMIT="75657e5f48f4e088ac7871f495422fd3ec3fe5dd"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -155,7 +155,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="fd69d4e09c87184a0f5a87958643df3f1a58a238"
+ARG IVERILOG_REPO_COMMIT="3b711ed7852c1f3c36110abd4454b08f760a8414"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -300,7 +300,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="4bbed85d2389ce8c7e3dd2babf73e0141d05443f"
+ARG XSCHEM_REPO_COMMIT="ce75ca2bbf29bd306169d997fcad2ba5b263a395"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
