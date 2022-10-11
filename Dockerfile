@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="405701a10bc88109005608d3b2176e742e21a81b"
+ARG IIC_OSIC_REPO_COMMIT="7e9433ff930955ca90415f141263213f81cac4f1"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh

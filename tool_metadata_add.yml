@@ -18,7 +18,7 @@
   commit: 73f2f70b69f1af462de460a2ca768f2cf0fda04f
 - name: iic-osic
   repo: https://github.com/hpretl/iic-osic.git
-  commit: 405701a10bc88109005608d3b2176e742e21a81b
+  commit: 7e9433ff930955ca90415f141263213f81cac4f1
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 25fe8217663c06a141156c2e9255e243d308794a
