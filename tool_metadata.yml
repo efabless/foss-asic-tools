@@ -18,7 +18,7 @@
     make install
 - name: netgen
   repo: https://github.com/rtimothyedwards/netgen
-  commit: 2056b37c95e11ea802f8b06c8948e874a298808a
+  commit: 3aeea9d1642c8d87911ed13626c77e4888caa9eb
   build: |
     ./configure --prefix=$PREFIX $MAGIC_CONFIG_OPTS
     make clean
@@ -67,8 +67,8 @@
   build: ''
   in_install: false
 - name: open_pdks
-  repo: https://github.com/efabless/open_pdks
-  commit: fa87f8f4bbcc7255b6f0c0fb506960f531ae2392
+  repo: https://github.com/RTimothyEdwards/open_pdks
+  commit: de752ec0ba4da0ecb1fbcd309eeec4993d88f5bc
   build: ''
   in_install: false
   pdk: true

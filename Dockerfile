@@ -40,7 +40,7 @@ RUN bash install.sh
 #######################################################################
 FROM sky130 as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="fa87f8f4bbcc7255b6f0c0fb506960f531ae2392"
+ARG OPEN_PDKS_REPO_COMMIT="de752ec0ba4da0ecb1fbcd309eeec4993d88f5bc"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ADD images/open_pdks/scripts/install.sh install.sh
@@ -155,7 +155,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="3b711ed7852c1f3c36110abd4454b08f760a8414"
+ARG IVERILOG_REPO_COMMIT="c2dbf4e48358f562e8cf503c997624e5983e31ed"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -177,7 +177,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="2056b37c95e11ea802f8b06c8948e874a298808a"
+ARG NETGEN_REPO_COMMIT="3aeea9d1642c8d87911ed13626c77e4888caa9eb"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.09.16"
+ARG OPENLANE_REPO_COMMIT="2022.10.13"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -300,7 +300,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="ce75ca2bbf29bd306169d997fcad2ba5b263a395"
+ARG XSCHEM_REPO_COMMIT="cecd205ff7160373068f7a1fb4b2be378cff1167"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
