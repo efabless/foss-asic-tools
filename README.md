@@ -14,6 +14,8 @@ It supports two *modes of operation*:
 
 Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless.com):
 
+* [amaranth](https://github.com/amaranth-lang/amaranth) a Python-based HDL toolchain
+* [cocotb](https://github.com/cocotb/cocotb) simulation library for writing VHDL and Verilog testbenches in Python
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
@@ -34,6 +36,11 @@ Below is a list of the current tools already installed and ready to use (note th
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) collection of tools for `openlane`
 * [opensta](https://github.com/The-OpenROAD-Project/OpenSTA) static timing analyzer for digital flow
 * [padring](https://github.com/donn/padring) padring generation tool
+* [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
+* [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python
+* [pyverilog](https://github.com/PyHDI/Pyverilog) Python toolkit for Verilog
+* [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
+* [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion
 * [risc-v toolchain](https://github.com/riscv/riscv-gnu-toolchain) GNU compiler toolchain for RISC-V RV32I cores
 * [siliconcompiler](https://github.com/siliconcompiler/siliconcompiler) modular build system for hardware

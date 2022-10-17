@@ -5,7 +5,7 @@ set -e
 yum update -y
 
 yum install yum-utils -y
-# powertools is crb from Rocky 9 and (hopefully) up.
+# powertools are crb from Rocky 9 and (hopefully) up.
 dnf config-manager --set-enabled crb
 yum install epel-release -y
 
@@ -155,13 +155,16 @@ yum install -y \
 pip3 install --no-cache-dir install wheel setuptools scikit-build setuptools-rust
 
 pip3 install --no-cache-dir \
+	amaranth \
 	click \
+	cocotb \
 	gdsfactory \
 	gdspy \
 	matplotlib \
 	pandas \
 	plotly \
 	pyinstaller \
+	pyrtl \
 	pyspice \
 	pyverilog \
 	siliconcompiler \
@@ -170,6 +173,9 @@ pip3 install --no-cache-dir \
 	volare>=0.1.3 \
 	xdot \
 	XlsxWriter
+
+gem install \
+	rggen
 
 # lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091
