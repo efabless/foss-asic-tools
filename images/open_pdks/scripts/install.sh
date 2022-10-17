@@ -17,7 +17,7 @@ git checkout -qf "${OPEN_PDKS_REPO_COMMIT}"
 
 ./configure \
 	--enable-sky130-pdk=$PDK_ROOT/skywater-pdk \
-       	--enable-alpha-sky130 \
+	--enable-alpha-sky130 \
 	--enable-xschem-sky130 \
 	--enable-sram-sky130 \
 	--with-sky130-variants=$SKY130_VERSION \
