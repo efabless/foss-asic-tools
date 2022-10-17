@@ -31,6 +31,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [magic](https://github.com/rtimothyedwards/magic) layout tool with DRC and PEX
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog simulator
+* [nvc](https://github.com/nickg/nvc) VHDL simulator and compiler
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) collection of tools for `openlane`

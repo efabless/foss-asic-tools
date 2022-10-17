@@ -219,6 +219,17 @@ ADD images/libngspice/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile nvc (VHDL simulator)
+#######################################################################
+FROM base as nvc
+ARG NVC_REPO_URL="https://github.com/nickg/nvc"
+ARG NVC_REPO_COMMIT="4efbf71640e7366ee35e7567de4b51d23572ddf2"
+ARG NVC_NAME="nvc"
+
+ADD images/nvc/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile openlane (part of OpenLane)
 #######################################################################
 FROM base as openlane
@@ -403,6 +414,7 @@ COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
 #RETIRED COPY --from=ngscope                      /foss/tools/            /foss/tools/
+COPY --from=nvc                          /foss/tools/            /foss/tools/    
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=libngspice                   /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
@@ -426,10 +438,10 @@ COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 
-#This is needed by ngspyce
+# This is needed by ngspyce
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
 
-#Install ignamv/ngspyce python lib from source
+# Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
 
