@@ -88,8 +88,6 @@ export OPENLANE_ROOT=$TOOLS/openlane
 
 export EDITOR='gedit'
 
-#FIXME this is a WA until better solution is found for OpenLane version check
-export MISMATCHES_OK=1
 # this get's rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1

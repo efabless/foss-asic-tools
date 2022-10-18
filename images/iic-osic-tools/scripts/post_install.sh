@@ -17,7 +17,9 @@ ln -s ../*/*/bin/* .
 ln -s "$TOOLS"/xschem/*/* "$TOOLS"/xschem/
 
 ###############
-cp /foss/tools/openlane/*/dependencies/tool_metadata.yml /
+# This is now done in the Dockerfile using the tool_metadata.yml from
+# the build process.
+# cp /foss/tools/openlane/*/dependencies/tool_metadata.yml /
 
 ###############
 mkdir "$STARTUPDIR"/logs

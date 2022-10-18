@@ -39,7 +39,7 @@ RUN bash install.sh
 # Create open_pdks (part of OpenLane)
 #######################################################################
 FROM sky130 as open_pdks
-ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
+ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="de752ec0ba4da0ecb1fbcd309eeec4993d88f5bc"
 ARG OPEN_PDKS_NAME="open_pdks"
 
@@ -234,7 +234,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.10.13"
+ARG OPENLANE_REPO_COMMIT="2022.10.18"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -245,7 +245,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="4174c3ad802d2ac1d04d387d2c4b883903f6647e"
+ARG OPENROAD_APP_REPO_COMMIT="389a1f09821c0f57e3bf8e88f4ab43c76ec5f5c4"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -437,6 +437,7 @@ COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
+COPY tool_metadata.yml                          /
 
 # This is needed by ngspyce
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
