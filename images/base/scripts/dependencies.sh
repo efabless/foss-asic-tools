@@ -3,12 +3,10 @@
 set -e
 
 yum update -y
-
 yum install yum-utils -y
 # powertools are crb from Rocky 9 and (hopefully) up.
 dnf config-manager --set-enabled crb
 yum install epel-release -y
-
 yum group install "Development Tools" -y
 
 # Notes: Only install curl-devel and openssl-devel because of version mismatches in Rocky 9!
@@ -91,6 +89,7 @@ yum install -y \
 	mesa-libGLU-devel \
 	ncurses-devel \
 	ninja-build \
+	nodejs \
 	openmpi \
 	openmpi-devel \
 	openssl-devel \
@@ -151,9 +150,10 @@ yum install -y \
     python3-numpy \
     python3-tkinter
 
+pip3 install --no-cache-dir \
+	install wheel setuptools scikit-build setuptools-rust
 
-pip3 install --no-cache-dir install wheel setuptools scikit-build setuptools-rust
-
+# Install Python packages via pip:
 pip3 install --no-cache-dir \
 	amaranth \
 	click \
@@ -174,8 +174,13 @@ pip3 install --no-cache-dir \
 	xdot \
 	XlsxWriter
 
+# Install Ruby packages via gem:
 gem install \
 	rggen
+
+# Install node.js packages via npm:
+npm install -g \
+	netlistsvg
 
 # lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091

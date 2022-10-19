@@ -29,6 +29,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
 * [klayout](https://github.com/KLayout/klayout) layout tool
 * [magic](https://github.com/rtimothyedwards/magic) layout tool with DRC and PEX
+* [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from yosys JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog simulator
 * [nvc](https://github.com/nickg/nvc) VHDL simulator and compiler
