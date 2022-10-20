@@ -40,7 +40,7 @@ RUN bash install.sh
 #######################################################################
 FROM sky130 as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="de752ec0ba4da0ecb1fbcd309eeec4993d88f5bc"
+ARG OPEN_PDKS_REPO_COMMIT="a56526bfe45971322526978132b059d43ddd3a02"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ADD images/open_pdks/scripts/install.sh install.sh
@@ -236,7 +236,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.10.19"
+ARG OPENLANE_REPO_COMMIT="2022.10.20"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
