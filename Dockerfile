@@ -20,31 +20,47 @@ ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################
+# Compile iic-osic
+#######################################################################
+FROM magic as iic-osic
+ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
+ARG IIC_OSIC_REPO_COMMIT="7e9433ff930955ca90415f141263213f81cac4f1"
+ARG IIC_OSIC_NAME="iic-osic"
+
+ADD images/iic-osic/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # create sky130 (part of OpenLane)
 #######################################################################
-FROM magic as sky130
-ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
-ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
-ARG SKY130_NAME="skywater-pdk"
-
-ENV PDK_ROOT=/foss/pdk
-
-COPY images/skywater-pdk/corners/corners.yml /foss/pdk/corners.yml
-COPY images/skywater-pdk/corners/make_timing.py /foss/pdk/make_timing.py
-
-ADD images/skywater-pdk/scripts/install.sh install.sh
-RUN bash install.sh
+#FROM magic as sky130
+#ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
+#ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
+#ARG SKY130_NAME="skywater-pdk"
+#
+#ENV PDK_ROOT=/foss/pdks
+#
+#COPY images/skywater-pdk/corners/corners.yml /foss/pdks/corners.yml
+#COPY images/skywater-pdk/corners/make_timing.py /foss/pdks/make_timing.py
+#
+#ADD images/skywater-pdk/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
-FROM sky130 as open_pdks
+#FROM sky130 as open_pdks
+FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="a56526bfe45971322526978132b059d43ddd3a02"
 ARG OPEN_PDKS_NAME="open_pdks"
 
-ADD images/open_pdks/scripts/install.sh install.sh
-RUN bash install.sh
+ENV PDK_ROOT=/foss/pdks
+
+#ADD images/open_pdks/scripts/install.sh install.sh
+#RUN bash install.sh
+ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
+RUN bash install_volare.sh
 
 #######################################################################
 # Compile covered 
@@ -100,7 +116,7 @@ RUN bash install.sh
 #######################################################################
 # Compile GDS3D
 #######################################################################
-FROM base as gds3d
+FROM open_pdks as gds3d
 ARG GDS3D_REPO_URL="https://github.com/trilomix/GDS3D.git"
 ARG GDS3D_REPO_COMMIT="173da0cc2f3804984b7e77862fbb0c3f4e308a4b"
 ARG GDS3D_NAME="gds3d"
@@ -128,17 +144,6 @@ ARG GTKWAVE_REPO_COMMIT="75657e5f48f4e088ac7871f495422fd3ec3fe5dd"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
-# Compile iic-osic
-#######################################################################
-FROM base as iic-osic
-ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="7e9433ff930955ca90415f141263213f81cac4f1"
-ARG IIC_OSIC_NAME="iic-osic"
-
-ADD images/iic-osic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -387,7 +392,7 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     DESIGNS=/foss/designs \
     TOOLS=/foss/tools \
-    PDK_ROOT=/foss/pdk
+    PDK_ROOT=/foss/pdks
 
 ADD images/iic-osic-tools/scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
@@ -398,7 +403,7 @@ RUN $STARTUPDIR/scripts/install.sh
 ### Copy xfce UI configuration
 ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
-COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
+COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
 
 COPY --from=covered                      /foss/tools/            /foss/tools/
 COPY --from=cvc                          /foss/tools/            /foss/tools/
@@ -406,7 +411,7 @@ COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/tools/            /foss/tools/
-COPY --from=gds3d                        /foss/pdk/              /foss/pdk/
+COPY --from=gds3d                        /foss/pdks/             /foss/pdks/
 COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/
 COPY --from=iic-osic                     /foss/tools/            /foss/tools/

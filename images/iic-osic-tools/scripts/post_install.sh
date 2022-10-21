@@ -4,7 +4,7 @@
 
 ###############
 mkdir -p /foss/designs
-mkdir -p /foss/pdk
+mkdir -p /foss/pdks
 
 cp -a "$TOOLS"/sak/openlane/spef_extractor "$TOOLS/"
 
@@ -35,5 +35,6 @@ chown -R 1000:designers /foss/designs
 
 # FIXME
 #/bin/bash $STARTUPDIR/scripts/add_openlane_to_sources.sh
-/bin/bash "$STARTUPDIR"/scripts/apply_spice_modellib_reducer.sh
-/bin/bash "$STARTUPDIR"/scripts/add_custom_magic_bindkeys.sh
+# This is now done directly in the PDK generation install
+#/bin/bash "$STARTUPDIR"/scripts/apply_spice_modellib_reducer.sh
+#/bin/bash "$STARTUPDIR"/scripts/add_custom_magic_bindkeys.sh

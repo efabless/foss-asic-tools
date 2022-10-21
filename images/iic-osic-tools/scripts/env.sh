@@ -78,7 +78,7 @@ export LC_ALL=en_US.utf8 && export LANG=en_US.utf8
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
 
-export PDK_ROOT=/foss/pdk
+export PDK_ROOT=/foss/pdks
 export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
 export PDK=sky130A

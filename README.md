@@ -230,7 +230,7 @@ Furthermore, the following variables can be set:
 * `VNC_VIEW_ONLY=false` can set the VNC server to view only.
 * `DESIGNS=/foss/designs` Default directory, where the designs are placed.
 * `TOOLS=/foss/tools` Default tools directory.
-* `PDK_ROOT=/foss/pdk` Default PDKs directory.
+* `PDK_ROOT=/foss/pdks` Default PDKs directory.
 
 #### Entrypoint script
 

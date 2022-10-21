@@ -5,7 +5,7 @@
 
 MAGIC_VERSION=$(ls /foss/tools/magic/)
 export PATH=$PATH:/foss/tools/magic/$MAGIC_VERSION/bin
-
+export SCRIPT_DIR=/foss/tools/iic-osic
 export PDK_ROOT=/foss/pdk
 # select version 'A', or 'B', or 'all'
 SKY130_VERSION=all
@@ -34,11 +34,26 @@ if [ "$SKY130_VERSION" = "all" ]; then
 	cat "$PDK_ROOT/skywater-pdk/SOURCES" 			>> "$PDK_ROOT/sky130A/SOURCES"
 	cat "/foss/tools/magic/$MAGIC_VERSION/SOURCES" 	>> "$PDK_ROOT/sky130A/SOURCES"	
 	cp "$PDK_ROOT/sky130A/SOURCES" "$PDK_ROOT/sky130B/SOURCES" 
+
+	cd "$PDK_ROOT/sky130A/libs.tech/ngspice" || exit 1
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice tt
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ss
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ff
+
+	cd "$PDK_ROOT/sky130B/libs.tech/ngspice" || exit 1
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice tt
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ss
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ff
 else
 	cp $PDK_ROOT/"$OPEN_PDKS_NAME"/sky130/sky130${SKY130_VERSION}_make.log $PDK_ROOT/sky130${SKY130_VERSION}
 	echo "$OPEN_PDKS_NAME $OPEN_PDKS_REPO_COMMIT"	> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
 	cat "$PDK_ROOT/skywater-pdk/SOURCES" 			>> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
 	cat "/foss/tools/magic/$MAGIC_VERSION/SOURCES" 	>> "$PDK_ROOT/sky130${SKY130_VERSION}/SOURCES"
+
+	cd "$PDK_ROOT/sky130${SKY130_VERSION}/libs.tech/ngspice" || exit 1
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice tt
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ss
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ff
 fi
 
 make veryclean
