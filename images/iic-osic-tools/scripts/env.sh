@@ -31,27 +31,20 @@ function path_add_tool_custom() {
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
         path_add_tool_bin "covered"
-#FIXME  path_add_tool_bin "cugr"
         path_add_tool_bin "cvc-check"
-#FIXME  path_add_tool_bin "drcu"
         path_add_tool "fault"
-        path_add_tool_bin "cvc-check"
         path_add_tool_bin "gaw3-xschem"
         path_add_tool_bin "gds3d"
         path_add_tool_bin "ghdl"
         path_add_tool_bin "gtkwave"
-
         path_add_tool_custom "iic-osic"
-
         path_add_tool_bin "irsim"
         path_add_tool_bin "iverilog"
         path_add_tool "klayout"
         path_add_tool_bin "magic"
         path_add_tool_bin "netgen"
-
-        path_add_tool_custom "ngscope/*/usr/local/bin"
-
         path_add_tool_bin "ngspice"
+        path_add_tool_bin "nvc"
         path_add_tool "openlane"
         path_add_tool_bin "openroad"
         path_add_tool_bin "opensta"

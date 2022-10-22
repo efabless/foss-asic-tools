@@ -83,7 +83,7 @@ ARG CVC_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
 ARG CVC_NAME="cvc-check"
 
 ADD images/cvc-check/scripts/install.sh install.sh
-#FIXME this patch is needed since CVC is old. can remove when OL uses newer version
+#FIXME this patch is needed since CVC is old. can be removed when OL uses newer version
 ADD images/cvc-check/scripts/cvc_fix.patch cvc_fix.patch
 RUN bash install.sh
 
@@ -188,17 +188,6 @@ ARG NETGEN_REPO_COMMIT="3aeea9d1642c8d87911ed13626c77e4888caa9eb"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
-# Compile ngscope
-#######################################################################
-FROM base as ngscope
-ARG NGSCOPE_REPO_URL="n/a"
-ARG NGSCOPE_REPO_COMMIT="0.9.5"
-ARG NGSCOPE_NAME="ngscope"
-
-ADD images/ngscope/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -420,7 +409,6 @@ COPY --from=iverilog                     /foss/tools/            /foss/tools/
 COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
-#RETIRED COPY --from=ngscope                      /foss/tools/            /foss/tools/
 COPY --from=nvc                          /foss/tools/            /foss/tools/    
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=libngspice                   /foss/tools/            /foss/tools/
