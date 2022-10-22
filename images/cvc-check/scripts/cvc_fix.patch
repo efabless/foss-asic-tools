@@ -1,3 +1,601 @@
+diff --git a/README.md b/README.md
+index c1cb11d..e65f697 100644
+--- a/README.md
++++ b/README.md
+@@ -28,20 +28,28 @@ Installation
+ Requirements:
+ - gcc 4.9.3
+ - python 2.7.10
+-- bison 3.0.1 (only if making changes to parser or compiling from github)
++- bison 3.3 (only if making changes to the parser or compiling from github)
+ 
+ GUI requirements:
+ - kivy 1.10.0
+ - pyinstaller 3.1.1 (for standalone check_cvc)
+ 
+-Install CVC by:
++Should be able to install CVC after cloning the repo by:
++
++1. autoreconf -vif
++2. ./configure --disable-nls [--prefix=<install_directory>]
++3. make
++4. make install
++
++If that doesn't work, try:
+ 
+ 1. download tarball from release page https://github.com/d-m-bailey/cvc/releases.
+ 2. extract
+ 3. cd cvc-\<version>
+ 4. autoreconf -vif
+ 5. ./configure --disable-nls [--prefix=<install_directory>]
+-6. make install
++6. make
++7. make install
+ 
+ There have been problems compiling check_cvc on some Linux platfroms.
+ If GUI check_cvc does not compile, try
+diff --git a/configure.ac b/configure.ac
+index 37572d1..784136c 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2,7 +2,7 @@
+ # Process this file with autoconf to produce a configure script.
+ 
+ AC_PREREQ([2.69])
+-AC_INIT(CVC, [1.1.0], [cvc@shuharisystem.com])
++AC_INIT(CVC, [1.1.3], [cvc@shuharisystem.com])
+ AC_CONFIG_SRCDIR(src)
+ AC_CONFIG_HEADERS([config.h])
+ AC_USE_SYSTEM_EXTENSIONS
+diff --git a/src/CCircuit.cc b/src/CCircuit.cc
+index d7b4a09..efd1d61 100755
+--- a/src/CCircuit.cc
++++ b/src/CCircuit.cc
+@@ -35,6 +35,11 @@ CTextDeviceIdMap CCircuit::localSubcircuitIdMap;
+ 
+ void CCircuit::AddPortSignalIds(CTextList * thePortList_p) {
+ 	for (CTextList::iterator text_pit = thePortList_p->begin(); text_pit != thePortList_p->end(); ++text_pit) {
++		if ( localSignalIdMap.count(*text_pit) > 0 ) {
++			stringstream myErrorMessage;
++			myErrorMessage << "duplicate port " << *text_pit << " in " << name << endl;
++			throw EFatalError(myErrorMessage.str());
++		}
+ 		localSignalIdMap[*text_pit] = portCount++;
+ 	}
+ }
+@@ -147,7 +152,8 @@ void CCircuit::CountObjectsAndLinkSubcircuits(unordered_map<text_t, CCircuit *>
+ 			}
+ 			if ( (*subcircuit_ppit)->signalId_v.size() != myChild_p->portCount ) {
+ 				stringstream myErrorMessage;
+-				myErrorMessage << "port mismatch in " << (*subcircuit_ppit)->name << " " << (*subcircuit_ppit)->signalId_v.size() << ":" << myChild_p->portCount << endl;
++				myErrorMessage << "port count mismatch in " << (*subcircuit_ppit)->name << " of " << name \
++					<< " found " << (*subcircuit_ppit)->signalId_v.size() << " expected " << myChild_p->portCount << endl;
+ 				throw EFatalError(myErrorMessage.str());
+ 			}
+ 			myChild_p->instanceCount++;
+diff --git a/src/CCircuit.hh b/src/CCircuit.hh
+index 595b858..b92d5a3 100755
+--- a/src/CCircuit.hh
++++ b/src/CCircuit.hh
+@@ -68,7 +68,7 @@ public:
+ //	deviceId_t		warningCount = 0;
+ 	bool	linked = false;
+ 
+-	inline netId_t	LocalNetCount() { return ( localSignalIdMap.size() - portCount); }
++	inline netId_t	LocalNetCount() { assert(localSignalIdMap.size() >= portCount); return ( localSignalIdMap.size() - portCount); }
+ 
+ 	void AddPortSignalIds(CTextList * thePortList_p);
+ 	void SetSignalIds(CTextList * theSignalList_p, CNetIdVector & theSignalId_v);
+diff --git a/src/CConnection.cc b/src/CConnection.cc
+index aab78fe..1881cf7 100755
+--- a/src/CConnection.cc
++++ b/src/CConnection.cc
+@@ -440,6 +440,57 @@ bool CFullConnection::IsPossibleHiZ(CCvcDb * theCvcDb) {
+ 	return(false);
+ }
+ 
++/**
++ * \brief HasParallelShort: Check connected devices for parallel short.
++ *
++ * Only parallel devices of the same type that are fully on are considered shorted.
++ */
++bool CFullConnection::HasParallelShort(CCvcDb * theCvcDb) {
++	netId_t myDrainId, mySourceId;
++	CFullConnection myParallelDeviceConnections;
++	// Choose the least connected pin as the drain
++	if ( theCvcDb->connectionCount_v[drainId].SourceDrainCount() < theCvcDb->connectionCount_v[sourceId].SourceDrainCount() ) {
++		myDrainId = drainId;
++		mySourceId = sourceId;
++	} else {
++		myDrainId = sourceId;
++		mySourceId = drainId;
++	}
++	modelType_t myModelType = device_p->model_p->type;
++	assert( IsMos_(myModelType) );
++	myModelType = IsNmos_(myModelType) ? NMOS : PMOS;
++	for ( auto device_it = theCvcDb->firstSource_v[myDrainId]; device_it != UNKNOWN_DEVICE; device_it = theCvcDb->nextSource_v[device_it] ) {
++		if ( device_it == deviceId ) continue;  // same device
++		if ( myModelType == NMOS && ! IsNmos_(theCvcDb->deviceType_v[device_it] )) continue;  // skip non-matching device types
++		if ( myModelType == PMOS && ! IsPmos_(theCvcDb->deviceType_v[device_it] )) continue;  // skip non-matching device types
++		if ( theCvcDb->drainNet_v[device_it] != mySourceId ) continue;  // not parallel
++		theCvcDb->MapDeviceNets(device_it, myParallelDeviceConnections);
++		if ( myModelType == NMOS && IsKnownVoltage_(myParallelDeviceConnections.simGateVoltage)
++				&& myParallelDeviceConnections.simGateVoltage > myParallelDeviceConnections.minDrainVoltage + myParallelDeviceConnections.device_p->model_p->Vth ) {
++			return true;
++		} else if ( myModelType == PMOS && IsKnownVoltage_(myParallelDeviceConnections.simGateVoltage)
++				&& myParallelDeviceConnections.simGateVoltage < myParallelDeviceConnections.maxDrainVoltage + myParallelDeviceConnections.device_p->model_p->Vth ) {
++			return true;
++		}
++	}
++	for ( auto device_it = theCvcDb->firstDrain_v[myDrainId]; device_it != UNKNOWN_DEVICE; device_it = theCvcDb->nextDrain_v[device_it] ) {
++		if ( device_it == deviceId ) continue;  // same device
++		if ( myModelType == NMOS && ! IsNmos_(theCvcDb->deviceType_v[device_it] )) continue;  // skip non-matching device types
++		if ( myModelType == PMOS && ! IsPmos_(theCvcDb->deviceType_v[device_it] )) continue;  // skip non-matching device types
++		if ( theCvcDb->sourceNet_v[device_it] != mySourceId ) continue;  // not parallel
++		theCvcDb->MapDeviceNets(device_it, myParallelDeviceConnections);
++		if ( myModelType == NMOS && IsKnownVoltage_(myParallelDeviceConnections.simGateVoltage)
++				&& myParallelDeviceConnections.simGateVoltage > myParallelDeviceConnections.minSourceVoltage + myParallelDeviceConnections.device_p->model_p->Vth ) {
++			return true;
++		} else if ( myModelType == PMOS && IsKnownVoltage_(myParallelDeviceConnections.simGateVoltage)
++				&& myParallelDeviceConnections.simGateVoltage < myParallelDeviceConnections.maxSourceVoltage + myParallelDeviceConnections.device_p->model_p->Vth ) {
++			return true;
++		}
++	}
++	return false;
++
++}
++
+ bool CFullConnection::IsTransferGate(deviceId_t theNmos, deviceId_t thePmos, CCvcDb * theCvcDb) {
+ 	netId_t myPmosGateNet = theCvcDb->gateNet_v[thePmos];
+ 	string myOrigin = ( theCvcDb->inverterNet_v[myPmosGateNet] == UNKNOWN_NET )
+diff --git a/src/CConnection.hh b/src/CConnection.hh
+index 016ffe2..266ec66 100755
+--- a/src/CConnection.hh
++++ b/src/CConnection.hh
+@@ -156,6 +156,7 @@ public:
+ 	void SetUnknownVoltage();
+ 	void SetMinMaxLeakVoltagesAndFlags(CCvcDb * theCvcDb);
+ 	bool IsPossibleHiZ(CCvcDb * theCvcDb);
++	bool HasParallelShort(CCvcDb * theCvcDb);
+ 	bool IsTransferGate(deviceId_t theNmos, deviceId_t thePmos, CCvcDb * theCvcDb);
+ 	bool IsPumpCapacitor();
+ 
+diff --git a/src/CCvcDb.cc b/src/CCvcDb.cc
+index fe72513..d94d507 100755
+--- a/src/CCvcDb.cc
++++ b/src/CCvcDb.cc
+@@ -1318,11 +1318,19 @@ void CCvcDb::ShortSimNets(CEventQueue& theEventQueue, deviceId_t theDeviceId, CC
+ 		myCalculation = " Limited to min";
+ 	}
+ 	if ( theShortVoltage == myMasterVoltage ) {
+-		if ( IsSCRCPower(myMasterPower_p) && connectionCount_v[mySlaveNet].sourceDrainType[NMOS] && connectionCount_v[mySlaveNet].sourceDrainType[PMOS] ) {
+-			if ( IncrementDeviceError(theDeviceId, LEAK) < cvcParameters.cvcCircuitErrorLimit || cvcParameters.cvcCircuitErrorLimit == 0 ) {
++		if ( IsSCRCPower(myMasterPower_p) && connectionCount_v[mySlaveNet].sourceDrainType[NMOS] && connectionCount_v[mySlaveNet].sourceDrainType[PMOS] && IsMos_(deviceType_v[theDeviceId]) ) {
++			static CFullConnection myConnections;
++			MapDeviceNets(theDeviceId, myConnections);
++			CPower * myOppositePower_p;
++			if ( IsNmos_(deviceType_v[theDeviceId]) ) {
++				myOppositePower_p = ( theDirection == DRAIN_TO_MASTER_SOURCE ) ? myConnections.maxDrainPower_p : myConnections.maxSourcePower_p;
++			} else {  // Pmos
++				myOppositePower_p = ( theDirection == DRAIN_TO_MASTER_SOURCE ) ? myConnections.minDrainPower_p : myConnections.minSourcePower_p;
++			}
++			if ( ! IsSCRCPower(myOppositePower_p)  // don't count both power & ground SCRC
++					&& ( IncrementDeviceError(theDeviceId, LEAK) < cvcParameters.cvcCircuitErrorLimit
++						|| cvcParameters.cvcCircuitErrorLimit == 0 ) ) {
+ 				errorFile << "! Short Detected: SCRC " << PrintVoltage(myMasterVoltage) << " to output" << endl;
+-				static CFullConnection myConnections;
+-				MapDeviceNets(theDeviceId, myConnections);
+ 				PrintDeviceWithAllConnections(deviceParent_v[theDeviceId], myConnections, errorFile);
+ 				errorFile << endl;
+ 			}
+diff --git a/src/CCvcDb_error.cc b/src/CCvcDb_error.cc
+index f5fc69c..8e82432 100755
+--- a/src/CCvcDb_error.cc
++++ b/src/CCvcDb_error.cc
+@@ -345,6 +345,7 @@ void CCvcDb::FindNmosGateVsSourceErrors() {
+ 		bool myUnrelatedFlag = false;
+ 		if ( ! myConnections.minGatePower_p ) continue;
+ 		if ( myConnections.minGatePower_p->type[ANALOG_BIT] && ! cvcParameters.cvcAnalogGates ) continue;  // ignore analog gate errors
++		if ( IsSCRCPower(myConnections.minGatePower_p) ) continue;  // ignore SCRC input (if not logically ok, should yield floating error)
+ 		if ( myConnections.minGatePower_p->IsRelatedPower(myConnections.minSourcePower_p, netVoltagePtr_v, minNet_v, minNet_v, true, true)
+ 				&& myConnections.minGatePower_p->IsRelatedPower(myConnections.minDrainPower_p, netVoltagePtr_v, minNet_v, minNet_v, true, true) ) {
+ 			// if relatives (default), then checks are conditional
+@@ -405,6 +406,7 @@ void CCvcDb::FindNmosGateVsSourceErrors() {
+ 	CheckOppositeLogic(NMOS);
+ 	cvcCircuitList.PrintAndResetCircuitErrors(this, cvcParameters.cvcCircuitErrorLimit, logFile, errorFile, "! Checking nmos gate vs source errors: ");
+ }
++char GATE_LOGIC_CHECK[] = "GateVsSource logic check";
+ 
+ void CCvcDb::FindPmosGateVsSourceErrors() {
+ 	CFullConnection myConnections;
+@@ -420,6 +422,7 @@ void CCvcDb::FindPmosGateVsSourceErrors() {
+ 		bool myUnrelatedFlag = false;
+ 		if ( ! myConnections.maxGatePower_p ) continue;
+ 		if ( myConnections.maxGatePower_p->type[ANALOG_BIT] && ! cvcParameters.cvcAnalogGates ) continue;  // ignore analog gate errors
++		if ( IsSCRCPower(myConnections.maxGatePower_p) ) continue;  // ignore SCRC input (if not logically ok, should yield floating error)
+ 		if ( myConnections.maxGatePower_p->IsRelatedPower(myConnections.maxSourcePower_p, netVoltagePtr_v, maxNet_v, maxNet_v, true, true)
+ 				&& myConnections.maxGatePower_p->IsRelatedPower(myConnections.maxDrainPower_p, netVoltagePtr_v, maxNet_v, maxNet_v, true, true) ) {
+ 			// if relatives (default), then checks are conditional
+@@ -462,6 +465,22 @@ void CCvcDb::FindPmosGateVsSourceErrors() {
+ 		} else {
+ 			myUnrelatedFlag = true; // if not relatives, always an error
+ 		}
++		if ( myConnections.maxGatePower_p->type[MAX_CALCULATED_BIT] && cvcParameters.cvcLogicDiodes && ! netVoltagePtr_v[myConnections.gateId].full ) {
++			// If the source is a calculated value and the CVC_LOGIC_DIODE switch is on and there is no current definition,
++			// there is no error if the gate logic value is low (WARNING: set to 0V is just a kludge)
++			// check expected value later
++			debugFile << "EXPECT low for GateVsSource: " << NetName(myConnections.gateId) << " at " << DeviceName(myConnections.deviceId, PRINT_CIRCUIT_ON) << endl;
++			CPower * myPower_p = new CPower(myConnections.gateId);
++			myPower_p->definition = CPower::powerDefinitionText.SetTextAddress(GATE_LOGIC_CHECK);
++			myPower_p->extraData = new CExtraPowerData;
++			myPower_p->minVoltage = UNKNOWN_VOLTAGE;
++			myPower_p->simVoltage = UNKNOWN_VOLTAGE;
++			myPower_p->maxVoltage = UNKNOWN_VOLTAGE;
++			myPower_p->type[INPUT_BIT] = false;
++			myPower_p->extraData->expectedSim = "0";
++			cvcParameters.cvcExpectedLevelPtrList.push_back(myPower_p);
++			continue;  // Don't flag error here
++		}
+ 		if ( IncrementDeviceError(myConnections.deviceId, PMOS_GATE_SOURCE) < cvcParameters.cvcCircuitErrorLimit || cvcParameters.cvcCircuitErrorLimit == 0 ) {
+ 			if ( myUnrelatedFlag ) {
+ 				errorFile << "Unrelated power error" << endl;
+@@ -1001,8 +1020,10 @@ void CCvcDb::FindFloatingInputErrors() {
+ 						deviceStatus_v[device_it][SIM_INACTIVE] = true;  // ignore true floating input gates (not possible floating)
+ 					}
+ 					if ( cvcParameters.cvcIgnoreVthFloating && IsAlwaysOff(myConnections) ) continue;  // skips Hi-Z input that is never on
+-					if ( ! myHasLeakPath && cvcParameters.cvcIgnoreNoLeakFloating
+-							&& connectionCount_v[net_it].SourceDrainCount() == 0 ) continue;  // skip no leak floating
++					bool myIsPhysicallyFloating = connectionCount_v[net_it].SourceDrainCount() == 0;
++					if ( ! myHasLeakPath && cvcParameters.cvcIgnoreNoLeakFloating && myIsPhysicallyFloating ) continue;  // skip no leak floating
++					bool myHasParallelShort = myConnections.HasParallelShort(this);
++					if ( myHasParallelShort && ( cvcParameters.cvcIgnoreNoLeakFloating || ! myIsPhysicallyFloating ) ) continue;  // skip devices that have source/drain shorted
+ 					if ( myHasLeakPath || connectionCount_v[net_it].SourceDrainCount() == 0 ) {  // physically floating gates too
+ 						if ( IncrementDeviceError(myConnections.deviceId, HIZ_INPUT) < cvcParameters.cvcCircuitErrorLimit || cvcParameters.cvcCircuitErrorLimit == 0 ) {
+ 							if ( ! myHasLeakPath ) errorFile << "* No leak path" << endl;
+@@ -1024,6 +1045,7 @@ void CCvcDb::FindFloatingInputErrors() {
+ 			if ( IsFloatingGate(myConnections) ) continue;  // Already processed previously
+ 			for ( deviceId_t device_it = firstGate_v[net_it]; device_it != UNKNOWN_DEVICE; device_it = nextGate_v[device_it] ) {
+ 				MapDeviceNets(device_it, myConnections);
++				if ( myConnections.HasParallelShort(this) ) continue;  // skip devices that have source/drain shorted
+ 				bool myHasLeakPath = HasLeakPath(myConnections);
+ 				if ( myHasLeakPath ) {
+ 					if ( IncrementDeviceError(myConnections.deviceId, HIZ_INPUT) < cvcParameters.cvcCircuitErrorLimit || cvcParameters.cvcCircuitErrorLimit == 0 ) {
+diff --git a/src/CCvcDb_init.cc b/src/CCvcDb_init.cc
+index 1d357f1..fafa339 100755
+--- a/src/CCvcDb_init.cc
++++ b/src/CCvcDb_init.cc
+@@ -1258,6 +1258,7 @@ void CCvcDb::SetSCRCPower() {
+ 			if ( myAttemptCount == 0 ) {  // Could not set any gate nets, so set net directly
+ 				CPower * myFinalMinPower_p = netVoltagePtr_v[minNet_v[net_it].finalNetId].full;
+ 				CPower * myFinalMaxPower_p = netVoltagePtr_v[maxNet_v[net_it].finalNetId].full;
++				if ( IsSCRCPower(myFinalMinPower_p) && IsSCRCPower(myFinalMaxPower_p) ) continue;  // don't set double SCRC
+ 				voltage_t myExpectedVoltage = IsSCRCPower(myFinalMinPower_p) ? myFinalMaxPower_p->maxVoltage : myFinalMinPower_p->minVoltage;
+ 				if ( netVoltagePtr_v[net_it].full ) {
+ 					if ( netVoltagePtr_v[net_it].full->simVoltage != myExpectedVoltage ) {
+@@ -1286,6 +1287,7 @@ size_t CCvcDb::SetSCRCGatePower(netId_t theNetId, CDeviceIdVector & theFirstSour
+ 		if ( ! IsMos_(deviceType_v[device_it]) ) continue;  // Only process mosfets.
+ 		CPower * myDrainPower_p = netVoltagePtr_v[theDrain_v[device_it]].full;
+ 		if ( ! myDrainPower_p ) continue;  // ignore non-power nets
++		if ( GetEquivalentNet(theNetId) == GetEquivalentNet(gateNet_v[device_it]) ) continue;  // ignore gate-drain connections
+ 		if ( theNoCheckFlag && mySourcePower_p->IsRelatedPower(myDrainPower_p, netVoltagePtr_v, simNet_v, simNet_v, false) ) continue;  // ignore relatives
+ 		if ( myDrainPower_p->type[POWER_BIT] && (theNoCheckFlag || IsSCRCPower(myDrainPower_p)) ) {  // Mosfet bridges power nets.
+ 			SetSCRCParentPower(theNetId, device_it, IsPmos_(deviceType_v[device_it]), theSCRCSignalCount, theSCRCIgnoreCount);
+@@ -1324,7 +1326,7 @@ void CCvcDb::SetSCRCParentPower(netId_t theNetId, deviceId_t theDeviceId, bool t
+ 		assert(myExpectedPower_p);
+ 		if ( myExpectedVoltage == UNKNOWN_VOLTAGE || myExpectedPower_p->type[HIZ_BIT] ) {
+ 			reportFile << "Warning: " << NetName(theNetId) << ": voltage not set for " << NetName(myParentNet) << " expected " << (theExpectedHighInput ? "high" : "low");
+-			reportFile << " found " << (myExpectedVoltage == UNKNOWN_VOLTAGE ? "???" : "Hi-Z") << endl;
++			reportFile << " found " << (myExpectedVoltage == UNKNOWN_VOLTAGE ? "???" : "Hi-Z") << " at " << DeviceName(theDeviceId) << endl;
+ 			theSCRCIgnoreCount++;
+ 		} else if ( netVoltagePtr_v[myParentNet].full == NULL ) {
+ 			debugFile << "Setting net " << NetName(myParentNet) << " to " << PrintVoltage(myExpectedVoltage) << " for " << NetName(gateNet_v[theDeviceId]);
+@@ -1348,7 +1350,7 @@ bool CCvcDb::IsSCRCLogicNet(netId_t theNetId) {
+ 	if ( myMinPower->type[HIZ_BIT] == myMaxPower->type[HIZ_BIT] ) return false;
+ 	if ( myMinPower->type[MIN_CALCULATED_BIT] || myMaxPower->type[MAX_CALCULATED_BIT] ) return false;
+ 	if ( connectionCount_v[theNetId].sourceDrainType != NMOS_PMOS ) return false;
+-	if ( IsSCRCPower(myMinPower) || IsSCRCPower(myMaxPower) ) return true;
++	if ( IsSCRCPower(myMinPower) ^ IsSCRCPower(myMaxPower) ) return true;
+ 	return false;
+ }
+ 
+diff --git a/src/CCvcDb_utility.cc b/src/CCvcDb_utility.cc
+index 7f50f3d..c1ebc29 100755
+--- a/src/CCvcDb_utility.cc
++++ b/src/CCvcDb_utility.cc
+@@ -1056,6 +1056,7 @@ void CCvcDb::Cleanup() {
+ 	if ( errorFile.is_open() ) errorFile.close();
+ 	if ( debugFile.is_open() ) debugFile.close();
+ 	RemoveLock();
++#ifdef CVC_MEMORY_DEBUG
+ 	try {
+ 		cvcParameters.cvcPowerPtrList.Clear(leakVoltagePtr_v, netVoltagePtr_v, netCount);  // defined power deleted here
+ 		if ( gDebug_cvc ) cout << "Cleared power pointer list" << endl;
+@@ -1089,6 +1090,7 @@ void CCvcDb::Cleanup() {
+ 	catch (...) {  // ignore errors freeing malloc memory
+ 		cout << "INFO: problem with memory cleanup" << endl;
+ 	}
++#endif
+ }
+ 
+ deviceId_t CCvcDb::CountBulkConnections(netId_t theNetId) {
+diff --git a/src/CCvcExceptions.hh b/src/CCvcExceptions.hh
+index 73976a0..f41bcbf 100755
+--- a/src/CCvcExceptions.hh
++++ b/src/CCvcExceptions.hh
+@@ -44,17 +44,19 @@ public:
+ 
+ class EInvalidTerminal : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EInvalidTerminal(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Invalid terminal: " + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Invalid terminal: " + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EModelError : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EModelError();
+ 	EModelError(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Model error: " + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Model error: " + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EDuplicateInstance : public exception {
+@@ -64,18 +66,20 @@ public:
+ 
+ class EDatabaseError : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EDatabaseError();
+ 	EDatabaseError(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Database error:" + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Database error:" + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EFatalError : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EFatalError();
+ 	EFatalError(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Fatal error:" + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Fatal error:" + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EBadEnvironment : public exception {
+@@ -85,31 +89,33 @@ public:
+ 
+ class EQueueError : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EQueueError();
+ 	EQueueError(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Queue error:" + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Queue error:" + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EPowerError : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EPowerError();
+ 	EPowerError(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Power error:" + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Power error:" + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EResistanceError : public exception {
+ public:
+-	string errorMessage = "";
++	static string displayMessage;
++	string errorMessage;
+ 	EResistanceError();
+ 	EResistanceError(const string theErrorMessage) { errorMessage = theErrorMessage; };
+-	const char* what() const noexcept { string myMessage = "Resistance error:" + errorMessage; return myMessage.c_str(); }
++	const char* what() const noexcept { displayMessage = "Resistance error:" + errorMessage; return displayMessage.c_str(); }
+ };
+ 
+ class EShortFileError : public exception {
+ public:
+-	string errorMessage = "";
+ 	const char* what() const noexcept { return "Error reading short file"; }
+ };
+ 
+diff --git a/src/Cvc.hh b/src/Cvc.hh
+index 6247544..824184b 100755
+--- a/src/Cvc.hh
++++ b/src/Cvc.hh
+@@ -24,7 +24,7 @@
+ #ifndef CVC_H_
+ #define CVC_H_
+ 
+-#define CVC_VERSION "1.1.0"
++#define CVC_VERSION "1.1.3"
+ 
+ extern bool gDebug_cvc;
+ extern bool gSetup_cvc;
+diff --git a/src/Makefile.am b/src/Makefile.am
+index ca616a7..2df9a86 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -8,7 +8,7 @@ LDFLAGS = -static-libstdc++ -static-libgcc
+ # this lists the binaries to produce, the (non-PHONY, binary) targets in
+ # the previous manual Makefile
+ BUILT_SOURCES = cdlParser.hh stack.hh position.hh location.hh
+-AM_YFLAGS = -d
++AM_YFLAGS = -d -Wno-yacc
+ bin_PROGRAMS = cvc
+ cvc_SOURCES = cvc.cc Cvc.hh \
+ 	cdlParser.yy cdlScanner.ll \
+diff --git a/src/cdlParser.yy b/src/cdlParser.yy
+index 54b4b0e..43ec5ce 100755
+--- a/src/cdlParser.yy
++++ b/src/cdlParser.yy
+@@ -24,7 +24,7 @@
+ %skeleton "lalr1.cc"
+ %require "3.0"
+ 
+-%define parser_class_name {CCdlParser}
++%define api.parser.class {CCdlParser}
+ 
+ %define parse.assert
+ 
+@@ -119,7 +119,7 @@ circuitList[after]:
+ 	};
+ 
+ circuit:
+-	SUBCKT interface ENDS EOL {
++	SUBCKT interface ends {
+ /**/
+ 		$circuit = new CCircuit();
+ 		$circuit->name = $interface->front();
+@@ -129,7 +129,7 @@ circuit:
+ 		delete $interface;
+ //		$circuit = NULL;
+ 	}
+-|	SUBCKT interface deviceList ENDS EOL {
++|	SUBCKT interface deviceList ends {
+ 		$circuit = new CCircuit();
+ 		$circuit->name = $interface->front();
+ 		$interface->pop_front();
+@@ -305,6 +305,10 @@ resistor:
+ 		$resistor->parameters = cdlCircuitList.parameterText.SetTextAddress("R", $stringList);	
+ 		delete $stringList;
+ 	};
++ends:  /* end of subckt */
++	ENDS EOL {}
++|
++	ENDS STRING EOL {};
+ 
+ %%
+ 
+diff --git a/src/cdlScanner.ll b/src/cdlScanner.ll
+index 49238dc..2e90845 100755
+--- a/src/cdlScanner.ll
++++ b/src/cdlScanner.ll
+@@ -34,6 +34,7 @@
+ // <http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=333231>.
+ # undef yywrap
+ # define yywrap() 1
++//# define CDL_FLEX_DEBUG
+ 
+ // The location of the current token.
+ static yy::location scanner_location;
+@@ -82,7 +83,7 @@ TEXT			[[:alnum:][:punct:]]
+ 		BEGIN(READING);
+ 		yylval->charPtr = cdlCircuitList.cdlText.SetTextAddress(yytext);
+ #ifdef CDL_FLEX_DEBUG
+-		cout << "FLEX DEBUG: found subcircuit " << *(yylval->charPtr) << "\n" << endl;
++		cout << "FLEX DEBUG: found subcircuit " << yylval->charPtr << "\n" << endl;
+ #endif
+ 		return( token::SUBCIRCUIT ); 
+ 	}; 
+@@ -167,14 +168,6 @@ TEXT			[[:alnum:][:punct:]]
+ #endif
+ 	};
+ 
+-<READING>{TEXT}+	{ 
+-		yylval->charPtr = cdlCircuitList.cdlText.SetTextAddress(yytext);
+-#ifdef CDL_FLEX_DEBUG
+-		cout << "FLEX DEBUG: found string " << *(yylval->charPtr) << "\n" << endl;
+-#endif
+-		return( token::STRING ); 
+-	};
+-
+ <*>^\*.*	{ 
+ 		/* comment */ 
+ #ifdef CDL_FLEX_DEBUG
+@@ -182,11 +175,12 @@ TEXT			[[:alnum:][:punct:]]
+ #endif
+ 	};
+ 
+-<*>ÅO[[:blank:]]*$	{ 
+-		/* blank line */ 
++<READING>{TEXT}+	{
++		yylval->charPtr = cdlCircuitList.cdlText.SetTextAddress(yytext);
+ #ifdef CDL_FLEX_DEBUG
+-		cout << "FLEX DEBUG: found blank line\n" << endl;
++		cout << "FLEX DEBUG: found string " << yytext << "\n" << endl;
+ #endif
++		return( token::STRING );
+ 	};
+ 
+ <INITIAL>\n	{
+@@ -234,6 +228,13 @@ TEXT			[[:alnum:][:punct:]]
+ 		return( token::EOL ); 
+ 	};
+ 	
++<*>^[[:blank:]]+/\n	{
++		/* blank line */
++#ifdef CDL_FLEX_DEBUG
++		cout << "FLEX DEBUG: found blank line" << yytext << "\n" << endl;
++#endif
++	};
++
+ <*><<EOF>>	{
+ #ifdef CDL_FLEX_DEBUG
+ 		cout << "FLEX DEBUG: found EOF\n" << endl;
+diff --git a/src/cvc.cc b/src/cvc.cc
+index 585676c..b8e5406 100755
+--- a/src/cvc.cc
++++ b/src/cvc.cc
+@@ -43,6 +43,15 @@ bool gInterrupted = false;  //!< for detecting interrupts
+ 
+ HIST_ENTRY **gHistoryList; //!< readline history
+ 
++/// \name Initialize static variables
++string EInvalidTerminal::displayMessage = "";
++string EPowerError::displayMessage = "";
++string EQueueError::displayMessage = "";
++string EFatalError::displayMessage = "";
++string EModelError::displayMessage = "";
++string EDatabaseError::displayMessage = "";
++string EResistanceError::displayMessage = "";
++
+ /// \name global constants
+ ///@{
+ CStatus PMOS_ONLY, NMOS_ONLY, NMOS_PMOS, NO_TYPE; //, MIN_CHECK_BITS, MAX_CHECK_BITS;
+diff --git a/src/utility.cc b/src/utility.cc
+index d4a7336..f2e413f 100755
+--- a/src/utility.cc
++++ b/src/utility.cc
+@@ -198,7 +198,7 @@ std::string RegexErrorString(std::regex_constants::error_type theErrorCode) {
+ /**
+  * \brief Converts shell globbing syntax to regex
+  *
+- * Replaces '*' -> '.*' and '?' -> '.'.\n
++ * Replaces '*' -> '.*', '?' -> '.', '[' -> '\[', and ']' -> '\]'.
+  * Combines with original filter to search for both simultaneously.
+  */
+ std::string FuzzyFilter(std::string theFilter) {
+@@ -213,6 +213,16 @@ std::string FuzzyFilter(std::string theFilter) {
+ 					myUseGlob = true;
+ 				} break;
+ 			}
++			case '[': {
++				myGlobFilter.replace(char_it, 1, "\\[");
++				char_it++;
++				break;
++			}
++			case ']': {
++				myGlobFilter.replace(char_it, 1, "\\]");
++				char_it++;
++				break;
++			}
+ 			case '?': { myGlobFilter.replace(char_it, 1, "."); break; }
+ 			default: break;
+ 		}
 diff --git a/src_py/Makefile.am b/src_py/Makefile.am
 index ef930fc..14b6260 100644
 --- a/src_py/Makefile.am
@@ -18,3 +616,16 @@ index ef930fc..14b6260 100644
 -install : check_cvc
 +install_check_cvc : check_cvc
  	cp check_cvc ${exec_prefix}/bin
+diff --git a/src_py/summary.kv b/src_py/summary.kv
+index 7967b7c..0c49c8b 100755
+--- a/src_py/summary.kv
++++ b/src_py/summary.kv
+@@ -25,8 +25,6 @@
+ #:import sys sys
+ #:import re re
+ #:import Label kivy.uix.label.Label
+-#:import ListAdapter kivy.adapters.listadapter.ListAdapter
+-#:import SimpleListAdapter kivy.adapters.simplelistadapter.SimpleListAdapter
+ #:import SpinnerOption kivy.uix.spinner.SpinnerOption
+ #:import Factory kivy.factory.Factory
+ #:import FileChooser kivy.uix.filechooser.FileChooser
