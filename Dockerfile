@@ -74,17 +74,15 @@ ADD images/covered/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile cvc-check (part of OpenLane)
+# Compile cvc_rv (part of OpenLane)
 #######################################################################
-FROM base as cvc
+FROM base as cvc_rv
 
-ARG CVC_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
-ARG CVC_NAME="cvc-check"
+ARG CVC_RV_REPO_URL="https://github.com/d-m-bailey/cvc"
+ARG CVC_RV_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
+ARG CVC_RV_NAME="cvc_rv"
 
-ADD images/cvc-check/scripts/install.sh install.sh
-#FIXME this patch is needed since CVC is old. can be removed when OL uses newer version
-ADD images/cvc-check/scripts/cvc_fix.patch cvc_fix.patch
+ADD images/cvc_rv/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -395,7 +393,7 @@ ADD images/iic-osic-tools/addons/xfce/ $HOME/
 COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
 
 COPY --from=covered                      /foss/tools/            /foss/tools/
-COPY --from=cvc                          /foss/tools/            /foss/tools/
+COPY --from=cvc_rv                       /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
