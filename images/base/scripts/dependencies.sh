@@ -160,7 +160,9 @@ pip3 install --no-cache-dir \
 	cocotb \
 	gdsfactory \
 	gdspy \
+	jupyterlab \
 	matplotlib \
+	notebook \
 	pandas \
 	plotly \
 	pyinstaller \
