@@ -270,12 +270,12 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile vlogtoverilog (part of QFLOW)
+# Compile helper files (part of QFLOW)
 #######################################################################
-FROM base as vlogtoverilog
-ARG VLOGTOVERILOG_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG VLOGTOVERILOG_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
-ARG VLOGTOVERILOG_NAME="qflow"
+FROM base as qflow
+ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
+ARG QFLOW_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
+ARG QFLOW_NAME="qflow"
 
 ADD images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
@@ -416,7 +416,7 @@ COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
 COPY --from=opensta                      /foss/tools/            /foss/tools/
 COPY --from=padring                      /foss/tools/            /foss/tools/
-COPY --from=vlogtoverilog                /foss/tools/            /foss/tools/
+COPY --from=qflow                        /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
