@@ -245,6 +245,7 @@ As some examples already show, these parameters can be passed to the container v
 * The tool versions (typically the commit hash) have defaulted in the Dockerfile. It can be overwritten via environment variables.
 * Only the final image is tagged; the sub-tools are not. It is still possible to build only to a certain stage (stages are defined in the Dockerfile by `FROM base_image as stage_name`).
 * The final image is called `iic-osic-tool` by default.
+* Docker on Windows suffers from bad memory management due WSL2, especially for systems with less then 16GB RAM. As a workaround, a memory limit to WSL can be set. See [Advanced settings configuration in WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config) (look for the key "memory" in the wsl2 tag).
 
 ## Todo
 
