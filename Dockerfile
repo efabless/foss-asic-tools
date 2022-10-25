@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="7905e15ae3b66ed26349fb701b475ef93b566de5"
+ARG MAGIC_REPO_COMMIT="94daf986ab9aa94a9ae2ac3539fa5def9bd2a1ac"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -52,7 +52,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="a56526bfe45971322526978132b059d43ddd3a02"
+ARG OPEN_PDKS_REPO_COMMIT="0059588eebfc704681dc2368bd1d33d96281d10f"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -79,7 +79,7 @@ RUN bash install.sh
 FROM base as cvc_rv
 
 ARG CVC_RV_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_RV_REPO_COMMIT="d172016a791af3089b28070d80ad92bdfef9c585"
+ARG CVC_RV_REPO_COMMIT="df85a637e83da870129c93c8793cad282bb8ddd1"
 ARG CVC_RV_NAME="cvc_rv"
 
 ADD images/cvc_rv/scripts/install.sh install.sh
@@ -228,7 +228,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.10.20"
+ARG OPENLANE_REPO_COMMIT="2022.10.25"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -305,7 +305,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="cecd205ff7160373068f7a1fb4b2be378cff1167"
+ARG XSCHEM_REPO_COMMIT="0aa705040c34fcafa0016440e12663b54787df21"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
