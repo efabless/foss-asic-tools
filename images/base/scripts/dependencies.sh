@@ -150,8 +150,16 @@ yum install -y \
     python3-numpy \
     python3-tkinter
 
+# Upgrade pip and install important packages
+python3 -m pip install --upgrade pip
 pip3 install --no-cache-dir \
-	install wheel setuptools scikit-build setuptools-rust
+	cmake \
+	ninja \
+	pybind11 \
+	scikit-build \
+	setuptools \
+	setuptools-rust \
+	wheel
 
 # Install Python packages via pip:
 pip3 install --no-cache-dir \
