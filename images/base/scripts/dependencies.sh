@@ -100,9 +100,17 @@ yum install -y \
 	perl-FindBin \
 	python3 \
 	python3-Cython \
+	python3-devel \
+    python3-gobject \
+    python3-jinja2 \
+    python3-numpy \
 	python3-pip \
+	python3-pybind11 \
 	python3-pyyaml \
 	python3-scipy \
+	python3-setuptools \
+    python3-tkinter \
+	python3-wheel \
 	qt5-devel \
 	qt5-qtbase \
 	qt5-qtmultimedia \
@@ -143,23 +151,15 @@ yum install -y \
 	xz-devel \
 	zip \
 	zlib-devel \
-	zlib-static \
-    python3-devel \
-    python3-gobject \
-    python3-jinja2 \
-    python3-numpy \
-    python3-tkinter
-
+	zlib-static
+  
 # Upgrade pip and install important packages
 python3 -m pip install --upgrade pip
 pip3 install --no-cache-dir \
 	cmake \
 	ninja \
-	pybind11 \
 	scikit-build \
-	setuptools \
-	setuptools-rust \
-	wheel
+	setuptools-rust
 
 # Install Python packages via pip:
 pip3 install --no-cache-dir \
