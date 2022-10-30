@@ -138,7 +138,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="75657e5f48f4e088ac7871f495422fd3ec3fe5dd"
+ARG GTKWAVE_REPO_COMMIT="7a0024d582341e2cb27d8cfecdaec5b89112b39e"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -193,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-37"
+ARG NGSPICE_REPO_COMMIT="ngspice-38"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/ngspice/scripts/install.sh install.sh
@@ -228,7 +228,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.10.25"
+ARG OPENLANE_REPO_COMMIT="2022.10.26"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -294,7 +294,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v4.228"
+ARG VERILATOR_REPO_COMMIT="v5.002"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -305,7 +305,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="0aa705040c34fcafa0016440e12663b54787df21"
+ARG XSCHEM_REPO_COMMIT="153929806ba74f251eda9f941079a29d7cb07056"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
