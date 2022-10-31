@@ -154,7 +154,10 @@ yum install -y \
 	zlib-static
   
 # Upgrade pip and install important packages
-python3 -m pip install --upgrade pip
+
+# FIXME: PIP upgrade fails on x86, so remove it
+# python3 -m pip install --upgrade pip
+
 pip3 install --no-cache-dir \
 	cmake \
 	ninja \
