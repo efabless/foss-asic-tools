@@ -3,12 +3,10 @@
 set -e
 
 yum update -y
-
 yum install yum-utils -y
-# powertools is crb from Rocky 9 and (hopefully) up.
+# powertools are crb from Rocky 9 and (hopefully) up.
 dnf config-manager --set-enabled crb
 yum install epel-release -y
-
 yum group install "Development Tools" -y
 
 # Notes: Only install curl-devel and openssl-devel because of version mismatches in Rocky 9!
@@ -91,6 +89,7 @@ yum install -y \
 	mesa-libGLU-devel \
 	ncurses-devel \
 	ninja-build \
+	nodejs \
 	openmpi \
 	openmpi-devel \
 	openssl-devel \
@@ -101,9 +100,17 @@ yum install -y \
 	perl-FindBin \
 	python3 \
 	python3-Cython \
+	python3-devel \
+    python3-gobject \
+    python3-jinja2 \
+    python3-numpy \
 	python3-pip \
+	python3-pybind11 \
 	python3-pyyaml \
 	python3-scipy \
+	python3-setuptools \
+    python3-tkinter \
+	python3-wheel \
 	qt5-devel \
 	qt5-qtbase \
 	qt5-qtmultimedia \
@@ -144,24 +151,33 @@ yum install -y \
 	xz-devel \
 	zip \
 	zlib-devel \
-	zlib-static \
-    python3-devel \
-    python3-gobject \
-    python3-jinja2 \
-    python3-numpy \
-    python3-tkinter
+	zlib-static
+  
+# Upgrade pip and install important packages
 
-
-pip3 install --no-cache-dir install wheel setuptools scikit-build setuptools-rust
+# FIXME: PIP upgrade fails on x86, so remove it
+# python3 -m pip install --upgrade pip
 
 pip3 install --no-cache-dir \
+	cmake \
+	ninja \
+	scikit-build \
+	setuptools-rust
+
+# Install Python packages via pip:
+pip3 install --no-cache-dir \
+	amaranth \
 	click \
+	cocotb \
 	gdsfactory \
 	gdspy \
+	jupyterlab \
 	matplotlib \
+	notebook \
 	pandas \
 	plotly \
 	pyinstaller \
+	pyrtl \
 	pyspice \
 	pyverilog \
 	siliconcompiler \
@@ -170,6 +186,14 @@ pip3 install --no-cache-dir \
 	volare>=0.1.3 \
 	xdot \
 	XlsxWriter
+
+# Install Ruby packages via gem:
+gem install \
+	rggen
+
+# Install node.js packages via npm:
+npm install -g \
+	netlistsvg
 
 # lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
 # shellcheck disable=SC1091

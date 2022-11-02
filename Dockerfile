@@ -12,7 +12,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="7905e15ae3b66ed26349fb701b475ef93b566de5"
+ARG MAGIC_REPO_COMMIT="94daf986ab9aa94a9ae2ac3539fa5def9bd2a1ac"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -20,31 +20,47 @@ ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################
+# Compile iic-osic
+#######################################################################
+FROM magic as iic-osic
+ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
+ARG IIC_OSIC_REPO_COMMIT="7e9433ff930955ca90415f141263213f81cac4f1"
+ARG IIC_OSIC_NAME="iic-osic"
+
+ADD images/iic-osic/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # create sky130 (part of OpenLane)
 #######################################################################
-FROM magic as sky130
-ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
-ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
-ARG SKY130_NAME="skywater-pdk"
-
-ENV PDK_ROOT=/foss/pdk
-
-COPY images/skywater-pdk/corners/corners.yml /foss/pdk/corners.yml
-COPY images/skywater-pdk/corners/make_timing.py /foss/pdk/make_timing.py
-
-ADD images/skywater-pdk/scripts/install.sh install.sh
-RUN bash install.sh
+#FROM magic as sky130
+#ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
+#ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
+#ARG SKY130_NAME="skywater-pdk"
+#
+#ENV PDK_ROOT=/foss/pdks
+#
+#COPY images/skywater-pdk/corners/corners.yml /foss/pdks/corners.yml
+#COPY images/skywater-pdk/corners/make_timing.py /foss/pdks/make_timing.py
+#
+#ADD images/skywater-pdk/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
-FROM sky130 as open_pdks
-ARG OPEN_PDKS_REPO_URL="https://github.com/efabless/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="fa87f8f4bbcc7255b6f0c0fb506960f531ae2392"
+#FROM sky130 as open_pdks
+FROM iic-osic as open_pdks
+ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
+ARG OPEN_PDKS_REPO_COMMIT="0059588eebfc704681dc2368bd1d33d96281d10f"
 ARG OPEN_PDKS_NAME="open_pdks"
 
-ADD images/open_pdks/scripts/install.sh install.sh
-RUN bash install.sh
+ENV PDK_ROOT=/foss/pdks
+
+#ADD images/open_pdks/scripts/install.sh install.sh
+#RUN bash install.sh
+ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
+RUN bash install_volare.sh
 
 #######################################################################
 # Compile covered 
@@ -58,15 +74,15 @@ ADD images/covered/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile cvc-check (part of OpenLane)
+# Compile cvc_rv (part of OpenLane)
 #######################################################################
-FROM base as cvc
+FROM base as cvc_rv
 
-ARG CVC_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_REPO_COMMIT="6295fd962aa0fbd11937018867797d01aff17778"
-ARG CVC_NAME="cvc-check"
+ARG CVC_RV_REPO_URL="https://github.com/d-m-bailey/cvc"
+ARG CVC_RV_REPO_COMMIT="df85a637e83da870129c93c8793cad282bb8ddd1"
+ARG CVC_RV_NAME="cvc_rv"
 
-ADD images/cvc-check/scripts/install.sh install.sh
+ADD images/cvc_rv/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -98,7 +114,7 @@ RUN bash install.sh
 #######################################################################
 # Compile GDS3D
 #######################################################################
-FROM base as gds3d
+FROM open_pdks as gds3d
 ARG GDS3D_REPO_URL="https://github.com/trilomix/GDS3D.git"
 ARG GDS3D_REPO_COMMIT="173da0cc2f3804984b7e77862fbb0c3f4e308a4b"
 ARG GDS3D_NAME="gds3d"
@@ -122,21 +138,10 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="73f2f70b69f1af462de460a2ca768f2cf0fda04f"
+ARG GTKWAVE_REPO_COMMIT="7a0024d582341e2cb27d8cfecdaec5b89112b39e"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
-# Compile iic-osic
-#######################################################################
-FROM base as iic-osic
-ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="405701a10bc88109005608d3b2176e742e21a81b"
-ARG IIC_OSIC_NAME="iic-osic"
-
-ADD images/iic-osic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -155,7 +160,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="fd69d4e09c87184a0f5a87958643df3f1a58a238"
+ARG IVERILOG_REPO_COMMIT="74c52d6fa15d3f54403d95c662a68edd4bcb9af6"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -177,21 +182,10 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="2056b37c95e11ea802f8b06c8948e874a298808a"
+ARG NETGEN_REPO_COMMIT="3aeea9d1642c8d87911ed13626c77e4888caa9eb"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
-# Compile ngscope
-#######################################################################
-FROM base as ngscope
-ARG NGSCOPE_REPO_URL="n/a"
-ARG NGSCOPE_REPO_COMMIT="0.9.5"
-ARG NGSCOPE_NAME="ngscope"
-
-ADD images/ngscope/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -199,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-37"
+ARG NGSPICE_REPO_COMMIT="ngspice-38"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/ngspice/scripts/install.sh install.sh
@@ -219,11 +213,22 @@ ADD images/libngspice/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile nvc (VHDL simulator)
+#######################################################################
+FROM base as nvc
+ARG NVC_REPO_URL="https://github.com/nickg/nvc"
+ARG NVC_REPO_COMMIT="4efbf71640e7366ee35e7567de4b51d23572ddf2"
+ARG NVC_NAME="nvc"
+
+ADD images/nvc/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile openlane (part of OpenLane)
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.09.16"
+ARG OPENLANE_REPO_COMMIT="2022.11.02"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -234,7 +239,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="4174c3ad802d2ac1d04d387d2c4b883903f6647e"
+ARG OPENROAD_APP_REPO_COMMIT="127815b81a8624caebc06d0bedc2ea3a22e90500"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -263,12 +268,12 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile vlogtoverilog (part of QFLOW)
+# Compile helper files (part of QFLOW)
 #######################################################################
-FROM base as vlogtoverilog
-ARG VLOGTOVERILOG_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG VLOGTOVERILOG_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
-ARG VLOGTOVERILOG_NAME="qflow"
+FROM base as qflow
+ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
+ARG QFLOW_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
+ARG QFLOW_NAME="qflow"
 
 ADD images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
@@ -289,7 +294,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v4.228"
+ARG VERILATOR_REPO_COMMIT="v5.002"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -300,7 +305,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="4bbed85d2389ce8c7e3dd2babf73e0141d05443f"
+ARG XSCHEM_REPO_COMMIT="0b863993b1527679bfe839d3c94bec2d7f7e3db5"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -374,7 +379,7 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     DESIGNS=/foss/designs \
     TOOLS=/foss/tools \
-    PDK_ROOT=/foss/pdk
+    PDK_ROOT=/foss/pdks
 
 ADD images/iic-osic-tools/scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
@@ -385,15 +390,15 @@ RUN $STARTUPDIR/scripts/install.sh
 ### Copy xfce UI configuration
 ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
-COPY --from=open_pdks                    /foss/pdk/              /foss/pdk/
+COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
 
 COPY --from=covered                      /foss/tools/            /foss/tools/
-COPY --from=cvc                          /foss/tools/            /foss/tools/
+COPY --from=cvc_rv                       /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
 COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/tools/            /foss/tools/
-COPY --from=gds3d                        /foss/pdk/              /foss/pdk/
+COPY --from=gds3d                        /foss/pdks/             /foss/pdks/
 COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/
 COPY --from=iic-osic                     /foss/tools/            /foss/tools/
@@ -402,14 +407,14 @@ COPY --from=iverilog                     /foss/tools/            /foss/tools/
 COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
-#RETIRED COPY --from=ngscope                      /foss/tools/            /foss/tools/
+COPY --from=nvc                          /foss/tools/            /foss/tools/    
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=libngspice                   /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
 COPY --from=opensta                      /foss/tools/            /foss/tools/
 COPY --from=padring                      /foss/tools/            /foss/tools/
-COPY --from=vlogtoverilog                /foss/tools/            /foss/tools/
+COPY --from=qflow                        /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
@@ -425,11 +430,12 @@ COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
+COPY tool_metadata.yml                          /
 
-#This is needed by ngspyce
+# This is needed by ngspyce
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
 
-#Install ignamv/ngspyce python lib from source
+# Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
 

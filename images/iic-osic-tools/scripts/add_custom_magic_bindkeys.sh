@@ -4,7 +4,7 @@ set -e
 
 echo "Add custom bindkeys to magicrc"
 
-export PDK_ROOT=/foss/pdk
+export PDK_ROOT=/foss/pdks
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export SCRIPT_DIR=/foss/tools/iic-osic

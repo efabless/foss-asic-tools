@@ -5,7 +5,7 @@ set -e
 
 echo "Add OpenLane version to SOURCES"
 
-export PDK_ROOT=/foss/pdk
+export PDK_ROOT=/foss/pdks
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 
