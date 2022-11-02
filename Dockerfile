@@ -160,7 +160,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="c2dbf4e48358f562e8cf503c997624e5983e31ed"
+ARG IVERILOG_REPO_COMMIT="74c52d6fa15d3f54403d95c662a68edd4bcb9af6"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -305,7 +305,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="153929806ba74f251eda9f941079a29d7cb07056"
+ARG XSCHEM_REPO_COMMIT="0b863993b1527679bfe839d3c94bec2d7f7e3db5"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh

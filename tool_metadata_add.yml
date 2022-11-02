@@ -24,7 +24,7 @@
   commit: 25fe8217663c06a141156c2e9255e243d308794a
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: c2dbf4e48358f562e8cf503c997624e5983e31ed
+  commit: 74c52d6fa15d3f54403d95c662a68edd4bcb9af6
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-38
@@ -36,7 +36,7 @@
   commit: v5.002
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 153929806ba74f251eda9f941079a29d7cb07056
+  commit: 0b863993b1527679bfe839d3c94bec2d7f7e3db5
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.5.0
