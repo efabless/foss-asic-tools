@@ -189,7 +189,9 @@ pip3 install --no-cache-dir \
 
 # Install Ruby packages via gem:
 gem install \
-	rggen
+	rggen \
+	rggen-verilog \
+	rggen-vhdl
 
 # Install node.js packages via npm:
 npm install -g \
