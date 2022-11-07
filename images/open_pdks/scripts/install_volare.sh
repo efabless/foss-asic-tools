@@ -33,3 +33,7 @@ if [ -d "$PDK_ROOT/sky130B" ]; then
     echo "# Custom bindkeys for IIC" 		        >> "$PDK_ROOT/sky130B/libs.tech/magic/sky130B.magicrc"
     echo "source $SCRIPT_DIR/iic-magic-bindkeys" 	>> "$PDK_ROOT/sky130B/libs.tech/magic/sky130B.magicrc"
 fi
+
+# FIXME Remove extra large dirs until fix is rolled into open_pdks
+rm -rf /foss/pdks/volare/sky130/versions/*/*/libs.tech/klayout/lvs/testing
+rm -rf /foss/pdks/volare/sky130/versions/*/*/libs.tech/xschem/decred_hash_macro
