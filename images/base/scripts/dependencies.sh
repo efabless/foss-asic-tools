@@ -171,7 +171,6 @@ pip3 install --no-cache-dir \
 	cocotb \
 	gdsfactory \
 	gdspy \
-	jupyterlab \
 	matplotlib \
 	notebook \
 	pandas \
@@ -186,6 +185,8 @@ pip3 install --no-cache-dir \
 	volare>=0.1.3 \
 	xdot \
 	XlsxWriter
+#FIXME jupyterlab causes version-clash with MarkupSafe and a crash
+	jupyterlab
 
 # Install Ruby packages via gem:
 gem install \
