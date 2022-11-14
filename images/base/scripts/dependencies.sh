@@ -191,6 +191,7 @@ pip3 install --no-cache-dir \
 # Install Ruby packages via gem:
 gem install \
 	rggen \
+	rggen-markdown \
 	rggen-verilog \
 	rggen-vhdl
 
