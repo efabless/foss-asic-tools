@@ -228,7 +228,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.11.02"
+ARG OPENLANE_REPO_COMMIT="2022.11.12"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -239,7 +239,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="127815b81a8624caebc06d0bedc2ea3a22e90500"
+ARG OPENROAD_APP_REPO_COMMIT="fc0bc8eb8a2ad14a84e0235578ff94733fc108ab"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -305,7 +305,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="0b863993b1527679bfe839d3c94bec2d7f7e3db5"
+ARG XSCHEM_REPO_COMMIT="349bebda20737e4bc02985a99761cb5f68ce0d58"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -317,7 +317,7 @@ RUN bash install.sh
 # FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
-ARG XYCE_REPO_COMMIT="Release-7.5.0"
+ARG XYCE_REPO_COMMIT="Release-7.6.0"
 ARG XYCE_NAME="xyce"
 
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
@@ -327,7 +327,7 @@ RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="Release-2.5.0"
+ARG XYCE_XDM_REPO_COMMIT="Release-2.6.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
@@ -338,7 +338,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
-ARG YOSYS_REPO_COMMIT="6e907acf86d9ff0edd9a1c10274e62690e19e939"
+ARG YOSYS_REPO_COMMIT="f109fa3d4c56fe33bc626c298e04d45ae510dd0e"
 ARG YOSYS_NAME="yosys"
 
 ADD images/yosys/scripts/install.sh install.sh

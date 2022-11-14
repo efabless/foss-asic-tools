@@ -36,13 +36,13 @@
   commit: v5.002
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 0b863993b1527679bfe839d3c94bec2d7f7e3db5
+  commit: 349bebda20737e4bc02985a99761cb5f68ce0d58
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
-  commit: Release-7.5.0
+  commit: Release-7.6.0
 - name: xyce-xdm
   repo: https://github.com/Xyce/XDM
-  commit: Release-2.5.0
+  commit: Release-2.6.0
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: c9b05e481423c55ffcbb856fd5296701f670808c

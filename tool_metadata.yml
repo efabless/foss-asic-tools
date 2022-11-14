@@ -45,7 +45,7 @@
     cp vlog2Verilog $PREFIX/bin
 - name: yosys
   repo: https://github.com/YosysHQ/yosys
-  commit: 6e907acf86d9ff0edd9a1c10274e62690e19e939
+  commit: f109fa3d4c56fe33bc626c298e04d45ae510dd0e
   build: |
     make clean
     make PREFIX=$PREFIX config-gcc
@@ -58,7 +58,7 @@
   in_install: false
 - name: openroad_app
   repo: https://github.com/The-OpenROAD-Project/OpenROAD
-  commit: 127815b81a8624caebc06d0bedc2ea3a22e90500
+  commit: fc0bc8eb8a2ad14a84e0235578ff94733fc108ab
   build: ''
   in_install: false
 - name: git
