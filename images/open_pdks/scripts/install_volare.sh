@@ -9,7 +9,11 @@ if [ ! -d "$PDK_ROOT" ]; then
     mkdir -p "$PDK_ROOT"
 fi
 
-volare enable "${OPEN_PDKS_REPO_COMMIT}"
+################
+# INSTALL SKY130
+################
+
+volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk sky130
 
 # apply SPICE mode file reduction (for the variants that exist)
 # add custom IIC bind keys to magicrc
@@ -34,6 +38,8 @@ if [ -d "$PDK_ROOT/sky130B" ]; then
     echo "source $SCRIPT_DIR/iic-magic-bindkeys" 	>> "$PDK_ROOT/sky130B/libs.tech/magic/sky130B.magicrc"
 fi
 
-# FIXME Remove extra large dirs until fix is rolled into open_pdks
-rm -rf /foss/pdks/volare/sky130/versions/*/*/libs.tech/klayout/lvs/testing
-rm -rf /foss/pdks/volare/sky130/versions/*/*/libs.tech/xschem/decred_hash_macro
+##################
+# INSTALL GF180MCU
+##################
+
+volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk gf180mcu
