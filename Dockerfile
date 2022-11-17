@@ -52,7 +52,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="0059588eebfc704681dc2368bd1d33d96281d10f"
+ARG OPEN_PDKS_REPO_COMMIT="3af133706e554a740cfe60f21e773d9eaa41838c"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -182,7 +182,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="3aeea9d1642c8d87911ed13626c77e4888caa9eb"
+ARG NETGEN_REPO_COMMIT="7e8508db535064d4e828ae4e4d59fb8f3b4c4ff2"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
@@ -228,7 +228,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.11.12"
+ARG OPENLANE_REPO_COMMIT="2022.11.16"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="f62900f19330b0279a74af48366eb2863a9c9196"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="d9219c0da45aafeab7747accbe6701dbba7e1915"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
@@ -305,7 +305,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="349bebda20737e4bc02985a99761cb5f68ce0d58"
+ARG XSCHEM_REPO_COMMIT="4d3ede661a3be0a0ac158804f89a1a637c5f9b54"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
