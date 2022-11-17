@@ -169,7 +169,6 @@ pip3 install --no-cache-dir \
 	amaranth \
 	click \
 	cocotb \
-	gdsfactory \
 	gdspy \
 	matplotlib \
 	notebook \
@@ -184,7 +183,10 @@ pip3 install --no-cache-dir \
 	tk \
 	volare>=0.1.3 \
 	xdot \
-	XlsxWriter
+	XlsxWriter \
+	gdsfactory==5.55.0
+	#FIXME: gdsfactory (>=6.0.0) now needs gdstk, but the build fails (to be debugged)
+	
 
 # Install Ruby packages via gem:
 gem install \
