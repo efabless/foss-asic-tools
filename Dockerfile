@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="d9219c0da45aafeab7747accbe6701dbba7e1915"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="f62900f19330b0279a74af48366eb2863a9c9196"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
