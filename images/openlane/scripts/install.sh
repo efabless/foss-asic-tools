@@ -12,9 +12,9 @@ set -e
 #python3 ./env.py local-install
 #cd /foss/tools
 
-REPO_COMMIT_SHORT=$(echo $OPENLANE_REPO_COMMIT | cut -c 1-7)
+REPO_COMMIT_SHORT=$(echo "$OPENLANE_REPO_COMMIT" | cut -c 1-7)
 
 mkdir -p /foss/tools/
-git clone ${OPENLANE_REPO_URL} /foss/tools/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}
-cd /foss/tools/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}
-git checkout ${OPENLANE_REPO_COMMIT}
+git clone "${OPENLANE_REPO_URL}" "/foss/tools/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}"
+cd "/foss/tools/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}"
+git checkout "${OPENLANE_REPO_COMMIT}"
