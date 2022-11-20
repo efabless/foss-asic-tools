@@ -2,7 +2,7 @@
 
 **This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>**
 
-IIC-OSIC-TOOLS is an all-in-one Docker container for SKY130-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64` and `aarch64` are natively supported based on RockyLinux 9. This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+IIC-OSIC-TOOLS is an all-in-one Docker container for SKY130-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64` and `aarch64` are natively supported based on UbuntuLTS. This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
 It supports two *modes of operation*:
 
 1. Using a complete desktop environment (XFCE) in Xvnc (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs now in your browser.

@@ -1,9 +1,10 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=rockylinux:9.0
+ARG BASE_IMAGE=ubuntu:latest
 FROM ${BASE_IMAGE} as base
-
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Vienna
 ADD images/base/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
 
@@ -16,7 +17,6 @@ ARG MAGIC_REPO_COMMIT="94daf986ab9aa94a9ae2ac3539fa5def9bd2a1ac"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
-ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################
@@ -31,22 +31,6 @@ ADD images/iic-osic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# create sky130 (part of OpenLane)
-#######################################################################
-#FROM magic as sky130
-#ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
-#ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
-#ARG SKY130_NAME="skywater-pdk"
-#
-#ENV PDK_ROOT=/foss/pdks
-#
-#COPY images/skywater-pdk/corners/corners.yml /foss/pdks/corners.yml
-#COPY images/skywater-pdk/corners/make_timing.py /foss/pdks/make_timing.py
-#
-#ADD images/skywater-pdk/scripts/install.sh install.sh
-#RUN bash install.sh
-
-#######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
 #FROM sky130 as open_pdks
@@ -57,8 +41,6 @@ ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
 
-#ADD images/open_pdks/scripts/install.sh install.sh
-#RUN bash install.sh
 ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
 
@@ -131,7 +113,7 @@ ARG GHDL_REPO_COMMIT="v2.0.0"
 ARG GHDL_NAME="ghdl"
 
 ADD images/ghdl/scripts/install.sh install.sh
-RUN bash install.sh
+#FIXME RUN bash install.sh
 
 #######################################################################
 # Compile gtkwave
@@ -221,7 +203,7 @@ ARG NVC_REPO_COMMIT="4efbf71640e7366ee35e7567de4b51d23572ddf2"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
-RUN bash install.sh
+#FIXME RUN bash install.sh
 
 #######################################################################
 # Compile openlane (part of OpenLane)
@@ -323,7 +305,7 @@ ARG XYCE_NAME="xyce"
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
 COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh
 ADD images/xyce/scripts/install.sh install.sh
-RUN bash install.sh
+#FIXME RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
@@ -331,7 +313,7 @@ ARG XYCE_XDM_REPO_COMMIT="Release-2.6.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
-RUN bash install.sh
+#FIXME RUN bash install.sh
 
 #######################################################################
 # Compile yosys (part of OpenLane) & yosys-ghdl-plugin
@@ -349,11 +331,11 @@ ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
 ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 
-COPY --from=yosys	/foss/tools/	/foss/tools/
-COPY --from=ghdl	/foss/tools/	/foss/tools/
+#FIXME COPY --from=yosys	/foss/tools/	/foss/tools/
+#FIXME COPY --from=ghdl	/foss/tools/	/foss/tools/
 
-ADD images/ghdl-yosys-plugin/scripts/install.sh install.sh
-RUN bash install.sh
+#FIXME ADD images/ghdl-yosys-plugin/scripts/install.sh install.sh
+#FIXME RUN bash install.sh
 
 #######################################################################
 # Final output container
@@ -391,7 +373,6 @@ RUN $STARTUPDIR/scripts/install.sh
 ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
 COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
-
 COPY --from=covered                      /foss/tools/            /foss/tools/
 COPY --from=cvc_rv                       /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
@@ -399,7 +380,7 @@ COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/pdks/             /foss/pdks/
-COPY --from=ghdl                         /foss/tools/            /foss/tools/
+#FIXME COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/
 COPY --from=iic-osic                     /foss/tools/            /foss/tools/
 COPY --from=irsim                        /foss/tools/            /foss/tools/
@@ -407,7 +388,7 @@ COPY --from=iverilog                     /foss/tools/            /foss/tools/
 COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
-COPY --from=nvc                          /foss/tools/            /foss/tools/    
+#FIXME COPY --from=nvc                          /foss/tools/            /foss/tools/    
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=libngspice                   /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
@@ -418,10 +399,10 @@ COPY --from=qflow                        /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
-COPY --from=xyce                         /foss/tools/            /foss/tools/
-COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
+#FIXME COPY --from=xyce                         /foss/tools/            /foss/tools/
+#FIXME COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
-COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
+#FIXME COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
 
 ADD  images/iic-osic-tools/addons/sak			/foss/tools/sak
 COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
