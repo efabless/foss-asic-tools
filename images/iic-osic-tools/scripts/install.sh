@@ -30,7 +30,7 @@ apt-get install -y \
 #       octave \
 #       mailcap \
 
-rm /etc/xdg/autostart/polkit*
+#FIXME rm /etc/xdg/autostart/polkit*
 /bin/dbus-uuidgen > /etc/machine-id
 
 echo "Install noVNC - HTML5 based VNC viewer"
