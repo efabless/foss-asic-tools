@@ -10,4 +10,5 @@ cd "${FAULT_NAME}"
 git checkout "${FAULT_REPO_COMMIT}"
 git submodule update --init --recursive
 
+export PATH=/opt/swift/usr/bin:$PATH
 INSTALL_DIR=/foss/tools/${FAULT_NAME}/${REPO_COMMIT_SHORT} swift ./install.swift
