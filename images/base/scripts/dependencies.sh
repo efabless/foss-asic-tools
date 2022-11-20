@@ -32,6 +32,7 @@ apt-get install -y \
 	graphviz \
 	gtk2-engines-pixbuf \
 	help2man \
+	language-pack-en-base \
 	libasound2-dev \
 	libblas-dev \
 	libboost-all-dev \
@@ -41,10 +42,13 @@ apt-get install -y \
 	libdw-dev \
 	libedit-dev \
 	libeigen3-dev \
+	libexpat1-dev \
 	libffi-dev \
 	libfftw3-dev \
+	libfindbin-libs-perl \
 	libfl-dev \
 	libgconf2-dev \
+	libgettextpo-dev \
 	libglu1-mesa-dev \
 	libgomp1 \
 	libgtk-3-dev \
@@ -64,6 +68,7 @@ apt-get install -y \
 	libreadline-dev \
 	libsm-dev \
 	libspdlog-dev \
+	libssl-dev \
 	libstdc++-11-dev \
 	libsuitesparse-dev \
 	libtool \
@@ -71,6 +76,7 @@ apt-get install -y \
 	libx11-dev \
 	libxaw7-dev \
 	libxcb1-dev \
+	libxext-dev \
 	libxft-dev \
 	libxml2-dev \
 	libxpm-dev \
@@ -78,12 +84,13 @@ apt-get install -y \
 	libxslt-dev \
 	libyaml-dev \
 	libzip-dev \
-	llvm-13-dev \
+	llvm-dev \
 	make \
 	ninja-build \
 	nodejs \
 	npm \
 	openmpi-bin \
+	openssl \
 	patch \
 	pciutils \
 	pkg-config \
@@ -123,25 +130,33 @@ pip3 install --no-cache-dir \
 	click \
 	cmake \
 	cocotb \
+	cython \
 	gdsfactory \
 	gdspy \
+	gobject \
+	jinja2 \
 	matplotlib \
 	ninja \
 	notebook \
+	numpy \
 	panda \
 	pandas \
 	plotly \
+	pybind11 \
 	pyinstaller \
 	pyrtl \
 	pyspice \
 	pyverilog \
 	pyyaml \
 	scikit-build \
+	scipy \
+	setuptools \
 	setuptools-rust \
 	siliconcompiler \
 	spyci \
 	tk \
 	volare \
+	wheel \
 	xdot \
 	XlsxWriter
 
