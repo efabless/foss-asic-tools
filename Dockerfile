@@ -1,7 +1,7 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=ubuntu:latest
+ARG BASE_IMAGE=ubuntu:focal
 FROM ${BASE_IMAGE} as base
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Vienna
@@ -376,7 +376,7 @@ COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
 COPY --from=covered                      /foss/tools/            /foss/tools/
 COPY --from=cvc_rv                       /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
-COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
+COPY --from=fault                        /opt/swift/             /opt/swift/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/pdks/             /foss/pdks/

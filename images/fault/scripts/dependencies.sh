@@ -21,14 +21,14 @@ install_swift () {
 
 	if [ "$(arch)" == "x86_64" ]; then
         	echo "Platform is x86_64"
-		wget --no-verbose https://download.swift.org/swift-5.7.1-release/ubuntu2204/swift-5.7.1-RELEASE/swift-5.7.1-RELEASE-ubuntu22.04.tar.gz
-        	tar xf swift-5.7.1-RELEASE-ubuntu22.04.tar.gz
-        	cp -r swift-5.7.1-RELEASE-ubuntu22.04/* /
+		wget --no-verbose https://download.swift.org/swift-5.7.1-release/ubuntu2004/swift-5.7.1-RELEASE/swift-5.7.1-RELEASE-ubuntu20.04.tar.gz
+        	tar xf swift-5.7.1-RELEASE-ubuntu20.04.tar.gz
+        	mv swift-5.7.1-RELEASE-ubuntu20.04 /opt/swift
 	elif [ "$(arch)" == "aarch64" ]; then
         	echo "Platform is aarch64"
-		wget --no-verbose https://download.swift.org/swift-5.7.1-release/ubuntu2204-aarch64/swift-5.7.1-RELEASE/swift-5.7.1-RELEASE-ubuntu22.04-aarch64.tar.gz
-        	tar xf swift-5.7.1-RELEASE-ubuntu22.04-aarch64.tar.gz
-        	cp -r swift-5.7.1-RELEASE-ubuntu22.04-aarch64/* /
+		wget --no-verbose https://download.swift.org/swift-5.7.1-release/ubuntu2004-aarch64/swift-5.7.1-RELEASE/swift-5.7.1-RELEASE-ubuntu20.04-aarch64.tar.gz
+        	tar xf swift-5.7.1-RELEASE-ubuntu20.04-aarch64.tar.gz
+        	mv swift-5.7.1-RELEASE-ubuntu20.04-aarch64 /opt/swift
 	else
         	echo "Unknown platform"
 		exit 1
