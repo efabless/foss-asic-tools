@@ -113,7 +113,7 @@ ARG GHDL_REPO_COMMIT="v2.0.0"
 ARG GHDL_NAME="ghdl"
 
 ADD images/ghdl/scripts/install.sh install.sh
-#FIXME RUN bash install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile gtkwave
@@ -203,7 +203,7 @@ ARG NVC_REPO_COMMIT="4efbf71640e7366ee35e7567de4b51d23572ddf2"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
-#FIXME RUN bash install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile openlane (part of OpenLane)
@@ -331,11 +331,11 @@ ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
 ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 
-#FIXME COPY --from=yosys	/foss/tools/	/foss/tools/
-#FIXME COPY --from=ghdl	/foss/tools/	/foss/tools/
+COPY --from=yosys	/foss/tools/	/foss/tools/
+COPY --from=ghdl	/foss/tools/	/foss/tools/
 
-#FIXME ADD images/ghdl-yosys-plugin/scripts/install.sh install.sh
-#FIXME RUN bash install.sh
+ADD images/ghdl-yosys-plugin/scripts/install.sh install.sh
+RUN bash install.sh
 
 #######################################################################
 # Final output container
@@ -380,7 +380,7 @@ COPY --from=fault                        /opt/swift/             /opt/swift/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/pdks/             /foss/pdks/
-#FIXME COPY --from=ghdl                         /foss/tools/            /foss/tools/
+COPY --from=ghdl                         /foss/tools/            /foss/tools/
 COPY --from=gtkwave                      /foss/tools/            /foss/tools/
 COPY --from=iic-osic                     /foss/tools/            /foss/tools/
 COPY --from=irsim                        /foss/tools/            /foss/tools/
@@ -388,7 +388,7 @@ COPY --from=iverilog                     /foss/tools/            /foss/tools/
 COPY --from=klayout                      /foss/tools/            /foss/tools/
 COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
-#FIXME COPY --from=nvc                          /foss/tools/            /foss/tools/    
+COPY --from=nvc                          /foss/tools/            /foss/tools/    
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=libngspice                   /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
@@ -402,7 +402,7 @@ COPY --from=xschem                       /foss/tools/            /foss/tools/
 #FIXME COPY --from=xyce                         /foss/tools/            /foss/tools/
 #FIXME COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
-#FIXME COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
+COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
 
 ADD  images/iic-osic-tools/addons/sak			/foss/tools/sak
 COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
