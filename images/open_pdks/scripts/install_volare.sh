@@ -2,7 +2,7 @@
 
 set -e
 
-export LC_ALL=en_US.utf8 && export LANG=en_US.utf8
+export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 export SCRIPT_DIR=/foss/tools/iic-osic
 
 if [ ! -d "$PDK_ROOT" ]; then

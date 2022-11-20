@@ -66,7 +66,7 @@ fi
 
 LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
 export LD_LIBRARY_PATH
-export LC_ALL=en_US.utf8 && export LANG=en_US.utf8
+export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 #FIXME Fix warning when KLayout starts, maybe there is a cleaner solution
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
