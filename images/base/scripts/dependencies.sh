@@ -7,7 +7,7 @@ apt-get update -y && apt-get upgrade -y
 apt-get install -y \
 	autoconf \
 	automake \
-	binutils-gold \
+	binutils \
 	bison \
 	build-essential \
 	bzip2 \
@@ -16,6 +16,7 @@ apt-get install -y \
 	clang \
 	cmake \
 	csh \
+	cython3 \
 	doxygen \
 	expat \
 	flex \
@@ -28,6 +29,7 @@ apt-get install -y \
 	ghostscript \
 	git \
 	gnat \
+	gnupg2 \
 	gperf \
 	graphviz \
 	gtk2-engines-pixbuf \
@@ -37,6 +39,7 @@ apt-get install -y \
 	libblas-dev \
 	libboost-all-dev \
 	libbz2-dev \
+	libc6-dev \
 	libcairo2-dev \
 	libcurl4-openssl-dev \
 	libdw-dev \
@@ -47,6 +50,7 @@ apt-get install -y \
 	libfftw3-dev \
 	libfindbin-libs-perl \
 	libfl-dev \
+	libgcc-9-dev \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
@@ -56,20 +60,23 @@ apt-get install -y \
 	libjpeg-dev \
 	libjudy-dev \
 	liblapack-dev \
-	liblemon-dev \
 	liblzma-dev \
 	libmng-dev \
 	libncurses-dev \
+	libnss-wrapper \
 	libopenmpi-dev \
 	libpcre++-dev \
+	libpython2.7 \
 	libqt5multimediawidgets5 \
 	libqt5svg5-dev \
 	libqt5xmlpatterns5-dev \
 	libreadline-dev \
 	libsm-dev \
 	libspdlog-dev \
+	libsqlite3-dev \
 	libssl-dev \
-	libstdc++-11-dev \
+	libstdc++-10-dev \
+	libstdc++-9-dev \
 	libsuitesparse-dev \
 	libtool \
 	libwxgtk3.0-gtk3-dev \
@@ -81,8 +88,9 @@ apt-get install -y \
 	libxml2-dev \
 	libxpm-dev \
 	libxrender-dev \
-	libxslt-dev \
+	libxslt1-dev \
 	libyaml-dev \
+	libz3-dev \
 	libzip-dev \
 	llvm-dev \
 	make \
@@ -97,13 +105,46 @@ apt-get install -y \
 	python3 \
 	python3-dev \
 	python3-pip \
+	python3-aiohttp \
+	python3-async-timeout \
+	python3-cffi \
+	python3-click \
+	python3-cryptography \
+	python3-gdspy \
+	python3-graphviz \
+	python3-jinja2 \
+	python3-matplotlib \
+	python3-multidict \
+	python3-netifaces \
+	python3-notebook \
+	python3-numpy \
+	python3-pandas \
+	python3-plotly \
+	python3-psutil \
+	python3-pybind11 \
+	python3-pycparser \
+	python3-pydantic \
+	python3-qrcode \
+	python3-requests \
+	python3-scipy \
+	python3-shapely \
+	python3-setuptools \
+	python3-tabulate \
+	python3-tk \
+	python3-toolz \
+	python3-tqdm \
+	python3-typing-extensions \
+	python3-watchdog \
+	python3-wheel \
+	python3-xlsxwriter \
+	python3-xmltodict \
+	python3-yarl \
 	qtbase5-dev \
 	qtmultimedia5-dev \
 	qttools5-dev \
 	ruby \
 	ruby-dev \
-	ruby-irb \
-	ruby-rubygems \
+	libruby2.7 \
 	rustc \
 	strace \
 	swig \
@@ -112,14 +153,33 @@ apt-get install -y \
 	texinfo \
 	time \
 	tk-dev \
+	tzdata \
 	unzip \
+	uuid-dev \
 	vim-common \
 	wget \
 	xdot \
 	xvfb \
 	zip \
 	zlib1g-dev 
-  
+
+# These packages will become available in 2204:
+# binutils-gold \
+# ruby-irb \
+# liblemon-dev \
+# python3-aiosignal \
+# python3-antlr4 \
+# python3-charset-normalizer \
+# python3-click-default-group \
+# python3-commonmark \
+# python3-frozenlist \
+# python3-installer \
+# python3-loguru \
+# python3-rich \
+# python3-setuptools-rust \
+# python3-skbuild \
+# ruby-rubygems \
+
 # Upgrade pip and install important packages
 
 # FIXME: PIP upgrade fails on x86, so remove it
@@ -127,38 +187,20 @@ apt-get install -y \
 
 pip3 install --no-cache-dir \
 	amaranth \
-	click \
-	cmake \
 	cocotb \
-	cython \
 	gdsfactory \
-	gdspy \
 	gobject \
-	jinja2 \
-	matplotlib \
 	ninja \
-	notebook \
-	numpy \
 	panda \
-	pandas \
-	plotly \
-	pybind11 \
-	pyinstaller \
 	pyrtl \
 	pyspice \
 	pyverilog \
-	pyyaml \
 	scikit-build \
-	scipy \
-	setuptools \
 	setuptools-rust \
 	siliconcompiler \
 	spyci \
-	tk \
 	volare \
-	wheel \
-	xdot \
-	XlsxWriter
+	xdot
 
 # Install Ruby packages via gem:
 gem install \
@@ -170,5 +212,18 @@ gem install \
 # Install node.js packages via npm:
 npm install -g \
 	netlistsvg
+
+# Install lemon-1.3.1 (will become available via apt in 2204)
+#
+install_lemon () {
+	cd /tmp || exit 1
+	wget --no-verbose http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
+	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-1.3.1.tar.gz") || exit 1
+	tar -xf lemon-1.3.1.tar.gz
+	cd lemon-1.3.1 || exit 1
+	cmake -B build .
+	cmake --build build -j "$(nproc)" --target install
+}
+install_lemon
 
 rm -rf /tmp/*

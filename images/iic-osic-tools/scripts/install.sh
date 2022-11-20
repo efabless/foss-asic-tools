@@ -13,7 +13,6 @@ apt-get install -y \
         hub \
         libnss-wrapper \
         libqt5widgets5 \
-        mailcap \
         meld \
         net-tools \
         nmap \
@@ -25,9 +24,11 @@ apt-get install -y \
         tk \
         vim \
         xfce4 \
+        xfce4-terminal \
         xterm \
         xvfb
 #       octave \
+#       mailcap \
 
 rm /etc/xdg/autostart/polkit*
 /bin/dbus-uuidgen > /etc/machine-id
