@@ -11,16 +11,16 @@ git clone https://github.com/trilinos/Trilinos trilinos
 cd trilinos
 git checkout trilinos-release-12-12-1
 mkdir -p parallel_build && cd parallel_build
-cp /trilinos.reconfigure.sh ./reconfigure
-chmod +x reconfigure
-./reconfigure
+cp /trilinos.reconfigure.sh ./reconfigure.sh
+chmod +x reconfigure.sh
+./reconfigure.sh
 make -j"$(nproc)"
 make install
 
 cd /"${XYCE_NAME}"
 mkdir -p parallel_build && cd parallel_build
-cp /xyce.reconfigure.sh ./reconfigure
-chmod +x reconfigure
-./reconfigure
+cp /xyce.reconfigure.sh ./reconfigure.sh
+chmod +x reconfigure.sh
+./reconfigure.sh
 make -j"$(nproc)"
 make install
