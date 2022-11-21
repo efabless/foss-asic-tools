@@ -305,7 +305,7 @@ ARG XYCE_NAME="xyce"
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
 COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh
 ADD images/xyce/scripts/install.sh install.sh
-#FIXME RUN bash install.sh
+RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
@@ -313,7 +313,7 @@ ARG XYCE_XDM_REPO_COMMIT="Release-2.6.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 
 ADD images/xyce-xdm/scripts/install.sh install.sh
-#FIXME RUN bash install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile yosys (part of OpenLane) & yosys-ghdl-plugin
@@ -399,8 +399,8 @@ COPY --from=qflow                        /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
-#FIXME COPY --from=xyce                         /foss/tools/            /foss/tools/
-#FIXME COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
+COPY --from=xyce                         /foss/tools/            /foss/tools/
+COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
 COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
 
