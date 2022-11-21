@@ -1,7 +1,7 @@
 #!/bin/sh
 
-SRCDIR=/xyce/trilinos
-ARCHDIR=/xyce/XyceLibs/Parallel
+SRCDIR=/$XYCE_NAME/trilinos
+ARCHDIR=/$XYCE_NAME/XyceLibs/Parallel
 FLAGS="-O3 -fPIC"
 PATH=$PATH:/usr/lib64/openmpi/bin
 
@@ -13,7 +13,7 @@ cmake \
 	-DCMAKE_CXX_FLAGS="$FLAGS" \
 	-DCMAKE_C_FLAGS="$FLAGS" \
 	-DCMAKE_Fortran_FLAGS="$FLAGS" \
-	-DCMAKE_INSTALL_PREFIX=$ARCHDIR \
+	-DCMAKE_INSTALL_PREFIX="$ARCHDIR" \
 	-DCMAKE_MAKE_PROGRAM="make" \
 	-DTrilinos_ENABLE_NOX=ON \
 	-DNOX_ENABLE_LOCA=ON \
@@ -23,16 +23,19 @@ cmake \
 	-DEpetraExt_BUILD_GRAPH_REORDERINGS=ON \
 	-DTrilinos_ENABLE_TrilinosCouplings=ON \
 	-DTrilinos_ENABLE_Ifpack=ON \
-	-DTrilinos_ENABLE_ShyLU=ON \
 	-DTrilinos_ENABLE_Isorropia=ON \
 	-DTrilinos_ENABLE_AztecOO=ON \
 	-DTrilinos_ENABLE_Belos=ON \
 	-DTrilinos_ENABLE_Teuchos=ON \
-	-DTeuchos_ENABLE_COMPLEX=ON \
+	-DTrilinos_ENABLE_COMPLEX_DOUBLE=ON \
 	-DTrilinos_ENABLE_Amesos=ON \
 	-DAmesos_ENABLE_KLU=ON \
+	-DTrilinos_ENABLE_Amesos2=ON \
+	-DAmesos2_ENABLE_KLU2=ON \
+	-DAmesos2_ENABLE_Basker=ON \
 	-DTrilinos_ENABLE_Sacado=ON \
-	-DTrilinos_ENABLE_Kokkos=OFF \
+	-DTrilinos_ENABLE_Stokhos=ON \
+	-DTrilinos_ENABLE_Kokkos=ON \
 	-DTrilinos_ENABLE_Zoltan=ON \
 	-DTrilinos_ENABLE_ALL_OPTIONAL_PACKAGES=OFF \
 	-DTrilinos_ENABLE_CXX11=ON \
@@ -42,4 +45,4 @@ cmake \
 	-DTPL_ENABLE_BLAS=ON \
 	-DTPL_ENABLE_LAPACK=ON \
 	-DTPL_ENABLE_MPI=ON \
-	$SRCDIR
+	"$SRCDIR"
