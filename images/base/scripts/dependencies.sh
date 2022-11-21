@@ -197,10 +197,11 @@ pip3 install --no-cache-dir \
 	pyverilog \
 	scikit-build \
 	setuptools-rust \
-	siliconcompiler \
 	spyci \
 	volare \
 	xdot
+
+#FIXME siliconcompiler \
 
 # Install Ruby packages via gem:
 gem install \
