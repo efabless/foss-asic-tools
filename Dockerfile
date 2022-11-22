@@ -366,7 +366,7 @@ ENV HOME=/headless \
 ADD images/iic-osic-tools/scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 
-## Install all YUM and PIP packages, aswell as novnc from sources
+## Install all apt and pip packages, as well as novnc from sources
 RUN $STARTUPDIR/scripts/install.sh
 
 ### Copy xfce UI configuration
@@ -413,9 +413,6 @@ COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
-# This is needed by ngspyce
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
-
 # Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
@@ -425,14 +422,10 @@ ADD images/iic-osic-tools/scripts/env.sh $HOME/.bashrc
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
-
 ### configure startup
 RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
 
 WORKDIR $DESIGNS
-
-USER 1000
-
+USER 65534
 ENTRYPOINT ["/dockerstartup/scripts/ui_startup.sh"]
-
 CMD ["--wait"]

@@ -31,7 +31,7 @@ function path_add_tool_custom() {
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
         path_add_tool_bin "covered"
-        path_add_tool_bin "cvc-check"
+        path_add_tool_bin "cvc_rv"
         path_add_tool "fault"
         path_add_tool_bin "gaw3-xschem"
         path_add_tool_bin "gds3d"
@@ -64,13 +64,12 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
-LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
+LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib"
 export LD_LIBRARY_PATH
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 #FIXME Fix warning when KLayout starts, maybe there is a cleaner solution
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
-
 export PDK_ROOT=/foss/pdks
 export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
@@ -78,7 +77,6 @@ export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export OPENLANE_ROOT=$TOOLS/openlane
-
 export EDITOR='gedit'
 
 # this get's rid of a few libGL errors

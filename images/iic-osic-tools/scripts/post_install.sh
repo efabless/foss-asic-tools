@@ -17,11 +17,6 @@ ln -s ../*/*/bin/* .
 ln -s "$TOOLS"/xschem/*/* "$TOOLS"/xschem/
 
 ###############
-# This is now done in the Dockerfile using the tool_metadata.yml from
-# the build process.
-# cp /foss/tools/openlane/*/dependencies/tool_metadata.yml /
-
-###############
 mkdir "$STARTUPDIR"/logs
 
 ###############
@@ -29,12 +24,5 @@ mkdir "$STARTUPDIR"/logs
 update-alternatives --set python /usr/bin/python3
 
 ###############
-groupmod -n designers games
-chown -R 1000:designers /headless
-chown -R 1000:designers /foss/designs
-
-# FIXME
-#/bin/bash $STARTUPDIR/scripts/add_openlane_to_sources.sh
-# This is now done directly in the PDK generation install
-#/bin/bash "$STARTUPDIR"/scripts/apply_spice_modellib_reducer.sh
-#/bin/bash "$STARTUPDIR"/scripts/add_custom_magic_bindkeys.sh
+chown -R nobody:nogroup /headless && chmod -R +rw /headless
+chown -R nobody:nogroup /foss/designs && chmod -R +rw /foss/designs
