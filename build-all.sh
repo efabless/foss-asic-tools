@@ -61,7 +61,7 @@ B_STRS=""
 IFS=',' read -ra P_PLATS <<< "$DOCKER_PLATFORMS"
 IFS=',' read -ra B_STRS <<< "$BUILDER_STRS"
 for i in "${!P_PLATS[@]}"; do
-	if ! docker context inspect ${BUILDER_NAME}-${P_PLATS[i]} > /dev/null 2>&1 ; then
+	if ! docker context inspect ${BUILDER_NAME}-${P_PLATS[i]//\//-} > /dev/null 2>&1 ; then
 		echo "Creating docker context ${BUILDER_NAME}-${P_PLATS[i]//\//-}"
 		${ECHO_IF_DRY_RUN} docker context create ${BUILDER_NAME}-${P_PLATS[i]//\//-} --docker ${B_STRS[i]}
 	else
