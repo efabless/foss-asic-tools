@@ -1,9 +1,9 @@
 #!/bin/sh
 
-export PATH="$PATH:/usr/lib64/openmpi/bin"
 REPO_COMMIT_SHORT=$(echo "$XYCE_REPO_COMMIT" | cut -c 1-7)
 
 ../configure \
+	CXXFLAGS="-O3" \
 	ARCHDIR="/$XYCE_NAME/XyceLibs/Parallel" \
 	CPPFLAGS="-I/usr/include/suitesparse" \
 	--enable-mpi \
@@ -15,4 +15,3 @@ REPO_COMMIT_SHORT=$(echo "$XYCE_REPO_COMMIT" | cut -c 1-7)
 	--verbose \
 	--prefix="/foss/tools/${XYCE_NAME}/Parallel/${REPO_COMMIT_SHORT}"
 
-#x	CXXFLAGS="-O3" \
