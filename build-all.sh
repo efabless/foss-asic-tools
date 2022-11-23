@@ -19,11 +19,11 @@ if [ -z ${DOCKER_IMAGE+z} ]; then
 fi
 
 if [ -z ${DOCKER_TAGS+z} ]; then
-        DOCKER_TAGS="latest $(date +"%Y.%m")"
+        DOCKER_TAGS="latest,$(date +"%Y.%m")"
 fi
 
 if [ -z ${DOCKER_PLATFORMS+z} ]; then
-	DOCKER_PLATFORMS="linux/amd64,linux/arm64/v8"
+	DOCKER_PLATFORMS="amd64,arm64v8"
 fi
 
 if [ -z ${DOCKER_LOAD+z} ]; then
@@ -32,21 +32,18 @@ else
 	load_or_push="--load"
 fi
 
-if [ -z ${ARM64_BUILDER_STR+z} ]; then
-	ARM64_BUILDER_STR="host=unix:///var/run/docker.sock"
-fi
-
-if [ -z ${AMD64_BUILDER_STR+z} ]; then
-	AMD64_BUILDER_STR="host=ssh://pretl@buildx86"
+if [ -z ${BUILDER_STRS+z} ]; then
+	BUILDER_STRS="host=ssh://pretl@buildx86,host=unix:///var/run/docker.sock"
 fi
 
 if [ -z ${BUILDER_NAME+z} ]; then
 	BUILDER_NAME="iic-osic-tools-builder"
 fi
 
+
 # Process set tags:
 TAG_PARAMS=""
-IFS=' ' read -ra P_TAGS <<< "$DOCKER_TAGS"
+IFS=',' read -ra P_TAGS <<< "$DOCKER_TAGS"
 for i in "${P_TAGS[@]}"; do
 	echo "Using Tag \"$i\""
 	TAG_PARAMS="${TAG_PARAMS} --tag ${DOCKER_USER}/${DOCKER_IMAGE}:${i}"
@@ -58,23 +55,46 @@ fi
 
 # if a builder already exists (either from a previous run or manually created), we directly run the build command.
 # if not, we check for the components and create them if required.
-if ! docker buildx inspect ${BUILDER_NAME} ; then
-	# Create the amd64 build context
-	if ! docker context inspect ${BUILDER_NAME}-amd64 ; then
-		echo "Creating docker context ${BUILDER_NAME}-amd64"
-		${ECHO_IF_DRY_RUN} docker context create ${BUILDER_NAME}-amd64 --docker ${AMD64_BUILDER_STR}
-	fi
-	# create the arm64 build context
-	if ! docker context inspect ${BUILDER_NAME}-arm64 ; then
-		echo "Creating docker context ${BUILDER_NAME}-arm64"
-		${ECHO_IF_DRY_RUN} docker context create ${BUILDER_NAME}-arm64 --docker ${ARM64_BUILDER_STR}
-	fi
 
-	#docker buildx create --name iic-osic-tools-builder --node iic-osic-tools-builder0 --bootstrap --config ./buildkitd.toml
-	echo "Creating docker buildx builder ${BUILDER_NAME}"
-	${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./buildkitd.toml --platform linux/amd64 ${BUILDER_NAME}-amd64
-	${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./buildkitd.toml --platform linux/arm64 --append ${BUILDER_NAME}-arm64
+P_PLATS=""
+B_STRS=""
+IFS=',' read -ra P_PLATS <<< "$DOCKER_PLATFORMS"
+IFS=',' read -ra B_STRS <<< "$BUILDER_STRS"
+for i in "${!P_PLATS[@]}"; do
+	if ! docker context inspect ${BUILDER_NAME}-${P_PLATS[i]} > /dev/null 2>&1 ; then
+		echo "Creating docker context ${BUILDER_NAME}-${P_PLATS[i]}"
+		${ECHO_IF_DRY_RUN} docker context create ${BUILDER_NAME}-${P_PLATS[i]} --docker ${B_STRS[i]}
+	else
+		echo "Docker context ${BUILDER_NAME}-${P_PLATS[i]} exists, not creating..."
+	fi
+done
+i=0
+if ! docker buildx inspect ${BUILDER_NAME} > /dev/null 2>&1 ; then
+	echo "Creating docker buildx builder ${BUILDER_NAME} with context ${BUILDER_NAME}-${P_PLATS[0]}"
+	BUILDKIT_CONF="buildkitd-${P_PLATS[0]}.toml"
+	if [ ! -f "$BUILDKIT_CONF" ]; then
+		echo "${BUILDKIT_CONF} does not exist, using default buildkitd.toml..."
+		BUILDKIT_CONF="buildkitd.toml"
+	fi
+	${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./${BUILDKIT_CONF} --platform linux/${P_PLATS[0]} ${BUILDER_NAME}-${P_PLATS[0]}
+	i=1
+else
+	echo "Docker buildx builder ${BUILDER_NAME} exists, not creating..."
+	i=0
 fi
+for ((;i<"${#P_PLATS[@]}";i++)); do
+	if ! docker buildx inspect ${BUILDER_NAME} |grep ${BUILDER_NAME}-${P_PLATS[i]}  > /dev/null 2>&1 ; then
+		BUILDKIT_CONF="buildkitd-${P_PLATS[i]}.toml"
+		if [ ! -f "$BUILDKIT_CONF" ]; then
+			echo "${BUILDKIT_CONF} does not exist, using default buildkitd.toml..."
+    		BUILDKIT_CONF="buildkitd.toml"
+		fi
+		echo "Appending context ${BUILDER_NAME}-${P_PLATS[i]} to buildx builder"
+		${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./${BUILDKIT_CONF} --platform linux/${P_PLATS[i]} --append ${BUILDER_NAME}-${P_PLATS[i]}
+	else
+		echo "Docker context ${BUILDER_NAME}-${P_PLATS[i]} already part of builder, not appending..."
+	fi
+done
 
 #shellcheck disable=SC2086
 ${ECHO_IF_DRY_RUN} docker buildx build --platform ${DOCKER_PLATFORMS} --builder ${BUILDER_NAME} ${load_or_push} ${TAG_PARAMS} .

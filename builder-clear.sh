@@ -14,17 +14,20 @@ if [ -z ${BUILDER_NAME+z} ]; then
 	BUILDER_NAME="iic-osic-tools-builder"
 fi
 
+if [ -z ${DOCKER_PLATFORMS+z} ]; then
+        DOCKER_PLATFORMS="amd64,arm64"
+fi
+
 # delete the builders in the reversed creation order
-if docker buildx inspect ${BUILDER_NAME} ; then
+if docker buildx inspect ${BUILDER_NAME} > /dev/null 2>&1 ; then
 	echo "Deleting docker buildx builder ${BUILDER_NAME}"
 	${ECHO_IF_DRY_RUN} docker buildx rm ${BUILDER_NAME}
 fi
-if docker context inspect ${BUILDER_NAME}-amd64 ; then
-	echo "Deleting docker context ${BUILDER_NAME}-amd64"
-	${ECHO_IF_DRY_RUN} docker context rm ${BUILDER_NAME}-amd64
-fi
-if docker context inspect ${BUILDER_NAME}-arm64 ; then
-	echo "Deleting docker context ${BUILDER_NAME}-arm64"
-	${ECHO_IF_DRY_RUN} docker context rm ${BUILDER_NAME}-arm64
-fi
-
+P_PLATS=""
+IFS=',' read -ra P_PLATS <<< "$DOCKER_PLATFORMS"
+for i in "${!P_PLATS[@]}"; do
+	if docker context inspect ${BUILDER_NAME}-${P_PLATS[i]} > /dev/null 2>&1 ; then
+		echo "Deleting docker context ${BUILDER_NAME}-${P_PLATS[i]}"
+		${ECHO_IF_DRY_RUN} docker context rm ${BUILDER_NAME}-${P_PLATS[i]}
+	fi
+done
