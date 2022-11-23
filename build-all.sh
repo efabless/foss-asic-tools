@@ -23,7 +23,7 @@ if [ -z ${DOCKER_TAGS+z} ]; then
 fi
 
 if [ -z ${DOCKER_PLATFORMS+z} ]; then
-	DOCKER_PLATFORMS="amd64,arm64v8"
+	DOCKER_PLATFORMS="amd64,arm64"
 fi
 
 if [ -z ${DOCKER_LOAD+z} ]; then
