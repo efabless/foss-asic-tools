@@ -354,7 +354,7 @@ EXPOSE $VNC_PORT $NO_VNC_PORT
 ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
-    NO_VNC_HOME=/dockerstartup/noVNC \
+    NO_VNC_HOME=/usr/share/novnc \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1680x1050 \
     VNC_PW=abc123 \
@@ -417,13 +417,8 @@ COPY tool_metadata.yml                          /
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
 
-# Copy bashrc into place
-ADD images/iic-osic-tools/scripts/env.sh $HOME/.bashrc
-
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
-### configure startup
-RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
 
 WORKDIR $DESIGNS
 USER 65534

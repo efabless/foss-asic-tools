@@ -2,6 +2,9 @@
 
 # shellcheck disable=SC1091
 
+## mv env.sh into place as .bashrc
+mv $STARTUPDIR/scripts/env.sh $HOME/.bashrc
+
 ###############
 mkdir -p /foss/designs
 mkdir -p /foss/pdks
@@ -26,3 +29,6 @@ update-alternatives --set python /usr/bin/python3
 ###############
 chown -R nobody:nogroup /headless && chmod -R +rw /headless
 chown -R nobody:nogroup /foss/designs && chmod -R +rw /foss/designs
+
+## Set correct user permissions
+$STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
