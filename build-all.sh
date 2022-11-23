@@ -23,7 +23,7 @@ if [ -z ${DOCKER_TAGS+z} ]; then
 fi
 
 if [ -z ${DOCKER_PLATFORMS+z} ]; then
-	DOCKER_PLATFORMS="amd64,arm64"
+	DOCKER_PLATFORMS="linux/amd64,linux/arm64/v8"
 fi
 
 if [ -z ${DOCKER_LOAD+z} ]; then
@@ -62,37 +62,37 @@ IFS=',' read -ra P_PLATS <<< "$DOCKER_PLATFORMS"
 IFS=',' read -ra B_STRS <<< "$BUILDER_STRS"
 for i in "${!P_PLATS[@]}"; do
 	if ! docker context inspect ${BUILDER_NAME}-${P_PLATS[i]} > /dev/null 2>&1 ; then
-		echo "Creating docker context ${BUILDER_NAME}-${P_PLATS[i]}"
-		${ECHO_IF_DRY_RUN} docker context create ${BUILDER_NAME}-${P_PLATS[i]} --docker ${B_STRS[i]}
+		echo "Creating docker context ${BUILDER_NAME}-${P_PLATS[i]//\//-}"
+		${ECHO_IF_DRY_RUN} docker context create ${BUILDER_NAME}-${P_PLATS[i]//\//-} --docker ${B_STRS[i]}
 	else
-		echo "Docker context ${BUILDER_NAME}-${P_PLATS[i]} exists, not creating..."
+		echo "Docker context ${BUILDER_NAME}-${P_PLATS[i]//\//-} exists, not creating..."
 	fi
 done
 i=0
 if ! docker buildx inspect ${BUILDER_NAME} > /dev/null 2>&1 ; then
-	echo "Creating docker buildx builder ${BUILDER_NAME} with context ${BUILDER_NAME}-${P_PLATS[0]}"
-	BUILDKIT_CONF="buildkitd-${P_PLATS[0]}.toml"
+	echo "Creating docker buildx builder ${BUILDER_NAME} with context ${BUILDER_NAME}-${P_PLATS[0]//\//-}"
+	BUILDKIT_CONF="buildkitd-${P_PLATS[0]//\//-}.toml"
 	if [ ! -f "$BUILDKIT_CONF" ]; then
 		echo "${BUILDKIT_CONF} does not exist, using default buildkitd.toml..."
 		BUILDKIT_CONF="buildkitd.toml"
 	fi
-	${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./${BUILDKIT_CONF} --platform linux/${P_PLATS[0]} ${BUILDER_NAME}-${P_PLATS[0]}
+	${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./${BUILDKIT_CONF} --platform ${P_PLATS[0]} ${BUILDER_NAME}-${P_PLATS[0]//\//-}
 	i=1
 else
 	echo "Docker buildx builder ${BUILDER_NAME} exists, not creating..."
 	i=0
 fi
 for ((;i<"${#P_PLATS[@]}";i++)); do
-	if ! docker buildx inspect ${BUILDER_NAME} |grep ${BUILDER_NAME}-${P_PLATS[i]}  > /dev/null 2>&1 ; then
-		BUILDKIT_CONF="buildkitd-${P_PLATS[i]}.toml"
+	if ! docker buildx inspect ${BUILDER_NAME} |grep ${BUILDER_NAME}-${P_PLATS[i]//\//-}  > /dev/null 2>&1 ; then
+		BUILDKIT_CONF="buildkitd-${P_PLATS[i]//\//-}.toml"
 		if [ ! -f "$BUILDKIT_CONF" ]; then
 			echo "${BUILDKIT_CONF} does not exist, using default buildkitd.toml..."
     		BUILDKIT_CONF="buildkitd.toml"
 		fi
-		echo "Appending context ${BUILDER_NAME}-${P_PLATS[i]} to buildx builder"
-		${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./${BUILDKIT_CONF} --platform linux/${P_PLATS[i]} --append ${BUILDER_NAME}-${P_PLATS[i]}
+		echo "Appending context ${BUILDER_NAME}-${P_PLATS[i]//\//-} to buildx builder"
+		${ECHO_IF_DRY_RUN} docker buildx create --name ${BUILDER_NAME} --config ./${BUILDKIT_CONF} --platform ${P_PLATS[i]} --append ${BUILDER_NAME}-${P_PLATS[i]//\//-}
 	else
-		echo "Docker context ${BUILDER_NAME}-${P_PLATS[i]} already part of builder, not appending..."
+		echo "Docker context ${BUILDER_NAME}-${P_PLATS[i]//\//-} already part of builder, not appending..."
 	fi
 done
 
