@@ -48,7 +48,5 @@ volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk gf180mcu
 #FIXME need to define a magic bindkeys for gf180mcu
 
 #FIXME remove version fg180mcuA/B until compressed pkds become available (efabless TO use gf180mcuC)
-rm -rf "$PDK_ROOT/volare/gf180mcu/versions/*/gf180mcuA"
-rm -rf "$PDK_ROOT/volare/gf180mcu/versions/*/gf180mcuB"
-rm -rf "$PDK_ROOT/gf180mcuA"
-rm -rf "$PDK_ROOT/gf180mcuB"
+rm -rf "$PDK_ROOT/volare/gf180mcu/versions/*/gf180mcu[A,B]"
+rm -rf "$PDK_ROOT/gf180mcu[A,B]"
