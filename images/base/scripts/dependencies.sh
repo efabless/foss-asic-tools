@@ -214,17 +214,47 @@ gem install \
 npm install -g \
 	netlistsvg
 
+# FIXME Install cmake (need version >= 3.18 for ortools)
+# FIXME Can be removed in 22.04LTS
+apt-get remove -y cmake
+CMAKE_VERSION=3.24
+CMAKE_BUILD=1
+install_cmake () {
+	cd /tmp || exit 1
+	wget --no-verbose "https://cmake.org/files/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+	tar -xzvf "cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+	cd "cmake-$CMAKE_VERSION.$CMAKE_BUILD"
+	./bootstrap
+	make -j"$(nproc)"
+	make install
+}
+install_cmake
+
 # Install lemon-1.3.1 (will become available via apt in 2204)
 #
+LEMON_VERSION=1.3.1
 install_lemon () {
 	cd /tmp || exit 1
-	wget --no-verbose http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
-	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-1.3.1.tar.gz") || exit 1
-	tar -xf lemon-1.3.1.tar.gz
-	cd lemon-1.3.1 || exit 1
+	wget --no-verbose "http://lemon.cs.elte.hu/pub/sources/lemon-$LEMON_VERSION.tar.gz"
+	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-$LEMON_VERSION.tar.gz") || exit 1
+	tar -xf "lemon-$LEMON_VERSION.tar.gz"
+	cd "lemon-$LEMON_VERSION" || exit 1
 	cmake -B build .
 	cmake --build build -j "$(nproc)" --target install
 }
 install_lemon
+
+# Install or-tools (dependcy of OpenROAD)
+#
+ORTOOLS_VERSION=9.4
+install_ortools () {
+	cd /tmp || exit 1
+	wget --no-verbose "https://github.com/google/or-tools/archive/refs/tags/v$ORTOOLS_VERSION.tar.gz"
+	tar -xf "v$ORTOOLS_VERSION.tar.gz"
+	cd "or-tools-$ORTOOLS_VERSION" || exit 1
+    cmake -B build . -DBUILD_DEPS:BOOL=ON
+    cmake --build build -j "$(nproc)" --target install
+}
+install_ortools
 
 rm -rf /tmp/*
