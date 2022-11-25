@@ -164,7 +164,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="7e8508db535064d4e828ae4e4d59fb8f3b4c4ff2"
+ARG NETGEN_REPO_COMMIT="2292ab813b54cc6d6fa41368c4e0e7492fb627c9"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.11.16"
+ARG OPENLANE_REPO_COMMIT="2022.11.22"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="fc0bc8eb8a2ad14a84e0235578ff94733fc108ab"
+ARG OPENROAD_APP_REPO_COMMIT="7f00621cb612fd94e15b35790afe744c89d433a7"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="4d3ede661a3be0a0ac158804f89a1a637c5f9b54"
+ARG XSCHEM_REPO_COMMIT="0e532e357ddbcf83326cd6fb8dab3e75ec72a041"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
