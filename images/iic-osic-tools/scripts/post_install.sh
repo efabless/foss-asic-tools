@@ -3,7 +3,7 @@
 # shellcheck disable=SC1091
 
 ## mv env.sh into place as .bashrc
-mv $STARTUPDIR/scripts/env.sh $HOME/.bashrc
+mv "$STARTUPDIR/scripts/env.sh" "$HOME/.bashrc"
 
 ###############
 mkdir -p /foss/designs
@@ -27,8 +27,13 @@ mkdir "$STARTUPDIR"/logs
 update-alternatives --set python /usr/bin/python3
 
 ###############
-chown -R nobody:nogroup /headless && chmod -R +rw /headless
-chown -R nobody:nogroup /foss/designs && chmod -R +rw /foss/designs
+# On Ubunutu GID=20 is dialout, but on MacOS GID=20 is staff and the
+# default for users. This leads to access issues as dialout seems to
+# restricted in Ubuntu. Hence this WA.
+groupmod -g 18 dialout
+groupadd -g 20 designers
+chown -R 1000:designers /headless
+chown -R 1000:designers /foss/designs
 
 ## Set correct user permissions
-$STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
+"$STARTUPDIR/scripts/set_user_permission.sh" "$STARTUPDIR" "$HOME"
