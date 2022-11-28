@@ -114,6 +114,8 @@ or
 
 **Attention Windows and macOS users:** The X-server connection is automatically killed if there is a too long idle period in the terminal (when this happens, it looks like a **crash** of the system). A **workaround** is to start a second terminal from the initial terminal that pops up when executing the start scripts `./start_x.sh` or `.\start_x.bat`, and then start `htop` in the initial terminal. In this way, there is an ongoing display activity in the initial terminal, and as a positive side-effect, the usage of the machine can be monitored. We are looking for a better long-term solution.
 
+**Attention macOS users:** Please make sure to disable the *Enable VirtioFS accelerated directory sharing* setting available as "Beta Setting", as this will cause issues with accessing the mounted drives!
+
 #### Variables for X11
 
 The following environment variables are used for configuration:
