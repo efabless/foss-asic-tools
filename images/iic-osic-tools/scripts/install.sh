@@ -24,6 +24,7 @@ apt-get install -y \
         tigervnc-standalone-server \
         tk \
         vim \
+        vim-gtk3 \
         websockify \
         xfce4 \
         xfce4-terminal \

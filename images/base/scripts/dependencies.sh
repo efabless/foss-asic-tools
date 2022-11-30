@@ -156,7 +156,6 @@ apt-get install -y \
 	tzdata \
 	unzip \
 	uuid-dev \
-	vim-common \
 	wget \
 	xdot \
 	xvfb \
