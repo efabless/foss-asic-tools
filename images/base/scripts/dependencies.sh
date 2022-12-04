@@ -7,7 +7,7 @@ apt-get update -y && apt-get upgrade -y
 apt-get install -y \
 	autoconf \
 	automake \
-	binutils-gold \
+	binutils \
 	bison \
 	build-essential \
 	bzip2 \
@@ -60,14 +60,13 @@ apt-get install -y \
 	libjpeg-dev \
 	libjudy-dev \
 	liblapack-dev \
-	liblemon-dev \
 	liblzma-dev \
 	libmng-dev \
 	libncurses-dev \
 	libnss-wrapper \
 	libopenmpi-dev \
 	libpcre++-dev \
-	libpython3.8 \
+	libpython2.7 \
 	libqt5multimediawidgets5 \
 	libqt5svg5-dev \
 	libqt5xmlpatterns5-dev \
@@ -104,30 +103,22 @@ apt-get install -y \
 	pciutils \
 	pkg-config \
 	python3 \
+	python3-dev \
+	python3-pip \
 	python3-aiohttp \
-	python3-aiosignal \
-	python3-antlr4 \
 	python3-async-timeout \
 	python3-cffi \
-	python3-charset-normalizer \
 	python3-click \
-	python3-click-default-group \
-	python3-commonmark \
 	python3-cryptography \
-	python3-dev \
-	python3-frozenlist \
 	python3-gdspy \
 	python3-graphviz \
-	python3-installer \
 	python3-jinja2 \
-	python3-loguru \
 	python3-matplotlib \
 	python3-multidict \
 	python3-netifaces \
 	python3-notebook \
 	python3-numpy \
 	python3-pandas \
-	python3-pip \
 	python3-plotly \
 	python3-psutil \
 	python3-pybind11 \
@@ -135,12 +126,9 @@ apt-get install -y \
 	python3-pydantic \
 	python3-qrcode \
 	python3-requests \
-	python3-rich \
 	python3-scipy \
-	python3-setuptools \
-	python3-setuptools-rust \
 	python3-shapely \
-	python3-skbuild \
+	python3-setuptools \
 	python3-tabulate \
 	python3-tk \
 	python3-toolz \
@@ -156,8 +144,7 @@ apt-get install -y \
 	qttools5-dev \
 	ruby \
 	ruby-dev \
-	ruby-irb \
-	ruby-rubygems \
+	libruby2.7 \
 	rustc \
 	strace \
 	swig \
@@ -168,11 +155,29 @@ apt-get install -y \
 	tk-dev \
 	tzdata \
 	unzip \
+	uuid-dev \
 	wget \
 	xdot \
 	xvfb \
 	zip \
 	zlib1g-dev 
+
+# These packages will become available in 2204:
+# binutils-gold \
+# ruby-irb \
+# liblemon-dev \
+# python3-aiosignal \
+# python3-antlr4 \
+# python3-charset-normalizer \
+# python3-click-default-group \
+# python3-commonmark \
+# python3-frozenlist \
+# python3-installer \
+# python3-loguru \
+# python3-rich \
+# python3-setuptools-rust \
+# python3-skbuild \
+# ruby-rubygems \
 
 # Upgrade pip and install important packages
 
@@ -189,6 +194,8 @@ pip3 install --no-cache-dir \
 	pyrtl \
 	pyspice \
 	pyverilog \
+	scikit-build \
+	setuptools-rust \
 	spyci \
 	volare \
 	xdot
@@ -205,6 +212,36 @@ gem install \
 # Install node.js packages via npm:
 npm install -g \
 	netlistsvg
+
+# FIXME Install cmake (need version >= 3.18 for ortools)
+# FIXME Can be removed in 22.04LTS
+apt-get remove -y cmake
+CMAKE_VERSION=3.24
+CMAKE_BUILD=1
+install_cmake () {
+	cd /tmp || exit 1
+	wget --no-verbose "https://cmake.org/files/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+	tar -xzvf "cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+	cd "cmake-$CMAKE_VERSION.$CMAKE_BUILD"
+	./bootstrap
+	make -j"$(nproc)"
+	make install
+}
+install_cmake
+
+# Install lemon-1.3.1 (will become available via apt in 2204)
+#
+LEMON_VERSION=1.3.1
+install_lemon () {
+	cd /tmp || exit 1
+	wget --no-verbose "http://lemon.cs.elte.hu/pub/sources/lemon-$LEMON_VERSION.tar.gz"
+	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-$LEMON_VERSION.tar.gz") || exit 1
+	tar -xf "lemon-$LEMON_VERSION.tar.gz"
+	cd "lemon-$LEMON_VERSION" || exit 1
+	cmake -B build .
+	cmake --build build -j "$(nproc)" --target install
+}
+install_lemon
 
 # Install or-tools (dependcy of OpenROAD)
 #
