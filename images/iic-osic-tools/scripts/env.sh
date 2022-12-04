@@ -64,10 +64,14 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
+if [ ! -d /tmp/runtime-default ]; then
+        mkdir -p /tmp/runtime-default
+        chmod 700
+fi
+
 LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib"
 export LD_LIBRARY_PATH
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
-#FIXME Fix warning when KLayout starts, maybe there is a cleaner solution
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
 export PDK_ROOT=/foss/pdks
