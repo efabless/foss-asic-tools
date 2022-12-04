@@ -1,7 +1,7 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=ubuntu:focal
+ARG BASE_IMAGE=ubuntu:jammy
 FROM ${BASE_IMAGE} as base
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Vienna
@@ -109,7 +109,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="v2.0.0"
+ARG GHDL_REPO_COMMIT="01660fb74049c5258f0e2868e0a0c5e89446de8d"
 ARG GHDL_NAME="ghdl"
 
 ADD images/ghdl/scripts/install.sh install.sh
