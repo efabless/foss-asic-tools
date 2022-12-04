@@ -64,11 +64,6 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
-if [ ! -d /tmp/runtime-default ]; then
-        mkdir -p /tmp/runtime-default
-        chmod 700
-fi
-
 LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib"
 export LD_LIBRARY_PATH
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
@@ -86,6 +81,11 @@ export EDITOR='gedit'
 # this get's rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1
+
+if [ ! -d XDG_RUNTIME_DIR ]; then
+        mkdir -p XDG_RUNTIME_DIR
+        chmod 700 XDG_RUNTIME_DIR
+fi
 
 #----------------------------------------
 # Tool Aliases
