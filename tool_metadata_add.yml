@@ -12,7 +12,7 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: 01660fb74049c5258f0e2868e0a0c5e89446de8d 
+  commit: v2.0.0
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
   commit: 7a0024d582341e2cb27d8cfecdaec5b89112b39e
