@@ -27,13 +27,9 @@ mkdir "$STARTUPDIR"/logs
 update-alternatives --set python /usr/bin/python3
 
 ###############
-# On Ubunutu GID=20 is dialout, but on MacOS GID=20 is staff and the
-# default for users. This leads to access issues as dialout seems to
-# restricted in Ubuntu. Hence this WA.
-groupmod -g 18 dialout
-groupadd -g 20 designers
-chown -R 1000:designers /headless
-chown -R 1000:designers /foss/designs
+chown -R 1000:1000 /headless
+chmod -R +rw /headless
+chown -R 1000:1000 /foss/designs
 
 ## Set correct user permissions
 "$STARTUPDIR/scripts/set_user_permission.sh" "$STARTUPDIR" "$HOME"
