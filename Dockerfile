@@ -421,6 +421,6 @@ RUN bash install_ngspyce.sh
 RUN $STARTUPDIR/scripts/post_install.sh
 
 WORKDIR $DESIGNS
-USER 65534
+USER 1000:1000
 ENTRYPOINT ["/dockerstartup/scripts/ui_startup.sh"]
 CMD ["--wait"]

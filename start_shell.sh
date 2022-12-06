@@ -40,6 +40,25 @@ if [ -z ${CONTAINER_NAME+z} ]; then
 	CONTAINER_NAME="iic-osic-tools_shell_uid_"$(id -u)
 fi
 
+# Check for UIDs and GIDs below 1000, except 0 (root)
+if [[ ${CONTAINER_USER} -ne 0 ]]  &&  [[ ${CONTAINER_USER} -lt 1000 ]]; then
+	prt_str="# WARNING: Selected User ID ${CONTAINER_USER} is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour! #"
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+	echo ${prt_str}
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+fi
+
+if [[ ${CONTAINER_GROUP} -ne 0 ]]  && [[ ${CONTAINER_GROUP} -lt 1000 ]]; then
+	prt_str="# WARNING: Selected Group ID ${CONTAINER_GROUP} is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour! #"
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+	echo ${prt_str}
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+fi
+
 # Check if the container exists and if it is running.
 if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
 	echo "Container is running! (Hint: It can also be stopped with \"docker stop ${CONTAINER_NAME}\" and removed with \"docker rm ${CONTAINER_NAME}\" if required.)"
