@@ -139,22 +139,22 @@ if [ -n "${FORCE_LIBGL_INDIRECT}" ]; then
 fi
 
 # Check for UIDs and GIDs below 1000, except 0 (root)
-if [ ${CONTAINER_USER} -ne 0  &&  ${CONTAINER_USER} -lt 1000]; then
-	prt_str="WARNING: Selected User ID ${CONTAINER_USER} is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour!"
-	printf -- '#%.0s' $(seq 1 ${#prt_str})
-	echo ""
-	echo ${prt_str}
-	printf -- '#%.0s' $(seq 1 ${#prt_str})
-	echo ""
+if [[ ${CONTAINER_USER} -ne 0 ]]  &&  [[ ${CONTAINER_USER} -lt 1000 ]]; then
+        prt_str="# WARNING: Selected User ID ${CONTAINER_USER} is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour! #"
+        printf -- '#%.0s' $(seq 1 ${#prt_str})
+        echo ""
+        echo ${prt_str}
+        printf -- '#%.0s' $(seq 1 ${#prt_str})
+        echo ""
 fi
 
-if [ ${CONTAINER_GROUP} -ne 0  &&  ${CONTAINER_GROUP} -lt 1000]; then
-	prt_str="WARNING: Selected Group ID ${CONTAINER_GROUP} is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour!"
-	printf -- '#%.0s' $(seq 1 ${#prt_str})
-	echo ""
-	echo ${prt_str}
-	printf -- '#%.0s' $(seq 1 ${#prt_str})
-	echo ""
+if [[ ${CONTAINER_GROUP} -ne 0 ]]  && [[ ${CONTAINER_GROUP} -lt 1000 ]]; then
+        prt_str="# WARNING: Selected Group ID ${CONTAINER_GROUP} is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour! #"
+        printf -- '#%.0s' $(seq 1 ${#prt_str})
+        echo ""
+        echo ${prt_str}
+        printf -- '#%.0s' $(seq 1 ${#prt_str})
+        echo ""
 fi
 
 # If the container exists but is exited, it can restarted.
