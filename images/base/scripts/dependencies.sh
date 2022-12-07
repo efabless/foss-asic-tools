@@ -3,10 +3,11 @@
 set -e
 
 apt-get update -y && apt-get upgrade -y
-
+apt-get -y install tzdata
 apt-get install -y \
 	autoconf \
 	automake \
+	autotools-dev \
 	binutils \
 	bison \
 	build-essential \
@@ -35,6 +36,7 @@ apt-get install -y \
 	gtk2-engines-pixbuf \
 	help2man \
 	language-pack-en-base \
+	lcov \
 	libasound2-dev \
 	libblas-dev \
 	libboost-all-dev \
@@ -64,9 +66,12 @@ apt-get install -y \
 	libmng-dev \
 	libncurses-dev \
 	libnss-wrapper \
+	libomp-dev \
 	libopenmpi-dev \
 	libpcre++-dev \
-	libpython2.7 \
+	libpcre2-dev \
+	libpcre3-dev \
+	libpython3.8 \
 	libqt5multimediawidgets5 \
 	libqt5svg5-dev \
 	libqt5xmlpatterns5-dev \
@@ -78,6 +83,7 @@ apt-get install -y \
 	libstdc++-10-dev \
 	libstdc++-9-dev \
 	libsuitesparse-dev \
+	libtcl \
 	libtool \
 	libwxgtk3.0-gtk3-dev \
 	libx11-dev \
@@ -139,6 +145,8 @@ apt-get install -y \
 	python3-xlsxwriter \
 	python3-xmltodict \
 	python3-yarl \
+	qt5-default \
+	qt5-image-formats-plugins \
 	qtbase5-dev \
 	qtmultimedia5-dev \
 	qttools5-dev \
@@ -150,10 +158,10 @@ apt-get install -y \
 	swig \
 	tcl-dev \
 	tcllib \
+	tcl-tclreadline \
 	texinfo \
 	time \
 	tk-dev \
-	tzdata \
 	unzip \
 	uuid-dev \
 	wget \
