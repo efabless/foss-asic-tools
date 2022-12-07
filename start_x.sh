@@ -45,18 +45,17 @@ if [ -z ${DOCKER_TAG+z} ]; then
 	DOCKER_TAG="latest"
 fi
 
-if [ -z ${CONTAINER_USER+z} ]; then
-	CONTAINER_USER=$(id -u)
-fi
-
-if [ -z ${CONTAINER_GROUP+z} ]; then
-	CONTAINER_GROUP=$(id -g)
-fi
-
 PARAMS=""
 if [[ "$OSTYPE" == "linux"* ]]; then
 	echo "Auto detected Linux"
 	# Should also be a senseful default
+	if [ -z ${CONTAINER_USER+z} ]; then
+	        CONTAINER_USER=$(id -u)
+	fi
+
+	if [ -z ${CONTAINER_GROUP+z} ]; then
+	        CONTAINER_GROUP=$(id -g)
+	fi
 	if [ -z ${XSOCK+z} ]; then
 		if [ -d "/tmp/.X11-unix" ]; then
 			XSOCK="/tmp/.X11-unix"
@@ -105,8 +104,15 @@ if [[ "$OSTYPE" == "linux"* ]]; then
 		fi
 	fi
 	PARAMS="$PARAMS -v $XAUTH:/headless/.xauthority:rw -e XAUTHORITY=/headless/.xauthority"
-	
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+	if [ -z ${CONTAINER_USER+z} ]; then
+	        CONTAINER_USER=1000
+	fi
+
+	if [ -z ${CONTAINER_GROUP+z} ]; then
+	        CONTAINER_GROUP=1000
+	fi
 	if [ -z ${DISP+z} ]; then
 		DISP="host.docker.internal:0"
 		if [[ $(type -P "xhost") ]]; then
@@ -130,6 +136,25 @@ fi
 if [ -n "${FORCE_LIBGL_INDIRECT}" ]; then
 	echo "Using indirect rendering."
 	PARAMS="${PARAMS} -e LIBGL_ALWAYS_INDIRECT=1"
+fi
+
+# Check for UIDs and GIDs below 1000, except 0 (root)
+if [ ${CONTAINER_USER} -ne 0  &&  ${CONTAINER_USER} -lt 1000]; then
+	prt_str="WARNING: Selected User ID ${CONTAINER_USER} is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour!"
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+	echo ${prt_str}
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+fi
+
+if [ ${CONTAINER_GROUP} -ne 0  &&  ${CONTAINER_GROUP} -lt 1000]; then
+	prt_str="WARNING: Selected Group ID ${CONTAINER_GROUP} is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour!"
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+	echo ${prt_str}
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
 fi
 
 # If the container exists but is exited, it can restarted.

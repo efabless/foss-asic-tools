@@ -31,7 +31,7 @@ function path_add_tool_custom() {
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
         path_add_tool_bin "covered"
-        path_add_tool_bin "cvc-check"
+        path_add_tool_bin "cvc_rv"
         path_add_tool "fault"
         path_add_tool_bin "gaw3-xschem"
         path_add_tool_bin "gds3d"
@@ -64,13 +64,11 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
-LD_LIBRARY_PATH=$(realpath $base_path/klayout/*/ )
+LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib"
 export LD_LIBRARY_PATH
-export LC_ALL=en_US.utf8 && export LANG=en_US.utf8
-#FIXME Fix warning when KLayout starts, maybe there is a cleaner solution
+export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
-
 export PDK_ROOT=/foss/pdks
 export TOOLS=/foss/tools
 export DESIGNS=/foss/designs
@@ -78,12 +76,16 @@ export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export OPENLANE_ROOT=$TOOLS/openlane
-
 export EDITOR='gedit'
 
 # this get's rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1
+
+if [ ! -d XDG_RUNTIME_DIR ]; then
+        mkdir -p XDG_RUNTIME_DIR
+        chmod 700 XDG_RUNTIME_DIR
+fi
 
 #----------------------------------------
 # Tool Aliases
@@ -95,9 +97,9 @@ alias mmagic-$PDK='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magic
 # shellcheck disable=SC2139
 alias lmagic-$PDK='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 
-alias k='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
-alias ke='klayout -e -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A.lyp'
-alias kf='klayout -c $SAK/klayout/tech/sky130A/sky130A.krc -nn $PDKPATH/libs.tech/klayout/sky130A.lyt -l $PDKPATH/libs.tech/klayout/sky130A-fom.lyp'
+alias k='klayout -c $SAK/klayout/tech/$PDK/$PDK.krc -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt -l $PDKPATH/libs.tech/klayout/tech/$PDK.lyp'
+alias ke='klayout -e -c $SAK/klayout/tech/$PDK/$PDK.krc -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt -l $PDKPATH/libs.tech/klayout/tech/$PDK.lyp'
+alias kf='klayout -c $SAK/klayout/tech/$PDK/$PDK.krc -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt -l $PDKPATH/libs.tech/klayout/tech/$PDK-fom.lyp'
 
 alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'

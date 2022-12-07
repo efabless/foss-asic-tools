@@ -26,6 +26,10 @@ IF "%CONTAINER_NAME%"=="" SET CONTAINER_NAME=iic-osic-tools_xserver
 
 IF "%DISP%"=="" SET DISP=host.docker.internal:0
 
+
+IF %CONTAINER_USER% NEQ 0 if %CONTAINER_USER% LSS 1000 echo WARNING: Selected User ID %CONTAINER_USER% is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour!
+IF %CONTAINER_GROUP% NEQ 0 if %CONTAINER_GROUP% LSS 1000 echo WARNING: Selected Group ID %CONTAINER_GROUP% is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour!
+
 where /q xhost
 IF ERRORLEVEL 1 (
     ECHO xhost is not detected / not in PATH. Please verify X-server access control!

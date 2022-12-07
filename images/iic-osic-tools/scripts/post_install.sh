@@ -2,6 +2,9 @@
 
 # shellcheck disable=SC1091
 
+## mv env.sh into place as .bashrc
+mv "$STARTUPDIR/scripts/env.sh" "$HOME/.bashrc"
+
 ###############
 mkdir -p /foss/designs
 mkdir -p /foss/pdks
@@ -17,11 +20,6 @@ ln -s ../*/*/bin/* .
 ln -s "$TOOLS"/xschem/*/* "$TOOLS"/xschem/
 
 ###############
-# This is now done in the Dockerfile using the tool_metadata.yml from
-# the build process.
-# cp /foss/tools/openlane/*/dependencies/tool_metadata.yml /
-
-###############
 mkdir "$STARTUPDIR"/logs
 
 ###############
@@ -29,12 +27,9 @@ mkdir "$STARTUPDIR"/logs
 update-alternatives --set python /usr/bin/python3
 
 ###############
-groupmod -n designers games
-chown -R 1000:designers /headless
-chown -R 1000:designers /foss/designs
+chown -R 1000:1000 /headless
+chmod -R +rw /headless
+chown -R 1000:1000 /foss/designs
 
-# FIXME
-#/bin/bash $STARTUPDIR/scripts/add_openlane_to_sources.sh
-# This is now done directly in the PDK generation install
-#/bin/bash "$STARTUPDIR"/scripts/apply_spice_modellib_reducer.sh
-#/bin/bash "$STARTUPDIR"/scripts/add_custom_magic_bindkeys.sh
+## Set correct user permissions
+"$STARTUPDIR/scripts/set_user_permission.sh" "$STARTUPDIR" "$HOME"

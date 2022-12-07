@@ -1,9 +1,10 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=rockylinux:9.0
+ARG BASE_IMAGE=ubuntu:focal
 FROM ${BASE_IMAGE} as base
-
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Vienna
 ADD images/base/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
 
@@ -12,11 +13,10 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="94daf986ab9aa94a9ae2ac3539fa5def9bd2a1ac"
+ARG MAGIC_REPO_COMMIT="fb091fa03f3646b0f90639a0798b711ca400941d"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
-ADD images/magic/magic-cheatsheet.txt magic-cheatsheet.txt
 RUN bash install.sh
 
 #######################################################################
@@ -31,34 +31,16 @@ ADD images/iic-osic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# create sky130 (part of OpenLane)
-#######################################################################
-#FROM magic as sky130
-#ARG SKY130_REPO_URL="https://github.com/google/skywater-pdk.git"
-#ARG SKY130_REPO_COMMIT="f70d8ca46961ff92719d8870a18a076370b85f6c"
-#ARG SKY130_NAME="skywater-pdk"
-#
-#ENV PDK_ROOT=/foss/pdks
-#
-#COPY images/skywater-pdk/corners/corners.yml /foss/pdks/corners.yml
-#COPY images/skywater-pdk/corners/make_timing.py /foss/pdks/make_timing.py
-#
-#ADD images/skywater-pdk/scripts/install.sh install.sh
-#RUN bash install.sh
-
-#######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="3af133706e554a740cfe60f21e773d9eaa41838c"
+ARG OPEN_PDKS_REPO_COMMIT="141eea4d1bb8c6d4dd85fcbf2c0bdface7df9cfc"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
 
-#ADD images/open_pdks/scripts/install.sh install.sh
-#RUN bash install.sh
 ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
 
@@ -160,7 +142,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="74c52d6fa15d3f54403d95c662a68edd4bcb9af6"
+ARG IVERILOG_REPO_COMMIT="3438078c909b0ff1d6f20ac4d3c5739fedc8536d"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -182,7 +164,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="7e8508db535064d4e828ae4e4d59fb8f3b4c4ff2"
+ARG NETGEN_REPO_COMMIT="2292ab813b54cc6d6fa41368c4e0e7492fb627c9"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
@@ -228,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.11.16"
+ARG OPENLANE_REPO_COMMIT="2022.12.04"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -239,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="fc0bc8eb8a2ad14a84e0235578ff94733fc108ab"
+ARG OPENROAD_APP_REPO_COMMIT="7c85c140308f01b73f57ea1117f3e43f39abd437"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -283,7 +265,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="f62900f19330b0279a74af48366eb2863a9c9196"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="29d02b75fb6c0b664af56011d8292d1e71c96913"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
@@ -305,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="4d3ede661a3be0a0ac158804f89a1a637c5f9b54"
+ARG XSCHEM_REPO_COMMIT="b23988ccdf5dffd0b64db256290928e1ff87b505"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -372,7 +354,7 @@ EXPOSE $VNC_PORT $NO_VNC_PORT
 ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
-    NO_VNC_HOME=/dockerstartup/noVNC \
+    NO_VNC_HOME=/usr/share/novnc \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1680x1050 \
     VNC_PW=abc123 \
@@ -384,18 +366,17 @@ ENV HOME=/headless \
 ADD images/iic-osic-tools/scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 
-## Install all YUM and PIP packages, aswell as novnc from sources
+## Install all apt and pip packages, as well as novnc from sources
 RUN $STARTUPDIR/scripts/install.sh
 
 ### Copy xfce UI configuration
 ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
 COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
-
 COPY --from=covered                      /foss/tools/            /foss/tools/
 COPY --from=cvc_rv                       /foss/tools/            /foss/tools/
 COPY --from=fault                        /foss/tools/            /foss/tools/
-COPY --from=fault                        /usr/lib/swift/linux/   /usr/lib/swift/linux/
+COPY --from=fault                        /opt/swift/usr/lib/     /opt/swift/usr/lib/
 COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/tools/            /foss/tools/
 COPY --from=gds3d                        /foss/pdks/             /foss/pdks/
@@ -432,26 +413,14 @@ COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
-# This is needed by ngspyce
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/foss/tools/ngspice/ngspice/lib"
-
 # Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
 
-# Copy bashrc into place
-ADD images/iic-osic-tools/scripts/env.sh $HOME/.bashrc
-
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
 
-### configure startup
-RUN $STARTUPDIR/scripts/set_user_permission.sh $STARTUPDIR $HOME
-
 WORKDIR $DESIGNS
-
-USER 1000
-
+USER 1000:1000
 ENTRYPOINT ["/dockerstartup/scripts/ui_startup.sh"]
-
 CMD ["--wait"]

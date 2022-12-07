@@ -109,7 +109,7 @@ if [ "$start_vnc" = true ]; then
   ## start vncserver and noVNC webclient
   echo -e "\n------------------ start noVNC  ----------------------------"
 
-  "$NO_VNC_HOME"/utils/novnc_proxy --vnc localhost:"$VNC_PORT" --listen "$NO_VNC_PORT" &> "$STARTUPDIR"/logs/no_vnc_startup.log &
+  "$NO_VNC_HOME"/utils/launch.sh --vnc localhost:"$VNC_PORT" --listen "$NO_VNC_PORT" &> "$STARTUPDIR"/logs/no_vnc_startup.log &
   #WAIT for VNC server, not for novnc proxy
   #PID_SUB=$!
 
@@ -119,7 +119,7 @@ if [ "$start_vnc" = true ]; then
   rm -rf /tmp/.X1-lock
   rm -rf /tmp/.X11-unix/X1
   
-  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" &> "$STARTUPDIR"/logs/vnc_startup.log
+  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
 
   echo -e "start window manager\n..."

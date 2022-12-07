@@ -2,191 +2,205 @@
 
 set -e
 
-yum update -y
-yum install yum-utils -y
-# powertools are crb from Rocky 9 and (hopefully) up.
-dnf config-manager --set-enabled crb
-yum install epel-release -y
-yum group install "Development Tools" -y
+apt-get update -y && apt-get upgrade -y
 
-# Notes: Only install curl-devel and openssl-devel because of version mismatches in Rocky 9!
-yum install -y \
-	alsa-lib \
-	alsa-lib-devel \
+apt-get install -y \
 	autoconf \
 	automake \
-	binutils-gold \
+	binutils \
 	bison \
-	blas \
-	blas-devel \
-	boost \
-	boost-devel \
+	build-essential \
 	bzip2 \
-	bzip2-devel \
 	ca-certificates \
-	cairo \
-	cairo-devel \
 	cargo \
 	clang \
 	cmake \
 	csh \
-	curl-devel \
-	eigen3-devel \
+	cython3 \
+	doxygen \
 	expat \
-	expat-devel \
-	fftw \
-	fftw-devel \
 	flex \
-	flex-devel \
+	g++ \
 	gawk \
 	gcc \
-	gcc-c++ \
-	gcc-gfortran \
-	gcc-gnat \
 	gdb \
 	gettext \
-	gettext-devel \
+	gfortran \
 	ghostscript \
 	git \
-	glibc-langpack-en \
-	glibc-static \
-	gobject-introspection-devel \
+	gnat \
+	gnupg2 \
 	gperf \
 	graphviz \
-	gtk3 \
-	gtk3-devel \
+	gtk2-engines-pixbuf \
 	help2man \
-	langpacks-en \
-	lapack \
-	lapack-devel \
-	libffi \
-	libffi-devel \
-	libgomp \
-	libjpeg \
-	libmng \
-	libSM \
-	libstdc++ \
-	libstdc++-static \
+	language-pack-en-base \
+	libasound2-dev \
+	libblas-dev \
+	libboost-all-dev \
+	libbz2-dev \
+	libc6-dev \
+	libcairo2-dev \
+	libcurl4-openssl-dev \
+	libdw-dev \
+	libedit-dev \
+	libeigen3-dev \
+	libexpat1-dev \
+	libffi-dev \
+	libfftw3-dev \
+	libfindbin-libs-perl \
+	libfl-dev \
+	libgcc-9-dev \
+	libgconf2-dev \
+	libgettextpo-dev \
+	libglu1-mesa-dev \
+	libgomp1 \
+	libgtk-3-dev \
+	libgtk2.0-dev \
+	libjpeg-dev \
+	libjudy-dev \
+	liblapack-dev \
+	liblzma-dev \
+	libmng-dev \
+	libncurses-dev \
+	libnss-wrapper \
+	libopenmpi-dev \
+	libpcre++-dev \
+	libpython2.7 \
+	libqt5multimediawidgets5 \
+	libqt5svg5-dev \
+	libqt5xmlpatterns5-dev \
+	libreadline-dev \
+	libsm-dev \
+	libspdlog-dev \
+	libsqlite3-dev \
+	libssl-dev \
+	libstdc++-10-dev \
+	libstdc++-9-dev \
+	libsuitesparse-dev \
 	libtool \
-	libX11 \
-	libX11-devel \
-	libXaw \
-	libXaw-devel \
-	libxcb \
-	libxcb-devel \
-	libXext \
-	libXft \
-	libxml2-devel \
-	libXpm \
-	libXpm-devel \
-	libXrender \
-	libXrender-devel \
-	libxslt-devel \
-	libyaml \
-	llvm \
-	llvm-devel \
+	libwxgtk3.0-gtk3-dev \
+	libx11-dev \
+	libxaw7-dev \
+	libxcb1-dev \
+	libxext-dev \
+	libxft-dev \
+	libxml2-dev \
+	libxpm-dev \
+	libxrender-dev \
+	libxslt1-dev \
+	libyaml-dev \
+	libz3-dev \
+	libzip-dev \
+	llvm-dev \
 	make \
-	mesa-libGLU-devel \
-	ncurses-devel \
 	ninja-build \
 	nodejs \
-	openmpi \
-	openmpi-devel \
-	openssl-devel \
+	npm \
+	openmpi-bin \
+	openssl \
 	patch \
 	pciutils \
-	pciutils-libs \
-	pcre-devel \
-	perl-FindBin \
+	pkg-config \
 	python3 \
-	python3-Cython \
-	python3-devel \
-    python3-gobject \
-    python3-jinja2 \
-    python3-numpy \
+	python3-dev \
 	python3-pip \
+	python3-aiohttp \
+	python3-async-timeout \
+	python3-cffi \
+	python3-click \
+	python3-cryptography \
+	python3-gdspy \
+	python3-graphviz \
+	python3-jinja2 \
+	python3-matplotlib \
+	python3-multidict \
+	python3-netifaces \
+	python3-notebook \
+	python3-numpy \
+	python3-pandas \
+	python3-plotly \
+	python3-psutil \
 	python3-pybind11 \
-	python3-pyyaml \
+	python3-pycparser \
+	python3-pydantic \
+	python3-qrcode \
+	python3-requests \
 	python3-scipy \
+	python3-shapely \
 	python3-setuptools \
-    python3-tkinter \
+	python3-tabulate \
+	python3-tk \
+	python3-toolz \
+	python3-tqdm \
+	python3-typing-extensions \
+	python3-watchdog \
 	python3-wheel \
-	qt5-devel \
-	qt5-qtbase \
-	qt5-qtmultimedia \
-	qt5-qtsvg \
-	qt5-qttools \
-	qt5-qtxmlpatterns \
-	readline-devel \
+	python3-xlsxwriter \
+	python3-xmltodict \
+	python3-yarl \
+	qtbase5-dev \
+	qtmultimedia5-dev \
+	qttools5-dev \
 	ruby \
-	ruby-devel \
-	ruby-irb \
-	ruby-libs \
-	rubygem-bigdecimal \
-	rubygem-io-console \
-	rubygem-json \
-	rubygem-psych \
-	rubygem-rdoc \
-	rubygems \
-	rust \
-	spdlog \
-	spdlog-devel \
+	ruby-dev \
+	libruby2.7 \
+	rustc \
 	strace \
-	suitesparse \
-	suitesparse-devel \
 	swig \
-	tcl \
-	tcl-devel \
+	tcl-dev \
+	tcllib \
 	texinfo \
 	time \
-	tk \
-	tk-devel \
+	tk-dev \
+	tzdata \
 	unzip \
-	vim-common \
+	uuid-dev \
 	wget \
-	which \
-	wxGTK3 \
-	wxGTK3-devel \
-	Xvfb \
-	xz-devel \
+	xdot \
+	xvfb \
 	zip \
-	zlib-devel \
-	zlib-static
-  
+	zlib1g-dev 
+
+# These packages will become available in 2204:
+# binutils-gold \
+# ruby-irb \
+# liblemon-dev \
+# python3-aiosignal \
+# python3-antlr4 \
+# python3-charset-normalizer \
+# python3-click-default-group \
+# python3-commonmark \
+# python3-frozenlist \
+# python3-installer \
+# python3-loguru \
+# python3-rich \
+# python3-setuptools-rust \
+# python3-skbuild \
+# ruby-rubygems \
+
 # Upgrade pip and install important packages
 
 # FIXME: PIP upgrade fails on x86, so remove it
 # python3 -m pip install --upgrade pip
 
 pip3 install --no-cache-dir \
-	cmake \
-	ninja \
-	scikit-build \
-	setuptools-rust
-
-# Install Python packages via pip:
-pip3 install --no-cache-dir \
 	amaranth \
-	click \
 	cocotb \
-	gdspy \
-	matplotlib \
-	notebook \
-	pandas \
-	plotly \
-	pyinstaller \
+	gdsfactory \
+	gobject \
+	ninja \
+	panda \
 	pyrtl \
 	pyspice \
 	pyverilog \
-	siliconcompiler \
+	scikit-build \
+	setuptools-rust \
 	spyci \
-	tk \
-	volare>=0.1.3 \
-	xdot \
-	XlsxWriter \
-	gdsfactory==5.55.0
-	#FIXME: gdsfactory (>=6.0.0) now needs gdstk, but the build fails (to be debugged)
-	
+	volare \
+	xdot
+
+#FIXME siliconcompiler \
 
 # Install Ruby packages via gem:
 gem install \
@@ -199,31 +213,47 @@ gem install \
 npm install -g \
 	netlistsvg
 
-# lemon-1.3.1 are required for OpenROAD (which is used in OpenLane)
-# shellcheck disable=SC1091
+# FIXME Install cmake (need version >= 3.18 for ortools)
+# FIXME Can be removed in 22.04LTS
+apt-get remove -y cmake
+CMAKE_VERSION=3.24
+CMAKE_BUILD=1
+install_cmake () {
+	cd /tmp || exit 1
+	wget --no-verbose "https://cmake.org/files/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+	tar -xzvf "cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+	cd "cmake-$CMAKE_VERSION.$CMAKE_BUILD"
+	./bootstrap
+	make -j"$(nproc)"
+	make install
+}
+install_cmake
+
+# Install lemon-1.3.1 (will become available via apt in 2204)
 #
-# Install lemon-1.3.1
-#
+LEMON_VERSION=1.3.1
 install_lemon () {
 	cd /tmp || exit 1
-	wget --no-verbose http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
-	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-1.3.1.tar.gz") || exit 1
-	tar -xf lemon-1.3.1.tar.gz
-	cd lemon-1.3.1 || exit 1
+	wget --no-verbose "http://lemon.cs.elte.hu/pub/sources/lemon-$LEMON_VERSION.tar.gz"
+	md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-$LEMON_VERSION.tar.gz") || exit 1
+	tar -xf "lemon-$LEMON_VERSION.tar.gz"
+	cd "lemon-$LEMON_VERSION" || exit 1
 	cmake -B build .
 	cmake --build build -j "$(nproc)" --target install
 }
 install_lemon
 
-
-install_tcllib () {
+# Install or-tools (dependcy of OpenROAD)
+#
+ORTOOLS_VERSION=9.4
+install_ortools () {
 	cd /tmp || exit 1
-	wget --no-verbose https://core.tcl-lang.org/tcllib/uv/tcllib-1.21.tar.xz
-	sha256sum -c <(echo "10c7749e30fdd6092251930e8a1aa289b193a3b7f1abf17fee1d4fa89814762f  tcllib-1.21.tar.xz") || exit 1
-	tar -xf tcllib-1.21.tar.xz
-	cd tcllib-1.21
-	tclsh installer.tcl -no-gui -no-html -no-nroff -no-examples -pkg-path /usr/share/tk8.6/tcllib1.21 -app-path /usr/share/bin -no-wait
+	wget --no-verbose "https://github.com/google/or-tools/archive/refs/tags/v$ORTOOLS_VERSION.tar.gz"
+	tar -xf "v$ORTOOLS_VERSION.tar.gz"
+	cd "or-tools-$ORTOOLS_VERSION" || exit 1
+    cmake -B build . -DBUILD_DEPS:BOOL=ON
+    cmake --build build -j "$(nproc)" --target install
 }
-install_tcllib
+install_ortools
 
 rm -rf /tmp/*

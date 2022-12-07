@@ -35,16 +35,45 @@ if [ -z ${DOCKER_TAG+z} ]; then
 	DOCKER_TAG="latest"
 fi
 
-if [ -z ${CONTAINER_USER+z} ]; then
-	CONTAINER_USER=$(id -u)
-fi
-
-if [ -z ${CONTAINER_GROUP+z} ]; then
-	CONTAINER_GROUP=$(id -g)
-fi
-
 if [ -z ${CONTAINER_NAME+z} ]; then
 	CONTAINER_NAME="iic-osic-tools_xvnc_uid_"$(id -u)
+fi
+
+if [[ "$OSTYPE" == "linux"* ]]; then
+	if [ -z ${CONTAINER_USER+z} ]; then
+	        CONTAINER_USER=$(id -u)
+	fi
+
+	if [ -z ${CONTAINER_GROUP+z} ]; then
+	        CONTAINER_GROUP=$(id -g)
+	fi
+else
+	if [ -z ${CONTAINER_USER+z} ]; then
+			CONTAINER_USER=1000
+	fi
+
+	if [ -z ${CONTAINER_GROUP+z} ]; then
+			CONTAINER_GROUP=1000
+	fi
+fi
+
+# Check for UIDs and GIDs below 1000, except 0 (root)
+if [ ${CONTAINER_USER} -ne 0  &&  ${CONTAINER_USER} -lt 1000]; then
+	prt_str="# WARNING: Selected User ID ${CONTAINER_USER} is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour! #"
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+	echo ${prt_str}
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+fi
+
+if [ ${CONTAINER_GROUP} -ne 0  &&  ${CONTAINER_GROUP} -lt 1000]; then
+	prt_str="WARNING: Selected Group ID ${CONTAINER_GROUP} is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour!"
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
+	echo ${prt_str}
+	printf -- '#%.0s' $(seq 1 ${#prt_str})
+	echo ""
 fi
 
 # Processing ports

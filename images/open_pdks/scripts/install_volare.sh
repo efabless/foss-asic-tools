@@ -2,7 +2,7 @@
 
 set -e
 
-export LC_ALL=en_US.utf8 && export LANG=en_US.utf8
+export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 export SCRIPT_DIR=/foss/tools/iic-osic
 
 if [ ! -d "$PDK_ROOT" ]; then
@@ -43,3 +43,12 @@ fi
 ##################
 
 volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk gf180mcu
+
+#FIXME maybe need to run spice model file reduction here as well
+#FIXME need to define a magic bindkeys for gf180mcu
+
+#FIXME remove version fg180mcuA/B until compressed pkds become available (efabless TO use gf180mcuC)
+rm -rf "$PDK_ROOT"/volare/gf180mcu/versions/*/gf180mcuA
+rm -rf "$PDK_ROOT"/volare/gf180mcu/versions/*/gf180mcuB
+rm -rf "$PDK_ROOT"/gf180mcuA
+rm -rf "$PDK_ROOT"/gf180mcuB

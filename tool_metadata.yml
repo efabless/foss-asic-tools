@@ -9,7 +9,7 @@
     make install
 - name: magic
   repo: https://github.com/rtimothyedwards/magic
-  commit: 94daf986ab9aa94a9ae2ac3539fa5def9bd2a1ac
+  commit: fb091fa03f3646b0f90639a0798b711ca400941d
   build: |
     ./configure --prefix=$PREFIX $MAGIC_CONFIG_OPTS
     make clean
@@ -18,7 +18,7 @@
     make install
 - name: netgen
   repo: https://github.com/rtimothyedwards/netgen
-  commit: 7e8508db535064d4e828ae4e4d59fb8f3b4c4ff2
+  commit: 2292ab813b54cc6d6fa41368c4e0e7492fb627c9
   build: |
     ./configure --prefix=$PREFIX $MAGIC_CONFIG_OPTS
     make clean
@@ -58,7 +58,7 @@
   in_install: false
 - name: openroad_app
   repo: https://github.com/The-OpenROAD-Project/OpenROAD
-  commit: fc0bc8eb8a2ad14a84e0235578ff94733fc108ab
+  commit: 7c85c140308f01b73f57ea1117f3e43f39abd437
   build: ''
   in_install: false
 - name: git
@@ -68,7 +68,7 @@
   in_install: false
 - name: open_pdks
   repo: https://github.com/RTimothyEdwards/open_pdks
-  commit: 3af133706e554a740cfe60f21e773d9eaa41838c
+  commit: 141eea4d1bb8c6d4dd85fcbf2c0bdface7df9cfc
   build: ''
   in_install: false
   pdk: true
