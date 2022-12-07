@@ -75,9 +75,13 @@ export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export OPENLANE_ROOT=$TOOLS/openlane
 export EDITOR='gedit'
 
-# this get's rid of a few libGL errors
+# FIXME: this get's rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1
+
+# FIXME: this get's rid of the dbus-warning
+# https://unix.stackexchange.com/questions/230238/x-applications-warn-couldnt-connect-to-accessibility-bus-on-stderr/230442#230442
+export NO_AT_BRIDGE=1
 
 if [ ! -d $XDG_RUNTIME_DIR ]; then
         mkdir -p $XDG_RUNTIME_DIR
