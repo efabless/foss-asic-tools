@@ -111,40 +111,6 @@ apt-get install -y \
 	python3 \
 	python3-dev \
 	python3-pip \
-	python3-aiohttp \
-	python3-async-timeout \
-	python3-cffi \
-	python3-click \
-	python3-cryptography \
-	python3-gdspy \
-	python3-graphviz \
-	python3-jinja2 \
-	python3-matplotlib \
-	python3-multidict \
-	python3-netifaces \
-	python3-notebook \
-	python3-numpy \
-	python3-pandas \
-	python3-plotly \
-	python3-psutil \
-	python3-pybind11 \
-	python3-pycparser \
-	python3-pydantic \
-	python3-qrcode \
-	python3-requests \
-	python3-scipy \
-	python3-shapely \
-	python3-setuptools \
-	python3-tabulate \
-	python3-tk \
-	python3-toolz \
-	python3-tqdm \
-	python3-typing-extensions \
-	python3-watchdog \
-	python3-wheel \
-	python3-xlsxwriter \
-	python3-xmltodict \
-	python3-yarl \
 	qt5-default \
 	qt5-image-formats-plugins \
 	qtbase5-dev \
@@ -174,17 +140,6 @@ apt-get install -y \
 # binutils-gold \
 # ruby-irb \
 # liblemon-dev \
-# python3-aiosignal \
-# python3-antlr4 \
-# python3-charset-normalizer \
-# python3-click-default-group \
-# python3-commonmark \
-# python3-frozenlist \
-# python3-installer \
-# python3-loguru \
-# python3-rich \
-# python3-setuptools-rust \
-# python3-skbuild \
 # ruby-rubygems \
 
 # Upgrade pip and install important packages
@@ -192,23 +147,38 @@ apt-get install -y \
 # FIXME: PIP upgrade fails on x86, so remove it
 # python3 -m pip install --upgrade pip
 
-pip3 install --no-cache-dir \
+pip3 install --upgrade --no-cache-dir \
 	amaranth \
+	click \
 	cocotb \
 	gdsfactory \
+	gdspy \
 	gobject \
+	graphviz \
+	matplotlib \
 	ninja \
+	numpy \
 	panda \
+	plotly \
+	psutil \
+	pybind11 \
 	pyrtl \
 	pyspice \
 	pyverilog \
 	scikit-build \
+	scipy \
+	setuptools \
 	setuptools-rust \
+	shapely \
+	siliconcompiler \
 	spyci \
+	tk \
 	volare \
-	xdot
-
-#FIXME siliconcompiler \
+	wheel \
+	xdot \
+	xlsxwriter \
+	xmltodict \
+	yarl
 
 # Install Ruby packages via gem:
 gem install \
