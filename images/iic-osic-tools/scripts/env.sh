@@ -144,6 +144,12 @@ alias gln='git log --name-status'
 alias gsss='git submodule status'
 
 #----------------------------------------
+# Adapt user prompt
+#----------------------------------------
+
+export PS1='\[\033[0;32m\]\w >\[\033[0;38m\] '
+
+#----------------------------------------
 # Source user configs from $DESIGNS
 #----------------------------------------
 
