@@ -57,10 +57,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
 
         export SAK=$TOOLS/sak/
         export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
-
-        echo "Final PATH variable:"
-        echo "$PATH"
-
+        echo "Final PATH variable: $PATH"
         export FOSS_PATH_SET=1
 fi
 
@@ -82,9 +79,9 @@ export EDITOR='gedit'
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1
 
-if [ ! -d XDG_RUNTIME_DIR ]; then
-        mkdir -p XDG_RUNTIME_DIR
-        chmod 700 XDG_RUNTIME_DIR
+if [ ! -d $XDG_RUNTIME_DIR ]; then
+        mkdir -p $XDG_RUNTIME_DIR
+        chmod 700 $XDG_RUNTIME_DIR
 fi
 
 #----------------------------------------
@@ -154,10 +151,3 @@ if [ -f "$DESIGNS/.designinit" ]; then
         # shellcheck source=/dev/null
         source "$DESIGNS/.designinit"
 fi
-
-#----------------------------------------
-# From libnss_wrapper.sh
-#----------------------------------------
-
-# shellcheck disable=SC1091
-source "$STARTUPDIR/scripts/generate_container_user"
