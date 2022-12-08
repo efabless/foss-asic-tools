@@ -2,20 +2,36 @@
 
 **This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>**
 
-IIC-OSIC-TOOLS is an all-in-one Docker container for SKY130-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64` and `aarch64` are natively supported based on Ubuntu LTS. This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+IIC-OSIC-TOOLS is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu LTS (since `2022.12`). This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
 It supports two *modes of operation*:
 
 1. Using a complete desktop environment (XFCE) in Xvnc (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs now in your browser.
 2. Using a local X11 server and directly showing the application windows on your desktop.
 
-[Watch this 5min video](https://youtu.be/EP3ozAtTQDw) to kickstart your analog project (draft - more detailed information is coming).
+## Installed PDKs
+
+As of the `2022.12` tag, the following open-source process-development kits (PDKs) are pre-installed, and the table shows how to switch by setting environment variables (you can do this per project by putting this into `.designinit` as explained below):
+
+| SkyWater Technologies `sky130A` (default) | `sky130B` |
+|---|---|
+| `export PDK=sky130A` | `export PDK=sky130B` |
+| `export PDKPATH=$PDK_ROOT/$PDK` | `export PDKPATH=$PDK_ROOT/$PDK` |
+| `export STD_CELL_LIBRARY=sky130_fd_sc_hd` | `export STD_CELL_LIBRARY=sky130_fd_sc_hd` |
+
+| Global Foundries `gf180mcuC` |
+|---|
+| `export PDK=gf180mcuC` |
+| `export PDKPATH=$PDK_ROOT/$PDK` |
+| `export STD_CELL_LIBRARY=gf180mcu_fd_sc_mcu7t5v0` |
+
+More options for selecting digital standard cell libraries are available; please check the PDK directories.
 
 ## Installed Tools
 
 Below is a list of the current tools already installed and ready to use (note there are some adaptions in our container vs. efabless.com):
 
 * [amaranth](https://github.com/amaranth-lang/amaranth) a Python-based HDL toolchain
-* [cocotb](https://github.com/cocotb/cocotb) simulation library for writing VHDL and Verilog testbenches in Python
+* [cocotb](https://github.com/cocotb/cocotb) simulation library for writing VHDL and Verilog test benches in Python
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
@@ -63,7 +79,7 @@ Download and install **Docker** for your operating system:
 * [Mac with Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg)
 * [Mac with Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg)
 
-Note for Linux: Do not run docker commands or the start scripts as root (sudo)! Follow the instructions in [Post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/)
+Note for Linux: Do not run docker commands or the start scripts as root (`sudo`)! Follow the instructions in [Post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/)
 
 The following start scripts are intended as helper scripts for local or small-scale (single instance) deployment. If you need to run a bulk of instances, consider starting the containers with a custom start script.
 
@@ -79,7 +95,7 @@ This mode is recommended for remote operation on a separate server or if you pre
 
 `./start_vnc.sh`
 
-On Windows, you can use the equivalent batch script (if the defaults are acceptable, it can also be started by double clicking in the Explorer):
+On Windows, you can use the equivalent batch script (if the defaults are acceptable, it can also be started by double-clicking in Explorer):
 
 `.\start_vnc.bat`
 
@@ -89,22 +105,22 @@ You can now access the Desktop Environment through your browser ([http://localho
 
 Both scripts will use default settings, which you can tweak by settings shell variables (VARIABLE=default is shown):
 
-* `DRY_RUN` (unset by default); if set to any value (also 0, false, etc.), makes the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
+* `DRY_RUN` (unset by default); if set to any value (also 0, false, etc.), the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `WEBSERVER_PORT=80` sets the port on which the Docker daemon will map the webserver port of the container to be reachable from localhost and the outside world. `0` disables the mapping.
 * `VNC_PORT=5901` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required if you want to access the UI with a different VNC client. `0` disabled the mapping.
 * `DOCKER_USER="hpretl"` username for the Docker Hub repository from which the images are pulled. Usually, no change is required.
-* `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Normally no change is required.
+* `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Usually, no change is required.
 * `DOCKER_TAG="latest"` Docker Hub image tag. By default, it pulls the latest version; this might be handy to change if you want to match a specific version set.
 * `CONTAINER_USER=$(id -u)` (the current user's ID, `CONTAINER_USER=1000` for `.bat`) The user ID (and also group ID) is especially important on Linux and macOS because those are the IDs used to write files in the `DESIGNS` directory. For debugging/testing, the user and group ID can be set to `0` to gain root access inside the container.
 * `CONTAINER_GROUP=$(id -g)` (the current user's group ID, `CONTAINER_GROUP=1000` for `.bat`)
-* `CONTAINER_NAME="iic-osic-tools_xvnc_uid_"$(id -u)` (attaches the executing users id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xvnc` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
+* `CONTAINER_NAME="iic-osic-tools_xvnc_uid_"$(id -u)` (attaches the executing user's id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xvnc` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
 
 To overwrite the default settings, see [Overwriting Shell Variables](#overwriting-shell-variables)
 
 ### Using a Local X-Server
 
-This mode is recommended if the container is run on the local machine. It is significantly faster than VNC (as it renders the graphics locally), is more lightweight (no complete desktop environment is running), and integrates with the desktop (copy-paste, etc.). To start the container run
+This mode is recommended if the container is run on the local machine. It is significantly faster than VNC (as it renders the graphics locally), is more lightweight (no complete desktop environment is running), and integrates with the desktop (copy-paste, etc.). To start the container, run the following:
 
 `./start_x.sh`
 
@@ -112,9 +128,9 @@ or
 
 `.\start_x.bat`
 
-**Attention Windows and macOS users:** The X-server connection is automatically killed if there is a too long idle period in the terminal (when this happens, it looks like a **crash** of the system). A **workaround** is to start a second terminal from the initial terminal that pops up when executing the start scripts `./start_x.sh` or `.\start_x.bat`, and then start `htop` in the initial terminal. In this way, there is an ongoing display activity in the initial terminal, and as a positive side-effect, the usage of the machine can be monitored. We are looking for a better long-term solution.
+**Attention Windows and macOS users:** The X-server connection is automatically killed if there is a too-long idle period in the terminal (when this happens, it looks like a **crash** of the system). A **workaround** is to start a second terminal from the initial terminal that pops up when executing the start scripts `./start_x.sh` or `.\start_x.bat` and then start `htop` in the initial terminal. In this way, there is an ongoing display activity in the initial terminal, and as a positive side-effect, the usage of the machine can be monitored. We are looking for a better long-term solution.
 
-**Attention macOS users:** Please make sure to disable the *Enable VirtioFS accelerated directory sharing* setting available as "Beta Setting", as this will cause issues with accessing the mounted drives! However, enabling *VirtioFS* general setting works in Docker >v4.15.0!
+**Attention macOS users:** Please make sure to disable the *Enable VirtioFS accelerated directory sharing* setting available as "Beta Setting," as this will cause issues accessing the mounted drives! However, enabling the *VirtioFS* general setting works in Docker >v4.15.0!
 
 #### Variables for X11
 
@@ -123,11 +139,11 @@ The following environment variables are used for configuration:
 * `DRY_RUN` (unset by default), if set to any value (also 0, false, etc.), makes the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `DOCKER_USER="hpretl"` username for the Docker Hub repository from which the images are pulled. Usually, no change is required.
-* `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Normally no change is required.
+* `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Usually, no change is required.
 * `DOCKER_TAG="latest"` Docker Hub image tag. By default, it pulls the latest version; this might be handy to change if you want to match a specific Version set.
 * `CONTAINER_USER=$(id -u)` (the current user's ID, `CONTAINER_USER=1000` for `.bat`) The user ID (and also group ID) is especially important on Linux and macOS because those are the IDs used to write files in the DESIGNS directory.
 * `CONTAINER_GROUP=$(id -g)` (the current user's group ID, `CONTAINER_GROUP=1000` for `.bat`)
-* `CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)` (attaches the executing users id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xserver` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
+* `CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)` (attaches the executing user's id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xserver` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
 
 #### macOS and Windows-specific Variables
 
@@ -135,7 +151,7 @@ For Mac and Windows, the X11 server is accessed through TCP (:0, aka port 6000).
 
 * `DISP=host.docker.internal:0` is the environment variable that is copied into the `DISPLAY` variable of the container. `host.docker.internal` resolves to the host's IP address inside the docker containers, `:0` corresponds to display 0 which corresponds to TCP port 6000.
 
-If the executable `xauth` is in `PATH`, the startup script automatically disables access control for localhost, so the X11 server is open for connections from the container. If not, a warning will be shown, and you have to disable access control by yourself.
+If the executable `xauth` is in `PATH`, the startup script automatically disables access control for localhost, so the X11 server is open for connections from the container. If not, a warning will be shown, and you will have to disable access control.
 
 #### Linux-specific Variables
 
@@ -149,7 +165,7 @@ The defaults for these variables are tested on native X11 servers, X2Go sessions
 
 #### Installing X11-Server
 
-Everything should be ready to go on Linux with a desktop environment / UI (this setup has been tested on X11 and XWayland). For Windows and macOS, the installation of an X11 server is typically required. Due to the common protocol, every X11-server should work, although the following are tested:
+Everything should be ready on Linux with a desktop environment / UI (this setup has been tested on X11 and XWayland). For Windows and macOS, the installation of an X11 server is typically required. Due to the common protocol, every X11-server should work, although the following are tested:
 
 * For Windows: [VcXsrc](https://sourceforge.net/projects/vcxsrv/)
 * For macOS: [XQuartz](https://www.xquartz.org/) **Important:** Please enable *"Allow connections from network clients"* in the XQuartz preferences [CMD+","], tab *"Security"*
@@ -162,7 +178,7 @@ For both X-Servers, it is strongly recommended to enable OpenGL:
   * Multiple windows mode
   * Set the Display Number to 0
   * Start no client
-  * Tick all `Extra settings`: `Clipboard`, `Primary selection`, `Native opengl` and `Disable access control`
+  * Tick all `Extra settings`: `Clipboard`, `Primary selection`, `Native opengl`, and `Disable access control`
 
 ### Overwriting Shell Variables
 
@@ -184,7 +200,7 @@ As those variables are stored in your current shell session, you only have to se
 
 #### For the Windows Batch Scripts
 
-In `CMD` you can't set the variables directly when running the script. So for the .bat scripts, it is like the second variant for Bash scripts:
+In `CMD` you can't set the variables directly when running the script. So for the `.bat` scripts, it is like the second variant for Bash scripts:
 
 ```batch
 SET DESIGNS=\my\design\directory
@@ -200,12 +216,12 @@ SET DOCKER_USERNAME=another_user
 
 ### Building the container
 
-The installation slightly differs from the original `foss-asic-tools` installation by efabless.com. For this image, the build is replaced with a single Dockerfile for convenience when doing a multi-architecture build. For a basic single (native)-architecture build, just run
+The installation slightly differs from the original `foss-asic-tools` installation by efabless.com. For this image, the build is replaced with a single Dockerfile for convenience when doing a multi-architecture build. For a basic single (native)-architecture build, just run the following:
 
 `docker build .`
 
 You can add build parameters accordingly. We strongly recommend using `docker buildx` because of `buildkit` (parallel building) and multi-architecture support. The script `build_all.sh` includes building with `buildx`, on two different machines (for fast amd64 and arm64 builds) and pushes both images to the Docker Hub under the same tag. The script includes multiple environment variables with defaults. If you intend to build this image, we encourage you to use this script as a template.
-The predefined settings are for the IIC build-machines, and the image gets pushed with the tags `latest` and `year.month`.
+The predefined settings are for the IIC build machines, and the image gets pushed with the tags `latest` and `year.month` (e.g., `2022.12`).
 
 ### Detailed container settings
 
@@ -230,21 +246,21 @@ Furthermore, the following variables can be set:
 * `VNC_RESOLUTION=1680x1050` VNC display resolution. NOTE: This can also be changed while running in the Desktop environment by going to Settings->Display.
 * `VNC_PW=abc123` Default VNC password.
 * `VNC_VIEW_ONLY=false` can set the VNC server to view only.
-* `DESIGNS=/foss/designs` Default directory, where the designs are placed.
+* `DESIGNS=/foss/designs` Default directory, where the user's designs are placed.
 * `TOOLS=/foss/tools` Default tools directory.
 * `PDK_ROOT=/foss/pdks` Default PDKs directory.
 
 #### Entrypoint script
 
-The entry point for this container is the [ui_startup.sh](https://github.com/hpretl/iic-osic-tools/blob/main/images/iic-osic-tools/scripts/ui_startup.sh) script. It controls which kind of UI (Xvnc or connecting to local X11 server) is used. The control logic for the automatic mode is simple. If the environment variable `DISPLAY` is set, an already existing X11 server is assumed, and the startup script runs an XFCE4 terminal. If the `DISPLAY` is not set, it starts Xvnc and the noVNC web interface. This behavior can be overwritten with command line arguments.
+The entry point for this container is the [ui_startup.sh](https://github.com/hpretl/iic-osic-tools/blob/main/images/iic-osic-tools/scripts/ui_startup.sh) script. It controls which kind of UI (Xvnc or connecting to local X11 server) is used. The control logic for the automatic mode is simple. If the environment variable `DISPLAY` is set, an already existing X11 server is assumed, and the startup script runs an XFCE4 terminal. If the `DISPLAY` is not set, it starts Xvnc and the noVNC web interface. This behavior can be overwritten with command-line arguments.
 
 The following command line arguments are supported:
 
 * `-X, --x11` Force to use local X11 forwarding requires a working combination of `$DISPLAY`, and either port forwards or mounted `XAUTHORITY` and `.X11_unix` socket.
 * `-V, --vnc` Force use of VNC server, with noVNC and `websockify`.
 * `-w, --wait` Runs the selected UI and waits for them to exit. The script will only return then. This flag is set in the container per default (via `CMD` in the Dockerfile).
-* `-s, --skip` Skip the UI startup and execute the assigned command. **WARNING:** This must be the first parameter to the script, or it must be ignored! example: `docker run hpretl/iic-osic-tools --skip bash`
-* `-d, --debug` Enables more detailed startup output e.g. `docker run hpretl/iic-osic-tools --debug`
+* `-s, --skip` Skip the UI startup and execute the assigned command. **WARNING:** This must be the first parameter to the script, or it must be ignored! Example: `docker run hpretl/iic-osic-tools --skip bash`
+* `-d, --debug` Enables more detailed startup output, e.g., `docker run hpretl/iic-osic-tools --debug`
 
 As some examples already show, these parameters can be passed to the container via Docker:
 
@@ -256,7 +272,7 @@ As some examples already show, these parameters can be passed to the container v
 * The tool versions (typically the commit hash) have defaulted in the Dockerfile. It can be overwritten via environment variables.
 * Only the final image is tagged; the sub-tools are not. It is still possible to build only to a certain stage (stages are defined in the Dockerfile by `FROM base_image as stage_name`).
 * The final image is called `iic-osic-tool` by default.
-* Docker on Windows suffers from bad memory management due WSL2, especially for systems with less then 16GB RAM. As a workaround, a memory limit to WSL can be set. See [Advanced settings configuration in WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config) (look for the key "memory" in the wsl2 tag).
+* Docker on Windows suffers from bad memory management due to WSL2, especially for systems with less than 16GB RAM. As a workaround, a memory limit to WSL can be set. See [Advanced settings configuration in WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config) (look for the key "memory" in the `wsl2` tag).
 
 ## Todo
 
