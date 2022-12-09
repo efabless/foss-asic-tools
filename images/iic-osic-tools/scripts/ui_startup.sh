@@ -119,7 +119,7 @@ if [ "$start_vnc" = true ]; then
   rm -rf /tmp/.X1-lock
   rm -rf /tmp/.X11-unix/X1
   
-  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
+  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
 
   echo -e "start window manager\n..."
