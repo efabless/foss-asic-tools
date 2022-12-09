@@ -118,9 +118,12 @@ if [ "$start_vnc" = true ]; then
   # workaround, lock files are not removed if the container is re-run otherwise which makes vncserver unaccessible
   rm -rf /tmp/.X1-lock
   rm -rf /tmp/.X11-unix/X1
-  
+  if [ "$(arch)" == "aarch64" ]; then  
+    export LD_PRELOAD=/lib/aarch64-linux-gnu/libgcc_s.so.1
+  fi
   vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
+  unset LD_PRELOAD
 
   echo -e "start window manager\n..."
   "$STARTUPDIR"/scripts/wm_startup.sh &> "$STARTUPDIR"/logs/wm_startup.log
