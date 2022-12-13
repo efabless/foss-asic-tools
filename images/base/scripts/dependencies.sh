@@ -16,6 +16,7 @@ apt-get install -y \
 	cargo \
 	clang \
 	cmake \
+	coinor-libcbc-dev \
 	csh \
 	cython3 \
 	doxygen \
@@ -77,6 +78,7 @@ apt-get install -y \
 	libqt5xmlpatterns5-dev \
 	libreadline-dev \
 	libsm-dev \
+	liblpsolve55-dev \
 	libspdlog-dev \
 	libsqlite3-dev \
 	libssl-dev \
