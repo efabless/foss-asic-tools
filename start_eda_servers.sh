@@ -175,6 +175,7 @@ fi
 # here is the loop
 echo "[]" > "$CREDENTIAL_FILE"
 
+echo "[INFO] Starting to spin up EDA server instances."
 for i in $(seq 1 "$NUMBER_USERS")
 do
 	PASSWD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c"${1:-$PASSWD_DIGITS}")	
@@ -189,6 +190,6 @@ do
 done
 
 echo ""
-echo "[DONE] EDA containers are up and running!"
-echo "[DONE] User credentials can be found in $CREDENTIAL_FILE."
+echo "[INFO] EDA containers are up and running!"
+echo "[INFO] User credentials can be found in $CREDENTIAL_FILE."
 echo "[DONE] Bye!"

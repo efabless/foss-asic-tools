@@ -30,12 +30,17 @@ done
 shift $((OPTIND-1))
 
 # now search the containers and remove them
+echo "[INFO] Stopping and removing EDA containers."
+NO_INSTANCES=0
 while [ "$(docker ps -q -f name="iic-osic-tools_eda_user")" ];
 do
 	CONTAINER_ID=$(docker ps -q -f name="iic-osic-tools_eda_user" | head -n1)
 	[ $DEBUG = 1 ] && echo "[INFO] Container ID $CONTAINER_ID found, now stopping and removing!"
 	docker stop "$CONTAINER_ID" > /dev/null
 	docker rm "$CONTAINER_ID" > /dev/null
+	NO_INSTANCES=$((NO_INSTANCES + 1))
+	echo "[INFO] Container nr. $NO_INSTANCES stopped and removed."
 done	
 
-echo "[DONE] EDA containers are stopped and removed, bye!"
+echo "[INFO] All EDA containers have been stopped and removed!"
+echo "[DONE] Bye!"
