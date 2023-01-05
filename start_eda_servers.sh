@@ -129,8 +129,44 @@ write_credentials () {
 }
 
 # sanitize input parameters
-# FIXME port number should be legal
-# FIXME number of instances between 1 and 200
+# check if parameters are integers
+[ -n "$START_PORT" ] && [ "$START_PORT" -eq "$START_PORT" ] 2>/dev/null
+# shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+   echo "[ERROR] -p requires an integer!"
+   exit 1
+fi
+[ -n "$NUMBER_USERS" ] && [ "$NUMBER_USERS" -eq "$NUMBER_USERS" ] 2>/dev/null
+# shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+   echo "[ERROR] -n requires an integer!"
+   exit 1
+fi
+[ -n "$USER_GROUP" ] && [ "$USER_GROUP" -eq "$USER_GROUP" ] 2>/dev/null
+# shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+   echo "[ERROR] -g requires an integer!"
+   exit 1
+fi
+[ -n "$PASSWD_DIGITS" ] && [ "$PASSWD_DIGITS" -eq "$PASSWD_DIGITS" ] 2>/dev/null
+# shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+   echo "[ERROR] -s requires an integer!"
+   exit 1
+fi
+# check if parameters are in a useful range
+if [ "$START_PORT" -lt 1024 ] || [ "$START_PORT" -gt 65535 ]; then
+	echo "[ERROR] Illegal starting port number (range is 1024...65535)!"
+	exit 1
+fi
+if [ "$NUMBER_USERS" -lt 1 ] || [ "$NUMBER_USERS" -gt 200 ]; then
+	echo "[ERROR] Illegal number of container instances (must be between 1 and 200)!"
+	exit 1
+fi
+if [ -z "$(getent group "$USER_GROUP")" ]; then
+	echo "[ERROR] Illegal user group!"
+	exit 1
+fi
 
 # here is the loop
 echo "[]" > "$CREDENTIAL_FILE"
