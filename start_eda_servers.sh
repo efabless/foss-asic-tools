@@ -120,8 +120,10 @@ write_credentials () {
 	# $3 = webserver port
 	# $4 = credentials file
 
+	# get local IP of server
 	HOSTIP=$(hostname -I | awk '{print $1}')
 
+	# write a JSON file
 	jq ". + [{ \"user\": \"$1\", \"password\": \"$2\", \"port\": $3, \"url\": \"http://$HOSTIP:$3/?password=$2\" }]" "$4" > "$4.tmp"
 	mv "$4.tmp" "$4"
 }
@@ -146,4 +148,7 @@ do
 	spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
 done
 
-echo "[DONE] EDA containers are up and running, bye!"
+echo ""
+echo "[DONE] EDA containers are up and running!"
+echo "[DONE] User credentials can be found in $CREDENTIAL_FILE."
+echo "[DONE] Bye!"
