@@ -18,13 +18,14 @@ PASSWD_DIGITS=20
 USER_GROUP=2000
 CREDENTIAL_FILE="eda_user_credentials.json"
 
+# process input parameters
 while getopts "hcdkp:n:s:f:g:" flag; do
 	case $flag in
 		c)
 			[ $DEBUG = 1 ] && echo "[INFO] flag -c is set"
 			DO_CLEAN=1
 			;;
-		p)	
+		p)
 			[ $DEBUG = 1 ] && echo "[INFO] flag -p is set to $OPTARG"
 			START_PORT=${OPTARG}
 			;;
@@ -55,9 +56,9 @@ while getopts "hcdkp:n:s:f:g:" flag; do
 		h)
 			echo "Spinning up Docker instances for EDA users"
 			echo "(c) 2023 Harald Pretl, Institute for Integrated Circuits, JKU"
-			echo ""
+			echo
 			echo "Usage: $0 [-h] [-d] [-c] [-k] [-p port_number] [-n number_instances] [-g user_group] [-s passwd_digits] [-f credential_file]"
-			echo ""
+			echo
 			echo "       -h shows a help screen"
 			echo "       -d enables the debug mode"
 			echo "       -c cleans the user-file directories"
@@ -67,7 +68,7 @@ while getopts "hcdkp:n:s:f:g:" flag; do
 			echo "       -g sets the used group-ID (default $USER_GROUP)"
 			echo "       -s sets the number of digits of the auto-generated user passwords (default $PASSWD_DIGITS)"
 			echo "       -f sets the name of the credentials file (default $CREDENTIAL_FILE)"
-			echo "" 
+			echo
 			exit
 			;;
 		*)
@@ -120,8 +121,15 @@ write_credentials () {
 	# $3 = webserver port
 	# $4 = credentials file
 
-	# get local IP of server
-	HOSTIP=$(hostname -I | awk '{print $1}')
+	# get the local IP of the server
+	if [[ "$OSTYPE" == "linux"* ]]; then
+		HOSTIP=$(hostname -I | awk '{print $1}')
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		HOSTIP=$(ipconfig getifaddr en0)
+	else
+		echo "[ERROR] can not determine the IP address of host!"
+		exit 1
+	fi
 
 	# write a JSON file
 	jq ". + [{ \"user\": \"$1\", \"password\": \"$2\", \"port\": $3, \"url\": \"http://$HOSTIP:$3/?password=$2\" }]" "$4" > "$4.tmp"
@@ -167,9 +175,25 @@ if [ "$PASSWD_DIGITS" -lt 6 ] || [ "$PASSWD_DIGITS" -gt 64 ]; then
 	echo "[ERROR] Illegal number of password digits (must be between 6 and 64)!"
 	exit 1
 fi
-if [ -z "$(getent group "$USER_GROUP")" ]; then
-	echo "[ERROR] Illegal user group!"
+if [[ "$OSTYPE" == "linux"* ]]; then
+	if [ -z "$(getent group "$USER_GROUP")" ]; then
+		echo "[ERROR] Illegal user group!"
 	exit 1
+	fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	if [ -z "$(dscacheutil -q group -a gid "$USER_GROUP")" ]; then
+		echo "[ERROR] Illegal user group!"
+	exit 1	
+	fi
+else
+		echo "[ERROR] can not determine valid group ID!"
+		exit 1
+fi
+
+# check a few dependencies
+if ! [ -x "$(command -v jq)" ]; then
+  echo "[ERROR] The program jq is not installed!"
+  exit 1
 fi
 
 # here is the loop
@@ -178,7 +202,10 @@ echo "[]" > "$CREDENTIAL_FILE"
 echo "[INFO] Starting to spin up EDA server instances."
 for i in $(seq 1 "$NUMBER_USERS")
 do
-	PASSWD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c"${1:-$PASSWD_DIGITS}")	
+	# PASSWD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c"${1:-$PASSWD_DIGITS}")	
+	# change the password generation to work also on macOS
+	PASSWD=$(dd if=/dev/urandom bs=1 count=256 2>/dev/null | base64 | tr -c -d A-Za-z0-9 | head -c "$PASSWD_DIGITS")
+	
 	PORTNO=$((START_PORT + i - 1))
 	USERNAME="user$PORTNO"
 
@@ -189,7 +216,7 @@ do
 	spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
 done
 
-echo ""
+echo
 echo "[INFO] EDA containers are up and running!"
 echo "[INFO] User credentials can be found in $CREDENTIAL_FILE."
 echo "[DONE] Bye!"
