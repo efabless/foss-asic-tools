@@ -16,7 +16,7 @@ START_PORT=50001
 NUMBER_USERS=20
 PASSWD_DIGITS=20
 USER_GROUP=2000
-CREDENTIAL_FILE="eda_user_credentials.txt"
+CREDENTIAL_FILE="eda_user_credentials.json"
 
 while getopts "hcdkp:n:s:f:g:" flag; do
 	case $flag in
@@ -114,13 +114,24 @@ spin_up_server () {
 	source start_vnc.sh
 }
 
+write_credentials () {
+	# $1 = username
+	# $2 = passwd
+	# $3 = webserver port
+	# $4 = credentials file
+
+	HOSTIP=$(hostname -I | awk '{print $1}')
+
+	jq ". + [{ \"user\": \"$1\", \"password\": \"$2\", \"port\": $3, \"url\": \"http://$HOSTIP:$3/?password=$2\" }]" "$4" > "$4.tmp"
+	mv "$4.tmp" "$4"
+}
+
 # sanitize input parameters
 # FIXME port number should be legal
 # FIXME number of instances between 1 and 200
 
 # here is the loop
-rm -rf "$CREDENTIAL_FILE"
-touch "$CREDENTIAL_FILE"
+echo "[]" > "$CREDENTIAL_FILE"
 
 for i in $(seq 1 "$NUMBER_USERS")
 do
@@ -129,7 +140,8 @@ do
 	USERNAME="user$PORTNO"
 
 	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD"
-	echo "Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD" >> "$CREDENTIAL_FILE"
+	
+	write_credentials $USERNAME "$PASSWD" $PORTNO "$CREDENTIAL_FILE"
 
 	spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
 done
