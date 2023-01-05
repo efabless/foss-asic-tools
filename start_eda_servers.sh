@@ -163,6 +163,10 @@ if [ "$NUMBER_USERS" -lt 1 ] || [ "$NUMBER_USERS" -gt 200 ]; then
 	echo "[ERROR] Illegal number of container instances (must be between 1 and 200)!"
 	exit 1
 fi
+if [ "$PASSWD_DIGITS" -lt 6 ] || [ "$PASSWD_DIGITS" -gt 64 ]; then
+	echo "[ERROR] Illegal number of password digits (must be between 6 and 64)!"
+	exit 1
+fi
 if [ -z "$(getent group "$USER_GROUP")" ]; then
 	echo "[ERROR] Illegal user group!"
 	exit 1
