@@ -33,6 +33,9 @@ apt-get install -y \
 #       octave \
 #       mailcap \
 
+# Remove light-locker, otherwise VNC session locks up
+apt purge light-locker
+
 #FIXME rm /etc/xdg/autostart/polkit*
 /bin/dbus-uuidgen > /etc/machine-id
 
