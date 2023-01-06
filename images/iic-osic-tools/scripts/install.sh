@@ -34,7 +34,8 @@ apt-get install -y \
 #       mailcap \
 
 # Remove light-locker, otherwise VNC session locks up
-apt purge light-locker
+apt purge -y light-locker
+apt autoremove -y
 
 #FIXME rm /etc/xdg/autostart/polkit*
 /bin/dbus-uuidgen > /etc/machine-id
