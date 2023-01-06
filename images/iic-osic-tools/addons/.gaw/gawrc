@@ -34,7 +34,7 @@ up_panelBgColor = "rgb(0,0,0)"
     /* nominal width for buttons and masurements table */
 up_lmtableWidth = 280
     /* Should we show yhe grid in panel */
-up_showGrid = 0
+up_showGrid = 1
     /* RGB color for grid 0-0xff, 0-0xff, 0-0xff */
 up_gridColor = "rgb(102,40,40)"
     /* RGB color for highlight  0-0xff, 0-0xff, 0-0xff */
@@ -100,7 +100,7 @@ up_text_font = "Sans 10"
     /* degree: default angle for drawing text */
 up_angle = "0"
     /* allow resize the main window */
-up_allowResize = 0
+up_allowResize = 1
     /* index of the drawing algorithm */
 up_drawAlgo = 0
     /* RGB color for list box button back ground color */
