@@ -76,13 +76,21 @@ if [[ ${CONTAINER_GROUP} -ne 0 ]]  && [[ ${CONTAINER_GROUP} -lt 1000 ]]; then
         echo ""
 fi
 
-# Processing ports
-PORT_PARAMS=""
-if [ $WEBSERVER_PORT -gt 0 ]; then
-	PORT_PARAMS="$PORT_PARAMS -p $WEBSERVER_PORT:80"
+# Processing ports and other parameters
+PARAMS=""
+if [ "$WEBSERVER_PORT" -gt 0 ]; then
+	PARAMS="$PARAMS -p $WEBSERVER_PORT:80"
 fi
-if [ $VNC_PORT -gt 0 ]; then
-	PORT_PARAMS="$PORT_PARAMS -p $VNC_PORT:5901"
+if [ "$VNC_PORT" -gt 0 ]; then
+	PARAMS="$PARAMS -p $VNC_PORT:5901"
+fi
+
+if [ -n "${VNC_PW}" ]; then
+	PARAMS="${PARAMS} -e VNC_PW=${VNC_PW}"
+fi
+
+if [ -n "${DOCKER_EXTRA_PARAMS}" ]; then
+	PARAMS="${PARAMS} ${DOCKER_EXTRA_PARAMS}"
 fi
 
 # Check if the container exists and if it is running.
@@ -114,5 +122,5 @@ else
 	#${ECHO_IF_DRY_RUN} docker pull "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
 	# Disable SC2086, $PARAMS must be globbed and splitted.
 	# shellcheck disable=SC2086
-	${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" $PORT_PARAMS -v "$DESIGNS:/foss/designs:rw" --name "${CONTAINER_NAME}" "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+	${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" $PARAMS -v "$DESIGNS:/foss/designs:rw" --name "${CONTAINER_NAME}" "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
 fi

@@ -3,7 +3,7 @@
 set -e
 
 apt-get update -y && apt-get upgrade -y
-apt-get -y install tzdata
+apt-get install -y tzdata
 apt-get install -y \
 	autoconf \
 	automake \
@@ -138,7 +138,7 @@ apt-get install -y \
 	zip \
 	zlib1g-dev 
 
-# These packages will become available in 2204:
+# These packages will become available in 2204 LTS:
 # binutils-gold \
 # ruby-irb \
 # liblemon-dev \
@@ -185,7 +185,6 @@ pip3 install --upgrade --no-cache-dir \
 # Install Ruby packages via gem:
 gem install \
 	rggen \
-	rggen-markdown \
 	rggen-verilog \
 	rggen-vhdl
 
@@ -236,4 +235,7 @@ install_ortools () {
 }
 install_ortools
 
+# Cleanup to minimize image size
 rm -rf /tmp/*
+apt -y autoremove
+apt -y autoclean
