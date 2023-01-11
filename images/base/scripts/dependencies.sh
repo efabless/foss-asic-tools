@@ -2,9 +2,9 @@
 
 set -e
 
-apt-get update -y && apt-get upgrade -y
-apt-get install -y tzdata
-apt-get install -y \
+apt-get -y update && apt-get -y upgrade
+apt-get -y install tzdata
+apt-get -y install \
 	autoconf \
 	automake \
 	autotools-dev \
@@ -136,7 +136,7 @@ apt-get install -y \
 	zip \
 	zlib1g-dev 
 
-# These packages will become available in 2204 LTS:
+# These packages will become available in 22.04LTS:
 # binutils-gold \
 # ruby-irb \
 # liblemon-dev \
@@ -151,6 +151,7 @@ pip3 install --upgrade --no-cache-dir \
 	amaranth \
 	click \
 	cocotb \
+	edalize \
 	gdsfactory \
 	gdspy \
 	gobject \
@@ -192,7 +193,7 @@ npm install -g \
 
 # FIXME Install cmake (need version >= 3.18 for ortools)
 # FIXME Can be removed in 22.04LTS
-apt-get remove -y cmake
+apt-get -y remove cmake
 CMAKE_VERSION=3.24
 CMAKE_BUILD=1
 install_cmake () {
@@ -206,7 +207,7 @@ install_cmake () {
 }
 install_cmake
 
-# Install lemon-1.3.1 (will become available via apt in 2204)
+# Install lemon-1.3.1 (will become available via apt in 22.04LTS)
 #
 LEMON_VERSION=1.3.1
 install_lemon () {
@@ -220,9 +221,9 @@ install_lemon () {
 }
 install_lemon
 
-# Install or-tools (dependcy of OpenROAD)
+# Install or-tools (dependency of OpenROAD)
 #
-ORTOOLS_VERSION=9.4
+ORTOOLS_VERSION=9.5
 install_ortools () {
 	cd /tmp || exit 1
 	wget --no-verbose "https://github.com/google/or-tools/archive/refs/tags/v$ORTOOLS_VERSION.tar.gz"
@@ -235,5 +236,5 @@ install_ortools
 
 # Cleanup to minimize image size
 rm -rf /tmp/*
-apt -y autoremove
-apt -y autoclean
+apt-get -y autoremove --purge
+apt-get -y clean
