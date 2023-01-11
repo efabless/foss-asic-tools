@@ -13,7 +13,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="fb091fa03f3646b0f90639a0798b711ca400941d"
+ARG MAGIC_REPO_COMMIT="6cefbd13f1dac2293aaa1537a6ee2ad23c11a273"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="141eea4d1bb8c6d4dd85fcbf2c0bdface7df9cfc"
+ARG OPEN_PDKS_REPO_COMMIT="327e268bdb7191fe07a28bd40eeac055bba9dffd"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -153,7 +153,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
-ARG KLAYOUT_REPO_COMMIT="428d0fe8c941faece4eceebc54170cc04d916c03"
+ARG KLAYOUT_REPO_COMMIT="8bed8bcc3ca19f7e1a810815541977fd16bc1db5"
 ARG KLAYOUT_NAME="klayout"
 
 ADD images/klayout/scripts/install.sh install.sh
@@ -164,7 +164,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="2292ab813b54cc6d6fa41368c4e0e7492fb627c9"
+ARG NETGEN_REPO_COMMIT="28a29504390d53cd3748ff2636be112ef299da0b"
 ARG NETGEN_NAME="netgen"
 
 ADD images/netgen/scripts/install.sh install.sh
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2022.12.04"
+ARG OPENLANE_REPO_COMMIT="2023.01.11"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="7c85c140308f01b73f57ea1117f3e43f39abd437"
+ARG OPENROAD_APP_REPO_COMMIT="4f1108b6f558718ed142cbb6c1f5ba20958195ca"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
