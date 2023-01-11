@@ -24,7 +24,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="7e9433ff930955ca90415f141263213f81cac4f1"
+ARG IIC_OSIC_REPO_COMMIT="ae838ff8255ff3b52a05abbc4b9d9dbef8a9cb1a"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -142,7 +142,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="3438078c909b0ff1d6f20ac4d3c5739fedc8536d"
+ARG IVERILOG_REPO_COMMIT="45bd0968c3d6d5b96a7ac7c2c1b0557cc229e568"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -276,7 +276,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v5.002"
+ARG VERILATOR_REPO_COMMIT="v5.004"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="b23988ccdf5dffd0b64db256290928e1ff87b505"
+ARG XSCHEM_REPO_COMMIT="8aa4f0645217b29d0e6c6ab04ada3bd745ec07ab"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
