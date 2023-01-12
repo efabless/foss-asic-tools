@@ -152,6 +152,7 @@ pip3 install --upgrade --no-cache-dir \
 	click \
 	cocotb \
 	edalize \
+	fusesoc \
 	gdsfactory \
 	gdspy \
 	gobject \
