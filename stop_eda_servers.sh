@@ -1,8 +1,23 @@
 #!/bin/bash
-#
-# (c) 2023 Harald Pretl, Institute for Integrated Circuits, Johannes Kepler University, Linz, Austria
-#
+# ========================================================================
 # Stops and removes multiple IIC-OSIC-TOOLS containers for many EDA users
+#
+# SPDX-FileCopyrightText: 2023 Harald Pretl
+# Johannes Kepler University, Institute for Integrated Circuits
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# SPDX-License-Identifier: Apache-2.0
+# ========================================================================
 
 DEBUG=0
 
@@ -13,14 +28,14 @@ while getopts "hd" flag; do
 			DEBUG=1
 			;;
 		h)
-			echo "Stopping Docker instances for EDA users"
-			echo "(c) 2023 Harald Pretl, Institute for Integrated Circuits, JKU"
-			echo ""
+			echo
+			echo "Stopping Docker instances for EDA users (IIC@JKU)"
+			echo
 			echo "Usage: $0 [-h] [-d]"
-			echo ""
+			echo
 			echo "       -h shows a help screen"
 			echo "       -d enables the debug mode"
-			echo "" 
+			echo 
 			exit
 			;;
 		*)
