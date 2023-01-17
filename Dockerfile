@@ -1,7 +1,8 @@
 #######################################################################
 # Setup base image
 #######################################################################
-ARG BASE_IMAGE=ubuntu:focal
+#ARG BASE_IMAGE=ubuntu:focal
+ARG BASE_IMAGE=ubuntu:jammy
 FROM ${BASE_IMAGE} as base
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Vienna
@@ -24,7 +25,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="ae838ff8255ff3b52a05abbc4b9d9dbef8a9cb1a"
+ARG IIC_OSIC_REPO_COMMIT="f4fb991336fbde9d7e31ce6b526324ffc0984a25"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -153,7 +154,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
-ARG KLAYOUT_REPO_COMMIT="8bed8bcc3ca19f7e1a810815541977fd16bc1db5"
+ARG KLAYOUT_REPO_COMMIT="44a2aa9ca17c2b1c154f9c410ded063de9ed3e12"
 ARG KLAYOUT_NAME="klayout"
 
 ADD images/klayout/scripts/install.sh install.sh
@@ -210,7 +211,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.01.11"
+ARG OPENLANE_REPO_COMMIT="2023.01.12"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -287,7 +288,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="8aa4f0645217b29d0e6c6ab04ada3bd745ec07ab"
+ARG XSCHEM_REPO_COMMIT="2fa0155ca62d735b22b7f545214a851b4f6a3f29"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -307,13 +308,14 @@ COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh
 ADD images/xyce/scripts/install.sh install.sh
 RUN bash install.sh
 
-FROM xyce as xyce-xdm
-ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="Release-2.6.0"
-ARG XYCE_XDM_NAME="xyce-xdm"
+# FIXEME, build of xdm fails currently
+#FROM xyce as xyce-xdm
+#ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
+#ARG XYCE_XDM_REPO_COMMIT="Release-2.6.0"
+#ARG XYCE_XDM_NAME="xyce-xdm"
 
-ADD images/xyce-xdm/scripts/install.sh install.sh
-RUN bash install.sh
+#ADD images/xyce-xdm/scripts/install.sh install.sh
+#RUN bash install.sh
 
 #######################################################################
 # Compile yosys (part of OpenLane) & yosys-ghdl-plugin
@@ -400,7 +402,7 @@ COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
 COPY --from=verilator                    /foss/tools/            /foss/tools/
 COPY --from=xschem                       /foss/tools/            /foss/tools/
 COPY --from=xyce                         /foss/tools/            /foss/tools/
-COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
+#FIXME COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
 COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
 
