@@ -130,7 +130,7 @@ if [ "$start_vnc" = true ]; then
   fi
 
   echo -e "start window manager\n..."
-  "$STARTUPDIR"/scripts/wm_startup.sh &> "$STARTUPDIR"/logs/wm_startup.log
+  /usr/bin/dbus-launch /usr/bin/startxfce4 > "$STARTUPDIR"/logs/wm.log &
 
   # log connect options
   echo -e "\n\n------------------ VNC environment started ------------------"
