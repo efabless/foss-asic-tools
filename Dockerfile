@@ -365,6 +365,10 @@ ENV HOME=/headless \
     TOOLS=/foss/tools \
     PDK_ROOT=/foss/pdks
 
+### FIXME workaround for OpenMPI throwing errors when run inside a container without Capability "SYS_PTRACE".
+ENV OMPI_MCA_btl_vader_single_copy_mechanism=none
+
+### Copy all required scripts into the container and allow them to be executed by any user.
 ADD images/iic-osic-tools/scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 
