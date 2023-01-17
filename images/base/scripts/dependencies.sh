@@ -119,7 +119,6 @@ apt-get -y install \
 	qt5-image-formats-plugins \
 	qtbase5-dev \
 	qtmultimedia5-dev \
-	qttools5-dev \
 	ruby \
 	ruby-dev \
 	libruby2.7 \

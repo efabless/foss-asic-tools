@@ -33,8 +33,8 @@ apt-get install -y \
 #       octave \
 #       mailcap \
 
-# Remove light-locker, otherwise VNC session locks up
-apt purge -y light-locker
+# Remove light-locker and other power management stuff, otherwise VNC session locks up
+apt purge -y light-locker pm-utils *screensaver*
 apt autoremove -y
 
 #FIXME rm /etc/xdg/autostart/polkit*
