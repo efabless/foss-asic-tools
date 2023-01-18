@@ -61,8 +61,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
-LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib"
-export LD_LIBRARY_PATH
+LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib" && export LD_LIBRARY_PATH
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
@@ -74,14 +73,14 @@ export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export OPENLANE_ROOT=$TOOLS/openlane
 export EDITOR='gedit'
-
-# FIXME: this get's rid of a few libGL errors
+# FIXME: this gets rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1
-
-# FIXME: this get's rid of the dbus-warning
+# FIXME: this gets rid of the DBUS warning
 # https://unix.stackexchange.com/questions/230238/x-applications-warn-couldnt-connect-to-accessibility-bus-on-stderr/230442#230442
 export NO_AT_BRIDGE=1
+# FIXME: OpenROAD in Ubuntu 22.04 does not find the PIP modules, so use PYTHONPATH
+PYTHONPATH=$(python -c "import sys; print(':'.join(x for x in sys.path if x))") && export PYTHONPATH 
 
 if [ ! -d $XDG_RUNTIME_DIR ]; then
         mkdir -p $XDG_RUNTIME_DIR
