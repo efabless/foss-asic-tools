@@ -34,9 +34,9 @@ source "$HOME/.bashrc"
 
 # if the first parameter is `skip`:
 if [[ $1 =~ -s|--skip ]]; then
-    echo -e "\n\n---------------- SKIPPING UI STARTUP ----------------"
+    echo -e "[INFO] SKIPPING UI STARTUP"
     # shellcheck disable=SC2145
-    echo "Executing command: '${@:2}'"
+    echo "[INFO] Executing command: '${@:2}'"
     exec "${@:2}"
     exit $?
 fi
@@ -68,7 +68,7 @@ do
                         break
                         ;;
                 *)
-                        echo "Unexpected option \"$1\""
+                        echo "[ERROR] Unexpected option \"$1\""
                         help
                         exit 1
                         ;;
@@ -81,15 +81,17 @@ cleanup () {
     exit 0
 }
 
+UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
+
 if [ "$start_x" != true ] && [ "$start_vnc" != true ]; then
   if [ -z ${DISPLAY+x} ]; then
         # DISPLAY is not set, so set it and run the startup script.
         start_vnc=true
 	export DISPLAY=:1
-        echo "Auto-selected VNC"
+        echo "[INFO] Auto-selected VNC"
   else
         start_x=true
-        echo "Auto-selected local X11"
+        echo "[INFO] Auto-selected local X11"
   fi
 
 fi
@@ -99,7 +101,7 @@ if [ "$start_vnc" = true ]; then
   VNC_IP=$(hostname -i)
 
   # change the vnc password
-  echo -e "\n------------------ change VNC password  ------------------"
+  echo -e "[INFO] Change VNC password"
   # first entry is control, second is the view (if only one is valid for both)
   mkdir -p "$HOME/.vnc"
   PASSWD_PATH="$HOME/.vnc/passwd"
@@ -107,13 +109,13 @@ if [ "$start_vnc" = true ]; then
   chmod 600 "$PASSWD_PATH"
 
   # start vncserver and noVNC webclient
-  echo -e "\n------------------ start noVNC  ----------------------------"
+  echo -e "[INFO] Start noVNC"
 
   "$NO_VNC_HOME"/utils/launch.sh --vnc localhost:"$VNC_PORT" --listen "$NO_VNC_PORT" &> "$STARTUPDIR"/logs/no_vnc_startup.log &
   # WAIT for the VNC server, not for novnc proxy
   # PID_SUB=$!
 
-  echo -e "staring vncserver and window manager with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
+  echo -e "[INFO] Starting vncserver and window manager with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 
   # workaround, lock files are not removed if the container is re-run otherwise which makes vncserver unaccessible
   rm -rf /tmp/.X1-lock
@@ -123,20 +125,29 @@ if [ "$start_vnc" = true ]; then
     OLD_LD_PRELOAD=$LD_PRELOAD
     export LD_PRELOAD="/lib/aarch64-linux-gnu/libgcc_s.so.1 ${LD_PRELOAD}"
   fi
-  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -xstartup startxfce4 &> "$STARTUPDIR"/logs/vnc_startup.log
+  if [[ $UBUNTU_VERSION == 20.04 ]]; then
+        vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
+  elif [[ $UBUNTU_VERSION == 22.04 ]]; then
+        vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -xstartup startxfce4 &> "$STARTUPDIR"/logs/vnc_startup.log
+  else
+        echo -e "[ERROR] Unsupported Ubuntu version!"
+  fi
   PID_SUB=$!
   if [ "$(arch)" == "aarch64" ]; then
     export LD_PRELOAD=$OLD_LD_PRELOAD
   fi
+  if [[ $UBUNTU_VERSION == 20.04 ]]; then
+        /usr/bin/dbus-launch /usr/bin/startxfce4 > "$STARTUPDIR"/logs/wm.log &
+  fi
 
   # log connect options
-  echo -e "\n\n------------------ VNC environment started ------------------"
-  echo -e "\nVNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
-  echo -e "\nnoVNC HTML client started:\n\t=> connect via http://localhost/?password=$VNC_PW\n"
+  echo -e "[INFO] VNC environment started"
+  echo -e "\n[INFO] VNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
+  echo -e "\n[INFO] noVNC HTML client started:\n\t=> connect via http://localhost/?password=$VNC_PW\n"
 
 
   if [[ $DEBUG == true ]] || [[ $1 =~ -t|--tail-log ]]; then
-          echo -e "\n------------------ $HOME/.vnc/*$DISPLAY.log ------------------"
+          echo -e "\n[INFO] $HOME/.vnc/*$DISPLAY.log"
           # if the option `-t` or `--tail-log` block the execution and tail the VNC log
           tail -f "$STARTUPDIR"/logs/*.log "$HOME"/.vnc/*$DISPLAY.log
   fi
