@@ -6,32 +6,22 @@ set -u
 echo "Installing misc. packages"
 apt-get install -y \
 	nano \
-        firefox \
         gedit \
-        gettext \
         htop \
         hub \
-        libnss-wrapper \
-        libqt5widgets5 \
         meld \
         net-tools \
+        netsurf-gtk \
         nmap \
         novnc \
         sudo \
-        tcl \
-        tcl-tclreadline \
-        tcllib \
         tigervnc-standalone-server \
-        tk \
         vim \
         vim-gtk3 \
         websockify \
         xfce4 \
         xfce4-terminal \
-        xterm \
-        xvfb
-#       octave \
-#       mailcap \
+        xterm
 
 # Remove light-locker and other power management stuff, otherwise VNC session locks up
 apt purge -y light-locker pm-utils *screensaver*

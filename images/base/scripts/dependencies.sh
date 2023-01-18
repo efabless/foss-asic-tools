@@ -78,6 +78,7 @@ apt-get -y install \
 	libpython3.8 \
 	libqt5multimediawidgets5 \
 	libqt5svg5-dev \
+	libqt5widgets5 \
 	libqt5xmlpatterns5-dev \
 	libreadline-dev \
 	libsm-dev \
