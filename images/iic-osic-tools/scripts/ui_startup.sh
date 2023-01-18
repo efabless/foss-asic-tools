@@ -113,7 +113,7 @@ if [ "$start_vnc" = true ]; then
   # WAIT for the VNC server, not for novnc proxy
   # PID_SUB=$!
 
-  echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
+  echo -e "staring vncserver and window manager with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 
   # workaround, lock files are not removed if the container is re-run otherwise which makes vncserver unaccessible
   rm -rf /tmp/.X1-lock
@@ -123,14 +123,11 @@ if [ "$start_vnc" = true ]; then
     OLD_LD_PRELOAD=$LD_PRELOAD
     export LD_PRELOAD="/lib/aarch64-linux-gnu/libgcc_s.so.1 ${LD_PRELOAD}"
   fi
-  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
+  vncserver $DISPLAY -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -xstartup startxfce4 &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
   if [ "$(arch)" == "aarch64" ]; then
     export LD_PRELOAD=$OLD_LD_PRELOAD
   fi
-
-  echo -e "start window manager\n..."
-  /usr/bin/dbus-launch /usr/bin/startxfce4 > "$STARTUPDIR"/logs/wm.log &
 
   # log connect options
   echo -e "\n\n------------------ VNC environment started ------------------"
