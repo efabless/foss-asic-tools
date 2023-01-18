@@ -57,7 +57,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
 
         export SAK=$TOOLS/sak/
         export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
-        echo "Final PATH variable: $PATH"
+        echo "[INFO] Final PATH variable: $PATH"
         export FOSS_PATH_SET=1
 fi
 

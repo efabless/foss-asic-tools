@@ -3,7 +3,7 @@
 set -e
 set -u
 
-echo "Installing misc. packages"
+echo "[INFO] Installing misc. packages"
 apt-get install -y \
 	nano \
         gedit \
