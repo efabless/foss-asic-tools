@@ -33,6 +33,7 @@ apt-get -y install \
 	gfortran \
 	ghostscript \
 	git \
+	git-svn \
 	gnat \
 	gnupg2 \
 	gperf \
