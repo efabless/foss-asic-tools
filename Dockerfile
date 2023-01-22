@@ -1,7 +1,6 @@
 #######################################################################
 # Setup base image
 #######################################################################
-#ARG BASE_IMAGE=ubuntu:focal
 ARG BASE_IMAGE=ubuntu:jammy
 FROM ${BASE_IMAGE} as base
 ENV DEBIAN_FRONTEND=noninteractive
@@ -200,7 +199,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="4efbf71640e7366ee35e7567de4b51d23572ddf2"
+ARG NVC_REPO_COMMIT="r1.8.0"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
@@ -251,11 +250,11 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile helper files (part of QFLOW)
+# Compile QFLOW helper files
 #######################################################################
 FROM base as qflow
 ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG QFLOW_REPO_COMMIT="a550469b63e910ede6e3022e2886bca96462c540"
+ARG QFLOW_REPO_COMMIT="b0f76bf4b7dddd59badd67f462e50ed8c9be484c"
 ARG QFLOW_NAME="qflow"
 
 ADD images/qflow/scripts/install.sh install.sh
