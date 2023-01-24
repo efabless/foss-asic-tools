@@ -298,7 +298,6 @@ pip3 install --upgrade --no-cache-dir \
 	gdspy \
 	gobject \
 	graphviz \
-	jupyterlab \
 	matplotlib \
 	ninja \
 	numpy \
