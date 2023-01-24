@@ -77,7 +77,7 @@ if [[ ${CONTAINER_GROUP} -ne 0 ]]  && [[ ${CONTAINER_GROUP} -lt 1000 ]]; then
 fi
 
 # Processing ports and other parameters
-PARAMS=""
+PARAMS="--security-opt seccomp=unconfined"
 if [ "$WEBSERVER_PORT" -gt 0 ]; then
 	PARAMS="$PARAMS -p $WEBSERVER_PORT:80"
 fi

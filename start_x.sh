@@ -45,7 +45,7 @@ if [ -z ${DOCKER_TAG+z} ]; then
 	DOCKER_TAG="latest"
 fi
 
-PARAMS=""
+PARAMS="--security-opt seccomp=unconfined"
 if [[ "$OSTYPE" == "linux"* ]]; then
 	echo "Auto detected Linux"
 	# Should also be a senseful default

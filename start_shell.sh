@@ -40,7 +40,7 @@ if [ -z ${CONTAINER_NAME+z} ]; then
 	CONTAINER_NAME="iic-osic-tools_shell_uid_"$(id -u)
 fi
 
-PARAMS=""
+PARAMS="--security-opt seccomp=unconfined"
 if [ -n "${DOCKER_EXTRA_PARAMS}" ]; then
 	PARAMS="${PARAMS} ${DOCKER_EXTRA_PARAMS}"
 fi
