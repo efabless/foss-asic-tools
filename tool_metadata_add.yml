@@ -6,7 +6,7 @@
   commit: 080f4be01d236af438566ce0b28089531f21a997
 - name: gaw3-xschem
   repo: https://github.com/StefanSchippers/xschem-gaw.git
-  commit: 854bee4cf20663a632840256737d0d68b5eca417 
+  commit: a4bb956afe84a7792115144f370effe2393228c2
 - name: gds3d
   repo: https://github.com/trilomix/GDS3D.git
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
@@ -15,22 +15,22 @@
   commit: v2.0.0
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: 7a0024d582341e2cb27d8cfecdaec5b89112b39e
+  commit: e1c01753bc5db9f7b42e41b9bde651a375ec5eba
 - name: iic-osic
   repo: https://github.com/hpretl/iic-osic.git
-  commit: f4fb991336fbde9d7e31ce6b526324ffc0984a25
+  commit: 4972617cf99b23226e1a5b81119ded5df782988b
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 25fe8217663c06a141156c2e9255e243d308794a
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: da1cefe8ea4f915a361895b5385012e4cca3f3fe
+  commit: 4643f57edbae1fedd104a013fb5e79e0d754f2ff
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-39
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.8.0
+  commit: r1.8.1
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
@@ -39,10 +39,10 @@
   commit: 29d02b75fb6c0b664af56011d8292d1e71c96913
 - name: verilator
   repo: https://github.com/verilator/verilator
-  commit: v5.004
+  commit: v5.006
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 49135f3f2e987907f839f5ea33550df9187a7105
+  commit: 5b8778db7e7ff5e836369f71187a18c5f0068aa9
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0

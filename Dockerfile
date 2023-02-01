@@ -24,7 +24,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="f4fb991336fbde9d7e31ce6b526324ffc0984a25"
+ARG IIC_OSIC_REPO_COMMIT="4972617cf99b23226e1a5b81119ded5df782988b"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -87,7 +87,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
-ARG GAW3_XSCHEM_REPO_COMMIT="854bee4cf20663a632840256737d0d68b5eca417"
+ARG GAW3_XSCHEM_REPO_COMMIT="a4bb956afe84a7792115144f370effe2393228c2"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 
 ADD images/gaw3-xschem/scripts/install.sh install.sh
@@ -120,7 +120,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="7a0024d582341e2cb27d8cfecdaec5b89112b39e"
+ARG GTKWAVE_REPO_COMMIT="e1c01753bc5db9f7b42e41b9bde651a375ec5eba"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -142,7 +142,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="da1cefe8ea4f915a361895b5385012e4cca3f3fe"
+ARG IVERILOG_REPO_COMMIT="4643f57edbae1fedd104a013fb5e79e0d754f2ff"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -199,7 +199,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.8.0"
+ARG NVC_REPO_COMMIT="r1.8.1"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
@@ -276,7 +276,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v5.004"
+ARG VERILATOR_REPO_COMMIT="v5.006"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="49135f3f2e987907f839f5ea33550df9187a7105"
+ARG XSCHEM_REPO_COMMIT="5b8778db7e7ff5e836369f71187a18c5f0068aa9"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
