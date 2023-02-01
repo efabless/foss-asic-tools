@@ -413,7 +413,6 @@ COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
 COPY images/iic-osic-tools/addons/.gaw/			/headless/.gaw/
 COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
-COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
