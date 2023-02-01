@@ -13,7 +13,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="6cefbd13f1dac2293aaa1537a6ee2ad23c11a273"
+ARG MAGIC_REPO_COMMIT="1a3caee3761d3ad4d4d4a7e931137b21a608a92d"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="9f1c2b06d2b5a6708cfe0b55679c7e84d37220cc"
+ARG OPEN_PDKS_REPO_COMMIT="1cf0d5ddec191db3c878823ed0ded912319da9c6"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.01.17"
+ARG OPENLANE_REPO_COMMIT="2023.02.01"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="4f1108b6f558718ed142cbb6c1f5ba20958195ca"
+ARG OPENROAD_APP_REPO_COMMIT="c295b08a99aacb6147b9c51104627e78ac3859e3"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
