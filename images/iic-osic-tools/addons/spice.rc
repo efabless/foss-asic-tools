@@ -1,4 +1,0 @@
-set num_threads=4
-set ngbehavior=hsa
-set ng_nomodcheck
-set enable_noisy_r
