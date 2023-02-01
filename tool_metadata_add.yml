@@ -27,7 +27,7 @@
   commit: da1cefe8ea4f915a361895b5385012e4cca3f3fe
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
-  commit: ngspice-38
+  commit: ngspice-39
 - name: nvc
   repo: https://github.com/nickg/nvc
   commit: r1.8.0
