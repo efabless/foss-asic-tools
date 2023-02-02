@@ -37,35 +37,35 @@ CREDENTIAL_FILE="eda_user_credentials.json"
 while getopts "hcdkp:n:s:f:g:" flag; do
 	case $flag in
 		c)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -c is set"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -c is set."
 			DO_CLEAN=1
 			;;
 		p)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -p is set to $OPTARG"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -p is set to $OPTARG."
 			START_PORT=${OPTARG}
 			;;
 		d)
-			echo "[INFO] DEBUG is enabled"
+			echo "[INFO] DEBUG is enabled!"
 			DEBUG=1
 			;;
 		n)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -n is set to $OPTARG"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -n is set to $OPTARG."
 			NUMBER_USERS=${OPTARG}
 			;;
 		s)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -s is set to $OPTARG"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -s is set to $OPTARG."
 			PASSWD_DIGITS=${OPTARG}
 			;;
 		f)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -f is set to $OPTARG"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -f is set to $OPTARG."
 			CREDENTIAL_FILE=${OPTARG}
 			;;
 		g)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -g is set to $OPTARG"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -g is set to $OPTARG."
 			USER_GROUP=${OPTARG}
 			;;
 		k)
-			[ $DEBUG = 1 ] && echo "[INFO] flag -k is set"
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -k is set."
 			DO_KILL=1
 			;;
 		h)
@@ -93,13 +93,13 @@ done
 shift $((OPTIND-1))
 
 # print a bit of status information
-[ $DEBUG = 1 ] && [ $DO_CLEAN = 1 ] && echo "[INFO] cleaning user directories is selected"
-[ $DEBUG = 1 ] && [ $DO_KILL = 1 ] && echo "[INFO] stopping and removing the running containers is selected"
-[ $DEBUG = 1 ] && echo "[INFO] starting port number is $START_PORT"
-[ $DEBUG = 1 ] && echo "[INFO] use group is $USER_GROUP"
-[ $DEBUG = 1 ] && echo "[INFO] number of instances is $NUMBER_USERS"
-[ $DEBUG = 1 ] && echo "[INFO] number of password digits is $PASSWD_DIGITS"
-[ $DEBUG = 1 ] && echo "[INFO] user credentials are stored in $CREDENTIAL_FILE"
+[ $DEBUG = 1 ] && [ $DO_CLEAN = 1 ] && echo "[INFO] Cleaning user directories is selected."
+[ $DEBUG = 1 ] && [ $DO_KILL = 1 ] && echo "[INFO] Stopping and removing the running containers is selected."
+[ $DEBUG = 1 ] && echo "[INFO] Starting port number is $START_PORT."
+[ $DEBUG = 1 ] && echo "[INFO] Use group is $USER_GROUP."
+[ $DEBUG = 1 ] && echo "[INFO] Number of instances is $NUMBER_USERS."
+[ $DEBUG = 1 ] && echo "[INFO] Number of password digits is $PASSWD_DIGITS."
+[ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $CREDENTIAL_FILE."
 
 # here is a function for the actual work
 spin_up_server () {
@@ -224,7 +224,7 @@ do
 	PORTNO=$((START_PORT + i - 1))
 	USERNAME="user$PORTNO"
 
-	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD"
+	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD."
 	
 	write_credentials $USERNAME "$PASSWD" $PORTNO "$CREDENTIAL_FILE"
 
@@ -233,5 +233,5 @@ done
 
 echo
 echo "[INFO] EDA containers are up and running!"
-echo "[INFO] User credentials can be found in $CREDENTIAL_FILE."
+echo "[INFO] User credentials can be found in <$CREDENTIAL_FILE>."
 echo "[DONE] Bye!"
