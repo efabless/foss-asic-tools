@@ -24,7 +24,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="4972617cf99b23226e1a5b81119ded5df782988b"
+ARG IIC_OSIC_REPO_COMMIT="9402243cbca2242cf41ea8b4a7db64d1edf68466"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="1cf0d5ddec191db3c878823ed0ded912319da9c6"
+ARG OPEN_PDKS_REPO_COMMIT="4cfc6af9ceba75a2f35c76f89ece76aa539f9a8d"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.02.01"
+ARG OPENLANE_REPO_COMMIT="2023.02.04"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="5b8778db7e7ff5e836369f71187a18c5f0068aa9"
+ARG XSCHEM_REPO_COMMIT="cac1caa7a5cb02d7efd2666ac782432188b09179"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -419,6 +419,9 @@ COPY tool_metadata.yml                          /
 # Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
+
+# Install examples
+RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh

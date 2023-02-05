@@ -18,7 +18,7 @@
   commit: e1c01753bc5db9f7b42e41b9bde651a375ec5eba
 - name: iic-osic
   repo: https://github.com/hpretl/iic-osic.git
-  commit: 4972617cf99b23226e1a5b81119ded5df782988b
+  commit: 9402243cbca2242cf41ea8b4a7db64d1edf68466
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 25fe8217663c06a141156c2e9255e243d308794a
@@ -42,7 +42,7 @@
   commit: v5.006
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 5b8778db7e7ff5e836369f71187a18c5f0068aa9
+  commit: cac1caa7a5cb02d7efd2666ac782432188b09179
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0
