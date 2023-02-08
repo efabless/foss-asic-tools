@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="4cfc6af9ceba75a2f35c76f89ece76aa539f9a8d"
+ARG OPEN_PDKS_REPO_COMMIT="032b059033c4cf67f94c5b7f0a44d936b8ff5aae"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.02.04"
+ARG OPENLANE_REPO_COMMIT="2023.02.08"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="c295b08a99aacb6147b9c51104627e78ac3859e3"
+ARG OPENROAD_APP_REPO_COMMIT="1f720d3b442e2cd8dc6c5372535320b18a105e8d"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
