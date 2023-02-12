@@ -92,14 +92,11 @@ fi
 #----------------------------------------
 
 alias magic='magic -d XR -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
-# shellcheck disable=SC2139
-alias mmagic-$PDK='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
-# shellcheck disable=SC2139
-alias lmagic-$PDK='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+alias mmagic='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+alias lmagic='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 
-alias k='klayout -c $SAK/klayout/tech/$PDK/$PDK.krc -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt -l $PDKPATH/libs.tech/klayout/tech/$PDK.lyp'
-alias ke='klayout -e -c $SAK/klayout/tech/$PDK/$PDK.krc -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt -l $PDKPATH/libs.tech/klayout/tech/$PDK.lyp'
-alias kf='klayout -c $SAK/klayout/tech/$PDK/$PDK.krc -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt -l $PDKPATH/libs.tech/klayout/tech/$PDK-fom.lyp'
+alias k='klayout -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt'
+alias ke='klayout -e -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt'
 
 alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'

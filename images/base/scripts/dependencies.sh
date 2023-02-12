@@ -8,6 +8,7 @@ apt-get -y update && apt-get -y upgrade
 apt-get -y install tzdata
 
 if [[ $UBUNTU_VERSION == 20.04 ]]; then
+echo "[INFO] Install APT packages for Ubuntu 20.04"
 apt-get -y install \
 	autoconf \
 	automake \
@@ -141,6 +142,7 @@ apt-get -y install \
 	zip \
 	zlib1g-dev
 elif [[ $UBUNTU_VERSION == 22.04 ]]; then
+echo "[INFO] Install APT packages for Ubuntu 22.04"
 apt-get -y install \
 	autoconf \
 	automake \
@@ -288,40 +290,49 @@ fi
 # FIXME: PIP upgrade fails on x86, so remove it
 #python3 -m pip install --upgrade pip
 
+echo "[INFO] Install support packages via PIP"
 pip3 install --upgrade --no-cache-dir \
-	amaranth \
 	click \
-	cocotb \
-	edalize \
-	fusesoc \
-	gdsfactory \
-	gdspy \
 	gobject \
 	graphviz \
 	matplotlib \
+	maturin \
 	ninja \
 	numpy \
 	panda \
 	plotly \
 	psutil \
 	pybind11 \
-	pyrtl \
-	pyspice \
-	pyverilog \
 	scikit-build \
 	scipy \
 	setuptools \
 	setuptools-rust \
 	shapely \
-	siliconcompiler \
-	spyci \
 	tk \
-	volare \
 	wheel \
 	xdot \
 	xlsxwriter \
 	xmltodict \
 	yarl
+
+echo "[INFO] Install EDA packages via PIP"
+pip3 install --upgrade --no-cache-dir \
+	amaranth \
+	cocotb \
+	edalize \
+	fusesoc \
+	gdsfactory \
+	gdspy \
+	pyrtl \
+	pyspice \
+	pyverilog \
+	siliconcompiler \
+	spyci \
+	volare
+
+pip3 install --upgrade --no-cache-dir \
+	jupyterlab \
+
 
 # Install Ruby packages via gem:
 gem install \

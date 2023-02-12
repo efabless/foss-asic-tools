@@ -13,7 +13,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="6cefbd13f1dac2293aaa1537a6ee2ad23c11a273"
+ARG MAGIC_REPO_COMMIT="1a3caee3761d3ad4d4d4a7e931137b21a608a92d"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -24,7 +24,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="f4fb991336fbde9d7e31ce6b526324ffc0984a25"
+ARG IIC_OSIC_REPO_COMMIT="9402243cbca2242cf41ea8b4a7db64d1edf68466"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="9f1c2b06d2b5a6708cfe0b55679c7e84d37220cc"
+ARG OPEN_PDKS_REPO_COMMIT="032b059033c4cf67f94c5b7f0a44d936b8ff5aae"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -87,7 +87,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
-ARG GAW3_XSCHEM_REPO_COMMIT="854bee4cf20663a632840256737d0d68b5eca417"
+ARG GAW3_XSCHEM_REPO_COMMIT="a4bb956afe84a7792115144f370effe2393228c2"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 
 ADD images/gaw3-xschem/scripts/install.sh install.sh
@@ -120,7 +120,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="7a0024d582341e2cb27d8cfecdaec5b89112b39e"
+ARG GTKWAVE_REPO_COMMIT="e1c01753bc5db9f7b42e41b9bde651a375ec5eba"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -142,7 +142,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="da1cefe8ea4f915a361895b5385012e4cca3f3fe"
+ARG IVERILOG_REPO_COMMIT="4643f57edbae1fedd104a013fb5e79e0d754f2ff"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -175,7 +175,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-38"
+ARG NGSPICE_REPO_COMMIT="ngspice-39"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/ngspice/scripts/install.sh install.sh
@@ -199,7 +199,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.8.0"
+ARG NVC_REPO_COMMIT="r1.8.1"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.01.17"
+ARG OPENLANE_REPO_COMMIT="2023.02.08"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="4f1108b6f558718ed142cbb6c1f5ba20958195ca"
+ARG OPENROAD_APP_REPO_COMMIT="1f720d3b442e2cd8dc6c5372535320b18a105e8d"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -276,7 +276,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v5.004"
+ARG VERILATOR_REPO_COMMIT="v5.006"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="49135f3f2e987907f839f5ea33550df9187a7105"
+ARG XSCHEM_REPO_COMMIT="cac1caa7a5cb02d7efd2666ac782432188b09179"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -413,13 +413,15 @@ COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
 COPY images/iic-osic-tools/addons/.gaw/			/headless/.gaw/
 COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
-COPY images/iic-osic-tools/addons/spice.rc		/headless/spice.rc
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
 # Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
 RUN bash install_ngspyce.sh
+
+# Install examples
+RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
