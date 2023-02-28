@@ -222,7 +222,7 @@ if [ $RUN_GEN_NET = 1 ]; then
 
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
-    python3 /foss/designs/ALIGN-Tests/Design/spice_to_sp_2.py "$FULL_FILE" #convert sch.spc to sp
+    python3 /foss/tools/align/Design/spice_to_sp_2.py "$FULL_FILE" #convert sch.spc to sp
 
     if [ ! -f "$ALIGN_SCH" ]
     then
@@ -263,13 +263,19 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "[INFO] Starting the ALIGN tool..."
     #start the ALIGN tool
-    LD_LIBRARY_PATH=/foss/designs/ALIGN-public/general/lib
-    ALIGN_ROOT=/foss/designs/ALIGN-public
-    ALIGN_SKY130PDK_ROOT=/foss/designs/ALIGN-public/ALIGN-pdk-sky130/SKY130_PDK
+    LD_LIBRARY_PATH=/foss/tools/align/general/lib
+    ALIGN_ROOT=/foss/tools/align
+    ALIGN_SKY130PDK_ROOT=/foss/tools/align/ALIGN-pdk-sky130/SKY130_PDK
 
     if [ ! -d $ALIGN_ROOT ]
     then
-        echo "[Error] Align directory found!"
+        echo "[Error] Align directory not found!"
+        exit $ERR_NO_DIR
+    fi	
+
+    if [ ! -d $ALIGN_SKY130PDK_ROOT ]
+    then
+        echo "[Error] Align-sky130 directory not found!"
         exit $ERR_NO_DIR
     fi	
 
