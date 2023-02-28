@@ -1,11 +1,12 @@
 # IIC-OSIC-TOOLS
 
-**This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>**
+**This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>.**
 
-IIC-OSIC-TOOLS is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu LTS (since `2022.12`). This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+**IIC-OSIC-TOOLS** is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu 22.04LTS (since release `2022.12`). This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+
 It supports two *modes of operation*:
 
-1. Using a complete desktop environment (XFCE) in Xvnc (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs now in your browser.
+1. Using a complete desktop environment (XFCE) in `Xvnc` (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs directly in your browser.
 2. Using a local X11 server and directly showing the application windows on your desktop.
 
 ## Installed PDKs
@@ -34,24 +35,29 @@ Below is a list of the current tools already installed and ready to use (note th
 * [cocotb](https://github.com/cocotb/cocotb) simulation library for writing VHDL and Verilog test benches in Python
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
+* [edalize](https://github.com/olofk/edalize) Python abstraction library for EDA tools
 * [fault](https://github.com/Cloud-V/Fault) design-for-test (DFT) solution
+* [fusesoc](https://github.com/olofk/fusesoc) package manager and build tools for SoC
 * [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for `xschem`
 * [gdsfactory](https://github.com/gdsfactory/gdsfactory) Python library for GDS generation
 * [gdspy](https://github.com/heitzmann/gdspy) Python module for creation and manipulation of GDS files
+* [gds3d](https://github.com/trilomix/GDS3D) a 3D viewer for GDS files
+* [gf180mcu](https://github.com/google/gf180mcu-pdk) GlobalFoundries 180nm CMOS PDK
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
 * [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and documentation
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
-* [klayout](https://github.com/KLayout/klayout) layout tool
-* [magic](https://github.com/rtimothyedwards/magic) layout tool with DRC and PEX
-* [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from yosys JSON netlist
+* [klayout](https://github.com/KLayout/klayout) layout viewer and editor for GDS and OASIS
+* [magic](https://github.com/rtimothyedwards/magic) layout editor with DRC and PEX
+* [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
-* [ngspice](http://ngspice.sourceforge.net) SPICE analog simulator
+* [ngspice](http://ngspice.sourceforge.net) SPICE analog and mixed-signal simulator
+* [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice` 
 * [nvc](https://github.com/nickg/nvc) VHDL simulator and compiler
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow
-* [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) collection of tools for `openlane`
+* [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane`
 * [opensta](https://github.com/The-OpenROAD-Project/OpenSTA) static timing analyzer for digital flow
 * [padring](https://github.com/donn/padring) padring generation tool
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
@@ -60,6 +66,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
 * [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion
+* [volare](https://github.com/efabless/volare) version manager (and builder) for open-source PDKs
 * [risc-v toolchain](https://github.com/riscv/riscv-gnu-toolchain) GNU compiler toolchain for RISC-V RV32I cores
 * [siliconcompiler](https://github.com/siliconcompiler/siliconcompiler) modular build system for hardware
 * [sky130](https://github.com/google/skywater-pdk.git) SkyWater Technologies 130nm CMOS PDK
@@ -68,7 +75,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. `xdm` netlist conversion tool)
 * [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)
 
-The tool versions used for `OpenLane` are documented in `tool_metadata.yml` and the other tools in `tool_metadata_add.yml`.
+The tool versions used for `OpenLane` are documented in `tool_metadata.yml` and the other tools in `tool_metadata_add.yml`. In addition to the EDA tools above, further useful tools (like `git`) and editors (like `gvim`) are installed. If something useful is missing, please let us know!
 
 ## Quick Launch for Designers
 
@@ -93,11 +100,15 @@ If a file `.designinit` is put in this directory, it is sourced last when starti
 
 This mode is recommended for remote operation on a separate server or if you prefer the convenience of a full desktop environment. To start it up, you can use (in a Bash/Unix shell):
 
-`./start_vnc.sh`
+```bash
+./start_vnc.sh
+```
 
 On Windows, you can use the equivalent batch script (if the defaults are acceptable, it can also be started by double-clicking in Explorer):
 
-`.\start_vnc.bat`
+```terminal
+.\start_vnc.bat
+```
 
 You can now access the Desktop Environment through your browser ([http://localhost](http://localhost)). The default password is `abc123`.
 
@@ -122,11 +133,15 @@ To overwrite the default settings, see [Overwriting Shell Variables](#overwritin
 
 This mode is recommended if the container is run on the local machine. It is significantly faster than VNC (as it renders the graphics locally), is more lightweight (no complete desktop environment is running), and integrates with the desktop (copy-paste, etc.). To start the container, run the following:
 
-`./start_x.sh`
+```bash
+./start_x.sh
+```
 
 or
 
-`.\start_x.bat`
+```terminal
+.\start_x.bat
+```
 
 **Attention Windows and macOS users:** The X-server connection is automatically killed if there is a too-long idle period in the terminal (when this happens, it looks like a **crash** of the system). A **workaround** is to start a second terminal from the initial terminal that pops up when executing the start scripts `./start_x.sh` or `.\start_x.bat` and then start `htop` in the initial terminal. In this way, there is an ongoing display activity in the initial terminal, and as a positive side-effect, the usage of the machine can be monitored. We are looking for a better long-term solution.
 
@@ -218,7 +233,9 @@ SET DOCKER_USERNAME=another_user
 
 The installation slightly differs from the original `foss-asic-tools` installation by efabless.com. For this image, the build is replaced with a single Dockerfile for convenience when doing a multi-architecture build. For a basic single (native)-architecture build, just run the following:
 
-`docker build .`
+```bash
+docker build .
+```
 
 You can add build parameters accordingly. We strongly recommend using `docker buildx` because of `buildkit` (parallel building) and multi-architecture support. The script `build_all.sh` includes building with `buildx`, on two different machines (for fast amd64 and arm64 builds) and pushes both images to the Docker Hub under the same tag. The script includes multiple environment variables with defaults. If you intend to build this image, we encourage you to use this script as a template.
 The predefined settings are for the IIC build machines, and the image gets pushed with the tags `latest` and `year.month` (e.g., `2022.12`).
