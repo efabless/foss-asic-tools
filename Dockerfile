@@ -338,6 +338,18 @@ ADD images/ghdl-yosys-plugin/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile ALIGN-analoglayout
+#######################################################################
+FROM base as align
+ARG ALIGN_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-public"
+ARG ALIGN_REPO_COMMIT="master"
+ARG ALIGN_NAME="align"
+
+ADD images/align/scripts/install.sh install.sh
+ADD image/align/designs /foss/tools/align
+RUN bash install.sh
+
+#######################################################################
 # Final output container
 #######################################################################
 FROM base as iic-osic-tools
@@ -403,6 +415,7 @@ COPY --from=xyce                         /foss/tools/            /foss/tools/
 COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
 COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
+COPY --from=align                        /foss/tools/            /foss/tools/
 
 ADD  images/iic-osic-tools/addons/sak			/foss/tools/sak
 COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
