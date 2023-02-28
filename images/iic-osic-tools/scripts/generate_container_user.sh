@@ -3,7 +3,7 @@
 
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
-echo "USER_ID: $USER_ID, GROUP_ID: $GROUP_ID"
+echo "[INFO] USER_ID: $USER_ID, GROUP_ID: $GROUP_ID"
 
 if [ x"$USER_ID" != x"0" ]; then
 
@@ -28,7 +28,7 @@ if [ x"$USER_ID" != x"0" ]; then
     elif [ -r /usr/lib/aarch64-linux-gnu/libnss_wrapper.so ]; then
         LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libnss_wrapper.so
     else
-        echo "no libnss_wrapper.so installed!"
+        echo "[ERROR] No libnss_wrapper.so installed!"
         exit 1
     fi
     export LD_PRELOAD

@@ -3,41 +3,31 @@
 set -e
 set -u
 
-echo "Installing misc. packages"
+echo "[INFO] Installing misc. packages"
 apt-get install -y \
 	nano \
-        firefox \
         gedit \
-        gettext \
         htop \
         hub \
-        libnss-wrapper \
-        libqt5widgets5 \
         meld \
         net-tools \
+        surf \
         nmap \
         novnc \
         sudo \
-        tcl \
-        tcl-tclreadline \
-        tcllib \
         tigervnc-standalone-server \
-        tk \
         vim \
         vim-gtk3 \
         websockify \
         xfce4 \
         xfce4-terminal \
-        xterm \
-        xvfb
-#       octave \
-#       mailcap \
+        xterm
 
-# Remove light-locker, otherwise VNC session locks up
-apt purge -y light-locker
+# Remove light-locker and other power management stuff, otherwise VNC session locks up
+apt purge -y light-locker pm-utils *screensaver*
 apt autoremove -y
 
-#FIXME rm /etc/xdg/autostart/polkit*
+# FIXME rm /etc/xdg/autostart/polkit*
 /bin/dbus-uuidgen > /etc/machine-id
 
 ## create index.html to forward automatically to `vnc_lite.html`

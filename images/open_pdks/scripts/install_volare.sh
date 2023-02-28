@@ -38,6 +38,18 @@ if [ -d "$PDK_ROOT/sky130B" ]; then
     echo "source $SCRIPT_DIR/iic-magic-bindkeys" 	>> "$PDK_ROOT/sky130B/libs.tech/magic/sky130B.magicrc"
 fi
 
+# FIXME: Repair klayout tech file
+sed -i 's/>sky130</>sky130A</g' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
+sed -i 's/sky130.lyp/sky130A.lyp/g' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
+sed -i '/<base-path>/c\ <base-path/>' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
+sed -i '/<original-base-path>/c\ <original-base-path>$PDK_ROOT/$PDK/libs.tech/klayout</original-base-path>' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
+
+sed -i 's/>sky130</>sky130B</g' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
+sed -i 's/sky130.lyp/sky130B.lyp/g' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
+sed -i '/<base-path>/c\ <base-path/>' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
+sed -i '/<original-base-path>/c\ <original-base-path>$PDK_ROOT/$PDK/libs.tech/klayout</original-base-path>' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
+
+
 ##################
 # INSTALL GF180MCU
 ##################
