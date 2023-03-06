@@ -118,6 +118,7 @@ apt-get -y install \
 	python3 \
 	python3-dev \
 	python3-pip \
+	python3-venv \
 	qt5-default \
 	qt5-image-formats-plugins \
 	qtbase5-dev \
