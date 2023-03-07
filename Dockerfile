@@ -343,7 +343,7 @@ RUN bash install.sh
 FROM base as align
 ARG ALIGN_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-public.git"
 ARG ALIGN_REPO_COMMIT="d3954af5ba4deab3c7daec4a0e5fd866d65ef75c"
-ARG ALIGN_NAME="ALIGN-public"
+ARG ALIGN_NAME="align"
 
 ADD images/align/scripts/install.sh install.sh
 ADD images/align/design /foss/tools/align
