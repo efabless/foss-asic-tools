@@ -346,7 +346,6 @@ ARG ALIGN_REPO_COMMIT="d3954af5ba4deab3c7daec4a0e5fd866d65ef75c"
 ARG ALIGN_NAME="align"
 
 ADD images/align/scripts/install.sh install.sh
-ADD images/align/designs /foss/tools/align
 RUN bash install.sh
 
 #######################################################################
@@ -440,6 +439,9 @@ COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
+
+# Add ALIGN-design scripts
+ADD images/align/designs /foss/tools/align
 
 # Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
