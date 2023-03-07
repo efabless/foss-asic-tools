@@ -6,7 +6,7 @@ REPO_COMMIT_SHORT=$(echo "$ALIGN_REPO_COMMIT" | cut -c 1-7)
 
 git clone "${ALIGN_REPO_URL}" "${ALIGN_NAME}"
 cd "${ALIGN_NAME}"
-git checkout "${ALIGN_NAME}"
+git checkout "${ALIGALIGN_REPO_COMMIT}"
 
 #create a python virtualenv
 python3 -m venv general
