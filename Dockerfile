@@ -422,6 +422,7 @@ RUN bash install_ngspyce.sh
 
 # Install examples
 RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC
+RUN git clone https://github.com/mabrains/Analog_blocks.git /foss/examples/SKY130_ANALOG-BLOCKS
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
