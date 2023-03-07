@@ -343,7 +343,7 @@ RUN bash install.sh
 FROM base as align
 ARG ALIGN_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-public.git"
 ARG ALIGN_REPO_COMMIT="d3954af5ba4deab3c7daec4a0e5fd866d65ef75c"
-ARG ALIGN_NAME="align"
+ARG ALIGN_NAME="ALIGN-public"
 
 ADD images/align/scripts/install.sh install.sh
 ADD images/align/design /foss/tools/align
@@ -352,12 +352,12 @@ RUN bash install.sh
 #######################################################################
 # Compile ALIGN-analoglayout-sky130
 #######################################################################
-FROM base as align-sky130
-ARG ALIGN_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-sky130.git"
-ARG ALIGN_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
-ARG ALIGN_SKY130_NAME="align-sky130"
+FROM base as align-pdk-sky130
+ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-sky130.git"
+ARG ALIGN_PDK_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
+ARG ALIGN_PDK_SKY130_NAME="ALIGN-pdk-sky130"
 
-ADD images/align-sky130/scripts/install.sh install.sh
+ADD images/align-pdk-sky130/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -431,7 +431,7 @@ COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
 COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
 COPY --from=align                        /foss/tools/            /foss/tools/
-COPY --from=align-sky130                 /foss/tools/            /foss/tools/align
+COPY --from=align-pdk-sky130             /foss/tools/            /foss/tools/align
 
 ADD  images/iic-osic-tools/addons/sak			/foss/tools/sak
 COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
