@@ -431,7 +431,7 @@ COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
 COPY --from=yosys                        /foss/tools/            /foss/tools/
 COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
 COPY --from=align                        /foss/tools/            /foss/tools/
-COPY --from=align-pdk-sky130             /foss/tools/            /foss/tools/align
+COPY --from=align-pdk-sky130             /foss/tools/            /foss/tools/
 
 ADD  images/iic-osic-tools/addons/sak			/foss/tools/sak
 COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
