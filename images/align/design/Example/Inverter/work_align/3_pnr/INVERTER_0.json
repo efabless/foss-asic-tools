@@ -1,0 +1,913 @@
+{
+  "bbox": [
+    0,
+    0,
+    2580,
+    15120
+  ],
+  "globalRoutes": [],
+  "globalRouteGrid": [],
+  "terminals": [
+    {
+      "layer": "Outline",
+      "netName": null,
+      "netType": "drawing",
+      "rect": [
+        0,
+        0,
+        2580,
+        15120
+      ]
+    },
+    {
+      "netName": null,
+      "layer": "Nselect",
+      "rect": [
+        0,
+        1680,
+        2580,
+        7560
+      ],
+      "netType": "drawing"
+    },
+    {
+      "netName": null,
+      "layer": "Pselect",
+      "rect": [
+        0,
+        0,
+        2580,
+        1680
+      ],
+      "netType": "drawing"
+    },
+    {
+      "netName": null,
+      "layer": "Pselect",
+      "rect": [
+        0,
+        7560,
+        2580,
+        13440
+      ],
+      "netType": "drawing"
+    },
+    {
+      "netName": null,
+      "layer": "Nwell",
+      "rect": [
+        0,
+        7560,
+        2580,
+        15120
+      ],
+      "netType": "drawing"
+    },
+    {
+      "netName": null,
+      "layer": "Nselect",
+      "rect": [
+        0,
+        13440,
+        2580,
+        15120
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "VSS",
+      "rect": [
+        1165,
+        335,
+        1415,
+        1345
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "A",
+      "rect": [
+        1165,
+        2435,
+        1415,
+        3445
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "Y",
+      "rect": [
+        1165,
+        3695,
+        1415,
+        7225
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "Y",
+      "rect": [
+        1165,
+        7895,
+        1415,
+        11425
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "A",
+      "rect": [
+        1165,
+        11675,
+        1415,
+        12685
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "VDD",
+      "rect": [
+        1165,
+        13775,
+        1415,
+        14785
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "VSS",
+      "rect": [
+        1595,
+        3695,
+        1845,
+        7225
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "VDD",
+      "rect": [
+        1595,
+        7895,
+        1845,
+        11425
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "VSS",
+      "rect": [
+        735,
+        3695,
+        985,
+        7225
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "VDD",
+      "rect": [
+        735,
+        7895,
+        985,
+        11425
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M1",
+      "netName": "Y",
+      "rect": [
+        2025,
+        7055,
+        2275,
+        8065
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M2",
+      "netName": "Y",
+      "rect": [
+        1120,
+        7000,
+        2320,
+        7280
+      ],
+      "netType": "pin"
+    },
+    {
+      "layer": "M2",
+      "netName": "A",
+      "rect": [
+        1120,
+        2800,
+        2320,
+        3080
+      ],
+      "netType": "pin"
+    },
+    {
+      "layer": "M2",
+      "netName": "VSS",
+      "rect": [
+        690,
+        6580,
+        1890,
+        6860
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M2",
+      "netName": "VSS",
+      "rect": [
+        690,
+        700,
+        1890,
+        980
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M2",
+      "netName": "Y",
+      "rect": [
+        1120,
+        7840,
+        2320,
+        8120
+      ],
+      "netType": "pin"
+    },
+    {
+      "layer": "M2",
+      "netName": "A",
+      "rect": [
+        1120,
+        12040,
+        2320,
+        12320
+      ],
+      "netType": "pin"
+    },
+    {
+      "layer": "M2",
+      "netName": "VDD",
+      "rect": [
+        690,
+        8260,
+        1890,
+        8540
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M2",
+      "netName": "VDD",
+      "rect": [
+        690,
+        14140,
+        1890,
+        14420
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "VSS",
+      "rect": [
+        1205,
+        755,
+        1375,
+        925
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "A",
+      "rect": [
+        1205,
+        2855,
+        1375,
+        3025
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "Y",
+      "rect": [
+        1205,
+        7055,
+        1375,
+        7225
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "Y",
+      "rect": [
+        1205,
+        7895,
+        1375,
+        8065
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "A",
+      "rect": [
+        1205,
+        12095,
+        1375,
+        12265
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "VDD",
+      "rect": [
+        1205,
+        14195,
+        1375,
+        14365
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "VSS",
+      "rect": [
+        1635,
+        6635,
+        1805,
+        6805
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "VDD",
+      "rect": [
+        1635,
+        8315,
+        1805,
+        8485
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "VSS",
+      "rect": [
+        775,
+        6635,
+        945,
+        6805
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "VDD",
+      "rect": [
+        775,
+        8315,
+        945,
+        8485
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "Y",
+      "rect": [
+        2065,
+        7055,
+        2235,
+        7225
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V1",
+      "netName": "Y",
+      "rect": [
+        2065,
+        7895,
+        2235,
+        8065
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "M3",
+      "netName": "VSS",
+      "rect": [
+        720,
+        680,
+        1000,
+        6880
+      ],
+      "netType": "pin"
+    },
+    {
+      "layer": "M3",
+      "netName": "VDD",
+      "rect": [
+        720,
+        8240,
+        1000,
+        14440
+      ],
+      "netType": "pin"
+    },
+    {
+      "layer": "M3",
+      "netName": "A",
+      "rect": [
+        1150,
+        2780,
+        1430,
+        12340
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V2",
+      "netName": "VSS",
+      "rect": [
+        785,
+        765,
+        935,
+        915
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V2",
+      "netName": "VSS",
+      "rect": [
+        785,
+        6645,
+        935,
+        6795
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V2",
+      "netName": "VDD",
+      "rect": [
+        785,
+        8325,
+        935,
+        8475
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V2",
+      "netName": "VDD",
+      "rect": [
+        785,
+        14205,
+        935,
+        14355
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V2",
+      "netName": "A",
+      "rect": [
+        1215,
+        2865,
+        1365,
+        3015
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V2",
+      "netName": "A",
+      "rect": [
+        1215,
+        12105,
+        1365,
+        12255
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Poly",
+      "netName": null,
+      "rect": [
+        1430,
+        2940,
+        1580,
+        6300
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Poly",
+      "netName": null,
+      "rect": [
+        1430,
+        8820,
+        1580,
+        12180
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Poly",
+      "netName": null,
+      "rect": [
+        1000,
+        2940,
+        1150,
+        6300
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Poly",
+      "netName": null,
+      "rect": [
+        1000,
+        8820,
+        1150,
+        12180
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Poly",
+      "netName": null,
+      "rect": [
+        1000,
+        2805,
+        1580,
+        3075
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Poly",
+      "netName": null,
+      "rect": [
+        1000,
+        12045,
+        1580,
+        12315
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Active",
+      "netName": null,
+      "rect": [
+        735,
+        4200,
+        1845,
+        5250
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Active",
+      "netName": null,
+      "rect": [
+        735,
+        9975,
+        1845,
+        10815
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Tap",
+      "netName": null,
+      "rect": [
+        1205,
+        280,
+        1375,
+        1400
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "Tap",
+      "netName": null,
+      "rect": [
+        1205,
+        13720,
+        1375,
+        14840
+      ],
+      "netType": "drawing"
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        1205,
+        755,
+        1375,
+        925
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "B"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "A",
+      "rect": [
+        1205,
+        2855,
+        1375,
+        3025
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "G"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "Y",
+      "rect": [
+        1205,
+        4320,
+        1375,
+        4490
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "D"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "Y",
+      "rect": [
+        1205,
+        4660,
+        1375,
+        4830
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "D"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "Y",
+      "rect": [
+        1205,
+        5000,
+        1375,
+        5170
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "D"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "Y",
+      "rect": [
+        1205,
+        10055,
+        1375,
+        10225
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "D"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "Y",
+      "rect": [
+        1205,
+        10395,
+        1375,
+        10565
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "D"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "A",
+      "rect": [
+        1205,
+        12095,
+        1375,
+        12265
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "G"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VDD",
+      "rect": [
+        1205,
+        14195,
+        1375,
+        14365
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "B"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        1635,
+        4320,
+        1805,
+        4490
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        1635,
+        4660,
+        1805,
+        4830
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        1635,
+        5000,
+        1805,
+        5170
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VDD",
+      "rect": [
+        1635,
+        10055,
+        1805,
+        10225
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VDD",
+      "rect": [
+        1635,
+        10395,
+        1805,
+        10565
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        775,
+        4320,
+        945,
+        4490
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        775,
+        4660,
+        945,
+        4830
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VSS",
+      "rect": [
+        775,
+        5000,
+        945,
+        5170
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M0/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VDD",
+      "rect": [
+        775,
+        10055,
+        945,
+        10225
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "S"
+      ]
+    },
+    {
+      "layer": "V0",
+      "netName": "VDD",
+      "rect": [
+        775,
+        10395,
+        945,
+        10565
+      ],
+      "netType": "drawing",
+      "terminal": [
+        "X_XM1_XM2/X_M1/M1_X0_Y0",
+        "S"
+      ]
+    }
+  ]
+}

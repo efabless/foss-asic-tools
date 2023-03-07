@@ -1,0 +1,100 @@
+{
+  "modules": [
+    {
+      "name": "INVERTER",
+      "parameters": [
+        "A",
+        "Y",
+        "VDD",
+        "VSS"
+      ],
+      "constraints": [],
+      "instances": [
+        {
+          "instance_name": "X_XM1_XM2",
+          "fa_map": [
+            {
+              "formal": "I",
+              "actual": "A"
+            },
+            {
+              "formal": "SN",
+              "actual": "VSS"
+            },
+            {
+              "formal": "SP",
+              "actual": "VDD"
+            },
+            {
+              "formal": "ZN",
+              "actual": "Y"
+            }
+          ],
+          "abstract_template_name": "INV_28319830"
+        }
+      ]
+    },
+    {
+      "name": "INV_28319830",
+      "parameters": [
+        "I",
+        "ZN",
+        "SN",
+        "SP"
+      ],
+      "constraints": [
+        {
+          "constraint": "SymmetricBlocks",
+          "pairs": [
+            [
+              "X_M0"
+            ],
+            [
+              "X_M1"
+            ]
+          ],
+          "direction": "V"
+        }
+      ],
+      "instances": [
+        {
+          "instance_name": "X_M0",
+          "fa_map": [
+            {
+              "formal": "D",
+              "actual": "ZN"
+            },
+            {
+              "formal": "G",
+              "actual": "I"
+            },
+            {
+              "formal": "S",
+              "actual": "SN"
+            }
+          ],
+          "abstract_template_name": "NMOS_S_54487678"
+        },
+        {
+          "instance_name": "X_M1",
+          "fa_map": [
+            {
+              "formal": "D",
+              "actual": "ZN"
+            },
+            {
+              "formal": "G",
+              "actual": "I"
+            },
+            {
+              "formal": "S",
+              "actual": "SP"
+            }
+          ],
+          "abstract_template_name": "PMOS_S_99486525"
+        }
+      ]
+    }
+  ],
+  "global_signals": []
+}

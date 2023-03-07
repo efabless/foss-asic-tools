@@ -1,0 +1,128 @@
+[
+  {
+    "name": "SKY130_FD_PR__NFET_01V8",
+    "base": "NMOS",
+    "pins": [
+      "D",
+      "G",
+      "S",
+      "B"
+    ],
+    "parameters": {
+      "W": "1",
+      "L": "1",
+      "NFIN": "1",
+      "NF": "2",
+      "M": "1",
+      "PARALLEL": "1",
+      "STACK": "1"
+    },
+    "prefix": ""
+  },
+  {
+    "name": "NMOS_S_54487678",
+    "base": null,
+    "pins": [
+      "D",
+      "G",
+      "S"
+    ],
+    "parameters": {},
+    "prefix": "",
+    "elements": [
+      {
+        "model": "SKY130_FD_PR__NFET_01V8",
+        "name": "M1",
+        "pins": {
+          "D": "D",
+          "G": "G",
+          "S": "S",
+          "B": "S"
+        },
+        "parameters": {
+          "W": "1.05E-06",
+          "L": "1.5E-07",
+          "NFIN": "1",
+          "NF": "2",
+          "M": "1",
+          "PARALLEL": "1",
+          "STACK": "1"
+        },
+        "abstract_name": null
+      }
+    ],
+    "generator": {
+      "name": "MOS"
+    },
+    "constraints": [
+      {
+        "constraint": "Generator",
+        "name": "MOS",
+        "parameters": null
+      }
+    ]
+  },
+  {
+    "name": "SKY130_FD_PR__PFET_01V8",
+    "base": "PMOS",
+    "pins": [
+      "D",
+      "G",
+      "S",
+      "B"
+    ],
+    "parameters": {
+      "W": "1",
+      "L": "1",
+      "NFIN": "1",
+      "NF": "2",
+      "M": "1",
+      "PARALLEL": "1",
+      "STACK": "1"
+    },
+    "prefix": ""
+  },
+  {
+    "name": "PMOS_S_99486525",
+    "base": null,
+    "pins": [
+      "D",
+      "G",
+      "S"
+    ],
+    "parameters": {},
+    "prefix": "",
+    "elements": [
+      {
+        "model": "SKY130_FD_PR__PFET_01V8",
+        "name": "M1",
+        "pins": {
+          "D": "D",
+          "G": "G",
+          "S": "S",
+          "B": "S"
+        },
+        "parameters": {
+          "W": "8.4E-07",
+          "L": "1.5E-07",
+          "NFIN": "1",
+          "NF": "2",
+          "M": "1",
+          "PARALLEL": "1",
+          "STACK": "1"
+        },
+        "abstract_name": null
+      }
+    ],
+    "generator": {
+      "name": "MOS"
+    },
+    "constraints": [
+      {
+        "constraint": "Generator",
+        "name": "MOS",
+        "parameters": null
+      }
+    ]
+  }
+]

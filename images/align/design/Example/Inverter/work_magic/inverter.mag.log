@@ -1,0 +1,5 @@
+Error while reading cell "NMOS_S_54487678_X1_Y1_1678192857_1678192857" (byte position 2394): Unknown layer/datatype in boundary, layer=100 type=5
+Error while reading cell "PMOS_S_99486525_X1_Y1_1678192858_1678192857" (byte position 4650): Unknown layer/datatype in boundary, layer=100 type=5
+Error while reading cell "INV_28319830_0_0_1678192857" (byte position 6998): Unknown layer/datatype in boundary, layer=235 type=5
+Error while reading cell "INVERTER_0" (byte position 8478): Unknown layer/datatype in boundary, layer=235 type=5
+Error while reading cell "INVERTER_0" (byte position 8566): Unknown layer/datatype in boundary, layer=104 type=0
