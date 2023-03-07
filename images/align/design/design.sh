@@ -265,7 +265,7 @@ if [ $RUN_ALIGN = 1 ]; then
     #start the ALIGN tool
     LD_LIBRARY_PATH=/foss/tools/align/general/lib
     ALIGN_ROOT=/foss/tools/align
-    ALIGN_SKY130PDK_ROOT=/foss/tools/align/ALIGN-pdk-sky130/SKY130_PDK
+    ALIGN_SKY130PDK_ROOT=/foss/tools/align-pdk-sky130/SKY130_PDK
 
     if [ ! -d $ALIGN_ROOT ]
     then
