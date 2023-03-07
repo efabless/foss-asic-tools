@@ -128,7 +128,6 @@ apt-get -y install \
 	python3 \
 	python3-dev \
 	python3-pip \
-	python3-tk \
 	python3-venv \
 	qt5-default \
 	qt5-image-formats-plugins \
@@ -263,7 +262,6 @@ apt-get -y install \
 	python3 \
 	python3-dev \
 	python3-pip \
-	python3-tk \
 	python3-venv \
 	qt5-image-formats-plugins \
 	qt5-qmake \
