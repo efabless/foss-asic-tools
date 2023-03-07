@@ -220,9 +220,10 @@ if [ $RUN_GEN_NET = 1 ]; then
             echo ".end" >> "$NETLIST_SCH"
     fi
 
+    SPICE_TO_ALIGN=/foss/tools/align/design/spice_to_sp_2.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
-    python3 /foss/tools/align/Design/spice_to_sp_2.py "$FULL_FILE" #convert sch.spc to sp
+    python3 SPICE_TO_ALIGN "$FULL_FILE" #convert sch.spc to sp
 
     if [ ! -f "$ALIGN_SCH" ]
     then
