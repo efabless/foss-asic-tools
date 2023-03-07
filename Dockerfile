@@ -455,7 +455,7 @@ COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
 # Add ALIGN-design scripts
-ADD images/align/designs /foss/tools/align
+COPY images/align/designs /foss/tools/align
 
 # Install ignamv/ngspyce python lib from source
 ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
