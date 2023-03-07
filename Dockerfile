@@ -355,7 +355,7 @@ RUN bash install.sh
 FROM base as align-pdk-sky130
 ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-sky130.git"
 ARG ALIGN_PDK_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
-ARG ALIGN_PDK_SKY130_NAME="ALIGN-pdk-sky130"
+ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
 
 ADD images/align-pdk-sky130/scripts/install.sh install.sh
 RUN bash install.sh
