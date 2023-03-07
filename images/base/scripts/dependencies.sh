@@ -118,6 +118,7 @@ apt-get -y install \
 	python3 \
 	python3-dev \
 	python3-pip \
+	python3-tk \
 	python3-venv \
 	qt5-default \
 	qt5-image-formats-plugins \
@@ -304,6 +305,7 @@ pip3 install --upgrade --no-cache-dir \
 	plotly \
 	psutil \
 	pybind11 \
+	pyyaml \
 	scikit-build \
 	scipy \
 	setuptools \
