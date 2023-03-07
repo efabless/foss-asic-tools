@@ -8,7 +8,7 @@ mkdir -p /foss/tools
 cd /foss/tools
 git clone "${ALIGN_REPO_URL}" "${ALIGN_NAME}"
 cd "${ALIGN_NAME}"
-git checkout "${ALIGALIGN_REPO_COMMIT}"
+git checkout "${ALIGN_REPO_COMMIT}"
 
 #create a python virtualenv
 python3 -m venv general
