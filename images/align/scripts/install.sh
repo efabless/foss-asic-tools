@@ -11,7 +11,7 @@ cd "${ALIGN_NAME}"
 git checkout "${ALIGN_REPO_COMMIT}"
 
 #create a python virtualenv
-python3.9 -m venv general
+python3 -m venv general --without-pip --system-site-packages
 source general/bin/activate
 python3 -m pip install pip --upgrade
 
