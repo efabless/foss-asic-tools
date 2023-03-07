@@ -359,7 +359,7 @@ ARG ALIGN_REPO_COMMIT="d3954af5ba4deab3c7daec4a0e5fd866d65ef75c"
 ARG ALIGN_NAME="align"
 
 ADD images/align/scripts/install.sh install.sh
-ADD image/align/designs /foss/tools/align
+ADD images/align/designs /foss/tools/align
 RUN bash install.sh
 
 #######################################################################
