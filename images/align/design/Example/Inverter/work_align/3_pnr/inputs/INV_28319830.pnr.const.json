@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "pairs": [
+        {
+          "type": "selfsym",
+          "block": "X_M0"
+        },
+        {
+          "type": "selfsym",
+          "block": "X_M1"
+        }
+      ],
+      "const_name": "SymmBlock",
+      "axis_dir": "V"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+MACRO INV_28319830
+  ORIGIN 0 0 ;
+  FOREIGN INV_28319830 0 0 ;
+  SIZE 2.58 BY 15.12 ;
+  PIN ZN
+    DIRECTION INOUT ;
+    USE SIGNAL ;
+    PORT 
+      LAYER M2 ;
+        RECT 1.12 7 2.32 7.28 ;
+      LAYER M2 ;
+        RECT 1.12 7.84 2.32 8.12 ;
+      LAYER M2 ;
+        RECT 1.99 7 2.31 7.28 ;
+      LAYER M1 ;
+        RECT 2.025 7.14 2.275 7.98 ;
+      LAYER M2 ;
+        RECT 1.99 7.84 2.31 8.12 ;
+    END
+  END ZN
+  PIN I
+    DIRECTION INOUT ;
+    USE SIGNAL ;
+    PORT 
+      LAYER M2 ;
+        RECT 1.12 2.8 2.32 3.08 ;
+      LAYER M2 ;
+        RECT 1.12 12.04 2.32 12.32 ;
+      LAYER M2 ;
+        RECT 1.13 2.8 1.45 3.08 ;
+      LAYER M3 ;
+        RECT 1.15 2.94 1.43 12.18 ;
+      LAYER M2 ;
+        RECT 1.13 12.04 1.45 12.32 ;
+    END
+  END I
+  PIN SN
+    DIRECTION INOUT ;
+    USE SIGNAL ;
+    PORT 
+      LAYER M3 ;
+        RECT 0.72 0.68 1 6.88 ;
+    END
+  END SN
+  PIN SP
+    DIRECTION INOUT ;
+    USE SIGNAL ;
+    PORT 
+      LAYER M3 ;
+        RECT 0.72 8.24 1 14.44 ;
+    END
+  END SP
+  OBS 
+  LAYER M1 ;
+        RECT 1.165 3.695 1.415 7.225 ;
+  LAYER M1 ;
+        RECT 1.165 2.435 1.415 3.445 ;
+  LAYER M1 ;
+        RECT 1.165 0.335 1.415 1.345 ;
+  LAYER M1 ;
+        RECT 1.595 3.695 1.845 7.225 ;
+  LAYER M1 ;
+        RECT 0.735 3.695 0.985 7.225 ;
+  LAYER M2 ;
+        RECT 0.69 6.58 1.89 6.86 ;
+  LAYER M2 ;
+        RECT 0.69 0.7 1.89 0.98 ;
+  LAYER M2 ;
+        RECT 1.12 7 2.32 7.28 ;
+  LAYER M2 ;
+        RECT 1.12 2.8 2.32 3.08 ;
+  LAYER M3 ;
+        RECT 0.72 0.68 1 6.88 ;
+  LAYER M1 ;
+        RECT 1.165 7.895 1.415 11.425 ;
+  LAYER M1 ;
+        RECT 1.165 11.675 1.415 12.685 ;
+  LAYER M1 ;
+        RECT 1.165 13.775 1.415 14.785 ;
+  LAYER M1 ;
+        RECT 1.595 7.895 1.845 11.425 ;
+  LAYER M1 ;
+        RECT 0.735 7.895 0.985 11.425 ;
+  LAYER M2 ;
+        RECT 0.69 8.26 1.89 8.54 ;
+  LAYER M2 ;
+        RECT 0.69 14.14 1.89 14.42 ;
+  LAYER M2 ;
+        RECT 1.12 7.84 2.32 8.12 ;
+  LAYER M2 ;
+        RECT 1.12 12.04 2.32 12.32 ;
+  LAYER M3 ;
+        RECT 0.72 8.24 1 14.44 ;
+  END 
+END INV_28319830

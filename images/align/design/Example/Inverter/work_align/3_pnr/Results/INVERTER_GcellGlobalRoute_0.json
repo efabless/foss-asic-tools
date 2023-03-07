@@ -1,0 +1,176 @@
+{
+    "wires": [
+        {
+            "connected_pins": [
+                {
+                    "layer": "M2",
+                    "rect": [
+                        2240,
+                        5600,
+                        4640,
+                        6160
+                    ],
+                    "sink_name": "X_XM1_XM2/I"
+                },
+                {
+                    "layer": "M2",
+                    "rect": [
+                        2240,
+                        24080,
+                        4640,
+                        24640
+                    ],
+                    "sink_name": "X_XM1_XM2/I"
+                },
+                {
+                    "layer": "M2",
+                    "rect": [
+                        2260,
+                        5600,
+                        2900,
+                        6160
+                    ],
+                    "sink_name": "X_XM1_XM2/I"
+                },
+                {
+                    "layer": "M3",
+                    "rect": [
+                        2300,
+                        5880,
+                        2860,
+                        24360
+                    ],
+                    "sink_name": "X_XM1_XM2/I"
+                },
+                {
+                    "layer": "M2",
+                    "rect": [
+                        2260,
+                        24080,
+                        2900,
+                        24640
+                    ],
+                    "sink_name": "X_XM1_XM2/I"
+                }
+            ],
+            "layer": "M2",
+            "net_name": "A",
+            "rect": [
+                2580,
+                15120,
+                2580,
+                15120
+            ],
+            "width": 30240
+        },
+        {
+            "connected_pins": [
+                {
+                    "layer": "M3",
+                    "rect": [
+                        1440,
+                        1360,
+                        2000,
+                        13760
+                    ],
+                    "sink_name": "X_XM1_XM2/SN"
+                }
+            ],
+            "layer": "M3",
+            "net_name": "VSS",
+            "rect": [
+                2580,
+                15120,
+                2580,
+                15120
+            ],
+            "width": 5160
+        },
+        {
+            "connected_pins": [
+                {
+                    "layer": "M3",
+                    "rect": [
+                        1440,
+                        16480,
+                        2000,
+                        28880
+                    ],
+                    "sink_name": "X_XM1_XM2/SP"
+                }
+            ],
+            "layer": "M3",
+            "net_name": "VDD",
+            "rect": [
+                2580,
+                15120,
+                2580,
+                15120
+            ],
+            "width": 5160
+        },
+        {
+            "connected_pins": [
+                {
+                    "layer": "M2",
+                    "rect": [
+                        2240,
+                        14000,
+                        4640,
+                        14560
+                    ],
+                    "sink_name": "X_XM1_XM2/ZN"
+                },
+                {
+                    "layer": "M2",
+                    "rect": [
+                        2240,
+                        15680,
+                        4640,
+                        16240
+                    ],
+                    "sink_name": "X_XM1_XM2/ZN"
+                },
+                {
+                    "layer": "M2",
+                    "rect": [
+                        3980,
+                        14000,
+                        4620,
+                        14560
+                    ],
+                    "sink_name": "X_XM1_XM2/ZN"
+                },
+                {
+                    "layer": "M1",
+                    "rect": [
+                        4050,
+                        14280,
+                        4550,
+                        15960
+                    ],
+                    "sink_name": "X_XM1_XM2/ZN"
+                },
+                {
+                    "layer": "M2",
+                    "rect": [
+                        3980,
+                        15680,
+                        4620,
+                        16240
+                    ],
+                    "sink_name": "X_XM1_XM2/ZN"
+                }
+            ],
+            "layer": "M1",
+            "net_name": "Y",
+            "rect": [
+                2580,
+                15120,
+                2580,
+                15120
+            ],
+            "width": 5160
+        }
+    ]
+}
