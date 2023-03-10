@@ -24,7 +24,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as iic-osic
 ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="9402243cbca2242cf41ea8b4a7db64d1edf68466"
+ARG IIC_OSIC_REPO_COMMIT="5f6ac4fe207ba1c16b730dcbe6e03051744c8018"
 ARG IIC_OSIC_NAME="iic-osic"
 
 ADD images/iic-osic/scripts/install.sh install.sh
@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="032b059033c4cf67f94c5b7f0a44d936b8ff5aae"
+ARG OPEN_PDKS_REPO_COMMIT="e6f9c8876da77220403014b116761b0b2d79aab4"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -109,7 +109,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="v2.0.0"
+ARG GHDL_REPO_COMMIT="v3.0.0"
 ARG GHDL_NAME="ghdl"
 
 ADD images/ghdl/scripts/install.sh install.sh
@@ -120,7 +120,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="e1c01753bc5db9f7b42e41b9bde651a375ec5eba"
+ARG GTKWAVE_REPO_COMMIT="142835f362f7b23503d7931548ba72110aa7096c"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -142,7 +142,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="4643f57edbae1fedd104a013fb5e79e0d754f2ff"
+ARG IVERILOG_REPO_COMMIT="e9646bbbd31c3ee99840a4165412f49e22364953"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -199,7 +199,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.8.1"
+ARG NVC_REPO_COMMIT="r1.8.2"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
@@ -210,7 +210,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.02.08"
+ARG OPENLANE_REPO_COMMIT="2023.03.08"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -221,7 +221,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="1f720d3b442e2cd8dc6c5372535320b18a105e8d"
+ARG OPENROAD_APP_REPO_COMMIT="0264023b6c2a8ae803b8d440478d657387277d93"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -276,7 +276,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v5.006"
+ARG VERILATOR_REPO_COMMIT="v5.008"
 ARG VERILATOR_NAME="verilator"
 
 ADD images/verilator/scripts/install.sh install.sh
@@ -287,7 +287,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="cac1caa7a5cb02d7efd2666ac782432188b09179"
+ARG XSCHEM_REPO_COMMIT="eb2e5eff5058792f55c3bfce2369d1ae10a76f8f"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh

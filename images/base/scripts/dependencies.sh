@@ -289,6 +289,70 @@ else
 	exit 1
 fi
 
+
+# Need libboost >= 1.78 for OpenROAD
+apt-get -y remove libboost-all-dev
+BOOST_VER_MAJ=1
+BOOST_VER_MIN=81	
+BOOST_BUILD=0
+echo "[INFO] Installing BOOST version $BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD.$BOOST_BUILD"
+_install_boost () {
+	cd /tmp
+	wget https://boostorg.jfrog.io/artifactory/main/release/$BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD/source/boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}.tar.gz
+	tar -xf boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}.tar.gz
+	cd boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}
+	./bootstrap.sh
+	./b2 install
+}
+_install_boost
+
+if [[ $UBUNTU_VERSION == 20.04 ]]; then
+	apt-get -y remove cmake
+	CMAKE_VERSION=3.25
+	CMAKE_BUILD=2
+	echo "[INFO] Installing CMAKE version $CMAKE_VERSION.$CMAKE_BUILD for Ubuntu 20.04"
+	_install_cmake () {
+		cd /tmp || exit 1
+		wget --no-verbose "https://cmake.org/files/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+		tar -xzvf "cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
+		cd "cmake-$CMAKE_VERSION.$CMAKE_BUILD"
+		./bootstrap
+		make -j"$(nproc)"
+		make install
+	}
+	_install_cmake
+fi
+
+# Install lemon-1.3.1 (will become available via apt in 22.04LTS)
+if [[ $UBUNTU_VERSION == 20.04 ]]; then
+	LEMON_VERSION=1.3.1
+	echo "[INFO] Installing LEMON version $LEMON_VERSION for Ubuntu 20.04"
+	_install_lemon () {
+		cd /tmp || exit 1
+		wget --no-verbose "http://lemon.cs.elte.hu/pub/sources/lemon-$LEMON_VERSION.tar.gz"
+		md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-$LEMON_VERSION.tar.gz") || exit 1
+		tar -xf "lemon-$LEMON_VERSION.tar.gz"
+		cd "lemon-$LEMON_VERSION" || exit 1
+		cmake -B build .
+		cmake --build build -j "$(nproc)" --target install
+	}
+	_install_lemon
+fi
+
+# Install or-tools (dependency of OpenROAD)
+ORTOOLS_VERSION=9.5
+echo "[INFO] Installing ORTOOLS version $ORTOOLS_VERSION"
+_install_ortools () {
+	cd /tmp || exit 1
+	wget --no-verbose "https://github.com/google/or-tools/archive/refs/tags/v$ORTOOLS_VERSION.tar.gz"
+	tar -xf "v$ORTOOLS_VERSION.tar.gz"
+	cd "or-tools-$ORTOOLS_VERSION" || exit 1
+    cmake -B build . -DBUILD_DEPS:BOOL=ON
+    cmake --build build -j "$(nproc)" --target install
+}
+_install_ortools
+
+
 # Upgrade pip and install important packages
 
 # FIXME: PIP upgrade fails on x86, so remove it
@@ -349,48 +413,8 @@ gem install \
 npm install -g \
 	netlistsvg
 
-if [[ $UBUNTU_VERSION == 20.04 ]]; then
-	apt-get -y remove cmake
-	CMAKE_VERSION=3.24
-	CMAKE_BUILD=1
-	_install_cmake () {
-		cd /tmp || exit 1
-		wget --no-verbose "https://cmake.org/files/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
-		tar -xzvf "cmake-$CMAKE_VERSION.$CMAKE_BUILD.tar.gz"
-		cd "cmake-$CMAKE_VERSION.$CMAKE_BUILD"
-		./bootstrap
-		make -j"$(nproc)"
-		make install
-	}
-	_install_cmake
-fi
 
-# Install lemon-1.3.1 (will become available via apt in 22.04LTS)
-if [[ $UBUNTU_VERSION == 20.04 ]]; then
-	LEMON_VERSION=1.3.1
-	_install_lemon () {
-		cd /tmp || exit 1
-		wget --no-verbose "http://lemon.cs.elte.hu/pub/sources/lemon-$LEMON_VERSION.tar.gz"
-		md5sum -c <(echo "e89f887559113b68657eca67cf3329b5  lemon-$LEMON_VERSION.tar.gz") || exit 1
-		tar -xf "lemon-$LEMON_VERSION.tar.gz"
-		cd "lemon-$LEMON_VERSION" || exit 1
-		cmake -B build .
-		cmake --build build -j "$(nproc)" --target install
-	}
-	_install_lemon
-fi
 
-# Install or-tools (dependency of OpenROAD)
-ORTOOLS_VERSION=9.5
-_install_ortools () {
-	cd /tmp || exit 1
-	wget --no-verbose "https://github.com/google/or-tools/archive/refs/tags/v$ORTOOLS_VERSION.tar.gz"
-	tar -xf "v$ORTOOLS_VERSION.tar.gz"
-	cd "or-tools-$ORTOOLS_VERSION" || exit 1
-    cmake -B build . -DBUILD_DEPS:BOOL=ON
-    cmake --build build -j "$(nproc)" --target install
-}
-_install_ortools
 
 # Cleanup to minimize image size
 rm -rf /tmp/*
