@@ -23,10 +23,6 @@
 # shellcheck source=/dev/null
 source eda_server_conf.sh
 
-# general settings for all users
-export DOCKER_EXTRA_PARAMS="--cpus 4 --memory 8G"
-export VNC_PORT=0
-
 # variables for script control
 DEBUG=0
 DO_CLEAN=0
