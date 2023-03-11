@@ -19,6 +19,10 @@
 # SPDX-License-Identifier: Apache-2.0
 # ========================================================================
 
+# get configuration variables
+# shellcheck source=/dev/null
+source eda_server_conf.sh
+
 # general settings for all users
 export DOCKER_EXTRA_PARAMS="--cpus 4 --memory 8G"
 export VNC_PORT=0
@@ -31,8 +35,6 @@ START_PORT=50001
 NUMBER_USERS=20
 PASSWD_DIGITS=20
 USER_GROUP=2000
-USER_HOME="/var/local/eda"
-CREDENTIAL_FILE="eda_user_credentials.json"
 
 # process input parameters
 while getopts "hcdkp:n:s:f:g:l:" flag; do
@@ -59,7 +61,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			;;
 		f)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -f is set to $OPTARG."
-			CREDENTIAL_FILE=${OPTARG}
+			EDA_CREDENTIAL_FILE=${OPTARG}
 			;;
 		g)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -g is set to $OPTARG."
@@ -71,7 +73,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			;;
 		l)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -l is set to $OPTARG."
-			USER_HOME=${OPTARG}
+			EDA_USER_HOME=${OPTARG}
 			;;
 		h)
 		 	echo
@@ -87,8 +89,8 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			echo "       -n sets the number of container instances that are generated (default $NUMBER_USERS)"
 			echo "       -g sets the used group-ID (default $USER_GROUP)"
 			echo "       -s sets the number of digits of the auto-generated user passwords (default $PASSWD_DIGITS)"
-			echo "       -f sets the name of the credentials file (default $CREDENTIAL_FILE)"
-			echo "       -l sets the directory of the user homes (default $USER_HOME)"
+			echo "       -f sets the name of the credentials file (default $EDA_CREDENTIAL_FILE)"
+			echo "       -l sets the directory of the user homes (default $EDA_USER_HOME)"
 			echo
 			exit
 			;;
@@ -103,10 +105,10 @@ shift $((OPTIND-1))
 [ $DEBUG = 1 ] && [ $DO_KILL = 1 ] && echo "[INFO] Stopping and removing the running containers is selected."
 [ $DEBUG = 1 ] && echo "[INFO] Starting port number is $START_PORT."
 [ $DEBUG = 1 ] && echo "[INFO] User group is $USER_GROUP."
-[ $DEBUG = 1 ] && echo "[INFO] User home directories located in $USER_HOME."
+[ $DEBUG = 1 ] && echo "[INFO] User home directories located in $EDA_USER_HOME."
 [ $DEBUG = 1 ] && echo "[INFO] Number of instances is $NUMBER_USERS."
 [ $DEBUG = 1 ] && echo "[INFO] Number of password digits is $PASSWD_DIGITS."
-[ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $CREDENTIAL_FILE."
+[ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $EDA_CREDENTIAL_FILE."
 
 # here is a function for the actual work
 spin_up_server () {
@@ -115,8 +117,8 @@ spin_up_server () {
 	# $3 = webserver port (in the range of 50000-50200)
 
 	export VNC_PW="$2"
-	export DESIGNS="$USER_HOME/$1"
-	export CONTAINER_NAME="iic-osic-eda-$1"
+	export DESIGNS="$EDA_USER_HOME/$1"
+	export CONTAINER_NAME="$EDA_CONTAINER_PREFIX-$1"
 	export WEBSERVER_PORT="$3"
 	export CONTAINER_GROUP="$USER_GROUP"
 
@@ -211,11 +213,11 @@ else
 		echo "[ERROR] can not determine valid group ID!"
 		exit 1
 fi
-if [ ! -d "$USER_HOME" ]; then
-	echo "[ERROR] User home directory $USER_HOME not found!"
+if [ ! -d "$EDA_USER_HOME" ]; then
+	echo "[ERROR] User home directory $EDA_USER_HOME not found!"
 	exit 1
-elif [ ! -w "$USER_HOME" ]; then
-		echo "[ERROR] User home directory $USER_HOME is not writable!"
+elif [ ! -w "$EDA_USER_HOME" ]; then
+		echo "[ERROR] User home directory $EDA_USER_HOME is not writable!"
 		exit 1
 fi
 
@@ -226,7 +228,7 @@ if ! [ -x "$(command -v jq)" ]; then
 fi
 
 # here is the loop
-echo "[]" > "$CREDENTIAL_FILE"
+echo "[]" > "$EDA_CREDENTIAL_FILE"
 
 echo "[INFO] Starting to spin up EDA server instances."
 for i in $(seq 1 "$NUMBER_USERS")
@@ -240,12 +242,12 @@ do
 
 	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD."
 	
-	write_credentials $USERNAME "$PASSWD" $PORTNO "$CREDENTIAL_FILE"
+	write_credentials $USERNAME "$PASSWD" $PORTNO "$EDA_CREDENTIAL_FILE"
 
 	spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
 done
 
 echo
 echo "[INFO] EDA containers are up and running!"
-echo "[INFO] User credentials can be found in <$CREDENTIAL_FILE>."
+echo "[INFO] User credentials can be found in <$EDA_CREDENTIAL_FILE>."
 echo "[DONE] Bye!"

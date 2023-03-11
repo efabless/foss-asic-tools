@@ -19,8 +19,14 @@
 # SPDX-License-Identifier: Apache-2.0
 # ========================================================================
 
+# get configuration variables
+# shellcheck source=/dev/null
+source eda_server_conf.sh
+
+# variables for script control
 DEBUG=0
 
+# process input parameters
 while getopts "hd" flag; do
 	case $flag in
 		d)
@@ -47,9 +53,9 @@ shift $((OPTIND-1))
 # now search the containers and remove them
 echo "[INFO] Stopping and removing EDA containers."
 NO_INSTANCES=0
-while [ "$(docker ps -q -f name="iic-osic-eda-")" ];
+while [ "$(docker ps -q -f name="$EDA_CONTAINER_PREFIX")" ];
 do
-	CONTAINER_ID=$(docker ps -q -f name="iic-osic-eda-" | head -n1)
+	CONTAINER_ID=$(docker ps -q -f name="$EDA_CONTAINER_PREFIX" | head -n1)
 	[ $DEBUG = 1 ] && echo "[INFO] Container ID $CONTAINER_ID found, now stopping and removing!"
 	docker stop "$CONTAINER_ID" > /dev/null
 	docker rm "$CONTAINER_ID" > /dev/null
