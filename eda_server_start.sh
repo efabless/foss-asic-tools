@@ -30,7 +30,6 @@ DO_KILL=0
 START_PORT=50001
 NUMBER_USERS=20
 PASSWD_DIGITS=20
-USER_GROUP=2000
 
 # process input parameters
 while getopts "hcdkp:n:s:f:g:l:" flag; do
@@ -61,7 +60,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			;;
 		g)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -g is set to $OPTARG."
-			USER_GROUP=${OPTARG}
+			EDA_USER_GROUP=${OPTARG}
 			;;
 		k)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -k is set."
@@ -83,7 +82,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			echo "       -k stops and removes running containers"
 			echo "       -p sets the starting port number (default $START_PORT)"
 			echo "       -n sets the number of container instances that are generated (default $NUMBER_USERS)"
-			echo "       -g sets the used group-ID (default $USER_GROUP)"
+			echo "       -g sets the used group-ID (default $EDA_USER_GROUP)"
 			echo "       -s sets the number of digits of the auto-generated user passwords (default $PASSWD_DIGITS)"
 			echo "       -f sets the name of the credentials file (default $EDA_CREDENTIAL_FILE)"
 			echo "       -l sets the directory of the user homes (default $EDA_USER_HOME)"
@@ -100,7 +99,7 @@ shift $((OPTIND-1))
 [ $DEBUG = 1 ] && [ $DO_CLEAN = 1 ] && echo "[INFO] Cleaning user directories is selected."
 [ $DEBUG = 1 ] && [ $DO_KILL = 1 ] && echo "[INFO] Stopping and removing the running containers is selected."
 [ $DEBUG = 1 ] && echo "[INFO] Starting port number is $START_PORT."
-[ $DEBUG = 1 ] && echo "[INFO] User group is $USER_GROUP."
+[ $DEBUG = 1 ] && echo "[INFO] User group is $EDA_USER_GROUP."
 [ $DEBUG = 1 ] && echo "[INFO] User home directories located in $EDA_USER_HOME."
 [ $DEBUG = 1 ] && echo "[INFO] Number of instances is $NUMBER_USERS."
 [ $DEBUG = 1 ] && echo "[INFO] Number of password digits is $PASSWD_DIGITS."
@@ -112,11 +111,11 @@ _spin_up_server () {
 	# $2 = passwd
 	# $3 = webserver port (in the range of 50000-50200)
 
+	DESIGNS=$(realpath "$EDA_USER_HOME/$1") && export DESIGNS
 	export VNC_PW="$2"
-	export DESIGNS="$EDA_USER_HOME/$1"
 	export CONTAINER_NAME="$EDA_CONTAINER_PREFIX-$1"
 	export WEBSERVER_PORT="$3"
-	export CONTAINER_GROUP="$USER_GROUP"
+	export CONTAINER_GROUP="$EDA_USER_GROUP"
 
 	if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
 		if [ $DO_KILL = 0 ]; then
@@ -180,7 +179,7 @@ if [ $? -ne 0 ]; then
    echo "[ERROR] -n requires an integer!"
    exit 1
 fi
-[ -n "$USER_GROUP" ] && [ "$USER_GROUP" -eq "$USER_GROUP" ] 2>/dev/null
+[ -n "$EDA_USER_GROUP" ] && [ "$EDA_USER_GROUP" -eq "$EDA_USER_GROUP" ] 2>/dev/null
 # shellcheck disable=SC2181
 if [ $? -ne 0 ]; then
    echo "[ERROR] -g requires an integer!"
@@ -206,12 +205,12 @@ if [ "$PASSWD_DIGITS" -lt 6 ] || [ "$PASSWD_DIGITS" -gt 64 ]; then
 	exit 1
 fi
 if [[ "$OSTYPE" == "linux"* ]]; then
-	if [ -z "$(getent group "$USER_GROUP")" ]; then
+	if [ -z "$(getent group "$EDA_USER_GROUP")" ]; then
 		echo "[ERROR] Illegal user group!"
 	exit 1
 	fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	if [ -z "$(dscacheutil -q group -a gid "$USER_GROUP")" ]; then
+	if [ -z "$(dscacheutil -q group -a gid "$EDA_USER_GROUP")" ]; then
 		echo "[ERROR] Illegal user group!"
 	exit 1	
 	fi
