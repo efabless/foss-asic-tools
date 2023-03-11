@@ -111,7 +111,7 @@ shift $((OPTIND-1))
 [ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $EDA_CREDENTIAL_FILE."
 
 # here is a function for the actual work
-spin_up_server () {
+_spin_up_server () {
 	# $1 = username (e.g. user01)
 	# $2 = passwd
 	# $3 = webserver port (in the range of 50000-50200)
@@ -124,7 +124,7 @@ spin_up_server () {
 
 	if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
 		if [ $DO_KILL = 0 ]; then
-			echo "[ERROR] Running container instances detected without the -k option, stopping now!"
+			echo "[ERROR] Running container instances detected without the -k option, exiting now!"
 			exit 1
 		fi
 		[ $DEBUG = 1 ] && echo "[INFO] Container $CONTAINER_NAME running, will now stop and remove it!"
@@ -132,14 +132,24 @@ spin_up_server () {
 		docker rm "${CONTAINER_NAME}" > /dev/null
 	fi
 
-	[ $DO_CLEAN = 1 ] && rm -rf "$DESIGNS"
-	mkdir -p "$DESIGNS"
+	if [ -d "$DESIGNS" ]; then
+		if [ $DO_CLEAN = 1 ]; then
+			rm -rf "$DESIGNS"
+			mkdir -p "$DESIGNS"
+		else
+			echo "[ERROR] User directory $DESIGNS detected without the -c option, exiting now!"
+			exit 1
+		fi
+	else
+		mkdir -p "$DESIGNS"
+	fi
 
+	# now spinning up the EDA container using standard scripts
 	# shellcheck source=/dev/null
 	source start_vnc.sh
 }
 
-write_credentials () {
+_write_credentials () {
 	# $1 = username
 	# $2 = passwd
 	# $3 = webserver port
@@ -230,7 +240,7 @@ fi
 # here is the loop
 echo "[]" > "$EDA_CREDENTIAL_FILE"
 
-echo "[INFO] Starting to spin up EDA server instances."
+echo "[INFO] Starting EDA server instances."
 for i in $(seq 1 "$NUMBER_USERS")
 do
 	# PASSWD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c"${1:-$PASSWD_DIGITS}")	
@@ -242,9 +252,8 @@ do
 
 	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD."
 	
-	write_credentials $USERNAME "$PASSWD" $PORTNO "$EDA_CREDENTIAL_FILE"
-
-	spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
+	_write_credentials $USERNAME "$PASSWD" $PORTNO "$EDA_CREDENTIAL_FILE"
+	_spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
 done
 
 echo
