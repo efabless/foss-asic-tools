@@ -1,8 +1,8 @@
 # IIC-OSIC-TOOLS
 
-**This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>.**
+This environment is based on the [efabless.com FOSS-ASIC-TOOLS](https://github.com/efabless/foss-asic-tools).
 
-**IIC-OSIC-TOOLS** is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu 22.04LTS (since release `2022.12`). This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+**IIC-OSIC-TOOLS** is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu 22.04LTS (since release `2022.12`). This collection of tools is curated by the [**Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**](https://iic.jku.at).
 
 It supports two *modes of operation*:
 
@@ -53,10 +53,11 @@ Below is a list of the current tools already installed and ready to use (note th
 * [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog and mixed-signal simulator
-* [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice` 
+* [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice`
 * [nvc](https://github.com/nickg/nvc) VHDL simulator and compiler
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow
+* [openlane2](https://github.com/efabless/openlane2) rewrite of OpenLane in Python, 2nd generation
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane`
 * [opensta](https://github.com/The-OpenROAD-Project/OpenSTA) static timing analyzer for digital flow
 * [padring](https://github.com/donn/padring) padring generation tool

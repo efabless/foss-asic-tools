@@ -392,6 +392,7 @@ pip3 install --upgrade --no-cache-dir \
 	fusesoc \
 	gdsfactory \
 	gdspy \
+	openlane \
 	pyrtl \
 	pyspice \
 	pyverilog \
@@ -412,9 +413,6 @@ gem install \
 # Install node.js packages via npm:
 npm install -g \
 	netlistsvg
-
-
-
 
 # Cleanup to minimize image size
 rm -rf /tmp/*
