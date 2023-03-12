@@ -28,6 +28,12 @@
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-39
+- name: libngspice
+  repo: https://git.code.sf.net/p/ngspice/ngspice
+  commit: ngspice-39
+- name: ngspyce
+  repo: https://github.com/ignamv/ngspyce
+  commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
   commit: r1.8.2
