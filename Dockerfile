@@ -43,6 +43,8 @@ ENV PDK_ROOT=/foss/pdks
 
 ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
+ADD images/open_pdks/scripts/install_ihp.sh install_ihp.sh
+RUN bash install_ihp.sh 
 
 #######################################################################
 # Compile covered 
@@ -188,10 +190,21 @@ RUN bash install.sh
 #######################################################################
 FROM base as libngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-37"
+ARG NGSPICE_REPO_COMMIT="ngspice-39"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/libngspice/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
+# Compile ngspyce
+#######################################################################
+FROM base as ngspyce
+ARG NGSPYCE_REPO_URL="https://github.com/ignamv/ngspyce"
+ARG NGSPYCE_REPO_COMMIT="154a2724080e3bf15827549bba9f315cd11984fe"
+ARG NGSPYCE_NAME="ngspyce"
+
+ADD images/ngspyce/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -250,7 +263,7 @@ ADD images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile QFLOW helper files
+# Compile qflow helper files
 #######################################################################
 FROM base as qflow
 ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
@@ -394,6 +407,7 @@ COPY --from=magic                        /foss/tools/            /foss/tools/
 COPY --from=netgen                       /foss/tools/            /foss/tools/
 COPY --from=nvc                          /foss/tools/            /foss/tools/    
 COPY --from=ngspice                      /foss/tools/            /foss/tools/
+COPY --from=ngspyce                      /foss/tools/            /foss/tools/
 COPY --from=libngspice                   /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
@@ -416,13 +430,9 @@ COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
-# Install ignamv/ngspyce python lib from source
-ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
-RUN bash install_ngspyce.sh
-
 # Install examples
-RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC
-RUN git clone https://github.com/mabrains/Analog_blocks.git /foss/examples/SKY130_ANALOG-BLOCKS
+RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC && \
+    git clone https://github.com/mabrains/Analog_blocks.git /foss/examples/SKY130_ANALOG-BLOCKS
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
