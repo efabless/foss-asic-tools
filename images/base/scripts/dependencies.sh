@@ -393,6 +393,7 @@ pip3 install --upgrade --no-cache-dir \
 	gdsfactory \
 	gdspy \
 	openlane \
+	openram \
 	pyrtl \
 	pyspice \
 	pyverilog \
