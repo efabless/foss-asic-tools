@@ -4,6 +4,15 @@ set -e
 
 UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
 
+echo "[INFO] Adding Mozilla PPA"
+add-apt-repository -y ppa:mozillateam/ppa
+# Add PPA to apt preferences list, so PPA > snap
+echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+
 apt-get -y update && apt-get -y upgrade
 apt-get -y install tzdata
 
