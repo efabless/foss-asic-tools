@@ -1,9 +1,0 @@
-Node INV_28319830_0
-  Net ZN
-    Pin X_M0.D Find a path 1
-    Pin X_M1.D Find a path 1
-  Net I
-    Pin X_M0.G Find a path 1
-    Pin X_M1.G Find a path 1
-Node INVERTER_0
-Node 
