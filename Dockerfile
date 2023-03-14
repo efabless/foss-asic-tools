@@ -13,7 +13,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="1a3caee3761d3ad4d4d4a7e931137b21a608a92d"
+ARG MAGIC_REPO_COMMIT="5e5879c53d8410b93a4e3df6e8269fd2895b6921"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -122,7 +122,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="142835f362f7b23503d7931548ba72110aa7096c"
+ARG GTKWAVE_REPO_COMMIT="816166e9d88b547aa984ab6d1cb7ec0202212fa0"
 ARG GTKWAVE_NAME="gtkwave"
 
 ADD images/gtkwave/scripts/install.sh install.sh
@@ -144,7 +144,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="e9646bbbd31c3ee99840a4165412f49e22364953"
+ARG IVERILOG_REPO_COMMIT="01441687235135d1c12eeef920f75d97995da333"
 ARG IVERILOG_NAME="iverilog"
 
 ADD images/iverilog/scripts/install.sh install.sh
@@ -191,7 +191,7 @@ RUN bash install.sh
 FROM base as libngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
 ARG NGSPICE_REPO_COMMIT="ngspice-39"
-ARG NGSPICE_NAME="ngspice"
+ARG NGSPICE_NAME="libngspice"
 
 ADD images/libngspice/scripts/install.sh install.sh
 RUN bash install.sh
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.03.08"
+ARG OPENLANE_REPO_COMMIT="2023.03.14"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -234,7 +234,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="0264023b6c2a8ae803b8d440478d657387277d93"
+ARG OPENROAD_APP_REPO_COMMIT="1a1617d908d2ebdb731de9ab4e3d9fd93a6dcf97"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -278,7 +278,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="29d02b75fb6c0b664af56011d8292d1e71c96913"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.03.14"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
@@ -300,7 +300,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="eb2e5eff5058792f55c3bfce2369d1ae10a76f8f"
+ARG XSCHEM_REPO_COMMIT="4569a0747aa8891346e1115a7b8e9b656573bd00"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
