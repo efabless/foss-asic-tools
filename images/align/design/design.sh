@@ -199,7 +199,7 @@ if [ $RUN_GEN_NET = 1 ]; then
     # Extract SPICE netlist from schematic
     # ------------------------------------
     echo "... extracting netlist from schematic <$CELL_SCH>"
-    XSCHEMTCL='set lvs_netlist 1;set flat_netlist 0; set netlist_dir .'
+    XSCHEMTCL='set lvs_netlist 1; set top_subckt 1; set flat_netlist 0; set netlist_dir .'
     xschem --rcfile "$PDK_ROOT/$PDK/libs.tech/xschem/xschemrc" -n -s -q --no_x --tcl "$XSCHEMTCL" "$CELL_SCH" -N "$NETLIST_SCH" > /dev/null
 
     if [ ! -f "$NETLIST_SCH" ]
