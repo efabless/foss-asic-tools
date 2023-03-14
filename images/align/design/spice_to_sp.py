@@ -5,9 +5,17 @@ Johannes Kepler University Linz, Institute for Integrated Circuits
 
 Script to change a spice netlist to the ALIGN .sp format.
 
+The following devices are supported:
+    -sky130_fd_pr__nfet_01v8
+    -sky130_fd_pr__pfet_01v8
+
+A subcircuit component must start with the component identifier "x".
+
 """
 import sys 
 import argparse
+
+debug = False #debug mode
 
 #use a parser to parse the cmd line variables
 parser = argparse.ArgumentParser(description="Converts a spice netlist to the ALIGN format.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -39,8 +47,13 @@ for line in file:
 
 file.close()
 
-
 def find_subckts(lines):
+# Returns a list of all subcircuits in lines
+# Each element includes:
+#  {"Subcircuit-Name", 
+#   Line-number of subcircuit start,
+#   Line-number of subcircuit end}
+
     sub_circ = []
     act_sub_start = 0
     act_sub_name = ""
@@ -57,6 +70,8 @@ def find_subckts(lines):
     return sub_circ
 
 sub_circ = find_subckts(lines)
+# check if there is more than one subcircuit
+# if so, reverse the order of the subcircuits
 if len(sub_circ)>1: #more than one subcirc
     new_lines = []
     for sub in reversed(sub_circ):
@@ -68,95 +83,128 @@ if len(sub_circ)>1: #more than one subcirc
 
     lines = new_lines
 
-#dict for the legal devices and device params.
-legal = {
-    "XM" : ["L","W","nf","m", "stack"],
-    "M" : ["L","W","nf","m", "stack"],
-    "XC" : ["L", "W", "m"],
-    "C" : ["L", "W", "m"]
-    }
+#list for the legal devices
+legal = ["XM","M"]
+#list for the legal schematic parameters
+legal_param = ["Wp", "Wn", "L"]
 
+#class for spice-mosfets
+class MOS:
+    #init with a spice mos definition
+    def __init__(self, line):
+        self.mos_dict = {
+        "ID" : [],
+        "Nd" : [],
+        "Ng" : [],
+        "Ns" : [],
+        "Nb" : [],
+        "model" : [],
+        "W" : [],
+        "L" : [],
+        "nf" : [],
+        "m" : []
+        }
+        self.__spice_to_var(line)
+        if debug:
+            print(self.mos_dict)
+        assert int(self.mos_dict["nf"])%2==0, f"Error: nf odd not supported! [Device {self.mos_dict['ID']}]"
+        assert int(self.mos_dict["m"])==1, f"Error: m > 1 not supported! [Device {self.mos_dict['ID']}]"
 
-#split a line by whitespaces
-#except when the whitespaces are in between ' '
-# => needed to split the parameters of a device
-def split(line):
-    start = 0
-    in_param = False
-    splittet = []
-    for (i,c) in zip(range(len(line)),line):
-        if c==" " and not in_param:
-            splittet.append(line[start:i])
-            start = i+1
-        if c == "'":
-            in_param = not in_param
-    splittet.append(line[start:])     
-    return splittet
+    #update legal circuit parameters
+    def update_param(self, key, value):
+        if key == "L":
+            self.mos_dict["L"] = str(float(value))
+        if key == "Wn" and "nfet" in self.mos_dict["model"]:
+            self.mos_dict["W"] = str(float(value)*int(self.mos_dict["nf"]))
+        if key == "Wp" and "pfet" in self.mos_dict["model"]:
+            self.mos_dict["W"] = str(float(value)*int(self.mos_dict["nf"]))
+
+    #save line in dict
+    def __spice_to_var(self,line):
+        splittet = line.split(" ")
+        self.mos_dict["ID"] = splittet[0]
+        self.mos_dict["Nd"] = splittet[1]
+        self.mos_dict["Ng"] = splittet[2]
+        self.mos_dict["Ns"] = splittet[3]
+        self.mos_dict["Nb"] = splittet[4]
+        self.mos_dict["model"] = splittet[5]
+        
+        #get parameters
+        for (n, x) in zip(range(len(splittet)),splittet):  
+            if "=" in x: #parameter
+                param_name = x[:x.find("=")]
+                if param_name in self.mos_dict.keys():
+                    self.mos_dict[param_name] = x[x.find("=")+1:]
+
+    #write a line in the ALIGN format
+    def write_mos(self):
+        #set m and nf for align
+        self.mos_dict["W"] = str(round(float(self.mos_dict["W"])/int(self.mos_dict["nf"]),2))
+        self.mos_dict["m"] = str(int(self.mos_dict["nf"])//2)
+        self.mos_dict["nf"] = "2"
+        v = list(self.mos_dict.values())
+        return f"{v[0]} {v[1]} {v[2]} {v[3]} {v[4]} {v[5]} W={v[6]}e-6 L={v[7]}e-6 nf={v[8]} m={v[9]}"
+
 
 def get_dev(line):
+    #returns the device descriptor - if legal
     dev = line.split()
     dev = dev[0]
-    for key in legal.keys():
-        if dev.startswith(key):
-            return key
+    for l in legal:
+        if dev.startswith(l):
+            return l
     raise KeyError(f"Error: Device {dev} not supported!")
 
+#########################################################
+# Main - part
+# go through each subcircuit and update each legal device
+#########################################################
 inSubckt = False
-#delete illegal parameters
-for (line_n,line) in zip(range(len(lines)),lines):
+devs = []
+params = []
+n = 0
+while(n<len(lines)):
+    line = lines[n]
+    if debug: 
+        print(line+"\n")
     if line.startswith(".subckt"):
         inSubckt = True
     if line.startswith(".ends"):
+        # if end of subcircuit reached
+        # update the parameters and 
+        # insert the updated devices
+        # into lines
+        for d in devs:
+            for p in params:
+                d.update_param(p[0], p[1])
+            lines.insert(n, d.write_mos())
+            n += 1
         inSubckt = False
-       
-    #only change line if it is a device
-    if inSubckt and not (len(line)<2 or line.startswith(".") or line.startswith("*") or line.startswith("x")):
-        dev = get_dev(line) #device descriptor
-        try: #try if device is supported
-            splittet = split(line) #split line to get parameters
-            
-            if splittet[0].startswith("XC"):#if act. device is a Cap change descriptor
-                splittet[0] = "C"+splittet[0][2:]
+        devs = []
+        params = []
+    
+    if inSubckt:
+        if not (line.startswith(".") or line.startswith("*") or line.startswith("x")): #get device
+            try: #try if device is supported
+                dev = get_dev(line) #check if device is supported
+                devs.append(MOS(line)) #save the device
+                lines.pop(n) #delete the actual line
+                n -= 1
 
-            indx_rm = [] #store which params have to be removed
-            index_W = 0
-            nf = 0
-            for (i,w) in zip(range(len(splittet)),splittet):
-                indx = w.find("=") #find a parameter
-                if w[0] in {'W', 'L'}:
-                    w = w+"e-6" 
-                    splittet[i]=w
-                    index_W = i
-                if dev in ["XM", "M"]:
-                    #set nf=2 for ALIGN
-                    if w.startswith('nf='):
-                        nf=int(w[3:])
-                        assert nf%2==0, f"Error: nf odd not supported! [Device {splittet[0]}]"
-                        splittet[index_W] = "W="+str(round(float(splittet[index_W][2:])*1e6/nf,2))+"e-6"
-                        w='nf=2'
-                        splittet[i]=w
-                    #half the multiplier to have the same circuit
-                    if w.startswith('m='):
-                        m = int(w[2:])
-                        assert m==1, f"Error: m > 1 not supported! [Device {splittet[0]}]"
-                        w = 'm=' + str(int(nf/2))
-                        splittet[i] = w
+            except KeyError:
+                print(f"Error: Device {dev} not supported!")
+                sys.exit(1)
 
-                #if a parameter were found and the param isn't legal
-                #store the index 
-                if indx>=0 and w[0:indx] not in legal[dev]:
-                    indx_rm.append(i)
-                    
-            #delete all illegal params
-            for index in sorted(indx_rm, reverse=True):
-                del splittet[index]
-                
-        except KeyError:
-            print(f"Error: Device {dev} not supported!")
-            sys.exit(1)
-        
-        #change the actual modified line
-        lines[line_n] = " ".join(splittet)
+        elif line.startswith(".param"): #get parameter
+            p = line.split(" ")
+            p = p[1] #get the parameter identifier and value
+            p = p.split("=") #split the identifier and value
+            assert p[0] in legal_param, f"Parameter {p[0]}={p[1]} not supported!"
+            params.append([p[0], p[1]])
+            lines.pop(n) #delete the actual line
+            n -= 1
+    
+    n += 1
 
 #wite destination file            
 with open(dest_file, 'w') as f:
