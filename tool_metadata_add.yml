@@ -3,7 +3,7 @@
   commit: 19d30fc942642b14dc24e95331cd4777c8dcbad9
 - name: fault
   repo: https://github.com/AUCOHL/Fault
-  commit: 71b35887225ce5dabc4a3c30e2bdaf2624f9ad3f
+  commit: 080f4be01d236af438566ce0b28089531f21a997
 - name: gaw3-xschem
   repo: https://github.com/StefanSchippers/xschem-gaw.git
   commit: a4bb956afe84a7792115144f370effe2393228c2
