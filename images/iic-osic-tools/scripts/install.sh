@@ -5,13 +5,13 @@ set -u
 
 echo "[INFO] Installing misc. packages"
 apt-get install -y \
-	nano \
+        firefox \
         gedit \
         htop \
         hub \
         meld \
+        nano \
         net-tools \
-        surf \
         nmap \
         novnc \
         sudo \

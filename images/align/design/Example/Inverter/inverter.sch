@@ -74,7 +74,7 @@ C {devices/code.sym} 0 -530 0 0 {name=Constrain
 spice_ignore=true 
 value=
 " 
-.constrain
+.constraint
    \{
         "constraint": "ConfigureCompiler",
         "is_digital": false,
@@ -86,6 +86,6 @@ value=
     \},
     \{"constraint": "PowerPorts", "ports": ["VDD"]\},
     \{"constraint": "GroundPorts", "ports": ["VSS"]\}
-.endconstrain
+.endconstraint
 "
 }

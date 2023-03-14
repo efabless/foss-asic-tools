@@ -223,7 +223,7 @@ if [ $RUN_GEN_NET = 1 ]; then
     SPICE_TO_ALIGN=/foss/tools/align/design/spice_to_sp_2.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
-    python3 SPICE_TO_ALIGN "$FULL_FILE" #convert sch.spc to sp
+    python3 "$SPICE_TO_ALIGN" "$FULL_FILE" #convert sch.spc to sp
 
     if [ ! -f "$ALIGN_SCH" ]
     then
@@ -239,10 +239,10 @@ cd "$TOP_PATH" || exit $ERR_NO_DIR
 if [ $RUN_GEN_CONSTRAINT = 1 ]; then
     echo "[INFO] Generating constrains from schematic"
     for file in *.sch; do #generate a constrain file for each schematic 
-        if grep -Fxq ".constraint" $file #check if constrain is specified in schematic
+        if grep -Fxq ".constraint" "$file" #check if constrain is specified in schematic
         then
             #copy the lines between .constraint and .endconstraint into <file>.const.json
-            sed -n -e '/^.constraint$/,/^.endconstraint$/{/^.constraint$/d; /^.endconstraint$/d; p;}' $file > "${file%.sch}.const.json"
+            sed -n -e '/^.constraint$/,/^.endconstraint$/{/^.constraint$/d; /^.endconstraint$/d; p;}' "$file" > "${file%.sch}.const.json"
             sed -i 's/\\}/}/g' "${file%.sch}.const.json" #replace \} with }
             sed -i 's/\\{/{/g' "${file%.sch}.const.json" #replace \{ with }
             sed -i -e '$a]' "${file%.sch}.const.json" #append ] at the end
@@ -294,7 +294,7 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "... and designing topcell ${TOPCELL}"
     #make a design
-    schematic2layout.py ../ -p $ALIGN_SKY130PDK_ROOT -f ../$ALIGN_SCH -s $TOPCELL -e $EFFORT
+    schematic2layout.py ../ -p "$ALIGN_SKY130PDK_ROOT" -f "../$ALIGN_SCH" -s "$TOPCELL" -e "$EFFORT"
     #schematic2layout.py ../ -p $ALIGN_SKY130PDK_ROOT -f ../$ALIGN_SCH -s $TOPCELL 
 
     #deactivate the virtual enviroment
@@ -388,7 +388,7 @@ if [ $RUN_DRC = 1 ]; then
         exit $ERR_FILE_NOT_FOUND
     fi
 
-    /foss/tools/iic-osic/iic-drc.sh $TOPCELL
+    /foss/tools/iic-osic/iic-drc.sh "$TOPCELL"
 fi
 
 #go into the top dir.

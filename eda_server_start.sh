@@ -19,9 +19,9 @@
 # SPDX-License-Identifier: Apache-2.0
 # ========================================================================
 
-# general settings for all users
-export DOCKER_EXTRA_PARAMS="--cpus 4 --memory 8G"
-export VNC_PORT=0
+# get configuration variables
+# shellcheck source=/dev/null
+source eda_server_conf.sh
 
 # variables for script control
 DEBUG=0
@@ -30,9 +30,6 @@ DO_KILL=0
 START_PORT=50001
 NUMBER_USERS=20
 PASSWD_DIGITS=20
-USER_GROUP=2000
-USER_HOME="/var/local/eda"
-CREDENTIAL_FILE="eda_user_credentials.json"
 
 # process input parameters
 while getopts "hcdkp:n:s:f:g:l:" flag; do
@@ -59,11 +56,11 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			;;
 		f)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -f is set to $OPTARG."
-			CREDENTIAL_FILE=${OPTARG}
+			EDA_CREDENTIAL_FILE=${OPTARG}
 			;;
 		g)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -g is set to $OPTARG."
-			USER_GROUP=${OPTARG}
+			EDA_USER_GROUP=${OPTARG}
 			;;
 		k)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -k is set."
@@ -71,7 +68,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			;;
 		l)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -l is set to $OPTARG."
-			USER_HOME=${OPTARG}
+			EDA_USER_HOME=${OPTARG}
 			;;
 		h)
 		 	echo
@@ -85,10 +82,10 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			echo "       -k stops and removes running containers"
 			echo "       -p sets the starting port number (default $START_PORT)"
 			echo "       -n sets the number of container instances that are generated (default $NUMBER_USERS)"
-			echo "       -g sets the used group-ID (default $USER_GROUP)"
+			echo "       -g sets the used group-ID (default $EDA_USER_GROUP)"
 			echo "       -s sets the number of digits of the auto-generated user passwords (default $PASSWD_DIGITS)"
-			echo "       -f sets the name of the credentials file (default $CREDENTIAL_FILE)"
-			echo "       -l sets the directory of the user homes (default $USER_HOME)"
+			echo "       -f sets the name of the credentials file (default $EDA_CREDENTIAL_FILE)"
+			echo "       -l sets the directory of the user homes (default $EDA_USER_HOME)"
 			echo
 			exit
 			;;
@@ -102,27 +99,27 @@ shift $((OPTIND-1))
 [ $DEBUG = 1 ] && [ $DO_CLEAN = 1 ] && echo "[INFO] Cleaning user directories is selected."
 [ $DEBUG = 1 ] && [ $DO_KILL = 1 ] && echo "[INFO] Stopping and removing the running containers is selected."
 [ $DEBUG = 1 ] && echo "[INFO] Starting port number is $START_PORT."
-[ $DEBUG = 1 ] && echo "[INFO] User group is $USER_GROUP."
-[ $DEBUG = 1 ] && echo "[INFO] User home directories located in $USER_HOME."
+[ $DEBUG = 1 ] && echo "[INFO] User group is $EDA_USER_GROUP."
+[ $DEBUG = 1 ] && echo "[INFO] User home directories located in $EDA_USER_HOME."
 [ $DEBUG = 1 ] && echo "[INFO] Number of instances is $NUMBER_USERS."
 [ $DEBUG = 1 ] && echo "[INFO] Number of password digits is $PASSWD_DIGITS."
-[ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $CREDENTIAL_FILE."
+[ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $EDA_CREDENTIAL_FILE."
 
 # here is a function for the actual work
-spin_up_server () {
+_spin_up_server () {
 	# $1 = username (e.g. user01)
 	# $2 = passwd
 	# $3 = webserver port (in the range of 50000-50200)
 
+	DESIGNS=$(realpath "$EDA_USER_HOME/$1") && export DESIGNS
 	export VNC_PW="$2"
-	export DESIGNS="$USER_HOME/$1"
-	export CONTAINER_NAME="iic-osic-eda-$1"
+	export CONTAINER_NAME="$EDA_CONTAINER_PREFIX-$1"
 	export WEBSERVER_PORT="$3"
-	export CONTAINER_GROUP="$USER_GROUP"
+	export CONTAINER_GROUP="$EDA_USER_GROUP"
 
 	if [ "$(docker ps -q -f name="${CONTAINER_NAME}")" ]; then
 		if [ $DO_KILL = 0 ]; then
-			echo "[ERROR] Running container instances detected without the -k option, stopping now!"
+			echo "[ERROR] Running container instances detected without the -k option, exiting now!"
 			exit 1
 		fi
 		[ $DEBUG = 1 ] && echo "[INFO] Container $CONTAINER_NAME running, will now stop and remove it!"
@@ -130,14 +127,24 @@ spin_up_server () {
 		docker rm "${CONTAINER_NAME}" > /dev/null
 	fi
 
-	[ $DO_CLEAN = 1 ] && rm -rf "$DESIGNS"
-	mkdir -p "$DESIGNS"
+	if [ -d "$DESIGNS" ]; then
+		if [ $DO_CLEAN = 1 ]; then
+			rm -rf "$DESIGNS"
+			mkdir -p "$DESIGNS"
+		else
+			echo "[ERROR] User directory $DESIGNS detected without the -c option, exiting now!"
+			exit 1
+		fi
+	else
+		mkdir -p "$DESIGNS"
+	fi
 
+	# now spinning up the EDA container using standard scripts
 	# shellcheck source=/dev/null
 	source start_vnc.sh
 }
 
-write_credentials () {
+_write_credentials () {
 	# $1 = username
 	# $2 = passwd
 	# $3 = webserver port
@@ -172,7 +179,7 @@ if [ $? -ne 0 ]; then
    echo "[ERROR] -n requires an integer!"
    exit 1
 fi
-[ -n "$USER_GROUP" ] && [ "$USER_GROUP" -eq "$USER_GROUP" ] 2>/dev/null
+[ -n "$EDA_USER_GROUP" ] && [ "$EDA_USER_GROUP" -eq "$EDA_USER_GROUP" ] 2>/dev/null
 # shellcheck disable=SC2181
 if [ $? -ne 0 ]; then
    echo "[ERROR] -g requires an integer!"
@@ -198,12 +205,12 @@ if [ "$PASSWD_DIGITS" -lt 6 ] || [ "$PASSWD_DIGITS" -gt 64 ]; then
 	exit 1
 fi
 if [[ "$OSTYPE" == "linux"* ]]; then
-	if [ -z "$(getent group "$USER_GROUP")" ]; then
+	if [ -z "$(getent group "$EDA_USER_GROUP")" ]; then
 		echo "[ERROR] Illegal user group!"
 	exit 1
 	fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	if [ -z "$(dscacheutil -q group -a gid "$USER_GROUP")" ]; then
+	if [ -z "$(dscacheutil -q group -a gid "$EDA_USER_GROUP")" ]; then
 		echo "[ERROR] Illegal user group!"
 	exit 1	
 	fi
@@ -211,11 +218,11 @@ else
 		echo "[ERROR] can not determine valid group ID!"
 		exit 1
 fi
-if [ ! -d "$USER_HOME" ]; then
-	echo "[ERROR] User home directory $USER_HOME not found!"
+if [ ! -d "$EDA_USER_HOME" ]; then
+	echo "[ERROR] User home directory $EDA_USER_HOME not found!"
 	exit 1
-elif [ ! -w "$USER_HOME" ]; then
-		echo "[ERROR] User home directory $USER_HOME is not writable!"
+elif [ ! -w "$EDA_USER_HOME" ]; then
+		echo "[ERROR] User home directory $EDA_USER_HOME is not writable!"
 		exit 1
 fi
 
@@ -226,9 +233,9 @@ if ! [ -x "$(command -v jq)" ]; then
 fi
 
 # here is the loop
-echo "[]" > "$CREDENTIAL_FILE"
+echo "[]" > "$EDA_CREDENTIAL_FILE"
 
-echo "[INFO] Starting to spin up EDA server instances."
+echo "[INFO] Starting EDA server instances."
 for i in $(seq 1 "$NUMBER_USERS")
 do
 	# PASSWD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c"${1:-$PASSWD_DIGITS}")	
@@ -240,12 +247,11 @@ do
 
 	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD."
 	
-	write_credentials $USERNAME "$PASSWD" $PORTNO "$CREDENTIAL_FILE"
-
-	spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
+	_write_credentials $USERNAME "$PASSWD" $PORTNO "$EDA_CREDENTIAL_FILE"
+	_spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
 done
 
 echo
 echo "[INFO] EDA containers are up and running!"
-echo "[INFO] User credentials can be found in <$CREDENTIAL_FILE>."
+echo "[INFO] User credentials can be found in <$EDA_CREDENTIAL_FILE>."
 echo "[DONE] Bye!"

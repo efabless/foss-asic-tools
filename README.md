@@ -1,12 +1,12 @@
 # IIC-OSIC-TOOLS
 
-**This environment is based on the efabless.com FOSS-ASIC-TOOLS <https://github.com/efabless/foss-asic-tools>.**
+This environment is based on the [efabless.com FOSS-ASIC-TOOLS](https://github.com/efabless/foss-asic-tools).
 
-**IIC-OSIC-TOOLS** is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu 22.04LTS (since release `2022.12`). This collection of tools is curated by the **Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**.
+**IIC-OSIC-TOOLS** is an all-in-one Docker container for open-source-based integrated circuit designs for analog and digital circuit flows. The CPU architectures `x86_64/amd64` and `aarch64/arm64` are natively supported based on Ubuntu 22.04LTS (since release `2022.12`). This collection of tools is curated by the [**Institute for Integrated Circuits (IIC), Johannes Kepler University (JKU)**](https://iic.jku.at).
 
 It supports two *modes of operation*:
 
-1. Using a complete desktop environment (XFCE) in `Xvnc` (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs directly in your browser.
+1. Using a complete desktop environment (XFCE) in `Xvnc` (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs in your browser.
 2. Using a local X11 server and directly showing the application windows on your desktop.
 
 ## Installed PDKs
@@ -45,6 +45,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [gf180mcu](https://github.com/google/gf180mcu-pdk) GlobalFoundries 180nm CMOS PDK
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
+* [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK
 * [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and documentation
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
@@ -53,10 +54,12 @@ Below is a list of the current tools already installed and ready to use (note th
 * [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog and mixed-signal simulator
-* [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice` 
+* [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice`
 * [nvc](https://github.com/nickg/nvc) VHDL simulator and compiler
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
 * [openlane](https://github.com/The-OpenROAD-Project/OpenLane) digital RTL2GDS flow
+* [openlane2](https://github.com/efabless/openlane2) rewrite of OpenLane in Python, 2nd generation
+* [openram](https://github.com/VLSIDA/OpenRAM) OpenRAM Python library
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane`
 * [opensta](https://github.com/The-OpenROAD-Project/OpenSTA) static timing analyzer for digital flow
 * [padring](https://github.com/donn/padring) padring generation tool
@@ -75,7 +78,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. `xdm` netlist conversion tool)
 * [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)
 
-The tool versions used for `OpenLane` are documented in `tool_metadata.yml` and the other tools in `tool_metadata_add.yml`. In addition to the EDA tools above, further useful tools (like `git`) and editors (like `gvim`) are installed. If something useful is missing, please let us know!
+The tool versions used for `OpenLane` are documented in `tool_metadata.yml` and the other tools in `tool_metadata_add.yml`. In addition to the EDA tools above, further valuable tools (like `git`) and editors (like `gvim`) are installed. If something useful is missing, please let us know!
 
 ## Quick Launch for Designers
 
@@ -88,7 +91,7 @@ Download and install **Docker** for your operating system:
 
 Note for Linux: Do not run docker commands or the start scripts as root (`sudo`)! Follow the instructions in [Post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/)
 
-The following start scripts are intended as helper scripts for local or small-scale (single instance) deployment. If you need to run a bulk of instances, consider starting the containers with a custom start script.
+The following start scripts are intended as helper scripts for local or small-scale (single instance) deployment. Consider starting the containers with a custom start script if you need to run many instances.
 
 ### Customizing Environment
 
@@ -119,7 +122,7 @@ Both scripts will use default settings, which you can tweak by settings shell va
 * `DRY_RUN` (unset by default); if set to any value (also 0, false, etc.), the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `WEBSERVER_PORT=80` sets the port on which the Docker daemon will map the webserver port of the container to be reachable from localhost and the outside world. `0` disables the mapping.
-* `VNC_PORT=5901` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required if you want to access the UI with a different VNC client. `0` disabled the mapping.
+* `VNC_PORT=5901` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required to access the UI with a different VNC client. `0` disabled the mapping.
 * `DOCKER_USER="hpretl"` username for the Docker Hub repository from which the images are pulled. Usually, no change is required.
 * `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Usually, no change is required.
 * `DOCKER_TAG="latest"` Docker Hub image tag. By default, it pulls the latest version; this might be handy to change if you want to match a specific version set.
@@ -145,7 +148,7 @@ or
 
 **Attention Windows and macOS users:** The X-server connection is automatically killed if there is a too-long idle period in the terminal (when this happens, it looks like a **crash** of the system). A **workaround** is to start a second terminal from the initial terminal that pops up when executing the start scripts `./start_x.sh` or `.\start_x.bat` and then start `htop` in the initial terminal. In this way, there is an ongoing display activity in the initial terminal, and as a positive side-effect, the usage of the machine can be monitored. We are looking for a better long-term solution.
 
-**Attention macOS users:** Please make sure to disable the *Enable VirtioFS accelerated directory sharing* setting available as "Beta Setting," as this will cause issues accessing the mounted drives! However, enabling the *VirtioFS* general setting works in Docker >v4.15.0!
+**Attention macOS users:** Please disable the *Enable VirtioFS accelerated directory sharing* setting available as "Beta Setting," as this will cause issues accessing the mounted drives! However, enabling the *VirtioFS* general setting works in Docker >v4.15.0!
 
 #### Variables for X11
 
@@ -166,7 +169,7 @@ For Mac and Windows, the X11 server is accessed through TCP (:0, aka port 6000).
 
 * `DISP=host.docker.internal:0` is the environment variable that is copied into the `DISPLAY` variable of the container. `host.docker.internal` resolves to the host's IP address inside the docker containers, `:0` corresponds to display 0 which corresponds to TCP port 6000.
 
-If the executable `xauth` is in `PATH`, the startup script automatically disables access control for localhost, so the X11 server is open for connections from the container. If not, a warning will be shown, and you will have to disable access control.
+If the executable `xauth` is in `PATH`, the startup script automatically disables access control for localhost, so the X11 server is open for connections from the container. A warning will be shown if not, and you must disable access control.
 
 #### Linux-specific Variables
 
@@ -237,7 +240,7 @@ The installation slightly differs from the original `foss-asic-tools` installati
 docker build .
 ```
 
-You can add build parameters accordingly. We strongly recommend using `docker buildx` because of `buildkit` (parallel building) and multi-architecture support. The script `build_all.sh` includes building with `buildx`, on two different machines (for fast amd64 and arm64 builds) and pushes both images to the Docker Hub under the same tag. The script includes multiple environment variables with defaults. If you intend to build this image, we encourage you to use this script as a template.
+You can add build parameters accordingly. We strongly recommend using `docker buildx` because of `buildkit` (parallel building) and multi-architecture support. The script `build_all.sh` includes building with `buildx`, on two different machines (for fast `amd64` and `arm64` builds) and pushes both images to the Docker Hub under the same tag. The script includes multiple environment variables with defaults. If you intend to build this image, we encourage you to use this script as a template.
 The predefined settings are for the IIC build machines, and the image gets pushed with the tags `latest` and `year.month` (e.g., `2022.12`).
 
 ### Detailed container settings
@@ -269,7 +272,7 @@ Furthermore, the following variables can be set:
 
 #### Entrypoint script
 
-The entry point for this container is the [ui_startup.sh](https://github.com/hpretl/iic-osic-tools/blob/main/images/iic-osic-tools/scripts/ui_startup.sh) script. It controls which kind of UI (Xvnc or connecting to local X11 server) is used. The control logic for the automatic mode is simple. If the environment variable `DISPLAY` is set, an already existing X11 server is assumed, and the startup script runs an XFCE4 terminal. If the `DISPLAY` is not set, it starts Xvnc and the noVNC web interface. This behavior can be overwritten with command-line arguments.
+The entry point for this container is the [ui_startup.sh](https://github.com/hpretl/iic-osic-tools/blob/main/images/iic-osic-tools/scripts/ui_startup.sh) script. It controls which kind of UI (Xvnc or connecting to local X11 server) is used. The control logic for the automatic mode is simple. If the environment variable `DISPLAY` is set, an existing X11 server is assumed, and the startup script runs an XFCE4 terminal. If the `DISPLAY` is not set, it starts Xvnc and the noVNC web interface. This behavior can be overwritten with command-line arguments.
 
 The following command line arguments are supported:
 

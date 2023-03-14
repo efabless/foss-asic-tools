@@ -1,86 +1,103 @@
 # shellcheck shell=bash
 
-base_path=/foss/tools
+# Main directory structure
+export PDK_ROOT=/foss/pdks
+export TOOLS=/foss/tools
+export DESIGNS=/foss/designs
 
-function path_add_tool_bin() {
+function _path_add_tool_bin() {
         tool_name=$1
-        for d in "$base_path/$tool_name"/*/ ; do
+        for d in "$TOOLS/$tool_name"/*/ ; do
                 if [ -d "${d}bin" ]; then
                         export PATH=$PATH:${d}bin
                 fi
         done
 }
 
-function path_add_tool() {
+function _path_add_tool() {
         tool_name=$1
-        for d in "$base_path/$tool_name"/*/ ; do
+        for d in "$TOOLS/$tool_name"/*/ ; do
                 if [ -d "${d}" ]; then
                         export PATH=$PATH:${d}
                 fi
         done
 }
 
-function path_add_tool_custom() {
+function _path_add_tool_custom() {
         custom_path=$1
-        for d in $base_path/$custom_path/ ; do
+        for d in $TOOLS/$custom_path/ ; do
                 if [ -d "${d}" ]; then
                         export PATH=$PATH:${d}
+                fi
+        done
+}
+
+function _path_add_tool_python() {
+        tool_name=$1
+        for d in "$TOOLS/$tool_name"/*/local/lib/python3*/dist-packages ; do
+                if [ -d "${d}" ]; then
+                        export PYTHONPATH=$PYTHONPATH:${d}
                 fi
         done
 }
 
 if [ -z ${FOSS_PATH_SET+x} ]; then
-        path_add_tool_bin "covered"
-        path_add_tool_bin "cvc_rv"
-        path_add_tool "fault"
-        path_add_tool_bin "gaw3-xschem"
-        path_add_tool_bin "gds3d"
-        path_add_tool_bin "ghdl"
-        path_add_tool_bin "gtkwave"
-        path_add_tool_custom "iic-osic"
-        path_add_tool_bin "irsim"
-        path_add_tool_bin "iverilog"
-        path_add_tool "klayout"
-        path_add_tool_bin "magic"
-        path_add_tool_bin "netgen"
-        path_add_tool_bin "ngspice"
-        path_add_tool_bin "nvc"
-        path_add_tool "openlane"
-        path_add_tool_bin "openroad"
-        path_add_tool_bin "opensta"
-        path_add_tool_bin "padring"
-        path_add_tool_bin "qflow"
-        path_add_tool_bin "verilator"
-        path_add_tool_bin "xschem"
-        path_add_tool_bin "xyce/Parallel"
-        path_add_tool_bin "yosys"
+        _path_add_tool_bin "covered"
+        _path_add_tool_bin "cvc_rv"
+        _path_add_tool "fault"
+        _path_add_tool_bin "gaw3-xschem"
+        _path_add_tool_bin "gds3d"
+        _path_add_tool_bin "ghdl"
+        _path_add_tool_bin "gtkwave"
+        _path_add_tool_custom "iic-osic"
+        _path_add_tool_bin "irsim"
+        _path_add_tool_bin "iverilog"
+        _path_add_tool "klayout"
+        _path_add_tool_bin "magic"
+        _path_add_tool_bin "netgen"
+        _path_add_tool_bin "ngspice"
+        _path_add_tool_bin "nvc"
+        _path_add_tool "openlane"
+        _path_add_tool_bin "openroad"
+        _path_add_tool_bin "opensta"
+        _path_add_tool_bin "padring"
+        _path_add_tool_bin "qflow"
+        _path_add_tool_bin "verilator"
+        _path_add_tool_bin "xschem"
+        _path_add_tool_bin "xyce/Parallel"
+        _path_add_tool_bin "yosys"
 
         export SAK=$TOOLS/sak/
         export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
+
+        # FIXME: OpenROAD in Ubuntu 22.04 does not find the PIP modules, so use PYTHONPATH
+        PYTHONPATH=$(python -c "import sys; print(':'.join(x for x in sys.path if x))") && export PYTHONPATH 
+        _path_add_tool_python "ngspyce"
+
         echo "[INFO] Final PATH variable: $PATH"
+        echo "[INFO] Final PYTHONPATH variable: $PYTHONPATH"
         export FOSS_PATH_SET=1
 fi
 
-LD_LIBRARY_PATH="$(realpath $base_path/klayout/*/ ):/foss/tools/ngspice/ngspice/lib" && export LD_LIBRARY_PATH
+LD_LIBRARY_PATH="$(realpath $TOOLS/klayout/*/ ):/foss/tools/ngspice/ngspice/lib" && export LD_LIBRARY_PATH
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
-export PDK_ROOT=/foss/pdks
-export TOOLS=/foss/tools
-export DESIGNS=/foss/designs
+export OPENLANE_ROOT=$TOOLS/openlane
+export EDITOR='gedit'
+
+# Setting default PDK
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
-export OPENLANE_ROOT=$TOOLS/openlane
-export EDITOR='gedit'
+
 # FIXME: this gets rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
 export LIBGL_ALWAYS_INDIRECT=1
+
 # FIXME: this gets rid of the DBUS warning
 # https://unix.stackexchange.com/questions/230238/x-applications-warn-couldnt-connect-to-accessibility-bus-on-stderr/230442#230442
 export NO_AT_BRIDGE=1
-# FIXME: OpenROAD in Ubuntu 22.04 does not find the PIP modules, so use PYTHONPATH
-PYTHONPATH=$(python -c "import sys; print(':'.join(x for x in sys.path if x))") && export PYTHONPATH 
 
 if [ ! -d $XDG_RUNTIME_DIR ]; then
         mkdir -p $XDG_RUNTIME_DIR
@@ -100,6 +117,8 @@ alias ke='klayout -e -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt'
 
 alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
+
+alias openlane='openlane --manual-pdk'
 
 alias tt='cd $TOOLS'
 alias dd='cd $DESIGNS'
