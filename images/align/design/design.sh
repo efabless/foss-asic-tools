@@ -220,7 +220,7 @@ if [ $RUN_GEN_NET = 1 ]; then
             echo ".end" >> "$NETLIST_SCH"
     fi
 
-    SPICE_TO_ALIGN=/foss/tools/align/design/spice_to_sp_2.py
+    SPICE_TO_ALIGN=/foss/tools/align/design/spice_to_sp.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
     python3 "$SPICE_TO_ALIGN" "$FULL_FILE" #convert sch.spc to sp
@@ -402,11 +402,24 @@ if [ $RUN_LVS = 1 ]; then
         exit $ERR_NO_RESULT
     fi
 
-    if [ ! -f "work_magic/${TOPCELL}.mag" ]
+    if [ ! -f "work_magic/$LVS_CELL_LAY" ]
     then
-        echo "[ERROR] File work_magic/${TOPCELL}.mag not found!"
+        echo "[ERROR] File work_magic/$LVS_CELL_LAY not found!"
         exit $ERR_NO_RESULT
     fi
+
+    
+    
+
+    echo "[INFO] Placing ports in work_magic/$LVS_CELL_LAY."
+
+    LABELS_TO_PORTS=/foss/tools/align/design/labels_to_ports.py
+    
+    cd work_magic
+    python3 "$LABELS_TO_PORTS" "$LVS_CELL_LAY" -d "$LVS_CELL_LAY" #convert labels to ports
+
+    #go into the top dir.
+    cd "$TOP_PATH" || exit $ERR_NO_DIR
 
     if [ ! -f "$NETLIST_SCH" ]
     then
@@ -427,6 +440,7 @@ if [ $RUN_LVS = 1 ]; then
         echo "select top cell"
         echo "extract all"
         echo "ext2spice lvs"
+        echo "ext2spice merge conservative"
         echo "ext2spice -o $NETLIST_LAY"
         echo "quit"
     } >> "$EXT_NET_SCRIPT"
