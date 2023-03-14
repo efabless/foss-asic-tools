@@ -199,7 +199,7 @@ if [ $RUN_GEN_NET = 1 ]; then
     # Extract SPICE netlist from schematic
     # ------------------------------------
     echo "... extracting netlist from schematic <$CELL_SCH>"
-    XSCHEMTCL='set top_subckt 1;set flat_netlist 0; set netlist_dir .'
+    XSCHEMTCL='set lvs_netlist 1;set flat_netlist 0; set netlist_dir .'
     xschem --rcfile "$PDK_ROOT/$PDK/libs.tech/xschem/xschemrc" -n -s -q --no_x --tcl "$XSCHEMTCL" "$CELL_SCH" -N "$NETLIST_SCH" > /dev/null
 
     if [ ! -f "$NETLIST_SCH" ]
@@ -414,7 +414,7 @@ if [ $RUN_LVS = 1 ]; then
     echo "[INFO] Placing ports in work_magic/$LVS_CELL_LAY."
 
     LABELS_TO_PORTS=/foss/tools/align/design/labels_to_ports.py
-    
+
     cd work_magic
     python3 "$LABELS_TO_PORTS" "$LVS_CELL_LAY" -d "$LVS_CELL_LAY" #convert labels to ports
 
