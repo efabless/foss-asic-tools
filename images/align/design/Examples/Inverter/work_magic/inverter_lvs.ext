@@ -1,0 +1,64 @@
+timestamp 1678793193
+version 8.3
+tech sky130A
+style ngspice()
+scale 1000 1 500000
+resistclasses 4400000 2200000 950000 3050000 120000 197000 114000 191000 120000 197000 114000 191000 48200 319800 2000000 48200 48200 12800 125 125 47 47 29 5
+parameters sky130_fd_pr__nfet_01v8 l=l w=w a1=as p1=ps a2=ad p2=pd
+parameters sky130_fd_pr__pfet_01v8 l=l w=w a1=as p1=ps a2=ad p2=pd
+port "Y" 3 688 672 688 672 m2
+port "A" 2 602 1512 602 1512 m2
+port "VDD" 1 0 882 0 882 m4
+port "VDD" 1 0 882 0 882 m4
+port "VDD" 1 0 882 0 882 m4
+port "VDD" 1 554 252 554 252 m3
+port "VDD" 1 0 882 0 882 m4
+port "VSS" 0 2368 882 2368 882 m4
+port "VSS" 0 2368 882 2368 882 m4
+node "Y" 21222 6771.29 688 672 m2 0 0 0 0 0 0 0 0 117600 5320 94080 4480 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 706000 30240 230720 8800 138880 5184 0 0 0 0 0 0 0 0
+node "A" 1649 5498.99 602 1512 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 899280 58400 0 0 202000 10080 240352 9144 138880 5184 0 0 0 0 0 0 0 0
+node "VDD" 22317 10976.8 0 882 m4 0 0 0 0 3236352 7784 0 0 38080 2580 110880 5352 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 474100 20664 146272 5560 135296 4944 427200 5980 547048 5580 0 0 0 0
+substrate "VSS" 0 0 2368 882 m4 0 0 0 0 0 0 0 0 138600 6360 38080 2580 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 474100 20664 146272 5560 135296 4944 404480 5376 472000 4472 0 0 0 0
+cap "VDD" "A" 7517.74
+cap "A" "Y" 3772.96
+cap "VDD" "Y" 9731.65
+device msubckt sky130_fd_pr__nfet_01v8 2178 462 2179 463 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 2092 462 2093 463 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 2006 462 2007 463 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1920 462 1921 463 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1834 462 1835 463 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1748 462 1749 463 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1662 462 1663 463 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1576 462 1577 463 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1490 462 1491 463 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1404 462 1405 463 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__pfet_01v8 974 483 975 484 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 888 483 889 484 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 802 483 803 484 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 716 483 717 484 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 630 483 631 484 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 544 483 545 484 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 458 483 459 484 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 372 483 373 484 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 286 483 287 484 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 200 483 201 484 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__nfet_01v8 2178 1638 2179 1639 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 2092 1638 2093 1639 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 2006 1638 2007 1639 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1920 1638 1921 1639 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1834 1638 1835 1639 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1748 1638 1749 1639 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1662 1638 1663 1639 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1576 1638 1577 1639 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1490 1638 1491 1639 l=30 w=210 "VSS" "A" 60 0 "Y" 210 0 "VSS" 210 0
+device msubckt sky130_fd_pr__nfet_01v8 1404 1638 1405 1639 l=30 w=210 "VSS" "A" 60 0 "VSS" 210 0 "Y" 210 0
+device msubckt sky130_fd_pr__pfet_01v8 974 1659 975 1660 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 888 1659 889 1660 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 802 1659 803 1660 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 716 1659 717 1660 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 630 1659 631 1660 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 544 1659 545 1660 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 458 1659 459 1660 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 372 1659 373 1660 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 286 1659 287 1660 l=30 w=168 "VDD" "A" 60 0 "Y" 168 0 "VDD" 168 0
+device msubckt sky130_fd_pr__pfet_01v8 200 1659 201 1660 l=30 w=168 "VDD" "A" 60 0 "VDD" 168 0 "Y" 168 0

@@ -1,0 +1,19 @@
+2023-03-14 12:26:30 align.main INFO : Reading netlist: /foss/designs/ALIGN-Tests/Inverter4/inverter.sp subckt=INVERTER, flat=0
+2023-03-14 12:26:30 align.compiler.compiler INFO : Starting topology identification...
+2023-03-14 12:26:30 align.compiler.user_const INFO : Reading constraint file: [PosixPath('/foss/designs/ALIGN-Tests/Inverter4/inverter.const.json')]
+2023-03-14 12:26:30 align.compiler.compiler INFO : Completed topology identification.
+2023-03-14 12:26:31 align.pnr.main INFO : Running Place & Route for INVERTER
+2023-03-14 12:26:31 align.pnr.build_pnr_model INFO : Reading contraint json file INVERTER.pnr.const.json
+2023-03-14 12:26:31 align.pnr.build_pnr_model INFO : Reading contraint json file INVERTER.pnr.const.json
+2023-03-14 12:26:31 align.pnr.placer INFO : Starting bottom-up placement on INVERTER 0
+2023-03-14 12:26:31 PnR.placer.SeqPair.SeqPair INFO : Enumerated search
+2023-03-14 12:26:31 PnR.placer.Placer.PlacementCoreAspectRatio_ILP INFO : Exhausted all permutations of seq pairs and found 1 placement solution(s)
+2023-03-14 12:26:32 align.pnr.build_pnr_model INFO : Reading contraint json file INVERTER.pnr.const.json
+2023-03-14 12:26:32 PnR.placer.SeqPair.SeqPair INFO : Enumerated search
+2023-03-14 12:26:32 align.pnr.router INFO : Starting top_down routing on INVERTER 0 restricted to None
+2023-03-14 12:26:32 PnR.router.Router.RouteWork INFO : GcellGlobalRouter: INVERTER
+2023-03-14 12:26:32 PnR.router.Router.RouteWork INFO : GcellDetailRouter: INVERTER
+2023-03-14 12:26:32 PnR.router.Router.RouteWork INFO : Create power grid: INVERTER
+2023-03-14 12:26:32 PnR.router.Router.RouteWork INFO : Power routing INVERTER
+2023-03-14 12:26:32 align.pnr.main INFO : OUTPUT json at /foss/designs/ALIGN-Tests/Inverter4/work_align/3_pnr/INVERTER_0.json
+2023-03-14 12:26:32 align.pnr.main INFO : OUTPUT gds.json /foss/designs/ALIGN-Tests/Inverter4/work_align/3_pnr/INVERTER_0.python.gds.json

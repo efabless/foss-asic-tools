@@ -1,0 +1,86 @@
+{
+  "modules": [
+    {
+      "parameters": [
+        "A",
+        "Y"
+      ],
+      "constraints": [
+        {
+          "constraint": "PowerPorts",
+          "ports": [
+            "VDD"
+          ],
+          "propagate": true
+        },
+        {
+          "constraint": "GroundPorts",
+          "ports": [
+            "VSS"
+          ],
+          "propagate": true
+        },
+        {
+          "constraint": "Align",
+          "instances": [
+            "X_XM1",
+            "X_XM2"
+          ],
+          "line": "h_center"
+        }
+      ],
+      "instances": [
+        {
+          "instance_name": "X_XM1",
+          "fa_map": [
+            {
+              "formal": "D",
+              "actual": "Y"
+            },
+            {
+              "formal": "G",
+              "actual": "A"
+            },
+            {
+              "formal": "S",
+              "actual": "VSS"
+            }
+          ],
+          "abstract_template_name": "NMOS_S_6078655_X5_Y2"
+        },
+        {
+          "instance_name": "X_XM2",
+          "fa_map": [
+            {
+              "formal": "D",
+              "actual": "Y"
+            },
+            {
+              "formal": "G",
+              "actual": "A"
+            },
+            {
+              "formal": "S",
+              "actual": "VDD"
+            }
+          ],
+          "abstract_template_name": "PMOS_S_79543009_X5_Y2"
+        }
+      ],
+      "name": "INVERTER"
+    }
+  ],
+  "leaves": null,
+  "global_signals": [
+    {
+      "prefix": "global_power",
+      "formal": "supply0",
+      "actual": "VSS"
+    },
+    {
+      "prefix": "global_power",
+      "formal": "supply1",
+      "actual": "VDD"
+    }
+  ]
+}

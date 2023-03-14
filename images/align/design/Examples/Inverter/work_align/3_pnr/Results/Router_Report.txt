@@ -1,0 +1,12 @@
+Node INVERTER_0
+  Net Y
+    Pin X_XM2.D Find a path 1
+    Pin X_XM1.D Find a path 1
+  Net A
+    Pin X_XM2.G Find a path 1
+    Pin X_XM1.G Find a path 1
+Node 
+  Net VSS
+    Pin S Find a path 1
+  Net VDD
+    Pin S Find a path 1

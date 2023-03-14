@@ -1,0 +1,26 @@
+{
+  "constraints": [
+    {
+      "ports": [
+        "VDD"
+      ],
+      "propagate": true,
+      "const_name": "PowerPorts"
+    },
+    {
+      "ports": [
+        "VSS"
+      ],
+      "propagate": true,
+      "const_name": "GroundPorts"
+    },
+    {
+      "line": "h_center",
+      "const_name": "AlignBlock",
+      "blocks": [
+        "X_XM1",
+        "X_XM2"
+      ]
+    }
+  ]
+}
