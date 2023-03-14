@@ -456,10 +456,6 @@ COPY tool_metadata.yml                          /
 
 ADD images/align/design /foss/tools/align/design
 
-# Install ignamv/ngspyce python lib from source
-ADD images/ngspyce/scripts/install.sh install_ngspyce.sh
-RUN bash install_ngspyce.sh
-
 # Install examples
 RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC && \
     git clone https://github.com/mabrains/Analog_blocks.git /foss/examples/SKY130_ANALOG-BLOCKS
