@@ -22,6 +22,7 @@ apt-get -y install \
 	autoconf \
 	automake \
 	autotools-dev \
+	bc \
 	binutils \
 	bison \
 	build-essential \
@@ -31,6 +32,7 @@ apt-get -y install \
 	clang \
 	cmake \
 	csh \
+	curl \
 	cython3 \
 	doxygen \
 	expat \
@@ -71,6 +73,7 @@ apt-get -y install \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
+	libgmp-dev \
 	libgomp1 \
 	libgtk-3-dev \
 	libgtk2.0-dev \
@@ -79,6 +82,8 @@ apt-get -y install \
 	liblapack-dev \
 	liblzma-dev \
 	libmng-dev \
+	libmpc-dev \
+	libmpfr-dev \
 	libncurses-dev \
 	libnss-wrapper \
 	libomp-dev \
@@ -122,6 +127,7 @@ apt-get -y install \
 	openmpi-bin \
 	openssl \
 	patch \
+	patchutils \
 	pciutils \
 	pkg-config \
 	python3 \
@@ -158,6 +164,7 @@ apt-get -y install \
 	autoconf \
 	automake \
 	autotools-dev \
+	bc \
 	binutils-gold \
 	bison \
 	build-essential \
@@ -167,6 +174,7 @@ apt-get -y install \
 	clang \
 	cmake \
 	csh \
+	curl \
 	cython3 \
 	doxygen \
 	expat \
@@ -206,6 +214,7 @@ apt-get -y install \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
+	libgmp-dev \
 	libgomp1 \
 	libgtk-3-dev \
 	libgtk2.0-dev \
@@ -215,6 +224,8 @@ apt-get -y install \
 	liblemon-dev \
 	liblzma-dev \
 	libmng-dev \
+	libmpc-dev \
+	libmpfr-dev \
 	libncurses-dev \
 	libnss-wrapper \
 	libomp-dev \
@@ -256,6 +267,7 @@ apt-get -y install \
 	openmpi-bin \
 	openssl \
 	patch \
+	patchutils \
 	pciutils \
 	pkg-config \
 	python3 \
