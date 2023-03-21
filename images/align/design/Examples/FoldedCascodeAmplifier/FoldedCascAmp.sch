@@ -608,4 +608,4 @@ only_toplevel=false
 spice_ignore=true 
 value=
 "Set the effort 
-of allign to 10."}
+of align to 10."}
