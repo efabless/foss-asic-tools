@@ -36,7 +36,7 @@ RUN bash install.sh
 #FROM sky130 as open_pdks
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="e6f9c8876da77220403014b116761b0b2d79aab4"
+ARG OPEN_PDKS_REPO_COMMIT="12df12e2e74145e31c5a13de02f9a1e176b56e67"
 ARG OPEN_PDKS_NAME="open_pdks"
 
 ENV PDK_ROOT=/foss/pdks
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.03.16"
+ARG OPENLANE_REPO_COMMIT="2023.03.23"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -300,7 +300,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="b6a8add190546795b269aa8714f722a804c27239"
+ARG XSCHEM_REPO_COMMIT="757fd0a37811ed5c5569ba3fdc89d4ea56ffcb2b"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
