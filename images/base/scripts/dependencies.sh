@@ -407,23 +407,23 @@ pip3 install --upgrade --no-cache-dir \
 
 echo "[INFO] Install EDA packages via PIP"
 pip3 install --upgrade --no-cache-dir \
-	amaranth \
-	cocotb \
-	edalize \
-	fusesoc \
-	gdsfactory \
-	gdspy \
-	openlane \
-	openram \
-	pyrtl \
-	pyspice \
-	pyverilog \
-	siliconcompiler \
-	spyci \
-	volare
+	amaranth==0.3 \
+	cocotb==1.7.2 \
+	edalize==0.5.0 \
+	fusesoc==2.1 \
+	gdsfactory==6.69.0 \
+	gdspy==1.6.12 \
+	openlane==2.0.0a8 \
+	openram==1.2.7 \
+	pyrtl==0.10.2 \
+	pyspice==1.5 \
+	pyverilog==1.3.0 \
+	siliconcompiler==0.10.1 \
+	spyci==1.0.2 \
+	volare==0.7.1
 
 pip3 install --upgrade --no-cache-dir \
-	jupyterlab \
+	jupyterlab==3.6.2 \
 
 
 # Install Ruby packages via gem:
