@@ -22,7 +22,6 @@ apt-get -y install \
 	autoconf \
 	automake \
 	autotools-dev \
-	bc \
 	binutils \
 	bison \
 	build-essential \
@@ -33,7 +32,6 @@ apt-get -y install \
 	cmake \
 	coinor-libcbc-dev \
 	csh \
-	curl \
 	cython3 \
 	doxygen \
 	expat \
@@ -74,7 +72,6 @@ apt-get -y install \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
-	libgmp-dev \
 	libgomp1 \
 	libgtk-3-dev \
 	libgtk2.0-dev \
@@ -83,8 +80,6 @@ apt-get -y install \
 	liblapack-dev \
 	liblzma-dev \
 	libmng-dev \
-	libmpc-dev \
-	libmpfr-dev \
 	libncurses-dev \
 	libnss-wrapper \
 	libomp-dev \
@@ -128,7 +123,6 @@ apt-get -y install \
 	openmpi-bin \
 	openssl \
 	patch \
-	patchutils \
 	pciutils \
 	pkg-config \
 	python3 \
@@ -163,7 +157,6 @@ apt-get -y install \
 	autoconf \
 	automake \
 	autotools-dev \
-	bc \
 	binutils-gold \
 	bison \
 	build-essential \
@@ -173,7 +166,6 @@ apt-get -y install \
 	clang \
 	cmake \
 	csh \
-	curl \
 	cython3 \
 	doxygen \
 	expat \
@@ -213,7 +205,6 @@ apt-get -y install \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
-	libgmp-dev \
 	libgomp1 \
 	libgtk-3-dev \
 	libgtk2.0-dev \
@@ -223,8 +214,6 @@ apt-get -y install \
 	liblemon-dev \
 	liblzma-dev \
 	libmng-dev \
-	libmpc-dev \
-	libmpfr-dev \
 	libncurses-dev \
 	libnss-wrapper \
 	libomp-dev \
@@ -267,7 +256,6 @@ apt-get -y install \
 	openmpi-bin \
 	openssl \
 	patch \
-	patchutils \
 	pciutils \
 	pkg-config \
 	python3 \
@@ -405,23 +393,23 @@ pip3 install --upgrade --no-cache-dir \
 
 echo "[INFO] Install EDA packages via PIP"
 pip3 install --upgrade --no-cache-dir \
-	amaranth==0.3 \
-	cocotb==1.7.2 \
-	edalize==0.5.0 \
-	fusesoc==2.1 \
-	gdsfactory==6.69.0 \
-	gdspy==1.6.12 \
-	openlane==2.0.0a8 \
-	openram==1.2.7 \
-	pyrtl==0.10.2 \
-	pyspice==1.5 \
-	pyverilog==1.3.0 \
-	siliconcompiler==0.10.1 \
-	spyci==1.0.2 \
-	volare==0.7.1
+	amaranth \
+	cocotb \
+	edalize \
+	fusesoc \
+	gdsfactory \
+	gdspy \
+	openlane \
+	openram \
+	pyrtl \
+	pyspice \
+	pyverilog \
+	siliconcompiler \
+	spyci \
+	volare
 
 pip3 install --upgrade --no-cache-dir \
-	jupyterlab==3.6.2 \
+	jupyterlab \
 
 
 # Install Ruby packages via gem:
