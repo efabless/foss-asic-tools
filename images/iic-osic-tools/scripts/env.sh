@@ -109,7 +109,7 @@ fi
 # Tool Aliases
 #----------------------------------------
 
-alias magic='magic -d XR -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+alias magic='magic -d X11 -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 alias mmagic='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 alias lmagic='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
 

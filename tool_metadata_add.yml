@@ -1,8 +1,8 @@
 - name: covered
-  repo: https://github.com/hpretl/verilog-covered
+  repo: https://github.com/iic-jku/verilog-covered
   commit: 19d30fc942642b14dc24e95331cd4777c8dcbad9
 - name: fault
-  repo: https://github.com/Cloud-V/Fault
+  repo: https://github.com/AUCOHL/Fault
   commit: 080f4be01d236af438566ce0b28089531f21a997
 - name: gaw3-xschem
   repo: https://github.com/StefanSchippers/xschem-gaw.git
@@ -17,8 +17,8 @@
   repo: https://github.com/gtkwave/gtkwave
   commit: 816166e9d88b547aa984ab6d1cb7ec0202212fa0
 - name: iic-osic
-  repo: https://github.com/hpretl/iic-osic.git
-  commit: 5f6ac4fe207ba1c16b730dcbe6e03051744c8018
+  repo: https://github.com/iic-jku/iic-osic.git
+  commit: 3fa99fb2e830226ec5763a11ec963fbecc653ec3
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 25fe8217663c06a141156c2e9255e243d308794a
@@ -48,7 +48,7 @@
   commit: v5.008
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 4569a0747aa8891346e1115a7b8e9b656573bd00
+  commit: 757fd0a37811ed5c5569ba3fdc89d4ea56ffcb2b
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0
