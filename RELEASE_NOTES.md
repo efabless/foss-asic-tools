@@ -2,19 +2,29 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2023.03
+
+* Add newly released `OpenLane2` flow.
+* Add IHP `SG13G2` 130nm SiGe:C BiCMOS open-source PDK.
+* Add `firefox` (again).
+* Add `openram`.
+* Add more examples into `/foss/examples`.
+* Improve EDA server scripts (`eda_server_start.sh`, `eda_server_restart.sh`, `eda_server_stop.sh`).
+* Update various tool versions.
+
 ## 2023.02
 
-* Fix noiseless SKY130 resistors (`ngspice-39` plus setting a proper flag in `.spiceinit`)
-* Harmonize shell script text (using [INFO] and [ERROR] like in other scripts)
-* Improve the IIC-PEX script
-* Fix `klayout` error message ".lyp not found"
-* Update various tool versions
+* Fix noiseless SKY130 resistors (`ngspice-39` plus setting a proper flag in `.spiceinit`).
+* Harmonize shell script text (using [INFO] and [ERROR] like in other scripts).
+* Improve the IIC-PEX script.
+* Fix `klayout` error message ".lyp not found".
+* Update various tool versions.
 
 ## 2023.01
 
-* Added packages: `fusesoc`, `jupyterlab`, `edalize`, `surf` (browser)
-* Added support to run images for multiple users, implemented scripts for starting and stopping multiple instances
+* Added packages: `fusesoc`, `jupyterlab`, `edalize`, `surf` (browser).
+* Added support to run images for multiple users, and implemented scripts for starting and stopping multiple instances.
 * Removed packages: `firefox`
-* Update base OS (Ubuntu) to 22.04 LTS
-* Update various tool versions
+* Update base OS (Ubuntu) to 22.04 LTS.
+* Update various tool versions.
 * Fix screen lockup (timeout due to `light-greeter`) in VNC mode.
