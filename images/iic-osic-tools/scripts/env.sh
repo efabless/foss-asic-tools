@@ -121,7 +121,7 @@ alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
 alias openlane='openlane --manual-pdk'
 
-alias iicalign='bash $TOOLS/align/design/iic-align.sh'
+# alias iicalign='bash $TOOLS/align/design/iic-align.sh'
 
 alias tt='cd $TOOLS'
 alias dd='cd $DESIGNS'
