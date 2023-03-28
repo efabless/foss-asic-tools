@@ -19,13 +19,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 #
-# Usage: design [-d|-n|-a|-g|-i|-l] <cellname>
+# Usage: iic-align [-d|-n|-a|-g|-i|-l|-c|-e] <cellname>
 #
 # The script expects the topcell <cellname> from the XSCHEM schematic 
 # <cellname>.sch in the current folder.
 # There must also be a .magicrc file in the current folder.
-# Optionally: 
-#   - <cellname>.const.json in the current folder, to set constraints.
 #
 # ************************************************************************
 #
@@ -40,6 +38,7 @@ ERR_NO_PARAM=3
 ERR_NO_VAR=4
 ERR_NO_RESULT=5
 ERR_NO_DIR=6
+ERR_NOT_SUPPORTED=7
 
 usage(){
     echo
@@ -57,9 +56,6 @@ usage(){
 	echo
 }
 
-activate(){
-    source general/bin/activate 
-}
 
 if [ $# = 0 ]; then
 	usage
@@ -195,6 +191,7 @@ else
 fi
 
 set -e # exit if a command fails
+
 # Initial checks passed, start working
 # ------------------------------------
 
@@ -229,14 +226,11 @@ if [ $RUN_GEN_NET = 1 ]; then
     # SPICE netlists for the standard cells
     if grep -q "$STD_CELL_LIBRARY" "$NETLIST_SCH"
     then
-            # Remove the .end
-            sed -i '/\.end\b/d' "$NETLIST_SCH"
-            # Append sky130 lib
-            cat "$PDK_ROOT/$PDK/libs.ref/$STD_CELL_LIBRARY/spice/$STD_CELL_LIBRARY.spice" >> "$NETLIST_SCH"
-            # Add .end
-            echo ".end" >> "$NETLIST_SCH"
+            echo "[Error] Standard cells aren't supported!"
+            exit $ERR_NOT_SUPPORTED
     fi
 
+    # Set path to file conversion python script
     SPICE_TO_ALIGN=/foss/tools/align/design/spice_to_sp.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
@@ -254,7 +248,7 @@ fi
 cd "$TOP_PATH" || exit $ERR_NO_DIR
 
 if [ $RUN_GEN_CONSTRAINT = 1 ]; then
-    echo "[INFO] Generating constrains from schematic"
+    echo "[INFO] Generating constraints from schematic"
     for file in *.sch; do #generate a constrain file for each schematic 
         if grep -Fxq ".constraint" "$file" #check if constrain is specified in schematic
         then
@@ -281,6 +275,7 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "[INFO] Starting the ALIGN tool..."
     #start the ALIGN tool
+    #set useful paths
     LD_LIBRARY_PATH=/foss/tools/align/d3954af/general/lib
     ALIGN_ROOT=/foss/tools/align/d3954af
     ALIGN_SKY130PDK_ROOT=/foss/tools/align-pdk-sky130/SKY130_PDK
@@ -297,11 +292,6 @@ if [ $RUN_ALIGN = 1 ]; then
         exit $ERR_NO_DIR
     fi	
 
-    #cd $ALIGN_ROOT #go into the align dir
-    #start the virtual env.
-    #source general/bin/activate
-    #activate
-
     #go to the directory of the spice file
     cd "$TOP_PATH" || exit $ERR_NO_DIR
 
@@ -309,14 +299,12 @@ if [ $RUN_ALIGN = 1 ]; then
     mkdir -p work_align
     cd work_align || exit $ERR_NO_DIR
 
-    echo "... and designing topcell ${TOPCELL}"
+    echo "... and designing topcell <${TOPCELL}>."
     #make a design
     schematic2layout.py ../ -p "$ALIGN_SKY130PDK_ROOT" -f "../$ALIGN_SCH" -s "$TOPCELL" -e "$EFFORT"
     #schematic2layout.py ../ -p $ALIGN_SKY130PDK_ROOT -f ../$ALIGN_SCH -s $TOPCELL 
 
-    #deactivate the virtual enviroment
-    #deactivate
-
+    
     if [ ! -f "${TOPCELL^^}_0.gds" ]
     then
         echo "[Error] No layout produced!"
@@ -337,7 +325,7 @@ if [ $RUN_GDS_TO_MAG = 1 ]; then
 
     if [ ! -d work_align ]
     then
-        echo "[ERROR] Run align before generating the .mag!"
+        echo "[ERROR] Run align before generating the magic view!"
         exit $ERR_FILE_NOT_FOUND
     fi
 
@@ -401,7 +389,7 @@ if [ $RUN_DRC = 1 ]; then
     echo "[INFO] Running IIC-DRC on <work_magic/${TOPCELL}.mag>!"
     if [ ! -f "/foss/tools/iic-osic/iic-drc.sh" ]
     then
-        echo "[ERROR] No IIC_DRC script not found!"
+        echo "[ERROR] IIC_DRC script not found!"
         exit $ERR_FILE_NOT_FOUND
     fi
 
@@ -419,17 +407,18 @@ if [ $RUN_LVS = 1 ]; then
         exit $ERR_NO_RESULT
     fi
 
-    if [ ! -f "work_magic/$LVS_CELL_LAY" ]
+    if [ ! -f "work_magic/${LVS_CELL_LAY}" ]
     then
-        echo "[ERROR] File work_magic/$LVS_CELL_LAY not found!"
+        echo "[ERROR] File work_magic/${LVS_CELL_LAY} not found!"
         exit $ERR_NO_RESULT
     fi
 
     
     
 
-    echo "[INFO] Placing ports in work_magic/$LVS_CELL_LAY."
+    echo "[INFO] Placing ports in work_magic/${LVS_CELL_LAY}."
 
+    #Set path to labels-to-ports python script.
     LABELS_TO_PORTS=/foss/tools/align/design/labels_to_ports.py
 
     cd work_magic
@@ -465,7 +454,7 @@ if [ $RUN_LVS = 1 ]; then
     # Extract SPICE netlist from layout with magic
     # --------------------------------------------
 
-    echo "[INFO] Extracting netlist from layout <work_magic/$CELL_LAY>"
+    echo "[INFO] Extracting netlist from layout <work_magic/${CELL_LAY}>"
     magic -dnull -noconsole "$EXT_NET_SCRIPT" > /dev/null 
 
     if [ ! -f "$NETLIST_LAY" ]
@@ -483,7 +472,7 @@ if [ $RUN_LVS = 1 ]; then
     echo "---------------------"
     tail -3 "$LVS_REPORT"
     echo
-    echo "For details please check work_lvs/<$LVS_REPORT>."
+    echo "For details please check work_lvs/<${LVS_REPORT}>."
     echo
 fi
 
