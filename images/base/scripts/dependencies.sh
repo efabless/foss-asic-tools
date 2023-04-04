@@ -405,6 +405,7 @@ pip3 install --upgrade --no-cache-dir \
 
 echo "[INFO] Install EDA packages via PIP"
 pip3 install --upgrade --no-cache-dir \
+    jinja2==3.1.2 \
 	amaranth==0.3 \
 	cocotb==1.7.2 \
 	edalize==0.5.0 \
