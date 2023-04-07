@@ -13,7 +13,7 @@ RUN bash dependencies.sh
 #######################################################################
 FROM base as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="5e5879c53d8410b93a4e3df6e8269fd2895b6921"
+ARG MAGIC_REPO_COMMIT="58c6a32a6ca954cbdf2943f4a3f64f1ecc385557"
 ARG MAGIC_NAME="magic"
 
 ADD images/magic/scripts/install.sh install.sh
@@ -177,7 +177,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-39"
+ARG NGSPICE_REPO_COMMIT="ngspice-40"
 ARG NGSPICE_NAME="ngspice"
 
 ADD images/ngspice/scripts/install.sh install.sh
@@ -190,7 +190,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as libngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-39"
+ARG NGSPICE_REPO_COMMIT="ngspice-40"
 ARG NGSPICE_NAME="libngspice"
 
 ADD images/libngspice/scripts/install.sh install.sh
@@ -212,7 +212,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.8.2"
+ARG NVC_REPO_COMMIT="r1.9.0"
 ARG NVC_NAME="nvc"
 
 ADD images/nvc/scripts/install.sh install.sh
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.03.23"
+ARG OPENLANE_REPO_COMMIT="2023.04.07"
 ARG OPENLANE_NAME="openlane"
 
 ADD images/openlane/scripts/install.sh install.sh
@@ -234,7 +234,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="1a1617d908d2ebdb731de9ab4e3d9fd93a6dcf97"
+ARG OPENROAD_APP_REPO_COMMIT="6840b7481d49c83870f79646cf979e66f22f6833"
 ARG OPENROAD_APP_NAME="openroad"
 
 ADD images/openroad/scripts/install.sh install.sh
@@ -300,7 +300,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="757fd0a37811ed5c5569ba3fdc89d4ea56ffcb2b"
+ARG XSCHEM_REPO_COMMIT="34800870feb6f259c575f71d664ea8aad4730c48"
 ARG XSCHEM_NAME="xschem"
 
 ADD images/xschem/scripts/install.sh install.sh
@@ -431,8 +431,9 @@ COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY tool_metadata.yml                          /
 
 # Install examples
-RUN git clone https://github.com/w32agobot/SKY130_SAR-ADC /foss/examples/SKY130_SAR-ADC && \
-    git clone https://github.com/mabrains/Analog_blocks.git /foss/examples/SKY130_ANALOG-BLOCKS
+RUN git clone https://github.com/iic-jku/SKY130_SAR-ADC1        /foss/examples/SKY130_SAR-ADC1 && \
+    git clone https://github.com/iic-jku/SKY130_PLL1.git        /foss/examples/SKY130_PLL1 && \
+    git clone https://github.com/mabrains/Analog_blocks.git     /foss/examples/SKY130_ANALOG-BLOCKS
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
