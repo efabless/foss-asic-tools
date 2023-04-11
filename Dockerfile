@@ -20,7 +20,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="58c6a32a6ca954cbdf2943f4a3f64f1ecc385557"
+ARG MAGIC_REPO_COMMIT="1d8fcca09bdbfad1066b78c3a6ac9742043f7d13"
 ARG MAGIC_NAME="magic"
 ADD images/magic/scripts/install.sh install.sh
 RUN bash install.sh
@@ -196,7 +196,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.04.05"
+ARG OPENLANE_REPO_COMMIT="2023.04.11"
 ARG OPENLANE_NAME="openlane"
 ADD images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -266,7 +266,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="34800870feb6f259c575f71d664ea8aad4730c48"
+ARG XSCHEM_REPO_COMMIT="e6fc1d9fe49bbd5710a089e62602f4202c48ffeb"
 ARG XSCHEM_NAME="xschem"
 ADD images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -296,14 +296,14 @@ RUN bash install.sh
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
-ARG YOSYS_REPO_COMMIT="f109fa3d4c56fe33bc626c298e04d45ae510dd0e"
+ARG YOSYS_REPO_COMMIT="101075611fc5698739180017bf96b1abf140c8e7"
 ARG YOSYS_NAME="yosys"
 ADD images/yosys/scripts/install.sh install.sh
 RUN bash install.sh
 
 FROM base as ghdl-yosys-plugin
 ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
-ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="c9b05e481423c55ffcbb856fd5296701f670808c"
+ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="7aed75ba30157e52de737b2e082d2e1b6f82435d"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 COPY --from=yosys	/foss/tools/	/foss/tools/
 COPY --from=ghdl	/foss/tools/	/foss/tools/
