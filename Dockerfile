@@ -212,16 +212,6 @@ ADD images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile opensta (part of OpenLane)
-#######################################################################
-FROM base as opensta
-ARG OPENSTA_REPO_URL="https://github.com/The-OpenROAD-Project/OpenSTA"
-ARG OPENSTA_REPO_COMMIT="489ffac144d5661b963105f89cb9097e1fd2f8cf"
-ARG OPENSTA_NAME="opensta"
-ADD images/opensta/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
 # Compile padring (part of OpenLane)
 #######################################################################
 FROM base as padring
@@ -370,7 +360,6 @@ COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=ngspyce                      /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
-COPY --from=opensta                      /foss/tools/            /foss/tools/
 COPY --from=padring                      /foss/tools/            /foss/tools/
 COPY --from=qflow                        /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
