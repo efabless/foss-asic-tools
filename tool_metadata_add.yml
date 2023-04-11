@@ -13,6 +13,9 @@
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
   commit: v3.0.0
+- name: ghdl-yosys-plugin
+  repo: https://github.com/ghdl/ghdl-yosys-plugin.git
+  commit: 7aed75ba30157e52de737b2e082d2e1b6f82435d
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
   commit: 816166e9d88b547aa984ab6d1cb7ec0202212fa0
@@ -26,9 +29,6 @@
   repo: https://github.com/steveicarus/iverilog.git
   commit: 01441687235135d1c12eeef920f75d97995da333
 - name: ngspice
-  repo: https://git.code.sf.net/p/ngspice/ngspice
-  commit: ngspice-40
-- name: libngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-40
 - name: ngspyce
@@ -55,6 +55,3 @@
 - name: xyce-xdm
   repo: https://github.com/Xyce/XDM
   commit: Release-2.6.0
-- name: ghdl-yosys-plugin
-  repo: https://github.com/ghdl/ghdl-yosys-plugin.git
-  commit: 7aed75ba30157e52de737b2e082d2e1b6f82435d
