@@ -18,7 +18,7 @@ function _path_add_tool() {
         tool_name=$1
         for d in "$TOOLS/$tool_name"/*/ ; do
                 if [ -d "${d}" ]; then
-                        export PATH=$PATH:${d}
+                        export PATH=$PATH:${d%/}
                 fi
         done
 }
@@ -27,7 +27,7 @@ function _path_add_tool_custom() {
         custom_path=$1
         for d in $TOOLS/$custom_path/ ; do
                 if [ -d "${d}" ]; then
-                        export PATH=$PATH:${d}
+                        export PATH=$PATH:${d%/}
                 fi
         done
 }
