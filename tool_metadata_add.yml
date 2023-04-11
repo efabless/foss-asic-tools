@@ -27,16 +27,16 @@
   commit: 01441687235135d1c12eeef920f75d97995da333
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
-  commit: ngspice-39
+  commit: ngspice-40
 - name: libngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
-  commit: ngspice-39
+  commit: ngspice-40
 - name: ngspyce
   repo: https://github.com/ignamv/ngspyce
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.8.2
+  commit: r1.9.0
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
@@ -48,7 +48,7 @@
   commit: v5.008
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 757fd0a37811ed5c5569ba3fdc89d4ea56ffcb2b
+  commit: e6fc1d9fe49bbd5710a089e62602f4202c48ffeb
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0
@@ -57,4 +57,4 @@
   commit: Release-2.6.0
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
-  commit: c9b05e481423c55ffcbb856fd5296701f670808c
+  commit: 7aed75ba30157e52de737b2e082d2e1b6f82435d
