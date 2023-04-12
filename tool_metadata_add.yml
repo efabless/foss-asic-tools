@@ -48,7 +48,7 @@
   commit: v5.008
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: e6fc1d9fe49bbd5710a089e62602f4202c48ffeb
+  commit: 590bf8b6ecf71e18725ac1f4da23adac44f176d9
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0
