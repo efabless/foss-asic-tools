@@ -196,7 +196,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.04.11"
+ARG OPENLANE_REPO_COMMIT="2023.04.12"
 ARG OPENLANE_NAME="openlane"
 ADD images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
