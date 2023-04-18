@@ -49,6 +49,7 @@ else
 fi
 
 if [ -z ${BUILDER_STRS+z} ]; then
+	echo "Defining builder strs"
 	BUILDER_STRS="host=ssh://pretl@buildx86,host=unix:///var/run/docker.sock"
 fi
 

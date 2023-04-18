@@ -310,8 +310,9 @@ FROM basepkg as iic-osic-tools
 # noVNC webport, connect via http://IP:80/?password=start
 
 ENV VNC_PORT=5901 \
-    NO_VNC_PORT=80
-EXPOSE $VNC_PORT $NO_VNC_PORT
+    NO_VNC_PORT=80 \
+    JUPYTER_PORT=8888
+EXPOSE $VNC_PORT $NO_VNC_PORT $JUPYTER_PORT
 
 ### Environment config
 ENV HOME=/headless \
@@ -376,6 +377,7 @@ COPY images/iic-osic-tools/addons/.gaw/			/headless/.gaw/
 COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
+COPY images/iic-osic-tools/addons/.jupyter		/headless/.jupyter
 COPY tool_metadata.yml                          /
 
 # Install examples
