@@ -40,7 +40,7 @@ RUN bash install.sh
 #######################################################################
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="12df12e2e74145e31c5a13de02f9a1e176b56e67"
+ARG OPEN_PDKS_REPO_COMMIT="0c37b7c76527929abfbdbd214df4bffcd260bf50"
 ARG OPEN_PDKS_NAME="open_pdks"
 ENV PDK_ROOT=/foss/pdks
 ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
@@ -116,7 +116,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="816166e9d88b547aa984ab6d1cb7ec0202212fa0"
+ARG GTKWAVE_REPO_COMMIT="f31b549cfeca6f6c71f029ea0e9f9d46d5663beb"
 ARG GTKWAVE_NAME="gtkwave"
 ADD images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -136,7 +136,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="01441687235135d1c12eeef920f75d97995da333"
+ARG IVERILOG_REPO_COMMIT="b210eb82645cb99275e9cccad8348e7d18c96b10"
 ARG IVERILOG_NAME="iverilog"
 ADD images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -186,7 +186,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.9.0"
+ARG NVC_REPO_COMMIT="r1.9.1"
 ARG NVC_NAME="nvc"
 ADD images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -196,7 +196,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.04.12"
+ARG OPENLANE_REPO_COMMIT="2023.04.18"
 ARG OPENLANE_NAME="openlane"
 ADD images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -236,7 +236,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.03.14"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.04.18"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -256,7 +256,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="590bf8b6ecf71e18725ac1f4da23adac44f176d9"
+ARG XSCHEM_REPO_COMMIT="6c364a74cc6fdc9b07c7be48df286b83ee774272"
 ARG XSCHEM_NAME="xschem"
 ADD images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

@@ -18,7 +18,7 @@
   commit: 7aed75ba30157e52de737b2e082d2e1b6f82435d
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: 816166e9d88b547aa984ab6d1cb7ec0202212fa0
+  commit: f31b549cfeca6f6c71f029ea0e9f9d46d5663beb
 - name: iic-osic
   repo: https://github.com/iic-jku/iic-osic.git
   commit: 3fa99fb2e830226ec5763a11ec963fbecc653ec3
@@ -27,7 +27,7 @@
   commit: 25fe8217663c06a141156c2e9255e243d308794a
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 01441687235135d1c12eeef920f75d97995da333
+  commit: b210eb82645cb99275e9cccad8348e7d18c96b10
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-40
@@ -36,19 +36,19 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.9.0
+  commit: r1.9.1
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: 2023.03.14
+  commit: 2023.04.18
 - name: verilator
   repo: https://github.com/verilator/verilator
   commit: v5.008
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 590bf8b6ecf71e18725ac1f4da23adac44f176d9
+  commit: 6c364a74cc6fdc9b07c7be48df286b83ee774272
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0
