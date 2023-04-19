@@ -20,7 +20,7 @@
 # ========================================================================
 
 # general settings for all users
-export DOCKER_EXTRA_PARAMS="--cpus 4 --memory 8G"
+export DOCKER_EXTRA_PARAMS="--cpus 4 --memory 8G --dns 8.8.8.8 --restart on-failure:20"
 export VNC_PORT=0
 export EDA_USER_HOME="/var/local/eda"
 export EDA_CREDENTIAL_FILE="eda_user_credentials.json"
