@@ -15,7 +15,7 @@
   commit: v3.0.0
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
-  commit: 7aed75ba30157e52de737b2e082d2e1b6f82435d
+  commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
   commit: f31b549cfeca6f6c71f029ea0e9f9d46d5663beb
@@ -43,12 +43,9 @@
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
   commit: 2023.04.18
-- name: verilator
-  repo: https://github.com/verilator/verilator
-  commit: v5.008
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 6c364a74cc6fdc9b07c7be48df286b83ee774272
+  commit: 631fedb11b500a2c3b66fdd7820e213bf77487d5
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0

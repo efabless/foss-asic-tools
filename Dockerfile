@@ -196,7 +196,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.04.18"
+ARG OPENLANE_REPO_COMMIT="2023.04.20"
 ARG OPENLANE_NAME="openlane"
 ADD images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -206,7 +206,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="6840b7481d49c83870f79646cf979e66f22f6833"
+ARG OPENROAD_APP_REPO_COMMIT="b3db49ea3301a7e590bf24126d409bd40199b4af"
 ARG OPENROAD_APP_NAME="openroad"
 ADD images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -246,7 +246,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v5.008"
+ARG VERILATOR_REPO_COMMIT="947402bc57625106e1387255772fdb5d850a6c65"
 ARG VERILATOR_NAME="verilator"
 ADD images/verilator/scripts/install.sh install.sh
 RUN bash install.sh
@@ -256,7 +256,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="6c364a74cc6fdc9b07c7be48df286b83ee774272"
+ARG XSCHEM_REPO_COMMIT="631fedb11b500a2c3b66fdd7820e213bf77487d5"
 ARG XSCHEM_NAME="xschem"
 ADD images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 
 FROM base as ghdl-yosys-plugin
 ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
-ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="7aed75ba30157e52de737b2e082d2e1b6f82435d"
+ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 COPY --from=yosys	/foss/tools/	/foss/tools/
 COPY --from=ghdl	/foss/tools/	/foss/tools/
