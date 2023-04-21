@@ -61,7 +61,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [openlane2](https://github.com/efabless/openlane2) rewrite of OpenLane in Python, 2nd generation
 * [openram](https://github.com/VLSIDA/OpenRAM) OpenRAM Python library
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane` and `openlane2`
-* [opensta](https://github.com/The-OpenROAD-Project/OpenSTA) static timing analyzer for digital flow
 * [padring](https://github.com/donn/padring) padring generation tool
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
 * [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python

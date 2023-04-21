@@ -20,7 +20,9 @@ pip3 install --upgrade --no-cache-dir \
 	volare
 
 pip3 install --upgrade --no-cache-dir \
-	jupyterlab \
+	jupyter \
+	jupyter-collaboration \
+	jupyterlab-night
 
 
 echo "[INFO] Install EDA packages via GEM"

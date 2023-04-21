@@ -40,7 +40,7 @@ RUN bash install.sh
 #######################################################################
 FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="12df12e2e74145e31c5a13de02f9a1e176b56e67"
+ARG OPEN_PDKS_REPO_COMMIT="0c37b7c76527929abfbdbd214df4bffcd260bf50"
 ARG OPEN_PDKS_NAME="open_pdks"
 ENV PDK_ROOT=/foss/pdks
 ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
@@ -116,7 +116,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="816166e9d88b547aa984ab6d1cb7ec0202212fa0"
+ARG GTKWAVE_REPO_COMMIT="f31b549cfeca6f6c71f029ea0e9f9d46d5663beb"
 ARG GTKWAVE_NAME="gtkwave"
 ADD images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -136,7 +136,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="01441687235135d1c12eeef920f75d97995da333"
+ARG IVERILOG_REPO_COMMIT="b210eb82645cb99275e9cccad8348e7d18c96b10"
 ARG IVERILOG_NAME="iverilog"
 ADD images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -186,7 +186,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.9.0"
+ARG NVC_REPO_COMMIT="r1.9.1"
 ARG NVC_NAME="nvc"
 ADD images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -196,7 +196,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.04.11"
+ARG OPENLANE_REPO_COMMIT="2023.04.19"
 ARG OPENLANE_NAME="openlane"
 ADD images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -206,19 +206,9 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="6840b7481d49c83870f79646cf979e66f22f6833"
+ARG OPENROAD_APP_REPO_COMMIT="b3db49ea3301a7e590bf24126d409bd40199b4af"
 ARG OPENROAD_APP_NAME="openroad"
 ADD images/openroad/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
-# Compile opensta (part of OpenLane)
-#######################################################################
-FROM base as opensta
-ARG OPENSTA_REPO_URL="https://github.com/The-OpenROAD-Project/OpenSTA"
-ARG OPENSTA_REPO_COMMIT="489ffac144d5661b963105f89cb9097e1fd2f8cf"
-ARG OPENSTA_NAME="opensta"
-ADD images/opensta/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -246,7 +236,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.03.14"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.04.18"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 ADD images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -256,7 +246,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="v5.008"
+ARG VERILATOR_REPO_COMMIT="947402bc57625106e1387255772fdb5d850a6c65"
 ARG VERILATOR_NAME="verilator"
 ADD images/verilator/scripts/install.sh install.sh
 RUN bash install.sh
@@ -266,7 +256,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="e6fc1d9fe49bbd5710a089e62602f4202c48ffeb"
+ARG XSCHEM_REPO_COMMIT="631fedb11b500a2c3b66fdd7820e213bf77487d5"
 ARG XSCHEM_NAME="xschem"
 ADD images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -303,7 +293,7 @@ RUN bash install.sh
 
 FROM base as ghdl-yosys-plugin
 ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
-ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="7aed75ba30157e52de737b2e082d2e1b6f82435d"
+ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 COPY --from=yosys	/foss/tools/	/foss/tools/
 COPY --from=ghdl	/foss/tools/	/foss/tools/
@@ -342,8 +332,9 @@ FROM basepkg as iic-osic-tools
 # noVNC webport, connect via http://IP:80/?password=start
 
 ENV VNC_PORT=5901 \
-    NO_VNC_PORT=80
-EXPOSE $VNC_PORT $NO_VNC_PORT
+    NO_VNC_PORT=80 \
+    JUPYTER_PORT=8888
+EXPOSE $VNC_PORT $NO_VNC_PORT $JUPYTER_PORT
 
 ### Environment config
 ENV HOME=/headless \
@@ -392,7 +383,6 @@ COPY --from=ngspice                      /foss/tools/            /foss/tools/
 COPY --from=ngspyce                      /foss/tools/            /foss/tools/
 COPY --from=openlane                     /foss/tools/            /foss/tools/
 COPY --from=openroad_app                 /foss/tools/            /foss/tools/
-COPY --from=opensta                      /foss/tools/            /foss/tools/
 COPY --from=padring                      /foss/tools/            /foss/tools/
 COPY --from=qflow                        /foss/tools/            /foss/tools/
 COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
@@ -411,6 +401,7 @@ COPY images/iic-osic-tools/addons/.gaw/			/headless/.gaw/
 COPY images/iic-osic-tools/addons/examples		/foss/examples
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
+COPY images/iic-osic-tools/addons/.jupyter		/headless/.jupyter
 COPY tool_metadata.yml                          /
 
 ADD images/align/design /foss/tools/align/design

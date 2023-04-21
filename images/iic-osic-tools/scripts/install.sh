@@ -14,6 +14,7 @@ apt-get install -y \
         net-tools \
         nmap \
         novnc \
+        parallel \
         sudo \
         tigervnc-standalone-server \
         vim \
