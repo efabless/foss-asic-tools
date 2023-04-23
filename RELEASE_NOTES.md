@@ -2,6 +2,13 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2023.04
+
+* Fix crashes of `OpenLane` and `OpenLane2`.
+* Update various tool versions.
+* Specify custom DNS in server scripts (see `eda_server_conf.sh`).
+* Add a dedicated startup script for Jupyter notebooks called `start_jupyter.sh`.
+
 ## 2023.03
 
 * Add newly released `OpenLane2` flow.
@@ -17,13 +24,13 @@ This document summarizes the most important changes of the individual releases o
 * Fix noiseless SKY130 resistors (`ngspice-39` plus setting a proper flag in `.spiceinit`).
 * Harmonize shell script text (using [INFO] and [ERROR] like in other scripts).
 * Improve the IIC-PEX script.
-* Fix `klayout` error message ".lyp not found".
+* Fix the `klayout` error message ".lyp not found".
 * Update various tool versions.
 
 ## 2023.01
 
 * Added packages: `fusesoc`, `jupyterlab`, `edalize`, `surf` (browser).
-* Added support to run images for multiple users, and implemented scripts for starting and stopping multiple instances.
+* Added support to run images for multiple users and implemented scripts for starting and stopping multiple instances.
 * Removed packages: `firefox`
 * Update base OS (Ubuntu) to 22.04 LTS.
 * Update various tool versions.
