@@ -9,6 +9,6 @@ cd "${NVC_NAME}"
 git checkout "${NVC_REPO_COMMIT}"
 ./autogen.sh
 mkdir build && cd build
-../configure --prefix=/foss/tools/"${NVC_NAME}"/"${REPO_COMMIT_SHORT}"
+../configure --prefix="${TOOLS}/${NVC_NAME}/${REPO_COMMIT_SHORT}"
 make -j"$(nproc)"
 make install

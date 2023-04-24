@@ -13,5 +13,4 @@ REPO_COMMIT_SHORT=$(echo "$XYCE_REPO_COMMIT" | cut -c 1-7)
 	--enable-stokhos \
 	--enable-amesos2 \
 	--verbose \
-	--prefix="/foss/tools/${XYCE_NAME}/Parallel/${REPO_COMMIT_SHORT}"
-
+	--prefix="${TOOLS}/${XYCE_NAME}/Parallel/${REPO_COMMIT_SHORT}"

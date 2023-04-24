@@ -10,5 +10,5 @@ git checkout "${PADRING_REPO_COMMIT}"
 bash ./bootstrap.sh
 cd build
 ninja
-mkdir -p "/foss/tools/${PADRING_NAME}/${REPO_COMMIT_SHORT}/bin"
-cp padring "/foss/tools/${PADRING_NAME}/${REPO_COMMIT_SHORT}/bin"
+mkdir -p "${TOOLS}/${PADRING_NAME}/${REPO_COMMIT_SHORT}/bin"
+cp padring "${TOOLS}/${PADRING_NAME}/${REPO_COMMIT_SHORT}/bin"

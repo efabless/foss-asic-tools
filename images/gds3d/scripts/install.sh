@@ -12,8 +12,8 @@ sed -i -e '/CFLAGS=/ s/$/ -std=c++11/' linux/Makefile
 
 make -C linux -j"$(nproc)"
 
-mkdir -p "/foss/tools/${GDS3D_NAME}/${REPO_COMMIT_SHORT}/bin"
-cp linux/GDS3D "/foss/tools/${GDS3D_NAME}/${REPO_COMMIT_SHORT}/bin"
+mkdir -p "${TOOLS}/${GDS3D_NAME}/${REPO_COMMIT_SHORT}/bin"
+cp linux/GDS3D "${TOOLS}/${GDS3D_NAME}/${REPO_COMMIT_SHORT}/bin"
 
 if [ -d "$PDK_ROOT/sky130A" ]; then
     mkdir -p "$PDK_ROOT/sky130A/libs.tech/gds3d"

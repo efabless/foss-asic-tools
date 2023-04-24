@@ -6,14 +6,15 @@
 mv "$STARTUPDIR/scripts/env.sh" "$HOME/.bashrc"
 
 ###############
-mkdir -p /foss/designs
-mkdir -p /foss/pdks
+mkdir -p "$DESIGNS"
+mkdir -p "$PDK_ROOT"
+mkdir -p "$EXAMPLES"
 
 cp -a "$TOOLS"/sak/openlane/spef_extractor "$TOOLS/"
 
 ###############
-mkdir -p /foss/tools/bin
-cd    /foss/tools/bin || exit
+mkdir -p "$TOOLS/bin"
+cd    "$TOOLS/bin" || exit
 ln -s ../*/*/bin/* .
 
 ###############
@@ -29,7 +30,7 @@ update-alternatives --set python /usr/bin/python3
 ###############
 chown -R 1000:1000 /headless
 chmod -R +rw /headless
-chown -R 1000:1000 /foss/designs
+chown -R 1000:1000 "$DESIGNS"
 
 ## Set correct user permissions
 "$STARTUPDIR/scripts/set_user_permission.sh" "$STARTUPDIR" "$HOME"

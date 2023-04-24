@@ -9,6 +9,6 @@ cd "${VERILATOR_NAME}"
 git checkout "${VERILATOR_REPO_COMMIT}"
 autoconf
 unset VERILATOR_ROOT
-./configure --prefix="/foss/tools/${VERILATOR_NAME}/${REPO_COMMIT_SHORT}"
+./configure --prefix="${TOOLS}/${VERILATOR_NAME}/${REPO_COMMIT_SHORT}"
 make -j"$(nproc)"
 make install

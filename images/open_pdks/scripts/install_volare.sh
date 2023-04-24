@@ -2,8 +2,7 @@
 
 set -e
 
-export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
-export SCRIPT_DIR=/foss/tools/iic-osic
+export SCRIPT_DIR=$TOOLS/iic-osic
 
 if [ ! -d "$PDK_ROOT" ]; then
     mkdir -p "$PDK_ROOT"
@@ -39,15 +38,17 @@ if [ -d "$PDK_ROOT/sky130B" ]; then
 fi
 
 # FIXME: Repair klayout tech file
-sed -i 's/>sky130</>sky130A</g' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
-sed -i 's/sky130.lyp/sky130A.lyp/g' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
-sed -i '/<base-path>/c\ <base-path/>' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
-sed -i '/<original-base-path>/c\ <original-base-path>$PDK_ROOT/$PDK/libs.tech/klayout</original-base-path>' $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt
+sed -i 's/>sky130</>sky130A</g' "$PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt"
+sed -i 's/sky130.lyp/sky130A.lyp/g' "$PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt"
+sed -i '/<base-path>/c\ <base-path/>' "$PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt"
+# shellcheck disable=SC2016
+sed -i '/<original-base-path>/c\ <original-base-path>$PDK_ROOT/$PDK/libs.tech/klayout</original-base-path>' "$PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt"
 
-sed -i 's/>sky130</>sky130B</g' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
-sed -i 's/sky130.lyp/sky130B.lyp/g' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
-sed -i '/<base-path>/c\ <base-path/>' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
-sed -i '/<original-base-path>/c\ <original-base-path>$PDK_ROOT/$PDK/libs.tech/klayout</original-base-path>' $PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt
+sed -i 's/>sky130</>sky130B</g' "$PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt"
+sed -i 's/sky130.lyp/sky130B.lyp/g' "$PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt"
+sed -i '/<base-path>/c\ <base-path/>' "$PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt"
+# shellcheck disable=SC2016
+sed -i '/<original-base-path>/c\ <original-base-path>$PDK_ROOT/$PDK/libs.tech/klayout</original-base-path>' "$PDK_ROOT/sky130B/libs.tech/klayout/tech/sky130B.lyt"
 
 
 ##################

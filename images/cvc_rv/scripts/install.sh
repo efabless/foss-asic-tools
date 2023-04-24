@@ -9,6 +9,6 @@ git clone "${CVC_RV_REPO_URL}" "${CVC_RV_NAME}"
 cd "${CVC_RV_NAME}"
 git checkout "${CVC_RV_REPO_COMMIT}"
 autoreconf -vif
-./configure --disable-nls --prefix=/foss/tools/"${CVC_RV_NAME}"/"${REPO_COMMIT_SHORT}"
+./configure --disable-nls --prefix="${TOOLS}/${CVC_RV_NAME}/${REPO_COMMIT_SHORT}"
 make -j"$(nproc)"
 make install
