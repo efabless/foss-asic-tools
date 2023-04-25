@@ -312,7 +312,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as iic-osic-tools
 
-## Connection ports for controlling the UI:
+# Connection ports for controlling the UI:
 # VNC port:5901
 # noVNC webport, connect via http://IP:80/?password=start
 
@@ -321,7 +321,7 @@ ENV VNC_PORT=5901 \
     JUPYTER_PORT=8888
 EXPOSE $VNC_PORT $NO_VNC_PORT $JUPYTER_PORT
 
-### Environment config
+# Environment config
 ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
@@ -331,19 +331,17 @@ ENV HOME=/headless \
     VNC_PW=abc123 \
     VNC_VIEW_ONLY=false
 
-### FIXME workaround for OpenMPI throwing errors when run inside a container without Capability "SYS_PTRACE".
+# FIXME workaround for OpenMPI throwing errors when run inside a container without Capability "SYS_PTRACE".
 ENV OMPI_MCA_btl_vader_single_copy_mechanism=none
 
-### Copy all required scripts into the container and allow them to be executed by any user.
+# Copy all required scripts into the container and allow them to be executed by any user.
 ADD images/iic-osic-tools/scripts/ $STARTUPDIR/scripts
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 
-## Install all apt and pip packages, as well as novnc from sources
+# Install all apt and pip packages, as well as novnc from sources
 RUN $STARTUPDIR/scripts/install.sh
 
-### Copy xfce UI configuration
-ADD images/iic-osic-tools/addons/xfce/ $HOME/
-
+# Copy all layers into the final container
 COPY --from=open_pdks                    ${PDK_ROOT}/           ${PDK_ROOT}/
 COPY --from=covered                      ${TOOLS}/              ${TOOLS}/
 COPY --from=cvc_rv                       ${TOOLS}/              ${TOOLS}/
@@ -375,14 +373,9 @@ COPY --from=xyce-xdm                     ${TOOLS}/              ${TOOLS}/
 COPY --from=yosys                        ${TOOLS}/              ${TOOLS}/
 COPY --from=ghdl-yosys-plugin            ${TOOLS}_add/          ${TOOLS}/
 
-COPY images/iic-osic-tools/addons/sak			${TOOLS}/sak
-COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
-COPY images/iic-osic-tools/addons/.gaw/			/headless/.gaw/
-COPY images/iic-osic-tools/addons/examples		${EXAMPLES}
-COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
-COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
-COPY images/iic-osic-tools/addons/.jupyter		/headless/.jupyter
-COPY tool_metadata.yml                          /
+# Copy skeleton and tool version file for OpenLane
+COPY images/iic-osic-tools/skel /
+COPY tool_metadata.yml /
 
 # Install examples
 RUN git clone https://github.com/iic-jku/SKY130_SAR-ADC1        ${EXAMPLES}/SKY130_SAR-ADC1 && \
