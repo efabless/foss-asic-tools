@@ -3,8 +3,16 @@
 #######################################################################
 ARG BASE_IMAGE=ubuntu:jammy
 FROM ${BASE_IMAGE} as base
-ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/Vienna
+ARG CONTAINER_TAG=unknown
+ENV IIC_OSIC_TOOLS_VERSION=${CONTAINER_TAG} \
+    DEBIAN_FRONTEND=noninteractive \
+    TZ=Europe/Vienna \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    TOOLS=/foss/tools \
+    PDK_ROOT=/foss/pdks \
+    DESIGNS=/foss/designs \
+    EXAMPLES=/foss/examples
 ADD images/base/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
 
@@ -42,7 +50,6 @@ FROM iic-osic as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="0c37b7c76527929abfbdbd214df4bffcd260bf50"
 ARG OPEN_PDKS_NAME="open_pdks"
-ENV PDK_ROOT=/foss/pdks
 ADD images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
 ADD images/open_pdks/scripts/install_ihp.sh install_ihp.sh
@@ -295,8 +302,8 @@ FROM base as ghdl-yosys-plugin
 ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
 ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
-COPY --from=yosys	/foss/tools/	/foss/tools/
-COPY --from=ghdl	/foss/tools/	/foss/tools/
+COPY --from=yosys	${TOOLS}    ${TOOLS}
+COPY --from=ghdl	${TOOLS}    ${TOOLS}
 ADD images/ghdl-yosys-plugin/scripts/install.sh install.sh
 RUN bash install.sh
 
@@ -322,10 +329,7 @@ ENV HOME=/headless \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1680x1050 \
     VNC_PW=abc123 \
-    VNC_VIEW_ONLY=false \
-    DESIGNS=/foss/designs \
-    TOOLS=/foss/tools \
-    PDK_ROOT=/foss/pdks
+    VNC_VIEW_ONLY=false
 
 ### FIXME workaround for OpenMPI throwing errors when run inside a container without Capability "SYS_PTRACE".
 ENV OMPI_MCA_btl_vader_single_copy_mechanism=none
@@ -340,55 +344,55 @@ RUN $STARTUPDIR/scripts/install.sh
 ### Copy xfce UI configuration
 ADD images/iic-osic-tools/addons/xfce/ $HOME/
 
-COPY --from=open_pdks                    /foss/pdks/             /foss/pdks/
-COPY --from=covered                      /foss/tools/            /foss/tools/
-COPY --from=cvc_rv                       /foss/tools/            /foss/tools/
-COPY --from=fault                        /foss/tools/            /foss/tools/
-COPY --from=fault                        /opt/swift/usr/lib/     /opt/swift/usr/lib/
-COPY --from=gaw3-xschem                  /foss/tools/            /foss/tools/
-COPY --from=gds3d                        /foss/tools/            /foss/tools/
-COPY --from=gds3d                        /foss/pdks/             /foss/pdks/
-COPY --from=ghdl                         /foss/tools/            /foss/tools/
-COPY --from=gtkwave                      /foss/tools/            /foss/tools/
-COPY --from=iic-osic                     /foss/tools/            /foss/tools/
-COPY --from=irsim                        /foss/tools/            /foss/tools/
-COPY --from=iverilog                     /foss/tools/            /foss/tools/
-COPY --from=klayout                      /foss/tools/            /foss/tools/
-COPY --from=magic                        /foss/tools/            /foss/tools/
-COPY --from=netgen                       /foss/tools/            /foss/tools/
-COPY --from=nvc                          /foss/tools/            /foss/tools/    
-COPY --from=ngspice                      /foss/tools/            /foss/tools/
-COPY --from=ngspyce                      /foss/tools/            /foss/tools/
-COPY --from=openlane                     /foss/tools/            /foss/tools/
-COPY --from=openroad_app                 /foss/tools/            /foss/tools/
-COPY --from=padring                      /foss/tools/            /foss/tools/
-COPY --from=qflow                        /foss/tools/            /foss/tools/
-COPY --from=riscv-gnu-toolchain-rv32i    /foss/tools/            /foss/tools/
-COPY --from=verilator                    /foss/tools/            /foss/tools/
-COPY --from=xschem                       /foss/tools/            /foss/tools/
-COPY --from=xyce                         /foss/tools/            /foss/tools/
-COPY --from=xyce-xdm                     /foss/tools/            /foss/tools/
-COPY --from=yosys                        /foss/tools/            /foss/tools/
-COPY --from=ghdl-yosys-plugin            /foss/tools_add/        /foss/tools/
+COPY --from=open_pdks                    ${PDK_ROOT}/           ${PDK_ROOT}/
+COPY --from=covered                      ${TOOLS}/              ${TOOLS}/
+COPY --from=cvc_rv                       ${TOOLS}/              ${TOOLS}/
+COPY --from=fault                        ${TOOLS}/              ${TOOLS}/
+COPY --from=fault                        /opt/swift/usr/lib/    /opt/swift/usr/lib/
+COPY --from=gaw3-xschem                  ${TOOLS}/              ${TOOLS}/
+COPY --from=gds3d                        ${TOOLS}/              ${TOOLS}/
+COPY --from=gds3d                        ${PDK_ROOT}/           ${PDK_ROOT}/
+COPY --from=ghdl                         ${TOOLS}/              ${TOOLS}/
+COPY --from=gtkwave                      ${TOOLS}/              ${TOOLS}/
+COPY --from=iic-osic                     ${TOOLS}/              ${TOOLS}/
+COPY --from=irsim                        ${TOOLS}/              ${TOOLS}/
+COPY --from=iverilog                     ${TOOLS}/              ${TOOLS}/
+COPY --from=klayout                      ${TOOLS}/              ${TOOLS}/
+COPY --from=magic                        ${TOOLS}/              ${TOOLS}/
+COPY --from=netgen                       ${TOOLS}/              ${TOOLS}/
+COPY --from=nvc                          ${TOOLS}/              ${TOOLS}/
+COPY --from=ngspice                      ${TOOLS}/              ${TOOLS}/
+COPY --from=ngspyce                      ${TOOLS}/              ${TOOLS}/
+COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
+COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
+COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
+COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
+COPY --from=riscv-gnu-toolchain-rv32i    ${TOOLS}/              ${TOOLS}/
+COPY --from=verilator                    ${TOOLS}/              ${TOOLS}/
+COPY --from=xschem                       ${TOOLS}/              ${TOOLS}/
+COPY --from=xyce                         ${TOOLS}/              ${TOOLS}/
+COPY --from=xyce-xdm                     ${TOOLS}/              ${TOOLS}/
+COPY --from=yosys                        ${TOOLS}/              ${TOOLS}/
+COPY --from=ghdl-yosys-plugin            ${TOOLS}_add/          ${TOOLS}/
 
-ADD  images/iic-osic-tools/addons/sak			/foss/tools/sak
+COPY images/iic-osic-tools/addons/sak			${TOOLS}/sak
 COPY images/iic-osic-tools/addons/.klayout/		/headless/.klayout/
 COPY images/iic-osic-tools/addons/.gaw/			/headless/.gaw/
-COPY images/iic-osic-tools/addons/examples		/foss/examples
+COPY images/iic-osic-tools/addons/examples		${EXAMPLES}
 COPY images/iic-osic-tools/addons/.spiceinit	/headless/.spiceinit
 COPY images/iic-osic-tools/addons/.Xclients		/headless/.Xclients
 COPY images/iic-osic-tools/addons/.jupyter		/headless/.jupyter
 COPY tool_metadata.yml                          /
 
 # Install examples
-RUN git clone https://github.com/iic-jku/SKY130_SAR-ADC1        /foss/examples/SKY130_SAR-ADC1 && \
-    git clone https://github.com/iic-jku/SKY130_PLL1.git        /foss/examples/SKY130_PLL1 && \
-    git clone https://github.com/mabrains/Analog_blocks.git     /foss/examples/SKY130_ANALOG-BLOCKS
+RUN git clone https://github.com/iic-jku/SKY130_SAR-ADC1        ${EXAMPLES}/SKY130_SAR-ADC1 && \
+    git clone https://github.com/iic-jku/SKY130_PLL1.git        ${EXAMPLES}/SKY130_PLL1 && \
+    git clone https://github.com/mabrains/Analog_blocks.git     ${EXAMPLES}/SKY130_ANALOG-BLOCKS
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh
 
-WORKDIR $DESIGNS
+WORKDIR ${DESIGNS}
 USER 1000:1000
 ENTRYPOINT ["/dockerstartup/scripts/ui_startup.sh"]
 CMD ["--wait"]
