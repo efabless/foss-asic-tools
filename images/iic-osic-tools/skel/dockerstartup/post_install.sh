@@ -2,17 +2,21 @@
 
 # shellcheck disable=SC1091
 
-## mv env.sh into place as .bashrc
+# Cleanup of installation leftovers
+[ -f /dependencies.sh ] && rm -f /dependencies.sh 
+[ -f /install.sh ] && rm -f /install.sh
+
+# Move env.sh into place as .bashrc
 mv "$STARTUPDIR/scripts/env.sh" "$HOME/.bashrc"
 
-###############
-mkdir -p "$DESIGNS"
-mkdir -p "$PDK_ROOT"
-mkdir -p "$EXAMPLES"
+# Create dirs if not yet existing
+[ ! -d "$DESIGNS" ] && mkdir -p "$DESIGNS"
+[ ! -d "$PDK_ROOT" ] && mkdir -p "$PDK_ROOT"
+[ ! -d "$EXAMPLES" ] && mkdir -p "$EXAMPLES"
 
-cp -a "$TOOLS"/sak/openlane/spef_extractor "$TOOLS/"
+cp -a "$TOOLS/sak/openlane/spef_extractor" "$TOOLS/"
 
-###############
+# Link all tool binaries into one bin folder
 mkdir -p "$TOOLS/bin"
 cd    "$TOOLS/bin" || exit
 ln -s ../*/*/bin/* .
@@ -28,8 +32,8 @@ mkdir "$STARTUPDIR"/logs
 update-alternatives --set python /usr/bin/python3
 
 ###############
-chown -R 1000:1000 /headless
-chmod -R +rw /headless
+chown -R 1000:1000 "$HOME"
+chmod -R +rw "$HOME"
 chown -R 1000:1000 "$DESIGNS"
 
 ## Set correct user permissions

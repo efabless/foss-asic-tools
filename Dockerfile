@@ -315,7 +315,6 @@ FROM basepkg as iic-osic-tools
 # Connection ports for controlling the UI:
 # VNC port:5901
 # noVNC webport, connect via http://IP:80/?password=start
-
 ENV VNC_PORT=5901 \
     NO_VNC_PORT=80 \
     JUPYTER_PORT=8888
@@ -332,9 +331,6 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false
 # FIXME workaround for OpenMPI throwing errors when run inside a container without Capability "SYS_PTRACE".
 ENV OMPI_MCA_btl_vader_single_copy_mechanism=none
-
-# Install all apt and pip packages, as well as novnc from sources
-RUN $STARTUPDIR/scripts/install.sh
 
 # Copy all layers into the final container
 COPY --from=open_pdks                    ${PDK_ROOT}/           ${PDK_ROOT}/
@@ -375,7 +371,7 @@ COPY tool_metadata.yml /
 # Allow scripts to be executed by any user
 RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 
-# Install all apt and pip packages, as well as novnc from sources
+# Install all APT and PIP packages, as well as noVNC from sources
 RUN $STARTUPDIR/scripts/install.sh
 
 # Install examples
