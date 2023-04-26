@@ -35,7 +35,8 @@ if [ -z ${DOCKER_IMAGE+z} ]; then
 fi
 
 if [ -z ${DOCKER_TAGS+z} ]; then
-        DOCKER_TAGS="latest,$(date +"%Y.%m")"
+		CONTAINER_TAG="$(date +"%Y.%m")"
+        DOCKER_TAGS="latest,$CONTAINER_TAG"
 fi
 
 if [ -z ${DOCKER_PLATFORMS+z} ]; then
@@ -114,4 +115,4 @@ for ((;i<"${#P_PLATS[@]}";i++)); do
 done
 
 #shellcheck disable=SC2086
-${ECHO_IF_DRY_RUN} docker buildx build --platform ${DOCKER_PLATFORMS} --builder ${BUILDER_NAME} ${load_or_push} ${TAG_PARAMS} .
+${ECHO_IF_DRY_RUN} docker buildx build --platform ${DOCKER_PLATFORMS} --builder ${BUILDER_NAME} ${load_or_push} ${TAG_PARAMS} --build-arg CONTAINER_TAG=${CONTAINER_TAG} .

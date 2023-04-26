@@ -1,10 +1,5 @@
 # shellcheck shell=bash
 
-# Main directory structure
-export PDK_ROOT=/foss/pdks
-export TOOLS=/foss/tools
-export DESIGNS=/foss/designs
-
 function _path_add_tool_bin() {
         tool_name=$1
         for d in "$TOOLS/$tool_name"/*/ ; do
@@ -80,8 +75,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
-LD_LIBRARY_PATH="$(realpath $TOOLS/klayout/*/ ):/foss/tools/ngspice/ngspice/lib" && export LD_LIBRARY_PATH
-export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8
+LD_LIBRARY_PATH="$(realpath ${TOOLS}/klayout/*/ ):${TOOLS}/ngspice/ngspice/lib" && export LD_LIBRARY_PATH
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
 export OPENLANE_ROOT=$TOOLS/openlane

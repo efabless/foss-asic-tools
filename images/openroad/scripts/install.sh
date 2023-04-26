@@ -10,6 +10,6 @@ git checkout "${OPENROAD_APP_REPO_COMMIT}"
 git submodule update --init --recursive
 
 mkdir -p build && cd build
-cmake .. "-DCMAKE_INSTALL_PREFIX=/foss/tools/${OPENROAD_APP_NAME}/${REPO_COMMIT_SHORT}" "-DUSE_SYSTEM_BOOST=ON"
+cmake .. "-DCMAKE_INSTALL_PREFIX=${TOOLS}/${OPENROAD_APP_NAME}/${REPO_COMMIT_SHORT}" "-DUSE_SYSTEM_BOOST=ON"
 make -j"$(nproc)"
 make install

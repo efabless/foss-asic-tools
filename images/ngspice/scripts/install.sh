@@ -14,11 +14,11 @@ set -e
 NGSPICE_COMPILE_OPTS=("--disable-debug" "--enable-openmp" "--with-x" "--with-readline=yes" "--enable-pss" "--enable-xspice" "--with-fftw3=yes")
 
 # Compile ngspice executable
-./configure "${NGSPICE_COMPILE_OPTS[@]}" --prefix="/foss/tools/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}"
+./configure "${NGSPICE_COMPILE_OPTS[@]}" --prefix="${TOOLS}/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}"
 make -j"$(nproc)"
 make install
 
 # Now compile lib
-./configure "${NGSPICE_COMPILE_OPTS[@]}" --with-ngshared --prefix=/foss/tools/"${NGSPICE_NAME}"/"${REPO_COMMIT_SHORT}"
+./configure "${NGSPICE_COMPILE_OPTS[@]}" --with-ngshared --prefix="${TOOLS}/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}"
 make -j"$(nproc)"
 make install
