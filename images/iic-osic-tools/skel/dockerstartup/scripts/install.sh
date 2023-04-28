@@ -7,6 +7,7 @@ echo "[INFO] Installing misc. packages"
 apt-get install -y \
         firefox \
         gedit \
+        gnuplot \
         htop \
         hub \
         meld \
