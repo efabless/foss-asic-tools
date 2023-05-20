@@ -9,7 +9,7 @@ cd /tmp
 git clone "${RFTK_FASTHENRY_REPO_URL}" "${RFTK_NAME}_fh"
 cd "${RFTK_NAME}_fh"
 git checkout "${RFTK_FASTHENRY_REPO_COMMIT}"
-# patch FastHenry Makefiles (fix proposed by Ali Olyanasab)
+# patch FastHenry Makefiles (fix thanks to Ali Olyanasab)
 sed -i '/^CFLAGS/ s/$/ -fcommon -w/' src/fasthenry/Makefile
 sed -i '/^CFLAGS/ s/$/ -fcommon -w/' src/fasthenry/sparse/Makefile
 make -j"$(nproc)" all
@@ -33,8 +33,10 @@ git checkout de03ffebfd5013b96102bd60f71c8fe8b73870e2
 cd ..
 # now build FasterCap
 cd "${RFTK_NAME}_fc"
+# patch FasterCap cmake (fix thanks to Ali Olyanasab) 
+sed -i '3 i add_definitions(-w)' CmakeLists.txt
 mkdir build && cd build
 #cmake -G"CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
 cmake -G"Unix Makefiles"  -DCMAKE_BUILD_TYPE=Release -DFASTFIELDSOLVERS_HEADLESS=ON ..
-make -j"$(nproc)" 
+make -j"$(nproc)" all
 cp FasterCap "${TOOLS}/${RFTK_NAME}/bin"
