@@ -308,6 +308,18 @@ COPY images/ghdl-yosys-plugin/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile different components for the rftoolkit
+#######################################################################
+FROM base as rftoolkit
+ARG RFTK_NAME="rftoolkit"
+ARG RFTK_FASTHENRY_REPO_URL="https://github.com/ediloren/FastHenry2"
+ARG RFTK_FASTHENRY_REPO_COMMIT="363e43ed57ad3b9affa11cba5a86624fad0edaa9"
+ARG RFTK_FASTERCAP_REPO_URL="https://github.com/ediloren/FasterCap.git"
+ARG RFTK_FASTERCAP_REPO_COMMIT="b42179a8fdd25ab42fe45527282b4a738d7e7f87"
+COPY images/rftoolkit/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Final output container
 #######################################################################
 FROM basepkg as iic-osic-tools
@@ -356,6 +368,7 @@ COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
 COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
 COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
+COPY --from=rftoolkit                    ${TOOLS}/              ${TOOLS}/
 COPY --from=riscv-gnu-toolchain-rv32i    ${TOOLS}/              ${TOOLS}/
 COPY --from=verilator                    ${TOOLS}/              ${TOOLS}/
 COPY --from=xschem                       ${TOOLS}/              ${TOOLS}/

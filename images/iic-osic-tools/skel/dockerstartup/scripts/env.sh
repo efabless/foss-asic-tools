@@ -57,6 +57,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_bin "opensta"
         _path_add_tool_bin "padring"
         _path_add_tool_bin "qflow"
+        _path_add_tool_custom "rftoolkit/bin"
         _path_add_tool_bin "verilator"
         _path_add_tool_bin "xschem"
         _path_add_tool_bin "xyce/Parallel"
