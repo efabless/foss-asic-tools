@@ -34,7 +34,7 @@ cd ..
 # now build FasterCap
 cd "${RFTK_NAME}_fc"
 # patch FasterCap cmake (fix thanks to Ali Olyanasab) 
-sed -i '3 i add_definitions(-w)' CmakeLists.txt
+sed -i '3 i add_definitions(-w)' CMakeLists.txt
 mkdir build && cd build
 #cmake -G"CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
 cmake -G"Unix Makefiles"  -DCMAKE_BUILD_TYPE=Release -DFASTFIELDSOLVERS_HEADLESS=ON ..
