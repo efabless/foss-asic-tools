@@ -1,5 +1,5 @@
 :: ========================================================================
-:: Start script for IIC docker images (VNC)
+:: Start script for IIC docker images (use for Jupyter notebooks only)
 ::
 :: SPDX-FileCopyrightText: 2022-2023 Harald Pretl and Georg Zachl
 :: Johannes Kepler University, Institute for Integrated Circuits
