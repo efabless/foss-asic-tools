@@ -65,7 +65,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
 * [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python
 * [pyverilog](https://github.com/PyHDI/Pyverilog) Python toolkit for Verilog
-* RF toolkit with [FastHenry2](https://github.com/ediloren/FastHenry2) and [FasterCap](https://github.com/ediloren/FasterCap)
+* RF toolkit with [FastHenry2](https://github.com/ediloren/FastHenry2), [FasterCap](https://github.com/ediloren/FasterCap), and [openEMS](https://github.com/OpenEMS/openems).
 * [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
 * [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion

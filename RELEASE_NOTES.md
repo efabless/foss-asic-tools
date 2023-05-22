@@ -2,6 +2,15 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2023.05
+
+* Improved Docker container build infrastructure (using existing variables throughout the scripts) and reduced the number of layers by copying a skeleton.
+* Added environment variable `IIC_OSIC_TOOLS_VERSION` so that user scripts can check container version.
+* Added `gnuplot`, `FasterCap`, `FastHenry2`, and `openEMS`.
+* Allow custom container names in `eda_server` scripts.
+* Add a dedicated startup script for Jupyter notebooks called `start_jupyter.bat`.
+* Update various tool versions.
+
 ## 2023.04
 
 * Fix crashes of `OpenLane` and `OpenLane2`.
