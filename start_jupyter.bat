@@ -44,18 +44,8 @@ IF NOT DEFINED CONTAINER_GROUP SET CONTAINER_GROUP=1000
 
 IF NOT DEFINED CONTAINER_NAME SET CONTAINER_NAME=iic-osic-tools_jupyter
 
-IF NOT DEFINED DISP SET DISP=host.docker.internal:0
-
 IF %CONTAINER_USER% NEQ 0 if %CONTAINER_USER% LSS 1000 echo WARNING: Selected User ID %CONTAINER_USER% is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behaviour!
 IF %CONTAINER_GROUP% NEQ 0 if %CONTAINER_GROUP% LSS 1000 echo WARNING: Selected Group ID %CONTAINER_GROUP% is below 1000. This ID might interfere with Group-IDs inside the container and cause undefined behaviour!
-
-where /q xhost
-IF ERRORLEVEL 1 (
-    ECHO xhost is not detected / not in PATH. Please verify X-server access control!
-) ELSE (
-    ECHO Using xhost to enable localhost access to the X-server.
-    %ECHO_IF_DRY_RUN% xhost +localhost
-)
 
 SET PARAMS=--security-opt seccomp=unconfined
 IF DEFINED JUPYTER_PORT SET PARAMS=%PARAMS% -p %JUPYTER_PORT%:8888
@@ -71,6 +61,6 @@ IF NOT ERRORLEVEL 1 (
         echo Container %CONTAINER_NAME% exists. Restart with \"docker start %CONTAINER_NAME%\" or remove with \"docker rm %CONTAINER_NAME%\" if required.
     ) ELSE (
         echo Container does not exist, creating %CONTAINER_NAME% ...
-        %ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% -e DISPLAY=%DISP% -e LIBGL_ALWAYS_INDIRECT=1 %PARAMS% -v "%DESIGNS%":/foss/designs --name %CONTAINER_NAME% %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG% -s jupyter notebook --no-browser
+        %ECHO_IF_DRY_RUN% docker run -d --user %CONTAINER_USER%:%CONTAINER_GROUP% %PARAMS% -v "%DESIGNS%":/foss/designs --name %CONTAINER_NAME% %DOCKER_USER%/%DOCKER_IMAGE%:%DOCKER_TAG% -s jupyter notebook --no-browser
     )
 )
