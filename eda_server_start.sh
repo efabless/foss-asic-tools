@@ -32,7 +32,7 @@ NUMBER_USERS=20
 PASSWD_DIGITS=20
 
 # process input parameters
-while getopts "hcdkp:n:s:f:g:l:" flag; do
+while getopts "hcdkp:n:s:f:g:l:m:" flag; do
 	case $flag in
 		c)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -c is set."
@@ -66,6 +66,10 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -k is set."
 			DO_KILL=1
 			;;
+		m)
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -m is set to $OPTARG."
+			EDA_CONTAINER_PREFIX=${OPTARG}
+			;;	
 		l)
 			[ $DEBUG = 1 ] && echo "[INFO] Flag -l is set to $OPTARG."
 			EDA_USER_HOME=${OPTARG}
@@ -74,7 +78,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 		 	echo
 			echo "Spinning up Docker instances for EDA users (IIC@JKU)"
 			echo
-			echo "Usage: $0 [-h] [-d] [-c] [-k] [-p port_number] [-n number_instances] [-g user_group] [-s passwd_digits] [-f credential_file] [-l data_directory]"
+			echo "Usage: $0 [-h] [-d] [-c] [-k] [-p port_number] [-n number_instances] [-g user_group] [-s passwd_digits] [-f credential_file] [-l data_directory] [-m cont_prefix]"
 			echo
 			echo "       -h shows a help screen"
 			echo "       -d enables the debug mode"
@@ -86,6 +90,7 @@ while getopts "hcdkp:n:s:f:g:l:" flag; do
 			echo "       -s sets the number of digits of the auto-generated user passwords (default $PASSWD_DIGITS)"
 			echo "       -f sets the name of the credentials file (default $EDA_CREDENTIAL_FILE)"
 			echo "       -l sets the directory of the user homes (default $EDA_USER_HOME)"
+			echo "       -m sets the name prefix of the container (default $EDA_CONTAINER_PREFIX)"
 			echo
 			exit
 			;;
@@ -104,6 +109,7 @@ shift $((OPTIND-1))
 [ $DEBUG = 1 ] && echo "[INFO] Number of instances is $NUMBER_USERS."
 [ $DEBUG = 1 ] && echo "[INFO] Number of password digits is $PASSWD_DIGITS."
 [ $DEBUG = 1 ] && echo "[INFO] User credentials are stored in $EDA_CREDENTIAL_FILE."
+[ $DEBUG = 1 ] && echo "[INFO] Container name prefix is $EDA_CONTAINER_PREFIX."
 
 # here is a function for the actual work
 _spin_up_server () {
@@ -161,7 +167,7 @@ _write_credentials () {
 	fi
 
 	# write a JSON file
-	jq ". + [{ \"user\": \"$1\", \"password\": \"$2\", \"port\": $3, \"url\": \"http://$HOSTIP:$3/?password=$2\" }]" "$4" > "$4.tmp"
+	jq ". + [{ \"user\": \"$1\", \"password\": \"$2\", \"port\": $3, \"url\": \"http://$HOSTIP:$3/?password=$2\", \"prefix\": \"$EDA_CONTAINER_PREFIX\" }]" "$4" > "$4.tmp"
 	mv "$4.tmp" "$4"
 }
 

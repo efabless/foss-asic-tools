@@ -27,20 +27,25 @@ source eda_server_conf.sh
 DEBUG=0
 
 # process input parameters
-while getopts "hd" flag; do
+while getopts "hdm:" flag; do
 	case $flag in
 		d)
 			echo "[INFO] DEBUG is enabled"
 			DEBUG=1
 			;;
+		m)
+			[ $DEBUG = 1 ] && echo "[INFO] Flag -m is set to $OPTARG."
+			EDA_CONTAINER_PREFIX=${OPTARG}
+			;;	
 		h)
 			echo
 			echo "Stopping Docker instances for EDA users (IIC@JKU)"
 			echo
-			echo "Usage: $0 [-h] [-d]"
+			echo "Usage: $0 [-h] [-d] [-m cont_prefix]"
 			echo
 			echo "       -h shows a help screen"
 			echo "       -d enables the debug mode"
+			echo "       -m sets the name prefix of the container (default $EDA_CONTAINER_PREFIX)"
 			echo 
 			exit
 			;;
