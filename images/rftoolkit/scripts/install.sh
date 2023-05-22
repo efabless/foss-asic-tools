@@ -9,10 +9,18 @@ cd /tmp
 git clone "${RFTK_FASTHENRY_REPO_URL}" "${RFTK_NAME}_fh"
 cd "${RFTK_NAME}_fh"
 git checkout "${RFTK_FASTHENRY_REPO_COMMIT}"
+
 # patch FastHenry Makefiles (fix thanks to Ali Olyanasab)
 sed -i '/^CFLAGS/ s/$/ -fcommon -w/' src/fasthenry/Makefile
 sed -i '/^CFLAGS/ s/$/ -fcommon -w/' src/fasthenry/sparse/Makefile
-make -j"$(nproc)" all
+
+# remove option -m64 from Makefiles (otherwise fail on aarch64)
+sed -i 's/-m64//g' src/fasthenry/Makefile
+sed -i 's/-m64//g' src/misc/Makefile
+sed -i 's/-m64//g' src/zbuf/Makefile
+sed -i 's/-m64//g' src/fasthenry/sparse/Makefile
+
+make all
 cp -R bin "${TOOLS}/${RFTK_NAME}"
 cp -R doc "${TOOLS}/${RFTK_NAME}"
 cp -R examples "${TOOLS}/${RFTK_NAME}"
@@ -33,9 +41,11 @@ git checkout de03ffebfd5013b96102bd60f71c8fe8b73870e2
 cd ..
 # now build FasterCap
 cd "${RFTK_NAME}_fc"
+
 # patch FasterCap cmake (fix thanks to Ali Olyanasab) 
 sed -i '3 i add_definitions(-w)' CMakeLists.txt
 mkdir build && cd build
+
 #cmake -G"CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
 cmake -G"Unix Makefiles"  -DCMAKE_BUILD_TYPE=Release -DFASTFIELDSOLVERS_HEADLESS=ON ..
 make -j"$(nproc)" all
