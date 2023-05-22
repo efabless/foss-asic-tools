@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.05.12"
+ARG OPENLANE_REPO_COMMIT="2023.05.19"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -243,7 +243,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.05.14"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.05.19"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="1a9fddba99b7069c522baff968844a5580e37fc4"
+ARG XSCHEM_REPO_COMMIT="ade1aaf8583f1a4e1c297d1d683bea08834742cc"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
