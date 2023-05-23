@@ -239,6 +239,16 @@ COPY images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile qucs-s
+#######################################################################
+FROM base as qucs-s
+ARG QUCS_REPO_URL="https://github.com/ra3xdh/qucs_s"
+ARG QUCS_REPO_COMMIT="1.0.2"
+ARG QUCS_NAME="qucs-s"
+COPY images/qucs-s/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile riscv-gnu-toolchain-rv32i
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
@@ -368,6 +378,7 @@ COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
 COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
 COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
+COPY --from=qucs-s                       ${TOOLS}/              ${TOOLS}/
 COPY --from=rftoolkit                    ${TOOLS}/              ${TOOLS}/
 COPY --from=riscv-gnu-toolchain-rv32i    ${TOOLS}/              ${TOOLS}/
 COPY --from=verilator                    ${TOOLS}/              ${TOOLS}/

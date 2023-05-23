@@ -2,6 +2,10 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2023.06
+
+* Added `Qucs-S`.
+
 ## 2023.05
 
 * Improved Docker container build infrastructure (using existing variables throughout the scripts) and reduced the number of layers by copying a skeleton.
