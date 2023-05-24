@@ -4,7 +4,7 @@ This document summarizes the most important changes of the individual releases o
 
 ## 2023.06
 
-* Added `Qucs-S`.
+* Added `Qucs-S` and `PyOPUS`.
 
 ## 2023.05
 

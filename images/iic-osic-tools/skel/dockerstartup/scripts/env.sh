@@ -56,6 +56,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_bin "openroad"
         _path_add_tool_bin "opensta"
         _path_add_tool_bin "padring"
+        _path_add_tool_bin "pyopus"
         _path_add_tool_bin "qflow"
         _path_add_tool_bin "qucs-s"
         _path_add_tool_custom "rftoolkit/bin"
@@ -70,6 +71,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         # FIXME: OpenROAD in Ubuntu 22.04 does not find the PIP modules, so use PYTHONPATH
         PYTHONPATH=$(python -c "import sys; print(':'.join(x for x in sys.path if x))") && export PYTHONPATH 
         _path_add_tool_python "ngspyce"
+        _path_add_tool_python "pyopus"
 
         echo "[INFO] Final PATH variable: $PATH"
         echo "[INFO] Final PYTHONPATH variable: $PYTHONPATH"

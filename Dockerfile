@@ -229,6 +229,16 @@ COPY images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile pyopus
+#######################################################################
+FROM basepkg as pyopus
+ARG PYOPUS_REPO_URL="https://fides.fe.uni-lj.si/pyopus/download"
+ARG PYOPUS_REPO_COMMIT="0.10"
+ARG PYOPUS_NAME="pyopus"
+COPY images/pyopus/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile qflow helper files
 #######################################################################
 FROM base as qflow
@@ -377,6 +387,7 @@ COPY --from=ngspyce                      ${TOOLS}/              ${TOOLS}/
 COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
 COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
 COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
+COPY --from=pyopus                       ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
 COPY --from=qucs-s                       ${TOOLS}/              ${TOOLS}/
 COPY --from=rftoolkit                    ${TOOLS}/              ${TOOLS}/
