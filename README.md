@@ -23,7 +23,7 @@ See instructions on how to do this in the section **Quick Launch for Designers**
 
 Enter the directory of this repository on your computer, and use one of the methods described in the section **Quick Launch for Designers** to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
 
-If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed.
+If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed. Please note that this compressed image will be extracted on your drive, so please provide at least **20GB of free drive space**. If, after a while, the consumed space gets larger, this is maybe due to unused images piling up. In this case, delete old ones; please consult the internet for instructions on operating Docker.
 
 If you know what you are doing and want full root access without a graphical interface, please use `./start_shell.sh`.
 
