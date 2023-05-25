@@ -9,6 +9,24 @@ It supports two *modes of operation*:
 1. Using a complete desktop environment (XFCE) in `Xvnc` (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs in your browser.
 2. Using a local X11 server and directly showing the application windows on your desktop.
 
+## How to Use These Open-Source (and Free) IC Design Tools
+
+### Step 1: Clone/download this GitHub repository onto your computer
+
+Use the green **Code** button, and either download the zip file or do a `git clone https://github.com/iic-jku/iic-osic-tools.git`.
+
+### Step 2: Install Docker on your computer
+
+See instructions on how to do this in the section **Quick Launch for Designers** further down in this `README`.
+
+### Step 3: Start and Use a Docker Container based on our IIC-OSIC-TOOLS Image
+
+Enter the directory of this repository on your computer, and use one of the methods described in the section **Quick Launch for Designers** to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
+
+If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed.
+
+If you know what you are doing and want full root access without a graphical interface, please use `./start_shell.sh`.
+
 ## Installed PDKs
 
 As of the `2022.12` tag, the following open-source process-development kits (PDKs) are pre-installed, and the table shows how to switch by setting environment variables (you can do this per project by putting this into `.designinit` as explained below):
@@ -24,6 +42,10 @@ As of the `2022.12` tag, the following open-source process-development kits (PDK
 | `export PDK=gf180mcuC` |
 | `export PDKPATH=$PDK_ROOT/$PDK` |
 | `export STD_CELL_LIBRARY=gf180mcu_fd_sc_mcu7t5v0` |
+
+| IHP Microelectronics `sg13g2` |
+|---|
+| Not yet ready to use |
 
 More options for selecting digital standard cell libraries are available; please check the PDK directories.
 
