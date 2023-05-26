@@ -34,13 +34,13 @@ COPY images/magic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile iic-osic
+# Compile osic-multitool
 #######################################################################
-FROM magic as iic-osic
-ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="3fa99fb2e830226ec5763a11ec963fbecc653ec3"
-ARG IIC_OSIC_NAME="iic-osic"
-COPY images/iic-osic/scripts/install.sh install.sh
+FROM magic as osic-multitool
+ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
+ARG OSIC_MULTITOOL_REPO_COMMIT="3fa99fb2e830226ec5763a11ec963fbecc653ec3"
+ARG OSIC_MULTITOOL_NAME="osic-multitool"
+COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -375,7 +375,6 @@ COPY --from=gds3d                        ${TOOLS}/              ${TOOLS}/
 COPY --from=gds3d                        ${PDK_ROOT}/           ${PDK_ROOT}/
 COPY --from=ghdl                         ${TOOLS}/              ${TOOLS}/
 COPY --from=gtkwave                      ${TOOLS}/              ${TOOLS}/
-COPY --from=iic-osic                     ${TOOLS}/              ${TOOLS}/
 COPY --from=irsim                        ${TOOLS}/              ${TOOLS}/
 COPY --from=iverilog                     ${TOOLS}/              ${TOOLS}/
 COPY --from=klayout                      ${TOOLS}/              ${TOOLS}/
@@ -386,6 +385,7 @@ COPY --from=ngspice                      ${TOOLS}/              ${TOOLS}/
 COPY --from=ngspyce                      ${TOOLS}/              ${TOOLS}/
 COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
 COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
+COPY --from=osic-multitool               ${TOOLS}/              ${TOOLS}/
 COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
 COPY --from=pyopus                       ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/

@@ -19,8 +19,8 @@
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
   commit: f31b549cfeca6f6c71f029ea0e9f9d46d5663beb
-- name: iic-osic
-  repo: https://github.com/iic-jku/iic-osic.git
+- name: osic-multitool
+  repo: https://github.com/iic-jku/osic-multitool.git
   commit: 3fa99fb2e830226ec5763a11ec963fbecc653ec3
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
