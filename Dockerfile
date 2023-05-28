@@ -46,7 +46,7 @@ RUN bash install.sh
 #######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
-FROM iic-osic as open_pdks
+FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="af3485525297d5cbe93c129ea853da2d588fac41"
 ARG OPEN_PDKS_NAME="open_pdks"
