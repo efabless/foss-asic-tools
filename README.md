@@ -68,7 +68,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
 * [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet)
-* [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and documentation
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
 * [klayout](https://github.com/KLayout/klayout) layout viewer and editor for GDS and OASIS
@@ -83,6 +82,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [openlane2](https://github.com/efabless/openlane2) rewrite of OpenLane in Python, 2nd generation
 * [openram](https://github.com/VLSIDA/OpenRAM) OpenRAM Python library
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane` and `openlane2`
+* [osic-multitool](https://github.com/iic-jku/osic-multitool.git) collection of useful scripts and documentation
 * [padring](https://github.com/donn/padring) padring generation tool
 * [pyopus](https://fides.fe.uni-lj.si/pyopus/index.html) simulation runner and optimization tool for analog circuits
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design

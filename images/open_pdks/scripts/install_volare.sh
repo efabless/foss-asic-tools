@@ -2,7 +2,7 @@
 
 set -e
 
-export SCRIPT_DIR=$TOOLS/iic-osic
+export SCRIPT_DIR=$TOOLS/osic-multitool
 
 if [ ! -d "$PDK_ROOT" ]; then
     mkdir -p "$PDK_ROOT"
