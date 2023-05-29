@@ -175,7 +175,7 @@ fi
 # Need libboost >= 1.78 for OpenROAD
 apt-get -y remove libboost-all-dev
 BOOST_VER_MAJ=1
-BOOST_VER_MIN=81	
+BOOST_VER_MIN=82	
 BOOST_BUILD=0
 echo "[INFO] Installing BOOST version $BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD.$BOOST_BUILD"
 _install_boost () {
