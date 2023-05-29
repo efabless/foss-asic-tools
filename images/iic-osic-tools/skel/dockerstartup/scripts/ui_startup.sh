@@ -81,7 +81,7 @@ cleanup () {
     exit 0
 }
 
-UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
+#UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
 
 if [ "$start_x" != true ] && [ "$start_vnc" != true ]; then
   if [ -z ${DISPLAY+x} ]; then
@@ -125,19 +125,10 @@ if [ "$start_vnc" = true ]; then
     OLD_LD_PRELOAD=$LD_PRELOAD
     export LD_PRELOAD="/lib/aarch64-linux-gnu/libgcc_s.so.1 ${LD_PRELOAD}"
   fi
-  if [[ $UBUNTU_VERSION == 20.04 ]]; then
-        vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
-  elif [[ $UBUNTU_VERSION == 22.04 ]]; then
-        vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -xstartup startxfce4 &> "$STARTUPDIR"/logs/vnc_startup.log
-  else
-        echo -e "[ERROR] Unsupported Ubuntu version!"
-  fi
+  vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -xstartup startxfce4 &> "$STARTUPDIR"/logs/vnc_startup.log
   PID_SUB=$!
   if [ "$(arch)" == "aarch64" ]; then
     export LD_PRELOAD=$OLD_LD_PRELOAD
-  fi
-  if [[ $UBUNTU_VERSION == 20.04 ]]; then
-        /usr/bin/dbus-launch /usr/bin/startxfce4 > "$STARTUPDIR"/logs/wm.log &
   fi
 
   # log connect options
@@ -162,5 +153,5 @@ fi
 
 if [ "$par_wait" = true ]; then
   trap cleanup SIGINT SIGTERM
-  wait $PID_SUB
+  wait "$PID_SUB"
 fi
