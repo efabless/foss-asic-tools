@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="3fa99fb2e830226ec5763a11ec963fbecc653ec3"
+ARG OSIC_MULTITOOL_REPO_COMMIT="8249723964a376801da3fe49c72fdd2c3ebe81ca"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.05.25"
+ARG OPENLANE_REPO_COMMIT="2023.05.31"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="e289bc2ce4fee72a5d3e240d1b61b6385fcbe807"
+ARG OPENROAD_APP_REPO_COMMIT="9a713f0e8a51769207918da28adfd3c02b854375"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -233,7 +233,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as pyopus
 ARG PYOPUS_REPO_URL="https://fides.fe.uni-lj.si/pyopus/download"
-ARG PYOPUS_REPO_COMMIT="0.10"
+ARG PYOPUS_REPO_COMMIT="0.11"
 ARG PYOPUS_NAME="pyopus"
 COPY images/pyopus/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.05.24"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.05.31"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="970c8597f6acb489ab144302d66c4f7e00f7ab1d"
+ARG XSCHEM_REPO_COMMIT="e9c85698001c51db6bdb3625bc353284a3a40002"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
