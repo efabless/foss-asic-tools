@@ -5,6 +5,11 @@ This document summarizes the most important changes of the individual releases o
 ## 2023.06
 
 * Added `Qucs-S` and `PyOPUS`.
+* Fix XFCE configuration (background and other settings).
+* Cleanup of the startup script (container stops when subprocesses stop, redirect logs to Docker).
+* Update various tool versions.
+* Upgrade SWIFT to 5.8, upgrade LIBBOOST to 1.82, and removed legacy support of Ubuntu 20.04 LTS.
+* 
 
 ## 2023.05
 
