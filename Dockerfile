@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="b210eb82645cb99275e9cccad8348e7d18c96b10"
+ARG IVERILOG_REPO_COMMIT="63bcb9601dd9a0a286341935a7b560a7979afe13"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.05.31"
+ARG OPENLANE_REPO_COMMIT="2023.06.08"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="9a713f0e8a51769207918da28adfd3c02b854375"
+ARG OPENROAD_APP_REPO_COMMIT="ceae0ad175e8b0183c3a64af79ba18139dcda63a"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -253,7 +253,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as qucs-s
 ARG QUCS_REPO_URL="https://github.com/ra3xdh/qucs_s"
-ARG QUCS_REPO_COMMIT="1.0.2"
+ARG QUCS_REPO_COMMIT="1.1.0"
 ARG QUCS_NAME="qucs-s"
 COPY images/qucs-s/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.05.31"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.06.09"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="e9c85698001c51db6bdb3625bc353284a3a40002"
+ARG XSCHEM_REPO_COMMIT="fc897c641b5f26132b377c2d5df7ee18a0eedcd3"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
