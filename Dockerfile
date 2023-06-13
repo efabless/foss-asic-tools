@@ -345,6 +345,7 @@ ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-s
 ARG ALIGN_PDK_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
 ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
 COPY images/align-pdk-sky130/scripts/install.sh install.sh
+RUN bash install.sh
 
 #######################################################################
 # Compile different components for the rftoolkit
