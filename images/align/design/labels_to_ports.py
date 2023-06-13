@@ -45,25 +45,30 @@ lines = []
 labels = []
 line_numbers = []
 n = 0
-for line  in file:
+for line in file:
     if line.startswith("flabel"):
         splittet = line.split()
         labels.append(splittet[-1])
         line_numbers.append(n)
-    lines.append(line)
-    n += 1
+    
+    if line.startswith("port"):
+        continue
+    else:
+        lines.append(line)
+        n += 1
 
 file.close()
 
 labels = list(set(labels))
 line_numbers.reverse()
+
 for n in line_numbers:
     splittet = lines[n].split()
     index = labels.index(splittet[-1])
     lines.insert(n+1, "port " + str(index) + " nsew")
 
 
-#wite destination file            
+#write destination file            
 with open(dest_file, 'w') as f:
     for line in lines:
         if line[-1] == '\n':
