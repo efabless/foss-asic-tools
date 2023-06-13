@@ -9,6 +9,24 @@ It supports two *modes of operation*:
 1. Using a complete desktop environment (XFCE) in `Xvnc` (a VNC server), either directly accessing it with a VNC client of your choice or the integrated [noVNC](https://novnc.com) server that runs in your browser.
 2. Using a local X11 server and directly showing the application windows on your desktop.
 
+## How to Use These Open-Source (and Free) IC Design Tools
+
+### Step 1: Clone/download this GitHub repository onto your computer
+
+Use the green **Code** button, and either download the zip file or do a `git clone https://github.com/iic-jku/iic-osic-tools.git`.
+
+### Step 2: Install Docker on your computer
+
+See instructions on how to do this in the section **Quick Launch for Designers** further down in this `README`.
+
+### Step 3: Start and Use a Docker Container based on our IIC-OSIC-TOOLS Image
+
+Enter the directory of this repository on your computer, and use one of the methods described in the section **Quick Launch for Designers** to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
+
+If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed. Please note that this compressed image will be extracted on your drive, so please provide at least **20GB of free drive space**. If, after a while, the consumed space gets larger, this is maybe due to unused images piling up. In this case, delete old ones; please consult the internet for instructions on operating Docker.
+
+If you know what you are doing and want full root access without a graphical interface, please use `./start_shell.sh`.
+
 ## Installed PDKs
 
 As of the `2022.12` tag, the following open-source process-development kits (PDKs) are pre-installed, and the table shows how to switch by setting environment variables (you can do this per project by putting this into `.designinit` as explained below):
@@ -24,6 +42,10 @@ As of the `2022.12` tag, the following open-source process-development kits (PDK
 | `export PDK=gf180mcuC` |
 | `export PDKPATH=$PDK_ROOT/$PDK` |
 | `export STD_CELL_LIBRARY=gf180mcu_fd_sc_mcu7t5v0` |
+
+| IHP Microelectronics `sg13g2` |
+|---|
+| Not yet ready to use |
 
 More options for selecting digital standard cell libraries are available; please check the PDK directories.
 
@@ -46,7 +68,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
 * [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet)
-* [iic-osic](https://github.com/hpretl/iic-osic.git) collection of useful scripts and documentation
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
 * [klayout](https://github.com/KLayout/klayout) layout viewer and editor for GDS and OASIS
@@ -61,10 +82,14 @@ Below is a list of the current tools already installed and ready to use (note th
 * [openlane2](https://github.com/efabless/openlane2) rewrite of OpenLane in Python, 2nd generation
 * [openram](https://github.com/VLSIDA/OpenRAM) OpenRAM Python library
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane` and `openlane2`
+* [osic-multitool](https://github.com/iic-jku/osic-multitool.git) collection of useful scripts and documentation
 * [padring](https://github.com/donn/padring) padring generation tool
+* [pyopus](https://fides.fe.uni-lj.si/pyopus/index.html) simulation runner and optimization tool for analog circuits
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
 * [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python
 * [pyverilog](https://github.com/PyHDI/Pyverilog) Python toolkit for Verilog
+* RF toolkit with [FastHenry2](https://github.com/ediloren/FastHenry2), [FasterCap](https://github.com/ediloren/FasterCap), and [openEMS](https://github.com/OpenEMS/openems).
+* [qucs-s](https://github.com/ra3xdh/qucs_s) simulation environment with RF emphasis
 * [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
 * [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion

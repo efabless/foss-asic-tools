@@ -19,8 +19,6 @@ OPTIONS:
 -w, --wait      Runs the selected UI and waits for them to exit (or until SIGINT or SIGTERM is received). The script will only return then.
 -s, --skip      Skips the UI startup and just executes the assigned command. WARNING: this must be the first parameter to the script or it is ignored!
                 example: docker run hpretl/iic-osic-tools --skip bash
--d, --debug     enables more detailed startup output
-                e.g. 'docker run hpretl/iic-osic-tools --debug bash'
 -h, --help      print out this help
 
 For source, information see: https://github.com/hpretl/iic-osic-tools
@@ -56,10 +54,6 @@ do
                         par_wait=true
                         shift 1
                         ;;
-                -d | --debug )
-                        export DEBUG=true
-                        shift 1
-                        ;;
                 -h | --help )
                         help
                         exit 0
@@ -77,21 +71,26 @@ done
 
 # correct forwarding of shutdown signal
 cleanup () {
+    echo -e "Cleanup called, exiting..."
     kill -s SIGTERM $!
     exit 0
 }
 
-UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
+# Marks log lines of outputs so they can be identified
+# https://unix.stackexchange.com/questions/67392/multiple-background-processes-in-a-script
+tag() { stdbuf -oL sed "s%^%$1 %"; }
+
+#UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
 
 if [ "$start_x" != true ] && [ "$start_vnc" != true ]; then
   if [ -z ${DISPLAY+x} ]; then
         # DISPLAY is not set, so set it and run the startup script.
         start_vnc=true
-	export DISPLAY=:1
-        echo "[INFO] Auto-selected VNC"
+	      export DISPLAY=:1
+        echo -e "[INFO] Auto-selected VNC"
   else
         start_x=true
-        echo "[INFO] Auto-selected local X11"
+        echo -e "[INFO] Auto-selected local X11"
   fi
 
 fi
@@ -111,11 +110,9 @@ if [ "$start_vnc" = true ]; then
   # start vncserver and noVNC webclient
   echo -e "[INFO] Start noVNC"
 
-  "$NO_VNC_HOME"/utils/launch.sh --vnc localhost:"$VNC_PORT" --listen "$NO_VNC_PORT" &> "$STARTUPDIR"/logs/no_vnc_startup.log &
-  # WAIT for the VNC server, not for novnc proxy
-  # PID_SUB=$!
+  "$NO_VNC_HOME"/utils/launch.sh --vnc localhost:"$VNC_PORT" --listen "$NO_VNC_PORT" 2>&1 | tag "[NOVNC]" &
 
-  echo -e "[INFO] Starting vncserver and window manager with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
+  echo -e "[INFO] Starting vncserver and window manager with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION"
 
   # workaround, lock files are not removed if the container is re-run otherwise which makes vncserver unaccessible
   rm -rf /tmp/.X1-lock
@@ -125,42 +122,29 @@ if [ "$start_vnc" = true ]; then
     OLD_LD_PRELOAD=$LD_PRELOAD
     export LD_PRELOAD="/lib/aarch64-linux-gnu/libgcc_s.so.1 ${LD_PRELOAD}"
   fi
-  if [[ $UBUNTU_VERSION == 20.04 ]]; then
-        vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -noxstartup &> "$STARTUPDIR"/logs/vnc_startup.log
-  elif [[ $UBUNTU_VERSION == 22.04 ]]; then
-        vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -xstartup startxfce4 &> "$STARTUPDIR"/logs/vnc_startup.log
-  else
-        echo -e "[ERROR] Unsupported Ubuntu version!"
-  fi
-  PID_SUB=$!
+
+  vncserver "$DISPLAY" -depth "$VNC_COL_DEPTH" -geometry "$VNC_RESOLUTION" -localhost no -fg -xstartup startxfce4 2>&1 | tag "[VNC]" &
+  
   if [ "$(arch)" == "aarch64" ]; then
     export LD_PRELOAD=$OLD_LD_PRELOAD
-  fi
-  if [[ $UBUNTU_VERSION == 20.04 ]]; then
-        /usr/bin/dbus-launch /usr/bin/startxfce4 > "$STARTUPDIR"/logs/wm.log &
   fi
 
   # log connect options
   echo -e "[INFO] VNC environment started"
-  echo -e "\n[INFO] VNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
-  echo -e "\n[INFO] noVNC HTML client started:\n\t=> connect via http://localhost/?password=$VNC_PW\n"
+  echo -e "[INFO] VNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
+  echo -e "[INFO] noVNC HTML client started:\n\t=> connect via http://localhost/?password=$VNC_PW\n"
 
-
-  if [[ $DEBUG == true ]] || [[ $1 =~ -t|--tail-log ]]; then
-          echo -e "\n[INFO] $HOME/.vnc/*$DISPLAY.log"
-          # if the option `-t` or `--tail-log` block the execution and tail the VNC log
-          tail -f "$STARTUPDIR"/logs/*.log "$HOME"/.vnc/*$DISPLAY.log
-  fi
 fi
 
 if [ "$start_x" = true ]; then
-  xfce4-terminal &
-  PID_SUB=$!
+  xfce4-terminal | tag "[TERM]" &
   # add an empty newline so one can see that this script is done.
   echo
 fi
 
 if [ "$par_wait" = true ]; then
   trap cleanup SIGINT SIGTERM
-  wait $PID_SUB
+  echo -e "[INFO] Waiting until one of the sub-processes stops..."
+  wait -n
+  echo -e "[INFO] One sub process stopped, exiting..."
 fi

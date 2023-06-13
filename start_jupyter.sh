@@ -1,6 +1,6 @@
 #!/bin/bash
 # ========================================================================
-# Start script for IIC docker images (VNC)
+# Start script for IIC docker images (use for Jupyter Notebooks only)
 #
 # SPDX-FileCopyrightText: 2022-2023 Harald Pretl and Georg Zachl
 # Johannes Kepler University, Institute for Integrated Circuits
@@ -18,6 +18,8 @@
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
 # ========================================================================
+
+NB_STARTED=0
 
 if [ -n "${DRY_RUN}" ]; then
 	echo "[INFO] This is a dry run, all commands will be printed to the shell (Commands printed but not executed are marked with $)!"
@@ -92,7 +94,7 @@ fi
 
 # Processing ports and other parameters
 PARAMS="--security-opt seccomp=unconfined"
-if [ ${JUPYTER_PORT} -gt 0 ]; then
+if [ "${JUPYTER_PORT}" -gt 0 ]; then
 	PARAMS="$PARAMS -p $JUPYTER_PORT:8888"
 fi
 
@@ -124,6 +126,7 @@ elif [ "$(docker ps -aq -f name="${CONTAINER_NAME}")" ]; then
 	echo
 	if [[ $k = s ]] ; then
 		${ECHO_IF_DRY_RUN} docker start "${CONTAINER_NAME}"
+		NB_STARTED=1
 	elif [[ $k = r ]] ; then
 		${ECHO_IF_DRY_RUN} docker rm "${CONTAINER_NAME}"
 	fi
@@ -134,4 +137,7 @@ else
 	# Disable SC2086, $PARAMS must be globbed and splitted.
 	# shellcheck disable=SC2086
 	${ECHO_IF_DRY_RUN} docker run -d --user "${CONTAINER_USER}:${CONTAINER_GROUP}" $PARAMS -v "$DESIGNS:/foss/designs:rw" --name "${CONTAINER_NAME}" "${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}" -s jupyter notebook
+	NB_STARTED=1
 fi
+
+[ $NB_STARTED = 1 ] && echo "[INFO] Jupyter Notebook is running, point your browser to <http://localhost:8888>."

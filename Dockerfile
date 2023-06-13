@@ -28,27 +28,27 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="1d8fcca09bdbfad1066b78c3a6ac9742043f7d13"
+ARG MAGIC_REPO_COMMIT="a33d7b78b54d8456769d08236f91f9be31784267"
 ARG MAGIC_NAME="magic"
 COPY images/magic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile iic-osic
+# Compile osic-multitool
 #######################################################################
-FROM magic as iic-osic
-ARG IIC_OSIC_REPO_URL="https://github.com/iic-jku/iic-osic.git"
-ARG IIC_OSIC_REPO_COMMIT="3fa99fb2e830226ec5763a11ec963fbecc653ec3"
-ARG IIC_OSIC_NAME="iic-osic"
-COPY images/iic-osic/scripts/install.sh install.sh
+FROM magic as osic-multitool
+ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
+ARG OSIC_MULTITOOL_REPO_COMMIT="8249723964a376801da3fe49c72fdd2c3ebe81ca"
+ARG OSIC_MULTITOOL_NAME="osic-multitool"
+COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
 # Create open_pdks (part of OpenLane)
 #######################################################################
-FROM iic-osic as open_pdks
+FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="0c37b7c76527929abfbdbd214df4bffcd260bf50"
+ARG OPEN_PDKS_REPO_COMMIT="af3485525297d5cbe93c129ea853da2d588fac41"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -81,7 +81,7 @@ RUN bash install.sh
 # FIXME build dependencies clean as stand-alone stages
 FROM base as fault
 ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-ARG FAULT_REPO_COMMIT="080f4be01d236af438566ce0b28089531f21a997"
+ARG FAULT_REPO_COMMIT="54e8665d638393a2e482b237b4ad2b5c02c7ec9a"
 ARG FAULT_NAME="fault"
 COPY images/fault/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="b210eb82645cb99275e9cccad8348e7d18c96b10"
+ARG IVERILOG_REPO_COMMIT="63bcb9601dd9a0a286341935a7b560a7979afe13"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -193,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.9.1"
+ARG NVC_REPO_COMMIT="r1.9.2"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.04.19"
+ARG OPENLANE_REPO_COMMIT="2023.06.08"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="b3db49ea3301a7e590bf24126d409bd40199b4af"
+ARG OPENROAD_APP_REPO_COMMIT="ceae0ad175e8b0183c3a64af79ba18139dcda63a"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -229,6 +229,16 @@ COPY images/padring/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile pyopus
+#######################################################################
+FROM basepkg as pyopus
+ARG PYOPUS_REPO_URL="https://fides.fe.uni-lj.si/pyopus/download"
+ARG PYOPUS_REPO_COMMIT="0.11"
+ARG PYOPUS_NAME="pyopus"
+COPY images/pyopus/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile qflow helper files
 #######################################################################
 FROM base as qflow
@@ -239,17 +249,27 @@ COPY images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile qucs-s
+#######################################################################
+FROM base as qucs-s
+ARG QUCS_REPO_URL="https://github.com/ra3xdh/qucs_s"
+ARG QUCS_REPO_COMMIT="1.1.0"
+ARG QUCS_NAME="qucs-s"
+COPY images/qucs-s/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile riscv-gnu-toolchain-rv32i
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.04.18"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.06.09"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile verilator
+# Compile verilator (part of OpenLane)
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
@@ -263,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="631fedb11b500a2c3b66fdd7820e213bf77487d5"
+ARG XSCHEM_REPO_COMMIT="fc897c641b5f26132b377c2d5df7ee18a0eedcd3"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -325,6 +345,17 @@ ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-s
 ARG ALIGN_PDK_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
 ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
 COPY images/align-pdk-sky130/scripts/install.sh install.sh
+
+#######################################################################
+# Compile different components for the rftoolkit
+#######################################################################
+FROM base as rftoolkit
+ARG RFTK_NAME="rftoolkit"
+ARG RFTK_FASTHENRY_REPO_URL="https://github.com/ediloren/FastHenry2"
+ARG RFTK_FASTHENRY_REPO_COMMIT="363e43ed57ad3b9affa11cba5a86624fad0edaa9"
+ARG RFTK_FASTERCAP_REPO_URL="https://github.com/ediloren/FasterCap.git"
+ARG RFTK_FASTERCAP_REPO_COMMIT="b42179a8fdd25ab42fe45527282b4a738d7e7f87"
+COPY images/rftoolkit/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -363,7 +394,6 @@ COPY --from=gds3d                        ${TOOLS}/              ${TOOLS}/
 COPY --from=gds3d                        ${PDK_ROOT}/           ${PDK_ROOT}/
 COPY --from=ghdl                         ${TOOLS}/              ${TOOLS}/
 COPY --from=gtkwave                      ${TOOLS}/              ${TOOLS}/
-COPY --from=iic-osic                     ${TOOLS}/              ${TOOLS}/
 COPY --from=irsim                        ${TOOLS}/              ${TOOLS}/
 COPY --from=iverilog                     ${TOOLS}/              ${TOOLS}/
 COPY --from=klayout                      ${TOOLS}/              ${TOOLS}/
@@ -374,8 +404,12 @@ COPY --from=ngspice                      ${TOOLS}/              ${TOOLS}/
 COPY --from=ngspyce                      ${TOOLS}/              ${TOOLS}/
 COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
 COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
+COPY --from=osic-multitool               ${TOOLS}/              ${TOOLS}/
 COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
+COPY --from=pyopus                       ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
+COPY --from=qucs-s                       ${TOOLS}/              ${TOOLS}/
+COPY --from=rftoolkit                    ${TOOLS}/              ${TOOLS}/
 COPY --from=riscv-gnu-toolchain-rv32i    ${TOOLS}/              ${TOOLS}/
 COPY --from=verilator                    ${TOOLS}/              ${TOOLS}/
 COPY --from=xschem                       ${TOOLS}/              ${TOOLS}/

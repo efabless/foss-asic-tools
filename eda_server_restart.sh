@@ -73,10 +73,11 @@ _spin_up_server () {
 	# $1 = username (e.g. user01)
 	# $2 = password
 	# $3 = webserver port (in the range of 50000-50200)
+	# $4 = container prefix
 
 	DESIGNS=$(realpath "$EDA_USER_HOME/$1") && export DESIGNS
 	export VNC_PW="$2"
-	export CONTAINER_NAME="$EDA_CONTAINER_PREFIX-$1"
+	export CONTAINER_NAME="$4-$1"
 	export WEBSERVER_PORT="$3"
 	export CONTAINER_GROUP="$EDA_USER_GROUP"
 
@@ -119,10 +120,15 @@ do
 	USERNAME=$(jq -r ".[$i].user" "$EDA_CREDENTIAL_FILE")
 	PASSWD=$(jq -r ".[$i].password" "$EDA_CREDENTIAL_FILE")
 	PORTNO=$(jq -r ".[$i].port" "$EDA_CREDENTIAL_FILE")
+	PREFIX=$(jq -r ".[$i].prefix" "$EDA_CREDENTIAL_FILE")
+	if [ "$PREFIX" = "null" ]; then
+		echo "[INFO] Old JSON format detected, using default container name prefix."
+		PREFIX=$EDA_CONTAINER_PREFIX
+	fi
 
-	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD."
+	[ $DEBUG = 1 ] && echo "[INFO] Creating container with user=$USERNAME, using port=$PORTNO, with password=$PASSWD, using prefix=$PREFIX."
 
-	_spin_up_server "$USERNAME" "$PASSWD" "$PORTNO"
+	_spin_up_server "$USERNAME" "$PASSWD" "$PORTNO" "$PREFIX"
 done
 
 echo
