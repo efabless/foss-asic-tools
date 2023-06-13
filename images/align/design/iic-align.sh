@@ -237,7 +237,7 @@ if [ $RUN_GEN_NET = 1 ]; then
             echo ".end" >> "$NETLIST_SCH"
     fi
 
-    SPICE_TO_ALIGN=/foss/tools/align/design/spice_to_sp.py
+    SPICE_TO_ALIGN=/foss/tools/align/design/cir2align.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
     python3 "$SPICE_TO_ALIGN" "$FULL_FILE" #convert sch.spc to sp
@@ -283,7 +283,7 @@ if [ $RUN_ALIGN = 1 ]; then
     #start the ALIGN tool
     LD_LIBRARY_PATH=/foss/tools/align/d3954af/general/lib
     ALIGN_ROOT=/foss/tools/align/d3954af
-    ALIGN_SKY130PDK_ROOT=/foss/tools/align-pdk-sky130/SKY130_PDK
+    ALIGN_PDK_ROOT=/foss/tools/align-pdk-sky130/SKY130_PDK
 
     if [ ! -d $ALIGN_ROOT ]
     then
@@ -291,7 +291,7 @@ if [ $RUN_ALIGN = 1 ]; then
         exit $ERR_NO_DIR
     fi	
 
-    if [ ! -d $ALIGN_SKY130PDK_ROOT ]
+    if [ ! -d $ALIGN_PDK_ROOT ]
     then
         echo "[Error] Align-sky130 directory not found!"
         exit $ERR_NO_DIR
@@ -311,8 +311,8 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "... and designing topcell ${TOPCELL}"
     #make a design
-    schematic2layout.py ../ -p "$ALIGN_SKY130PDK_ROOT" -f "../$ALIGN_SCH" -s "$TOPCELL" -e "$EFFORT"
-    #schematic2layout.py ../ -p $ALIGN_SKY130PDK_ROOT -f ../$ALIGN_SCH -s $TOPCELL 
+    schematic2layout.py ../ -p "$ALIGN_PDK_ROOT" -f "../$ALIGN_SCH" -s "$TOPCELL" -e "$EFFORT" #-l "DEBUG" -v "DEBUG"
+    #schematic2layout.py ../ -p $ALIGN_PDK_ROOT -f ../$ALIGN_SCH -s $TOPCELL 
 
     #deactivate the virtual enviroment
     #deactivate
