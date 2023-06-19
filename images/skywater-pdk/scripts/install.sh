@@ -3,7 +3,7 @@
 set -e
 
 mkdir -p $PDK_ROOT 
-git clone ${SKY130_REPO_URL} $PDK_ROOT/${SKY130_NAME}/ 
+git clone --filter=blob:none ${SKY130_REPO_URL} $PDK_ROOT/${SKY130_NAME}/ 
 cd $PDK_ROOT/${SKY130_NAME}/ && \
 git checkout main && \
 git checkout -qf ${SKY130_REPO_COMMIT} && \

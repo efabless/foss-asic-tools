@@ -6,7 +6,7 @@ mkdir -p "${TOOLS}/${RFTK_NAME}"
 # FastHenry2 for inductance extractions
 # -------------------------------------
 cd /tmp
-git clone "${RFTK_FASTHENRY_REPO_URL}" "${RFTK_NAME}_fh"
+git clone --filter=blob:none "${RFTK_FASTHENRY_REPO_URL}" "${RFTK_NAME}_fh"
 cd "${RFTK_NAME}_fh"
 git checkout "${RFTK_FASTHENRY_REPO_COMMIT}"
 
@@ -28,14 +28,14 @@ cp -R examples "${TOOLS}/${RFTK_NAME}"
 # FasterCap for capacitance extractions
 # -------------------------------------
 cd /tmp
-git clone "${RFTK_FASTERCAP_REPO_URL}" "${RFTK_NAME}_fc"
+git clone --filter=blob:none "${RFTK_FASTERCAP_REPO_URL}" "${RFTK_NAME}_fc"
 # get additional libs (LinAlgebra and Geometry)
 # FIXME check if lib versions fit to FasterCap version (last done 2023-05-20)
 git clone https://github.com/ediloren/LinAlgebra.git
 cd LinAlgebra
 git checkout 627132d70bfd7eadd727f930286938a5a01d9914
 cd ..
-git clone https://github.com/ediloren/Geometry.git
+git clone --filter=blob:none https://github.com/ediloren/Geometry.git
 cd Geometry
 git checkout de03ffebfd5013b96102bd60f71c8fe8b73870e2
 cd ..

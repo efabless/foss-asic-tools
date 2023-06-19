@@ -7,7 +7,7 @@ UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g
 # Build Atalanta
 _install_atalanta () {
 	cd /tmp
-	git clone https://github.com/hsluoyz/Atalanta.git atalanta
+	git clone --filter=blob:none https://github.com/hsluoyz/Atalanta.git atalanta
 	cd atalanta
 	git checkout 12d405311c3dc9f371a9009bb5cdc8844fe34f90
 	make -j"$(nproc)"

@@ -4,7 +4,7 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$OPENROAD_APP_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${OPENROAD_APP_REPO_URL}" "${OPENROAD_APP_NAME}"
+git clone --filter=blob:none "${OPENROAD_APP_REPO_URL}" "${OPENROAD_APP_NAME}"
 cd "${OPENROAD_APP_NAME}"
 git checkout "${OPENROAD_APP_REPO_COMMIT}"
 git submodule update --init --recursive
