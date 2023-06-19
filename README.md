@@ -13,7 +13,7 @@ It supports two *modes of operation*:
 
 ### Step 1: Clone/download this GitHub repository onto your computer
 
-Use the green **Code** button, and either download the zip file or do a `git clone https://github.com/iic-jku/iic-osic-tools.git`.
+Use the green **Code** button, and either download the zip file or do a `git clone --depth=1 https://github.com/iic-jku/iic-osic-tools.git`.
 
 ### Step 2: Install Docker on your computer
 
