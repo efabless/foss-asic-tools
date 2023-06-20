@@ -31,11 +31,11 @@ If you know what you are doing and want full root access without a graphical int
 
 As of the `2022.12` tag, the following open-source process-development kits (PDKs) are pre-installed, and the table shows how to switch by setting environment variables (you can do this per project by putting this into `.designinit` as explained below):
 
-| SkyWater Technologies `sky130A` (default) | `sky130B` |
-|---|---|
-| `export PDK=sky130A` | `export PDK=sky130B` |
-| `export PDKPATH=$PDK_ROOT/$PDK` | `export PDKPATH=$PDK_ROOT/$PDK` |
-| `export STD_CELL_LIBRARY=sky130_fd_sc_hd` | `export STD_CELL_LIBRARY=sky130_fd_sc_hd` |
+| SkyWater Technologies `sky130A` |
+|---|
+| `export PDK=sky130A` |
+| `export PDKPATH=$PDK_ROOT/$PDK` |
+| `export STD_CELL_LIBRARY=sky130_fd_sc_hd` |
 
 | Global Foundries `gf180mcuC` |
 |---|
