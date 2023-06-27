@@ -4,7 +4,7 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$PADRING_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${PADRING_REPO_URL}" "${PADRING_NAME}"
+git clone --filter=blob:none "${PADRING_REPO_URL}" "${PADRING_NAME}"
 cd "${PADRING_NAME}"
 git checkout "${PADRING_REPO_COMMIT}"
 bash ./bootstrap.sh

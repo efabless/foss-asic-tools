@@ -18,16 +18,16 @@
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: f31b549cfeca6f6c71f029ea0e9f9d46d5663beb
+  commit: 10cfae614ed8be80b5bb64e8c2194e7dffcd297a
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: 8249723964a376801da3fe49c72fdd2c3ebe81ca
+  commit: 09b0997acd0cbf9ce69857c0c095cfcac89e8fe5
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 25fe8217663c06a141156c2e9255e243d308794a
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 63bcb9601dd9a0a286341935a7b560a7979afe13
+  commit: ffbcb301272459f9925d3a2b0590fd9ad96e7f6f
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-40
@@ -51,7 +51,7 @@
   commit: "2023.06.09"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: fc897c641b5f26132b377c2d5df7ee18a0eedcd3
+  commit: 810b814211908110f4de6e66268a93b981ae3df0
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0

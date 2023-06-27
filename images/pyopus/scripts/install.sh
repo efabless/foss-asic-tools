@@ -4,12 +4,6 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$PYOPUS_REPO_COMMIT" | cut -c 1-7)
 
-# FIXME: local build of `datatable` from own GH repo since PIP package fails to build on aarch64
-cd /tmp
-git clone https://github.com/hpretl/datatable
-cd datatable
-pip3 install -U .
-
 # PyOPUS requires these packages be installed via APT: python3-cvxopt and python3-pyqt5
 # (otherwise build fails on aarch64)
 mkdir -p "$TOOLS"

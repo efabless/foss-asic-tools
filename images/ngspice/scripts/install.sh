@@ -2,7 +2,7 @@
 
 REPO_COMMIT_SHORT=$(echo "$NGSPICE_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${NGSPICE_REPO_URL}" "${NGSPICE_NAME}"
+git clone --filter=blob:none "${NGSPICE_REPO_URL}" "${NGSPICE_NAME}"
 cd "${NGSPICE_NAME}"
 git checkout "${NGSPICE_REPO_COMMIT}"
 ./autogen.sh

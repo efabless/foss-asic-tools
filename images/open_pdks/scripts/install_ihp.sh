@@ -13,7 +13,7 @@ fi
 PDK_VERSION="ihp-sg13g2"
 
 cd /tmp || exit
-git clone https://github.com/IHP-GmbH/IHP-Open-PDK.git ihp
+git clone --depth=1 https://github.com/IHP-GmbH/IHP-Open-PDK.git ihp
 cd ihp || exit
 
 if [ -d $PDK_VERSION ]; then

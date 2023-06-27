@@ -4,7 +4,7 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$QFLOW_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${QFLOW_REPO_URL}" "${QFLOW_NAME}"
+git clone --filter=blob:none "${QFLOW_REPO_URL}" "${QFLOW_NAME}"
 cd "${QFLOW_NAME}"
 git checkout "${QFLOW_REPO_COMMIT}"
 ./configure

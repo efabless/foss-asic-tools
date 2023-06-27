@@ -4,7 +4,7 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$IVERILOG_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${IVERILOG_REPO_URL}" "${IVERILOG_NAME}"
+git clone --filter=blob:none "${IVERILOG_REPO_URL}" "${IVERILOG_NAME}"
 cd "${IVERILOG_NAME}"
 git checkout "${IVERILOG_REPO_COMMIT}"
 chmod +x autoconf.sh

@@ -4,7 +4,7 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$GDS3D_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${GDS3D_REPO_URL}" "${GDS3D_NAME}"
+git clone --filter=blob:none "${GDS3D_REPO_URL}" "${GDS3D_NAME}"
 cd "${GDS3D_NAME}"
 git checkout "${GDS3D_REPO_COMMIT}"
 #fix for GCC-11, see https://github.com/trilomix/GDS3D/pull/9

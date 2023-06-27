@@ -4,7 +4,7 @@ set -e
 
 REPO_COMMIT_SHORT=$(echo "$XYCE_XDM_REPO_COMMIT" | cut -c 1-7)
 
-git clone "${XYCE_XDM_REPO_URL}" "${XYCE_XDM_NAME}"
+git clone --filter=blob:none "${XYCE_XDM_REPO_URL}" "${XYCE_XDM_NAME}"
 cd "${XYCE_XDM_NAME}"
 git checkout "${XYCE_XDM_REPO_COMMIT}"
 

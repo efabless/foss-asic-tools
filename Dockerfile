@@ -28,7 +28,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="a33d7b78b54d8456769d08236f91f9be31784267"
+ARG MAGIC_REPO_COMMIT="482d7534a27c51d0d1c8a466494680d185d334ee"
 ARG MAGIC_NAME="magic"
 COPY images/magic/scripts/install.sh install.sh
 RUN bash install.sh
@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="8249723964a376801da3fe49c72fdd2c3ebe81ca"
+ARG OSIC_MULTITOOL_REPO_COMMIT="09b0997acd0cbf9ce69857c0c095cfcac89e8fe5"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -123,7 +123,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="f31b549cfeca6f6c71f029ea0e9f9d46d5663beb"
+ARG GTKWAVE_REPO_COMMIT="10cfae614ed8be80b5bb64e8c2194e7dffcd297a"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="63bcb9601dd9a0a286341935a7b560a7979afe13"
+ARG IVERILOG_REPO_COMMIT="ffbcb301272459f9925d3a2b0590fd9ad96e7f6f"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.06.08"
+ARG OPENLANE_REPO_COMMIT="2023.06.20"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="ceae0ad175e8b0183c3a64af79ba18139dcda63a"
+ARG OPENROAD_APP_REPO_COMMIT="8d56294a54f42e0844ddf36cf7847f371bdb792a"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="fc897c641b5f26132b377c2d5df7ee18a0eedcd3"
+ARG XSCHEM_REPO_COMMIT="810b814211908110f4de6e66268a93b981ae3df0"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -438,9 +438,9 @@ RUN find $STARTUPDIR/scripts -name '*.sh' -exec chmod a+x {} +
 RUN $STARTUPDIR/scripts/install.sh
 
 # Install examples
-RUN git clone https://github.com/iic-jku/SKY130_SAR-ADC1        ${EXAMPLES}/SKY130_SAR-ADC1 && \
-    git clone https://github.com/iic-jku/SKY130_PLL1.git        ${EXAMPLES}/SKY130_PLL1 && \
-    git clone https://github.com/mabrains/Analog_blocks.git     ${EXAMPLES}/SKY130_ANALOG-BLOCKS
+RUN git clone --depth=1 https://github.com/iic-jku/SKY130_SAR-ADC1 ${EXAMPLES}/SKY130_SAR-ADC1 && \
+    git clone --depth=1 https://github.com/iic-jku/SKY130_PLL1.git ${EXAMPLES}/SKY130_PLL1 && \
+    git clone --depth=1 https://github.com/mabrains/Analog_blocks.git ${EXAMPLES}/SKY130_ANALOG-BLOCKS
 
 # Finalize setup/install
 RUN $STARTUPDIR/scripts/post_install.sh

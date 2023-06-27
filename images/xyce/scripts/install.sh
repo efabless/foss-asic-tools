@@ -2,12 +2,12 @@
 
 set -e
 
-git clone "${XYCE_REPO_URL}" "${XYCE_NAME}"
+git clone --filter=blob:none "${XYCE_REPO_URL}" "${XYCE_NAME}"
 cd "${XYCE_NAME}"
 git checkout "${XYCE_REPO_COMMIT}"
 ./bootstrap
 
-git clone https://github.com/trilinos/Trilinos trilinos
+git clone --filter=blob:none https://github.com/trilinos/Trilinos trilinos
 cd trilinos
 git checkout trilinos-release-12-12-1
 mkdir -p parallel_build && cd parallel_build

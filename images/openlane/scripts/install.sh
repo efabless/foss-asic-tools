@@ -15,6 +15,6 @@ set -e
 REPO_COMMIT_SHORT=$(echo "$OPENLANE_REPO_COMMIT" | cut -c 1-7)
 
 mkdir -p "$TOOLS"
-git clone "${OPENLANE_REPO_URL}" "${TOOLS}/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}"
+git clone --filter=blob:none "${OPENLANE_REPO_URL}" "${TOOLS}/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}"
 cd "${TOOLS}/${OPENLANE_NAME}/${REPO_COMMIT_SHORT}"
 git checkout "${OPENLANE_REPO_COMMIT}"
