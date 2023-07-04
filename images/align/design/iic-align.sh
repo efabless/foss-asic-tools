@@ -254,9 +254,9 @@ fi
 cd "$TOP_PATH" || exit $ERR_NO_DIR
 
 if [ $RUN_GEN_CONSTRAINT = 1 ]; then
-    echo "[INFO] Generating constrains from schematic"
-    for file in *.sch; do #generate a constrain file for each schematic 
-        if grep -Fxq ".constraint" "$file" #check if constrain is specified in schematic
+    echo "[INFO] Generating constraints from schematic"
+    for file in *.sch; do #generate a constraint file for each schematic 
+        if grep -Fxq ".constraint" "$file" #check if constraint is specified in schematic
         then
             #copy the lines between .constraint and .endconstraint into <file>.const.json
             sed -n -e '/^.constraint$/,/^.endconstraint$/{/^.constraint$/d; /^.endconstraint$/d; p;}' "$file" > "${file%.sch}.const.json"
