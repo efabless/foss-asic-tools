@@ -18,6 +18,9 @@ NGSPICE_COMPILE_OPTS=("--disable-debug" "--enable-openmp" "--with-x" "--with-rea
 make -j"$(nproc)"
 make install
 
+# cleanup between builds to prevent strange missing symbols in libngspice.
+make distclean
+
 # Now compile lib
 ./configure "${NGSPICE_COMPILE_OPTS[@]}" --with-ngshared --prefix="${TOOLS}/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}"
 make -j"$(nproc)"

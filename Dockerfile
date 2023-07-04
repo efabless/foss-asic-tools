@@ -48,7 +48,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="af3485525297d5cbe93c129ea853da2d588fac41"
+ARG OPEN_PDKS_REPO_COMMIT="3df14f84ab167baf757134739bb1d2c5c044849c"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="ffbcb301272459f9925d3a2b0590fd9ad96e7f6f"
+ARG IVERILOG_REPO_COMMIT="272771d1837016e6197c678bd00cbea1de6f7020"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.06.20"
+ARG OPENLANE_REPO_COMMIT="2023.06.26"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="8d56294a54f42e0844ddf36cf7847f371bdb792a"
+ARG OPENROAD_APP_REPO_COMMIT="41a51eaf4ca2171c92ff38afb91eb37bbd3f36da"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="810b814211908110f4de6e66268a93b981ae3df0"
+ARG XSCHEM_REPO_COMMIT="af153593e92db7f30764d40a341dc8ef324b24f5"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
