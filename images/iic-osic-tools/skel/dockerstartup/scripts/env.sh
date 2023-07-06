@@ -71,6 +71,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         # FIXME: OpenROAD in Ubuntu 22.04 does not find the PIP modules, so use PYTHONPATH
         PYTHONPATH=$(python -c "import sys; print(':'.join(x for x in sys.path if x))") && export PYTHONPATH 
         _path_add_tool_python "ngspyce"
+        _path_add_tool_python "align"
         _path_add_tool_python "pyopus"
 
         echo "[INFO] Final PATH variable: $PATH"

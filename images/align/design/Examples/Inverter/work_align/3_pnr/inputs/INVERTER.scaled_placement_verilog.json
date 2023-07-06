@@ -1,0 +1,186 @@
+{
+  "modules": [
+    {
+      "parameters": [
+        "A",
+        "Y"
+      ],
+      "constraints": [
+        {
+          "constraint": "PowerPorts",
+          "ports": [
+            "VDD"
+          ],
+          "propagate": true
+        },
+        {
+          "constraint": "GroundPorts",
+          "ports": [
+            "VSS"
+          ],
+          "propagate": true
+        },
+        {
+          "constraint": "Align",
+          "instances": [
+            "X_XM1",
+            "X_XM2"
+          ],
+          "line": "h_center"
+        }
+      ],
+      "instances": [
+        {
+          "instance_name": "X_XM1",
+          "fa_map": [
+            {
+              "formal": "D",
+              "actual": "Y"
+            },
+            {
+              "formal": "G",
+              "actual": "A"
+            },
+            {
+              "formal": "S",
+              "actual": "VSS"
+            }
+          ],
+          "abstract_template_name": "NMOS_S_6078655_X5_Y2",
+          "concrete_template_name": "NMOS_S_6078655_X5_Y2",
+          "transformation": {
+            "oX": 6020,
+            "oY": 0,
+            "sX": 1,
+            "sY": 1
+          }
+        },
+        {
+          "instance_name": "X_XM2",
+          "fa_map": [
+            {
+              "formal": "D",
+              "actual": "Y"
+            },
+            {
+              "formal": "G",
+              "actual": "A"
+            },
+            {
+              "formal": "S",
+              "actual": "VDD"
+            }
+          ],
+          "abstract_template_name": "PMOS_S_79543009_X5_Y2",
+          "concrete_template_name": "PMOS_S_79543009_X5_Y2",
+          "transformation": {
+            "oX": 6020,
+            "oY": 0,
+            "sX": -1,
+            "sY": 1
+          }
+        }
+      ],
+      "abstract_name": "INVERTER",
+      "concrete_name": "INVERTER_0",
+      "bbox": [
+        0,
+        0,
+        12040,
+        13440
+      ]
+    }
+  ],
+  "leaves": [
+    {
+      "abstract_name": "NMOS_S_6078655_X5_Y2",
+      "concrete_name": "NMOS_S_6078655_X5_Y2",
+      "bbox": [
+        0,
+        0,
+        6020,
+        13440
+      ],
+      "terminals": [
+        {
+          "name": "D",
+          "rect": [
+            2440,
+            260,
+            2720,
+            6460
+          ]
+        },
+        {
+          "name": "G",
+          "rect": [
+            2870,
+            4460,
+            3150,
+            10660
+          ]
+        },
+        {
+          "name": "S",
+          "rect": [
+            3300,
+            680,
+            3580,
+            12760
+          ]
+        }
+      ]
+    },
+    {
+      "abstract_name": "PMOS_S_79543009_X5_Y2",
+      "concrete_name": "PMOS_S_79543009_X5_Y2",
+      "bbox": [
+        0,
+        0,
+        6020,
+        13440
+      ],
+      "terminals": [
+        {
+          "name": "D",
+          "rect": [
+            2440,
+            260,
+            2720,
+            6460
+          ]
+        },
+        {
+          "name": "G",
+          "rect": [
+            2870,
+            4460,
+            3150,
+            10660
+          ]
+        },
+        {
+          "name": "S",
+          "rect": [
+            3300,
+            680,
+            3580,
+            12760
+          ]
+        }
+      ]
+    }
+  ],
+  "global_signals": [
+    {
+      "prefix": "global_power",
+      "formal": "supply0",
+      "actual": "VSS"
+    },
+    {
+      "prefix": "global_power",
+      "formal": "supply1",
+      "actual": "VDD"
+    }
+  ]
+}

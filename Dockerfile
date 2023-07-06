@@ -328,6 +328,26 @@ COPY images/ghdl-yosys-plugin/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile ALIGN-analoglayout
+#######################################################################
+FROM basepkg as align
+ARG ALIGN_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-public.git"
+ARG ALIGN_REPO_COMMIT="d3954af5ba4deab3c7daec4a0e5fd866d65ef75c"
+ARG ALIGN_NAME="align"
+COPY images/align/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
+# Compile ALIGN-analoglayout-sky130
+#######################################################################
+FROM base as align-pdk-sky130
+ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-sky130.git"
+ARG ALIGN_PDK_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
+ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
+COPY images/align-pdk-sky130/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile different components for the rftoolkit
 #######################################################################
 FROM base as rftoolkit
@@ -398,6 +418,14 @@ COPY --from=xyce                         ${TOOLS}/              ${TOOLS}/
 COPY --from=xyce-xdm                     ${TOOLS}/              ${TOOLS}/
 COPY --from=yosys                        ${TOOLS}/              ${TOOLS}/
 COPY --from=ghdl-yosys-plugin            ${TOOLS}_add/          ${TOOLS}/
+COPY --from=align                        ${TOOLS}/              ${TOOLS}/
+COPY --from=align-pdk-sky130             ${TOOLS}/              ${TOOLS}/
+
+# Add design scripts and examples
+ADD images/align/design ${TOOLS}/align/design
+
+# Add SKY130 PDK for align
+#ADD images/align-pdk-sky130/SKY130_PDK
 
 # Copy skeleton and tool version file for OpenLane
 COPY images/iic-osic-tools/skel /

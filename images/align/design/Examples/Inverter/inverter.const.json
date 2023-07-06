@@ -1,0 +1,14 @@
+[
+   {
+        "constraint": "ConfigureCompiler",
+        "is_digital": false,
+        "remove_dummy_hierarchies": true,
+        "propagate": true,
+        "merge_parallel_devices": false,
+        "merge_series_devices": false,
+	"fix_source_drain": false
+    },
+    {"constraint": "PowerPorts", "ports": ["VDD"]},
+    {"constraint": "GroundPorts", "ports": ["VSS"]},
+    {"constraint": "Align", "instances": ["xm1", "xm2"], "line": "h_center"}  
+]

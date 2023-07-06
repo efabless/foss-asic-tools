@@ -1,0 +1,70 @@
+[
+  {
+    "constraint": "ConfigureCompiler",
+    "is_digital": false,
+    "auto_constraint": true,
+    "identify_array": true,
+    "fix_source_drain": false,
+    "remove_dummy_hierarchies": true,
+    "remove_dummy_devices": true,
+    "merge_series_devices": false,
+    "merge_parallel_devices": false,
+    "same_template": true,
+    "propagate": true
+  },
+  {
+    "constraint": "PowerPorts",
+    "ports": [
+      "VDD"
+    ],
+    "propagate": true
+  },
+  {
+    "constraint": "GroundPorts",
+    "ports": [
+      "VSS"
+    ],
+    "propagate": true
+  },
+  {
+    "constraint": "Align",
+    "instances": [
+      "X_XM1",
+      "X_XM2"
+    ],
+    "line": "h_center"
+  },
+  {
+    "constraint": "DoNotIdentify",
+    "instances": [
+      "X_XM1",
+      "X_XM2"
+    ]
+  },
+  {
+    "constraint": "GroupBlocks",
+    "instance_name": "X_XM1",
+    "instances": [
+      "XM1"
+    ],
+    "template_name": "NMOS_S",
+    "generator": {
+      "name": "MOS",
+      "parameters": null
+    },
+    "constraints": null
+  },
+  {
+    "constraint": "GroupBlocks",
+    "instance_name": "X_XM2",
+    "instances": [
+      "XM2"
+    ],
+    "template_name": "PMOS_S",
+    "generator": {
+      "name": "MOS",
+      "parameters": null
+    },
+    "constraints": null
+  }
+]

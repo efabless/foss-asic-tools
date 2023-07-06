@@ -1,0 +1,183 @@
+{
+    "Blocks": [
+        {
+            "Box": {
+                "LLx": 12040,
+                "LLy": 0,
+                "Physical Layer": "null",
+                "URx": 24080,
+                "URy": 26880
+            },
+            "Height": 26880,
+            "Name": "X_XM1",
+            "Pins": [
+                {
+                    "Internal Metal": [
+                        {
+                            "LLx": 16920,
+                            "LLy": 520,
+                            "Physical Layer": "M3",
+                            "URx": 17480,
+                            "URy": 12920
+                        }
+                    ],
+                    "Name": "D"
+                },
+                {
+                    "Internal Metal": [
+                        {
+                            "LLx": 17780,
+                            "LLy": 8920,
+                            "Physical Layer": "M3",
+                            "URx": 18340,
+                            "URy": 21320
+                        }
+                    ],
+                    "Name": "G"
+                },
+                {
+                    "Internal Metal": [
+                        {
+                            "LLx": 18640,
+                            "LLy": 1360,
+                            "Physical Layer": "M3",
+                            "URx": 19200,
+                            "URy": 25520
+                        }
+                    ],
+                    "Name": "S"
+                }
+            ],
+            "Width": 12040
+        },
+        {
+            "Box": {
+                "LLx": 0,
+                "LLy": 0,
+                "Physical Layer": "null",
+                "URx": 12040,
+                "URy": 26880
+            },
+            "Height": 26880,
+            "Name": "X_XM2",
+            "Pins": [
+                {
+                    "Internal Metal": [
+                        {
+                            "LLx": 6600,
+                            "LLy": 520,
+                            "Physical Layer": "M3",
+                            "URx": 7160,
+                            "URy": 12920
+                        }
+                    ],
+                    "Name": "D"
+                },
+                {
+                    "Internal Metal": [
+                        {
+                            "LLx": 5740,
+                            "LLy": 8920,
+                            "Physical Layer": "M3",
+                            "URx": 6300,
+                            "URy": 21320
+                        }
+                    ],
+                    "Name": "G"
+                },
+                {
+                    "Internal Metal": [
+                        {
+                            "LLx": 4880,
+                            "LLy": 1360,
+                            "Physical Layer": "M3",
+                            "URx": 5440,
+                            "URy": 25520
+                        }
+                    ],
+                    "Name": "S"
+                }
+            ],
+            "Width": 12040
+        }
+    ],
+    "Cell Name": "INVERTER",
+    "Cell box": {
+        "LLx": 0,
+        "LLy": 0,
+        "Physical Layer": "null",
+        "URx": 24080,
+        "URy": 26880
+    },
+    "Gcell": [
+        {
+            "Physical Layer": 0,
+            "x": 12040,
+            "y": 13440
+        },
+        {
+            "Physical Layer": 1,
+            "x": 12040,
+            "y": 13440
+        },
+        {
+            "Physical Layer": 2,
+            "x": 12040,
+            "y": 13440
+        },
+        {
+            "Physical Layer": 3,
+            "x": 12040,
+            "y": 13440
+        },
+        {
+            "Physical Layer": 4,
+            "x": 12040,
+            "y": 13440
+        }
+    ],
+    "Glbaol_Routes": [
+        {
+            "global_path": [
+                {
+                    "Physical Layer ll": 2,
+                    "Physical Layer ur": 2,
+                    "llx": 12040,
+                    "lly": 13440,
+                    "urx": 12040,
+                    "ury": 13440
+                }
+            ],
+            "name": "Y",
+            "terminals": [
+                {
+                    "Physical Layer": 2,
+                    "x": 12040,
+                    "y": 13440
+                }
+            ]
+        },
+        {
+            "global_path": [
+                {
+                    "Physical Layer ll": 2,
+                    "Physical Layer ur": 2,
+                    "llx": 12040,
+                    "lly": 13440,
+                    "urx": 12040,
+                    "ury": 13440
+                }
+            ],
+            "name": "A",
+            "terminals": [
+                {
+                    "Physical Layer": 2,
+                    "x": 12040,
+                    "y": 13440
+                }
+            ]
+        }
+    ],
+    "Istop": true,
+    "Units": "0.5nm"
+}
