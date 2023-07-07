@@ -237,7 +237,7 @@ if [ $RUN_GEN_NET = 1 ]; then
             echo ".end" >> "$NETLIST_SCH"
     fi
 
-    SPICE_TO_ALIGN=/foss/tools/align/design/cir2align.py
+    SPICE_TO_ALIGN=${TOOLS}/align/design/cir2align.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
     python3 "$SPICE_TO_ALIGN" "$FULL_FILE" #convert sch.spc to sp
@@ -281,9 +281,9 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "[INFO] Starting the ALIGN tool..."
     #start the ALIGN tool
-    LD_LIBRARY_PATH=/foss/tools/align/d3954af/general/lib
-    ALIGN_ROOT=/foss/tools/align/d3954af
-    ALIGN_PDK_ROOT=/foss/tools/align-pdk-sky130/SKY130_PDK
+    LD_LIBRARY_PATH=${TOOLS}/align/d3954af/general/lib
+    ALIGN_ROOT=${TOOLS}/align/d3954af
+    ALIGN_PDK_ROOT=${TOOLS}/align-pdk-sky130/SKY130_PDK
 
     if [ ! -d $ALIGN_ROOT ]
     then
@@ -329,9 +329,9 @@ cd "$TOP_PATH" || exit $ERR_NO_DIR
 
 if [ $RUN_GDS_TO_MAG = 1 ]; then
     #check if magicrc file is specified
-    if [ ! -f ".magicrc" ]
+    if [ ! -f "${PDKPATH}/libs.tech/magic/sky130A.magicrc" ]
     then
-        echo "[ERROR] No magicrc file in top path!"
+        echo "[ERROR] No magicrc file found!"
         exit $ERR_FILE_NOT_FOUND
     fi
 
@@ -355,8 +355,7 @@ if [ $RUN_GDS_TO_MAG = 1 ]; then
     fi
 
     mkdir work_magic && cd work_magic
-    cp ../.magicrc .    #copy rc file into the magic directory
-
+ 
     {
         echo "drc off"
         echo "box 0 0 0 0"
@@ -374,8 +373,8 @@ if [ $RUN_GDS_TO_MAG = 1 ]; then
         echo "quit -noprompt"
     } > "$EXT_GDS_MAG_SCRIPT"
 
-    #magic -dnull -noconsole -rcfile /foss/pdk/sky130A/libs.tech/magic/sky130A.magicrc "$EXT_GDS_MAG_SCRIPT" > /dev/null 
-    magic -dnull -noconsole "$EXT_GDS_MAG_SCRIPT" > /dev/null 
+    magic -dnull -noconsole -rcfile ${PDKPATH}/libs.tech/magic/sky130A.magicrc "$EXT_GDS_MAG_SCRIPT" > /dev/null 
+    #magic -dnull -noconsole "$EXT_GDS_MAG_SCRIPT" > /dev/null 
     rm -f vtop.mag
 fi
 
@@ -405,7 +404,7 @@ if [ $RUN_DRC = 1 ]; then
         exit $ERR_FILE_NOT_FOUND
     fi
 
-    /foss/tools/iic-osic/iic-drc.sh "$TOPCELL"
+    ${TOOLS}/osic-multitool/iic-drc.sh "$TOPCELL"
 fi
 
 #go into the top dir.
@@ -425,12 +424,17 @@ if [ $RUN_LVS = 1 ]; then
         exit $ERR_NO_RESULT
     fi
 
-    
+    #check if magicrc file is specified
+    if [ ! -f "${PDKPATH}/libs.tech/magic/sky130A.magicrc" ]
+    then
+        echo "[ERROR] No magicrc file found!"
+        exit $ERR_FILE_NOT_FOUND
+    fi
     
 
     echo "[INFO] Placing ports in work_magic/$LVS_CELL_LAY."
 
-    LABELS_TO_PORTS=/foss/tools/align/design/labels_to_ports.py
+    LABELS_TO_PORTS=${TOOLS}/align/design/labels_to_ports.py
 
     cd work_magic
     python3 "$LABELS_TO_PORTS" "$LVS_CELL_LAY" -d "$LVS_CELL_LAY" #convert labels to ports
@@ -466,7 +470,7 @@ if [ $RUN_LVS = 1 ]; then
     # --------------------------------------------
 
     echo "[INFO] Extracting netlist from layout <work_magic/$CELL_LAY>"
-    magic -dnull -noconsole "$EXT_NET_SCRIPT" > /dev/null 
+    magic -dnull -rcfile ${PDKPATH}/libs.tech/magic/sky130A.magicrc -noconsole "$EXT_NET_SCRIPT" > /dev/null 
 
     if [ ! -f "$NETLIST_LAY" ]
     then
