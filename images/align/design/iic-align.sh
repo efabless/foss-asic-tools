@@ -237,7 +237,7 @@ if [ $RUN_GEN_NET = 1 ]; then
             echo ".end" >> "$NETLIST_SCH"
     fi
 
-    SPICE_TO_ALIGN=${TOOLS}/align/design/cir2align.py
+    SPICE_TO_ALIGN=${align}/design/cir2align.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
     python3 "$SPICE_TO_ALIGN" "$FULL_FILE" #convert sch.spc to sp
@@ -281,9 +281,9 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "[INFO] Starting the ALIGN tool..."
     #start the ALIGN tool
-    LD_LIBRARY_PATH=${TOOLS}/align/d3954af/general/lib
-    ALIGN_ROOT=${TOOLS}/align/d3954af
-    ALIGN_PDK_ROOT=${TOOLS}/align-pdk-sky130/SKY130_PDK
+    LD_LIBRARY_PATH=${align}/d3*/general/lib
+    ALIGN_ROOT=${align}/d3*
+    ALIGN_PDK_ROOT=${align-pdk-sky130}/SKY130_PDK
 
     if [ ! -d $ALIGN_ROOT ]
     then
@@ -404,7 +404,7 @@ if [ $RUN_DRC = 1 ]; then
         exit $ERR_FILE_NOT_FOUND
     fi
 
-    ${TOOLS}/osic-multitool/iic-drc.sh "$TOPCELL"
+    ${osic-multitool}/iic-drc.sh "$TOPCELL"
 fi
 
 #go into the top dir.
@@ -434,7 +434,7 @@ if [ $RUN_LVS = 1 ]; then
 
     echo "[INFO] Placing ports in work_magic/$LVS_CELL_LAY."
 
-    LABELS_TO_PORTS=${TOOLS}/align/design/labels_to_ports.py
+    LABELS_TO_PORTS=${align}/design/labels_to_ports.py
 
     cd work_magic
     python3 "$LABELS_TO_PORTS" "$LVS_CELL_LAY" -d "$LVS_CELL_LAY" #convert labels to ports
