@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.06.26"
+ARG OPENLANE_REPO_COMMIT="2023.07.07"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.07.05"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.07.07"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="2b38ed5f0703a4d37197a586737d772daa30a32d"
+ARG XSCHEM_REPO_COMMIT="83071b4b212641423a74ce6f5f10ac649b91820a"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -313,7 +313,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
-ARG YOSYS_REPO_COMMIT="101075611fc5698739180017bf96b1abf140c8e7"
+ARG YOSYS_REPO_COMMIT="14d50a176d59a5eac95a57a01f9e933297251d5b"
 ARG YOSYS_NAME="yosys"
 COPY images/yosys/scripts/install.sh install.sh
 RUN bash install.sh
@@ -341,8 +341,9 @@ RUN bash install.sh
 # Compile ALIGN-analoglayout-sky130
 #######################################################################
 FROM base as align-pdk-sky130
-ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-pdk-sky130.git"
-ARG ALIGN_PDK_SKY130_REPO_COMMIT="ee3cce33f6b81439a2afe008598b0428cbd68fa3"
+#FIXME using a forked PDK since a few changes needed
+ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/iic-jku/ALIGN-pdk-sky130.git"
+ARG ALIGN_PDK_SKY130_REPO_COMMIT="0f94d16acdc6a9f50326632147c3a35cd0b41455"
 ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
 COPY images/align-pdk-sky130/scripts/install.sh install.sh
 RUN bash install.sh
