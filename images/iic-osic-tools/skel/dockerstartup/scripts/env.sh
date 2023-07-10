@@ -64,8 +64,6 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_bin      "xschem"
         _path_add_tool_bin      "xyce/Parallel"
         _path_add_tool_bin      "yosys"
-		_path_add_tool_custom   "align"
-		_path_add_tool_custom   "align-pdk-sky130"
 		
 		
         export SAK=$TOOLS/sak/
@@ -92,6 +90,8 @@ export EDITOR='gedit'
 export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
+export ALIGN_PDKPATH=${TOOLS}/align-pdk-sky130/SKY130_PDK
+
 
 # FIXME: this gets rid of a few libGL errors
 # https://unix.stackexchange.com/questions/589236/libgl-error-no-matching-fbconfigs-or-visuals-found-glxgears-error-docker-cu
