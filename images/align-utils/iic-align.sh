@@ -281,19 +281,19 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "[INFO] Starting the ALIGN tool..."
     #start the ALIGN tool
-    LD_LIBRARY_PATH=${align}/d3*/general/lib
-    ALIGN_ROOT=${align}/d3*
-    ALIGN_PDK_ROOT=${align-pdk-sky130}/SKY130_PDK
+    #LD_LIBRARY_PATH=${align}/d3*/general/lib
+    #ALIGN_ROOT=${align}/d3*
+    #ALIGN_PDK_ROOT=${align-pdk-sky130}/SKY130_PDK
 
-    if [ ! -d $ALIGN_ROOT ]
+    if [ ! -x $(which schematic2layout.py) ]
     then
-        echo "[Error] Align directory not found!"
+        echo "[Error] schematic2layout not executable!"
         exit $ERR_NO_DIR
     fi	
 
-    if [ ! -d $ALIGN_PDK_ROOT ]
+    if [ -z $ALIGN_PDKPATH ]
     then
-        echo "[Error] Align-sky130 directory not found!"
+        echo "[Error] ALIGN_PDKPATH not set!"
         exit $ERR_NO_DIR
     fi	
 
@@ -311,7 +311,7 @@ if [ $RUN_ALIGN = 1 ]; then
 
     echo "... and designing topcell ${TOPCELL}"
     #make a design
-    schematic2layout.py ../ -p "$ALIGN_PDK_ROOT" -f "../$ALIGN_SCH" -s "$TOPCELL" -e "$EFFORT" #-l "DEBUG" -v "DEBUG"
+    schematic2layout.py ../ -p "$ALIGN_PDKPATH" -f "../$ALIGN_SCH" -s "$TOPCELL" -e "$EFFORT" #-l "DEBUG" -v "DEBUG"
     #schematic2layout.py ../ -p $ALIGN_PDK_ROOT -f ../$ALIGN_SCH -s $TOPCELL 
 
     #deactivate the virtual enviroment
@@ -398,13 +398,13 @@ if [ $RUN_DRC = 1 ]; then
     fi
 
     echo "[INFO] Running IIC-DRC on <work_magic/${TOPCELL}.mag>!"
-    if [ ! -f "/foss/tools/iic-osic/iic-drc.sh" ]
+    if [ ! -x $(which iic-drc.sh) ]
     then
-        echo "[ERROR] No IIC_DRC script not found!"
+        echo "[ERROR] IIC_DRC script not executable!"
         exit $ERR_FILE_NOT_FOUND
     fi
 
-    ${osic-multitool}/iic-drc.sh "$TOPCELL"
+    iic-drc.sh "$TOPCELL"
 fi
 
 #go into the top dir.
@@ -434,7 +434,7 @@ if [ $RUN_LVS = 1 ]; then
 
     echo "[INFO] Placing ports in work_magic/$LVS_CELL_LAY."
 
-    LABELS_TO_PORTS=${align}/design/labels_to_ports.py
+    LABELS_TO_PORTS=${TOOLS}/align-utils/labels_to_ports.py
 
     cd work_magic
     python3 "$LABELS_TO_PORTS" "$LVS_CELL_LAY" -d "$LVS_CELL_LAY" #convert labels to ports
