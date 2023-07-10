@@ -423,10 +423,7 @@ COPY --from=align                        ${TOOLS}/              ${TOOLS}/
 COPY --from=align-pdk-sky130             ${TOOLS}/              ${TOOLS}/
 
 # Add design scripts and examples
-ADD images/align/design ${TOOLS}/align/design
-
-# Add SKY130 PDK for align
-#ADD images/align-pdk-sky130/SKY130_PDK
+ADD images/align-utils ${TOOLS}/align-utils
 
 # Copy skeleton and tool version file for OpenLane
 COPY images/iic-osic-tools/skel /
