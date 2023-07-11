@@ -269,6 +269,16 @@ COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile slang
+#######################################################################
+FROM base as slang
+ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
+ARG SLANG_REPO_COMMIT="5820a4ac266623e7c1dc13dea8a3919eb569c82c"
+ARG SLANG_NAME="slang"
+COPY images/slang/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile verilator (part of OpenLane)
 #######################################################################
 FROM base as verilator
@@ -413,6 +423,7 @@ COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
 COPY --from=qucs-s                       ${TOOLS}/              ${TOOLS}/
 COPY --from=rftoolkit                    ${TOOLS}/              ${TOOLS}/
 COPY --from=riscv-gnu-toolchain-rv32i    ${TOOLS}/              ${TOOLS}/
+COPY --from=slang                        ${TOOLS}/              ${TOOLS}/
 COPY --from=verilator                    ${TOOLS}/              ${TOOLS}/
 COPY --from=xschem                       ${TOOLS}/              ${TOOLS}/
 COPY --from=xyce                         ${TOOLS}/              ${TOOLS}/

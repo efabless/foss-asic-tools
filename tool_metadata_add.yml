@@ -40,6 +40,9 @@
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11"
+- name: slang
+  repo: https://github.com/MikePopoloski/slang.git
+  commit: 5820a4ac266623e7c1dc13dea8a3919eb569c82c
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
