@@ -237,7 +237,7 @@ if [ $RUN_GEN_NET = 1 ]; then
             echo ".end" >> "$NETLIST_SCH"
     fi
 
-    SPICE_TO_ALIGN=${align}/design/cir2align.py
+    SPICE_TO_ALIGN=${TOOLS}/align-utils/cir2align.py
 
     echo "[INFO] Generating ALIGN-netlist format from <${NETLIST_SCH}>."
     python3 "$SPICE_TO_ALIGN" "$FULL_FILE" #convert sch.spc to sp
