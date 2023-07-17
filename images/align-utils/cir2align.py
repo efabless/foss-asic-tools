@@ -27,6 +27,7 @@
 
 import sys 
 import argparse
+import warnings
 
 debug = False #debug mode
 
@@ -261,6 +262,9 @@ class Netlist:
                         continue
                     elif line == ".end":
                         break
+                    elif line.upper().startswith(".GLOBAL"):
+                        warnings.warn(f"Suppressing line: {line}!") 
+                        break
                     else:
                         raise  ValueError(f"Statement: {line} not supported!")
                 else:
@@ -429,7 +433,6 @@ class Circuit:
             self._only_sub_circs = False
         else:
             self._only_sub_circs = True
-        
      
     def _build_subcircuits(self):
         """
@@ -598,7 +601,7 @@ class Circuit:
         """
         for d in self._devices:
             d.print()
-            
+    
     def _print_devices_align(self):
         """
         Prints the devices in the align format.
@@ -631,10 +634,11 @@ class Circuit:
         -------
         None.
 
-        """
+        """                          
         for s in self._sub_circs:
             s.print(style="align")
-            
+
+     
     
     def print(self, style="default"):
         """
@@ -689,7 +693,7 @@ class Circuit:
             devices += line
         return devices
     
-    def _subckts_to_str(self):
+    def _subckts_to_str(self):        
         subckts = ""
         for s in self._sub_circs:
             line = s.get_netlist()
@@ -698,8 +702,48 @@ class Circuit:
         return subckts
     
     def _align_subckts_to_str(self):
+        global debug
+
+        sub_circs = self._sub_circs
+        expanded_circs = dict()
+        
+        for s in sub_circs:
+            temp = set()
+            if debug:
+                print(f"Subcirc: {s._title}")
+            if any(isinstance(x, SubCircuitDevice) for x in s._devices):
+                for d in s._devices:
+                    if isinstance(d, SubCircuitDevice):
+                        temp.add(d._identn)
+                        if debug:
+                            print(f" -> {d._identn}")
+
+            expanded_circs[s._title] = temp
+        
+        if debug:
+            print(expanded_circs)
+        
+        sub_circ_names = list(expanded_circs.keys())
+
+        for s in expanded_circs.keys():
+            i1 = sub_circ_names.index(s)
+            for sub in expanded_circs[s]:
+              i2 = sub_circ_names.index(sub)
+              if i2>i1: #if the subcircuit appears later, change position
+                  sub_circ_names[i2], sub_circ_names[i1] =  sub_circ_names[i1], sub_circ_names[i2]
+        if debug:
+            print(sub_circ_names)
+        
+        sub_circs = []
+
+        for s in sub_circ_names:
+            for sub in self._sub_circs:
+                if sub._title == s:
+                    sub_circs.append(sub)
+                    break
+
         subckts = ""
-        for s in self._sub_circs:
+        for s in sub_circs:
             line = s.get_netlist(style="align")
             subckts += line
         
@@ -743,7 +787,10 @@ class SubCircuit(Circuit):
         self._nodes = netlist.get_nodes()
         self._param_dict = {} #Todo
         self._build_circuit()
-            
+        
+    def __str__(self):
+        return self._title
+    
     def get_netlist(self, style = "default"):
         netlist = f"\n.subckt {self._title}"
         for n in self._nodes:
@@ -1287,7 +1334,7 @@ class Resistor(TwoTermDevice):
                     self._align_device_param_dict["r"] = str(round(int(self._align_device_param_dict["l"])*1e3*2000/350,0))
                     l = self._align_device_param_dict.pop("l")
                 else:
-                    raise ValueError(f"Resistor model {self._mname} not supported for align!")
+                    raise ValueError(f'Resistor model {self._mname} with width {self._align_device_param_dict["w"]}um not supported for align!')
         else:
             raise ValueError(f"Resistor model {self._mname} not supported for align!")
         
@@ -1317,6 +1364,8 @@ class Resistor(TwoTermDevice):
             return self._instance_name  + self._nodes_to_str() + " " + self._value + "\n"
 
 def main():
+
+    
     #use a parser to parse the cmd line variables
     parser = argparse.ArgumentParser(description="Converts a spice netlist to the ALIGN format.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("src", help="Source file")
