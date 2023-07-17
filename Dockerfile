@@ -353,7 +353,7 @@ RUN bash install.sh
 FROM base as align-pdk-sky130
 #FIXME using a forked PDK since a few changes needed
 ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/iic-jku/ALIGN-pdk-sky130.git"
-ARG ALIGN_PDK_SKY130_REPO_COMMIT="0f94d16acdc6a9f50326632147c3a35cd0b41455"
+ARG ALIGN_PDK_SKY130_REPO_COMMIT="856e568f809c54580e82e077e93aff98c509b451"
 ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
 COPY images/align-pdk-sky130/scripts/install.sh install.sh
 RUN bash install.sh
