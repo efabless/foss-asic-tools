@@ -65,6 +65,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_bin      "xschem"
         _path_add_tool_bin      "xyce/Parallel"
         _path_add_tool_bin      "yosys"
+		_path_add_tool_custom   "align-utils"
 		
 		
         export SAK=$TOOLS/sak/
