@@ -18,16 +18,16 @@
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: 10cfae614ed8be80b5bb64e8c2194e7dffcd297a
+  commit: 93e83c41ac26025b6cb6a2fb87836d49214d9cdc
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
   commit: 09b0997acd0cbf9ce69857c0c095cfcac89e8fe5
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
-  commit: 25fe8217663c06a141156c2e9255e243d308794a
+  commit: 16777a6af47119730a3e7e99547c8cbc39b4d124
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 272771d1837016e6197c678bd00cbea1de6f7020
+  commit: 999bcb69353db5b38aa348f466e51274a6fb99e2
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-40
@@ -36,13 +36,13 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.9.2
+  commit: r1.10.0
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 5820a4ac266623e7c1dc13dea8a3919eb569c82c
+  commit: 5d7eabbe112f686b863db2c8646e05125a2ef401
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
@@ -54,7 +54,7 @@
   commit: "2023.07.07"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 83071b4b212641423a74ce6f5f10ac649b91820a
+  commit: f95580906a92b60d66d1201eff9380793ec52bc0
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.6.0

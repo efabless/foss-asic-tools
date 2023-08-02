@@ -28,7 +28,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as magic
 ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
-ARG MAGIC_REPO_COMMIT="482d7534a27c51d0d1c8a466494680d185d334ee"
+ARG MAGIC_REPO_COMMIT="0afe4d87d4aacfbbb2659129a1858a22d216a920"
 ARG MAGIC_NAME="magic"
 COPY images/magic/scripts/install.sh install.sh
 RUN bash install.sh
@@ -48,7 +48,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="3df14f84ab167baf757134739bb1d2c5c044849c"
+ARG OPEN_PDKS_REPO_COMMIT="78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -123,7 +123,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="10cfae614ed8be80b5bb64e8c2194e7dffcd297a"
+ARG GTKWAVE_REPO_COMMIT="93e83c41ac26025b6cb6a2fb87836d49214d9cdc"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as irsim
 ARG IRSIM_REPO_URL="https://github.com/rtimothyedwards/irsim"
-ARG IRSIM_REPO_COMMIT="25fe8217663c06a141156c2e9255e243d308794a"
+ARG IRSIM_REPO_COMMIT="16777a6af47119730a3e7e99547c8cbc39b4d124"
 ARG IRSIM_NAME="irsim"
 COPY images/irsim/scripts/install.sh install.sh
 RUN bash install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="272771d1837016e6197c678bd00cbea1de6f7020"
+ARG IVERILOG_REPO_COMMIT="999bcb69353db5b38aa348f466e51274a6fb99e2"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -163,7 +163,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
-ARG NETGEN_REPO_COMMIT="28a29504390d53cd3748ff2636be112ef299da0b"
+ARG NETGEN_REPO_COMMIT="87d8759a6980d297edcb9be6f8661867e4726f9a"
 ARG NETGEN_NAME="netgen"
 COPY images/netgen/scripts/install.sh install.sh
 RUN bash install.sh
@@ -193,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.9.2"
+ARG NVC_REPO_COMMIT="r1.10.0"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.07.07"
+ARG OPENLANE_REPO_COMMIT="2023.07.26"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="5820a4ac266623e7c1dc13dea8a3919eb569c82c"
+ARG SLANG_REPO_COMMIT="5d7eabbe112f686b863db2c8646e05125a2ef401"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="83071b4b212641423a74ce6f5f10ac649b91820a"
+ARG XSCHEM_REPO_COMMIT="f95580906a92b60d66d1201eff9380793ec52bc0"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -351,7 +351,7 @@ RUN bash install.sh
 # Compile ALIGN-analoglayout-sky130
 #######################################################################
 FROM base as align-pdk-sky130
-#FIXME using a forked PDK since a few changes needed
+# FIXME using a forked PDK since a few changes needed
 ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/iic-jku/ALIGN-pdk-sky130.git"
 ARG ALIGN_PDK_SKY130_REPO_COMMIT="856e568f809c54580e82e077e93aff98c509b451"
 ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
