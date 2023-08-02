@@ -118,6 +118,7 @@ apt-get -y install \
 	libyaml-dev \
 	libz3-dev \
 	libzip-dev \
+	libzstd-dev \
 	llvm-13-dev \
 	make \
 	ninja-build \
