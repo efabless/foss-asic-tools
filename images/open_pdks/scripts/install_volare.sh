@@ -12,7 +12,9 @@ fi
 # INSTALL SKY130 PDK
 ####################
 
+echo "[INFO] Installing SKY130 PDK."
 volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk sky130
+
 # remove version sky130B to save space (efabless TO use mostly sky130A)
 rm -rf "$PDK_ROOT"/volare/sky130/versions/*/sky130B
 rm -rf "$PDK_ROOT"/sky130B
@@ -60,6 +62,7 @@ fi
 # INSTALL GF180MCU PDK
 ######################
 
+echo "[INFO] Installing GF180 PDK."
 volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk gf180mcu
 
 #FIXME maybe need to run spice model file reduction here as well
