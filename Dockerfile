@@ -48,7 +48,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc"
+ARG OPEN_PDKS_REPO_COMMIT="933e5f2b8e42c5ec25b83c6d242455ada6f3e926"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -123,7 +123,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="93e83c41ac26025b6cb6a2fb87836d49214d9cdc"
+ARG GTKWAVE_REPO_COMMIT="v3.3.116"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="999bcb69353db5b38aa348f466e51274a6fb99e2"
+ARG IVERILOG_REPO_COMMIT="09f3ebfc885862093a70452f597bff2745c2220d"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -173,7 +173,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
-ARG NGSPICE_REPO_COMMIT="ngspice-40"
+ARG NGSPICE_REPO_COMMIT="ngspice-41"
 ARG NGSPICE_NAME="ngspice"
 COPY images/ngspice/scripts/install.sh install.sh
 RUN bash install.sh
@@ -193,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.10.0"
+ARG NVC_REPO_COMMIT="r1.10.1"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.07.26"
+ARG OPENLANE_REPO_COMMIT="2023.08.11"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="41a51eaf4ca2171c92ff38afb91eb37bbd3f36da"
+ARG OPENROAD_APP_REPO_COMMIT="0cfb9a45bfb256c9af1a0500d4c97da0f145f54f"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="5d7eabbe112f686b863db2c8646e05125a2ef401"
+ARG SLANG_REPO_COMMIT="4decdb5cf1bbae1cd291dcbd7cbf83e963bb83f9"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="f95580906a92b60d66d1201eff9380793ec52bc0"
+ARG XSCHEM_REPO_COMMIT="e3b9e67cb886fc1155f3c08624599c4ee02ee74b"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
