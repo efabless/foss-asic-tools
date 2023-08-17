@@ -18,7 +18,7 @@
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: v3.3.116
+  commit: 8e0bcdb2e3df3078133e9bdf8d326b455f7c1ca5
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
   commit: 09b0997acd0cbf9ce69857c0c095cfcac89e8fe5
