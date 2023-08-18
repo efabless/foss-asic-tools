@@ -2,9 +2,13 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
-## 2023.07
+## 2023.08
 
 * Update various tool versions.
+* Remove PDK `sky130B` to reduce image size.
+* Added `align` package (only for `amd64` and using `sky130` PDK, `arm64` postponed due to build fails).
+* Added `slang` (can be used for SystemVerilog to Verilog translation).
+* Fixed a few issues along the way.
 
 ## 2023.06
 
