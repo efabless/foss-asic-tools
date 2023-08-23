@@ -71,6 +71,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet)
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
+* [hdl21](https://github.com/dan-fritchman/Hdl21) Analog hardware description library
 * [klayout](https://github.com/KLayout/klayout) layout viewer and editor for GDS and OASIS
 * [magic](https://github.com/rtimothyedwards/magic) layout editor with DRC and PEX
 * [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
@@ -85,6 +86,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane` and `openlane2`
 * [osic-multitool](https://github.com/iic-jku/osic-multitool.git) collection of useful scripts and documentation
 * [padring](https://github.com/donn/padring) padring generation tool
+* [piel](https://github.com/daquintero/piel) Photonic integrated electronics co-design microservices.
 * [pyopus](https://fides.fe.uni-lj.si/pyopus/index.html) simulation runner and optimization tool for analog circuits
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
 * [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python
@@ -100,6 +102,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [siliconcompiler](https://github.com/siliconcompiler/siliconcompiler) modular build system for hardware
 * [sky130](https://github.com/google/skywater-pdk.git) SkyWater Technologies 130nm CMOS PDK
 * [verilator](https://github.com/verilator/verilator) fast Verilog simulator
+* [vlsirtools](https://github.com/Vlsir/Vlsir) Interchange formats for chip design.
 * [xschem](https://github.com/StefanSchippers/xschem.git) schematic editor
 * [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. `xdm` netlist conversion tool)
 * [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)

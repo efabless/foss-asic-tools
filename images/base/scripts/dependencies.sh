@@ -211,6 +211,8 @@ _install_ortools
 echo "[INFO] Install support packages via PIP"
 pip3 install --upgrade --no-cache-dir \
 	click \
+	jax \
+	jaxlib \
 	gobject \
 	graphviz \
 	matplotlib \

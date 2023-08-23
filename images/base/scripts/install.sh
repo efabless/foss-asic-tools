@@ -8,19 +8,23 @@ pip3 install --upgrade --no-cache-dir \
 	cocotb \
 	edalize \
 	fusesoc \
+	hdl21 \
 	gdsfactory \
 	gdspy \
 	openlane \
 	openram \
+	piel \
 	pyrtl \
 	pyspice \
 	pyverilog \
 	siliconcompiler \
 	spyci \
-	volare
+	volare \
+	vlsirtools
 
 pip3 install --upgrade --no-cache-dir \
 	jupyter \
+	jupyter-lab \
 	jupyter-collaboration \
 	jupyterlab-night
 
