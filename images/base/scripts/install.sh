@@ -24,7 +24,7 @@ pip3 install --upgrade --no-cache-dir \
 
 pip3 install --upgrade --no-cache-dir \
 	jupyter \
-	jupyter-lab \
+	jupyterlab \
 	jupyter-collaboration \
 	jupyterlab-night
 
