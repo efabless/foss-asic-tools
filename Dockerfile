@@ -48,7 +48,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="933e5f2b8e42c5ec25b83c6d242455ada6f3e926"
+ARG OPEN_PDKS_REPO_COMMIT="1341f54f5ce0c4955326297f235e4ace1eb6d419"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -66,7 +66,7 @@ COPY images/covered/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile cvc_rv (part of OpenLane)
+# Compile cvc_rv
 #######################################################################
 FROM base as cvc_rv
 ARG CVC_RV_REPO_URL="https://github.com/d-m-bailey/cvc"
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="09f3ebfc885862093a70452f597bff2745c2220d"
+ARG IVERILOG_REPO_COMMIT="778b6d937e22f0ee2282efcbf738eded3d0eae18"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -193,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.10.1"
+ARG NVC_REPO_COMMIT="r1.10.2"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.08.11"
+ARG OPENLANE_REPO_COMMIT="2023.09.11"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="0cfb9a45bfb256c9af1a0500d4c97da0f145f54f"
+ARG OPENROAD_APP_REPO_COMMIT="0a6d0fd469bc674417036342994520ee2e0a2727"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -233,7 +233,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as pyopus
 ARG PYOPUS_REPO_URL="https://fides.fe.uni-lj.si/pyopus/download"
-ARG PYOPUS_REPO_COMMIT="0.11"
+ARG PYOPUS_REPO_COMMIT="0.11.1"
 ARG PYOPUS_NAME="pyopus"
 COPY images/pyopus/scripts/install.sh install.sh
 RUN bash install.sh
@@ -253,7 +253,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as qucs-s
 ARG QUCS_REPO_URL="https://github.com/ra3xdh/qucs_s"
-ARG QUCS_REPO_COMMIT="1.1.0"
+ARG QUCS_REPO_COMMIT="2.0.0"
 ARG QUCS_NAME="qucs-s"
 COPY images/qucs-s/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.07.07"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.09.13"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="4decdb5cf1bbae1cd291dcbd7cbf83e963bb83f9"
+ARG SLANG_REPO_COMMIT="cf39a9937ad787b9f221d8a7327e32b26d74c3d7"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="e3b9e67cb886fc1155f3c08624599c4ee02ee74b"
+ARG XSCHEM_REPO_COMMIT="bb6caaf5015c20469caf2ebe35009361fb83c6de"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -304,7 +304,7 @@ RUN bash install.sh
 # FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
-ARG XYCE_REPO_COMMIT="Release-7.6.0"
+ARG XYCE_REPO_COMMIT="Release-7.7.0"
 ARG XYCE_NAME="xyce"
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
 COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh

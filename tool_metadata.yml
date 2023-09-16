@@ -1,12 +1,3 @@
-- name: cvc_rv
-  repo: https://github.com/d-m-bailey/cvc
-  commit: df85a637e83da870129c93c8793cad282bb8ddd1
-  build: |
-    autoreconf -i
-    ./configure --disable-nls --prefix=$PREFIX
-    make clean
-    make -j$(nproc) $READLINE_CXXFLAGS
-    make install
 - name: magic
   repo: https://github.com/rtimothyedwards/magic
   commit: 0afe4d87d4aacfbbb2659129a1858a22d216a920
@@ -65,7 +56,7 @@
   in_install: false
 - name: openroad_app
   repo: https://github.com/The-OpenROAD-Project/OpenROAD
-  commit: 0cfb9a45bfb256c9af1a0500d4c97da0f145f54f
+  commit: 0a6d0fd469bc674417036342994520ee2e0a2727
   in_install: false
 - name: git
   repo: https://github.com/git/git
@@ -73,6 +64,6 @@
   in_install: false
 - name: open_pdks
   repo: https://github.com/RTimothyEdwards/open_pdks
-  commit: 933e5f2b8e42c5ec25b83c6d242455ada6f3e926
+  commit: 1341f54f5ce0c4955326297f235e4ace1eb6d419
   in_install: false
   pdk: true
