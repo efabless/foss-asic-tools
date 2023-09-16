@@ -13,7 +13,6 @@ pip3 install --upgrade --no-cache-dir \
 	gdspy \
 	openlane \
 	openram \
-	piel \
 	pyrtl \
 	pyspice \
 	pyverilog \
