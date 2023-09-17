@@ -213,6 +213,7 @@ pip3 install --upgrade --no-cache-dir \
 	click \
 	gobject \
 	graphviz \
+	libparse \
 	matplotlib \
 	maturin \
 	ninja \
