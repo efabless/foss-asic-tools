@@ -86,7 +86,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [openroad](https://github.com/The-OpenROAD-Project/OpenROAD.git) RTL2GDS engine used by `openlane` and `openlane2`
 * [osic-multitool](https://github.com/iic-jku/osic-multitool.git) collection of useful scripts and documentation
 * [padring](https://github.com/donn/padring) padring generation tool
-* [piel](https://github.com/daquintero/piel) Photonic integrated electronics co-design microservices.
 * [pyopus](https://fides.fe.uni-lj.si/pyopus/index.html) simulation runner and optimization tool for analog circuits
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
 * [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python
