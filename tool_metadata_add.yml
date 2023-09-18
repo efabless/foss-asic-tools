@@ -39,7 +39,7 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.10.2
+  commit: r1.10.3
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11.1"
@@ -57,7 +57,7 @@
   commit: "2023.09.13"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: bb6caaf5015c20469caf2ebe35009361fb83c6de
+  commit: 1ee4117ea93c5ae27efbac1789267553366101fa
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
