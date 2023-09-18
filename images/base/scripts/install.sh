@@ -18,8 +18,9 @@ pip3 install --upgrade --no-cache-dir \
 	pyverilog \
 	siliconcompiler \
 	spyci \
-	volare \
+	volare==0.12.6 \
 	vlsirtools
+#FIXME pin volare version to circumvent fail on 0.12.7
 
 pip3 install --upgrade --no-cache-dir \
 	jupyter \
