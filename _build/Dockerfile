@@ -48,7 +48,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="1341f54f5ce0c4955326297f235e4ace1eb6d419"
+ARG OPEN_PDKS_REPO_COMMIT="dd7771c384ed36b91a25e9f8b314355fc26561be"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -70,7 +70,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as cvc_rv
 ARG CVC_RV_REPO_URL="https://github.com/d-m-bailey/cvc"
-ARG CVC_RV_REPO_COMMIT="df85a637e83da870129c93c8793cad282bb8ddd1"
+ARG CVC_RV_REPO_COMMIT="v1.1.5"
 ARG CVC_RV_NAME="cvc_rv"
 COPY images/cvc_rv/scripts/install.sh install.sh
 RUN bash install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="778b6d937e22f0ee2282efcbf738eded3d0eae18"
+ARG IVERILOG_REPO_COMMIT="c498d53d0d6565ec607e5cc472c1d58f58810d52"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.09.11"
+ARG OPENLANE_REPO_COMMIT="2023.10.10"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="0a6d0fd469bc674417036342994520ee2e0a2727"
+ARG OPENROAD_APP_REPO_COMMIT="bdc8e944cd08ba8edebeca19fa531bd026690330"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.09.13"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.10.12"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="cf39a9937ad787b9f221d8a7327e32b26d74c3d7"
+ARG SLANG_REPO_COMMIT="5ab05455af77f3212893a0b531c8cb4f80f737bc"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="1ee4117ea93c5ae27efbac1789267553366101fa"
+ARG XSCHEM_REPO_COMMIT="cd01e5d314fa4432e14fb267adab9f305fa811f7"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

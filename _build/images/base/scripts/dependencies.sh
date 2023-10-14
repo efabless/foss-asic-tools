@@ -31,6 +31,7 @@ apt-get -y install \
 	ca-certificates \
 	cargo \
 	clang \
+	clang-tools \
 	cmake \
 	csh \
 	curl \
@@ -60,6 +61,7 @@ apt-get -y install \
 	libbz2-dev \
 	libc6-dev \
 	libcairo2-dev \
+	libclang-common-14-dev \
 	libcurl4-openssl-dev \
 	libdw-dev \
 	libedit-dev \
@@ -119,6 +121,7 @@ apt-get -y install \
 	libz3-dev \
 	libzip-dev \
 	libzstd-dev \
+	lld \
 	llvm-13-dev \
 	make \
 	ninja-build \
@@ -203,6 +206,22 @@ _install_ortools () {
 }
 _install_ortools
 
+# Install OpenVAF (required for IHP PDK and ngspice)
+echo "[INFO] Install OpenVAF"
+_install_openvaf () {
+	export LLVM_CONFIG=/usr/bin/llvm-config-14
+	[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-14 /usr/bin/clang-cl
+	[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-14 /usr/bin/llvm-lib
+	cd /tmp || exit 1
+	git clone --depth=1 https://github.com/pascalkuthe/OpenVAF
+	cd OpenVAF || exit 1
+	if [ "$(arch)" = "aarch64" ]; then
+ 	   sed -i 's/i8/u8/g' openvaf/llvm/src/initialization.rs
+	fi
+	cargo build --release --bin openvaf
+	cp target/release/openvaf /usr/local/bin/openvaf
+}
+_install_openvaf
 
 # Upgrade pip and install important packages
 # FIXME: PIP upgrade fails on x86, so remove it
