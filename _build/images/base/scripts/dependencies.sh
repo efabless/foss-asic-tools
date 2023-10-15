@@ -30,8 +30,8 @@ apt-get -y install \
 	bzip2 \
 	ca-certificates \
 	cargo \
-	clang \
-	clang-tools \
+	clang-14 \
+	clang-tools-14 \
 	cmake \
 	csh \
 	curl \
@@ -121,8 +121,9 @@ apt-get -y install \
 	libz3-dev \
 	libzip-dev \
 	libzstd-dev \
-	lld \
-	llvm-13-dev \
+	lld-14 \
+	llvm-14 \
+	llvm-14-dev \
 	make \
 	ninja-build \
 	nodejs \
@@ -169,7 +170,7 @@ apt-get -y install \
 	zlib1g-dev
 
 	update-alternatives --install /usr/bin/python python /usr/bin/python3 0	
-	update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-13 0
+	update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-14 0
 else
 	echo "[ERROR] Ubuntu version is not supported!"
 	exit 1
@@ -209,9 +210,13 @@ _install_ortools
 # Install OpenVAF (required for IHP PDK and ngspice)
 echo "[INFO] Install OpenVAF"
 _install_openvaf () {
-	export LLVM_CONFIG=/usr/bin/llvm-config-14
-	[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-14 /usr/bin/clang-cl
-	[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-14 /usr/bin/llvm-lib
+	export LLVM_CONFIG=/usr/bin/llvm-config-15
+	[ ! -f /usr/bin/clang ] && ln -s /usr/bin/clang-15 /usr/bin/clang
+	[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-15 /usr/bin/clang-cl
+	[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-15 /usr/bin/llvm-lib
+	[ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
+	[ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
+
 	cd /tmp || exit 1
 	git clone --depth=1 https://github.com/pascalkuthe/OpenVAF
 	cd OpenVAF || exit 1
@@ -221,7 +226,7 @@ _install_openvaf () {
 	cargo build --release --bin openvaf
 	cp target/release/openvaf /usr/local/bin/openvaf
 }
-_install_openvaf
+#FIXME _install_openvaf
 
 # Upgrade pip and install important packages
 # FIXME: PIP upgrade fails on x86, so remove it
