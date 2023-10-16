@@ -30,8 +30,8 @@ apt-get -y install \
 	bzip2 \
 	ca-certificates \
 	cargo \
-	clang-14 \
-	clang-tools-14 \
+	clang-15 \
+	clang-tools-15 \
 	cmake \
 	csh \
 	curl \
@@ -61,7 +61,7 @@ apt-get -y install \
 	libbz2-dev \
 	libc6-dev \
 	libcairo2-dev \
-	libclang-common-14-dev \
+	libclang-common-15-dev \
 	libcurl4-openssl-dev \
 	libdw-dev \
 	libedit-dev \
@@ -121,9 +121,9 @@ apt-get -y install \
 	libz3-dev \
 	libzip-dev \
 	libzstd-dev \
-	lld-14 \
-	llvm-14 \
-	llvm-14-dev \
+	lld-15 \
+	llvm-15 \
+	llvm-15-dev \
 	make \
 	ninja-build \
 	nodejs \
@@ -170,7 +170,11 @@ apt-get -y install \
 	zlib1g-dev
 
 	update-alternatives --install /usr/bin/python python /usr/bin/python3 0	
-	update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-14 0
+
+	cd /usr/lib/llvm-15/bin
+	for f in *; do rm -f /usr/bin/"$f"; \
+		ln -s ../lib/llvm-15/bin/"$f" /usr/bin/"$f"
+	done
 else
 	echo "[ERROR] Ubuntu version is not supported!"
 	exit 1
@@ -211,11 +215,11 @@ _install_ortools
 echo "[INFO] Install OpenVAF"
 _install_openvaf () {
 	export LLVM_CONFIG=/usr/bin/llvm-config-15
-	[ ! -f /usr/bin/clang ] && ln -s /usr/bin/clang-15 /usr/bin/clang
-	[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-15 /usr/bin/clang-cl
-	[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-15 /usr/bin/llvm-lib
-	[ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
-	[ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
+	#[ ! -f /usr/bin/clang ] && ln -s /usr/bin/clang-15 /usr/bin/clang
+	#[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-15 /usr/bin/clang-cl
+	#[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-15 /usr/bin/llvm-lib
+	#[ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
+	#[ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
 
 	cd /tmp || exit 1
 	git clone --depth=1 https://github.com/pascalkuthe/OpenVAF
