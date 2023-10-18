@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="09b0997acd0cbf9ce69857c0c095cfcac89e8fe5"
+ARG OSIC_MULTITOOL_REPO_COMMIT="ddb96ddcb728bd9199a26ed57db4eb34f3a8737b"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="c498d53d0d6565ec607e5cc472c1d58f58810d52"
+ARG IVERILOG_REPO_COMMIT="a9ef00676fe2de316f2b605bff9b9aec3d5c447f"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -171,7 +171,7 @@ RUN bash install.sh
 #######################################################################
 # Compile ngspice
 #######################################################################
-FROM base as ngspice
+FROM open_pdks as ngspice
 ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
 ARG NGSPICE_REPO_COMMIT="ngspice-41"
 ARG NGSPICE_NAME="ngspice"
@@ -193,7 +193,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.10.3"
+ARG NVC_REPO_COMMIT="r1.10.4"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.10.10"
+ARG OPENLANE_REPO_COMMIT="2023.10.16"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -263,7 +263,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.10.12"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.10.18"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="cd01e5d314fa4432e14fb267adab9f305fa811f7"
+ARG XSCHEM_REPO_COMMIT="0178e1c287a1f144fb4634e17fe96726e7b4b26f"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

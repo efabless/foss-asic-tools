@@ -24,13 +24,13 @@
   commit: 8e0bcdb2e3df3078133e9bdf8d326b455f7c1ca5
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: 09b0997acd0cbf9ce69857c0c095cfcac89e8fe5
+  commit: ddb96ddcb728bd9199a26ed57db4eb34f3a8737b
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 16777a6af47119730a3e7e99547c8cbc39b4d124
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: c498d53d0d6565ec607e5cc472c1d58f58810d52
+  commit: a9ef00676fe2de316f2b605bff9b9aec3d5c447f
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-41
@@ -39,7 +39,7 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.10.3
+  commit: r1.10.4
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11.1"
@@ -54,10 +54,10 @@
   commit: "2.0.0"
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: "2023.10.12"
+  commit: "2023.10.18"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: cd01e5d314fa4432e14fb267adab9f305fa811f7
+  commit: 0178e1c287a1f144fb4634e17fe96726e7b4b26f
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
