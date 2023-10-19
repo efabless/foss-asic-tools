@@ -24,7 +24,7 @@
   commit: 8e0bcdb2e3df3078133e9bdf8d326b455f7c1ca5
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: ddb96ddcb728bd9199a26ed57db4eb34f3a8737b
+  commit: bbbcbab19aa250d1574d0f1f31fe82cbd146a598
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 16777a6af47119730a3e7e99547c8cbc39b4d124

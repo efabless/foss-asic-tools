@@ -123,6 +123,7 @@ alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
 alias openlane='openlane --manual-pdk'
+alias iic-pdk='source iic-pdk-script.sh'
 
 alias tt='cd $TOOLS'
 alias dd='cd $DESIGNS'
