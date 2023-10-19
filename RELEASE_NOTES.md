@@ -2,6 +2,14 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2023.10
+
+* Setup `xschem` and `ngspice` simulation for `ihp-sg13g2` (only on `amd64` for now).
+* Moved Docker build-related stuff into `_build` directory.
+* Add GitHub `CITATION.ff` for automatic citation support.
+* Upgrade to LLVM-15/Clang-15 to reduce installed versions.
+* Update various tool versions.
+
 ## 2023.09
 
 * Update various tool versions.
