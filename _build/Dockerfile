@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="bbbcbab19aa250d1574d0f1f31fe82cbd146a598"
+ARG OSIC_MULTITOOL_REPO_COMMIT="560631d0505557c705ff9d92e2a0110b461f7cd1"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
