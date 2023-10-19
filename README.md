@@ -43,7 +43,7 @@ As of the `2022.12` tag, the following open-source process-development kits (PDK
 | `export PDKPATH=$PDK_ROOT/$PDK` |
 | `export STD_CELL_LIBRARY=gf180mcu_fd_sc_mcu7t5v0` |
 
-| IHP Microelectronics `sg13g2` |
+| IHP Microelectronics `ihp-sg13g2` |
 |---|
 | Not yet ready to use |
 
@@ -68,7 +68,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [gf180mcu](https://github.com/google/gf180mcu-pdk) GlobalFoundries 180nm CMOS PDK
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
-* [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet)
+* [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet; `xschem` and `ngspice` simulation works only on `amd64` for now)
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
 * [hdl21](https://github.com/dan-fritchman/Hdl21) Analog hardware description library
