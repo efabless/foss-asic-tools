@@ -212,25 +212,25 @@ _install_ortools () {
 _install_ortools
 
 # Install OpenVAF (required for IHP PDK and ngspice)
-echo "[INFO] Install OpenVAF"
-_install_openvaf () {
-	export LLVM_CONFIG=/usr/bin/llvm-config-15
-	#[ ! -f /usr/bin/clang ] && ln -s /usr/bin/clang-15 /usr/bin/clang
-	#[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-15 /usr/bin/clang-cl
-	#[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-15 /usr/bin/llvm-lib
-	#[ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
-	#[ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
-
-	cd /tmp || exit 1
-	git clone --depth=1 https://github.com/pascalkuthe/OpenVAF
-	cd OpenVAF || exit 1
-	if [ "$(arch)" = "aarch64" ]; then
- 	   sed -i 's/i8/u8/g' openvaf/llvm/src/initialization.rs
-	fi
-	cargo build --release --bin openvaf
-	cp target/release/openvaf /usr/local/bin/openvaf
-}
-#FIXME _install_openvaf
+##echo "[INFO] Install OpenVAF"
+##_install_openvaf () {
+##	export LLVM_CONFIG=/usr/bin/llvm-config-15
+##	#[ ! -f /usr/bin/clang ] && ln -s /usr/bin/clang-15 /usr/bin/clang
+##	#[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-15 /usr/bin/clang-cl
+##	#[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-15 /usr/bin/llvm-lib
+##	#[ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
+##	#[ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
+##
+##	cd /tmp || exit 1
+##	git clone --depth=1 https://github.com/pascalkuthe/OpenVAF
+##	cd OpenVAF || exit 1
+##	if [ "$(arch)" = "aarch64" ]; then
+## 	   sed -i 's/i8/u8/g' openvaf/llvm/src/initialization.rs
+##	fi
+##	cargo build --release --bin openvaf
+##	cp target/release/openvaf /usr/local/bin/openvaf
+##}
+##FIXME _install_openvaf
 
 # Upgrade pip and install important packages
 # FIXME: PIP upgrade fails on x86, so remove it
