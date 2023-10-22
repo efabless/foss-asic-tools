@@ -47,7 +47,7 @@ apt-get -y install \
 	gfortran \
 	ghostscript \
 	git \
-	gnat \
+	gnat-11 \
 	gnupg2 \
 	gperf \
 	graphviz \
