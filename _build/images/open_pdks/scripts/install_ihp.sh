@@ -24,6 +24,7 @@ if [ -d $PDK_VERSION ]; then
 fi
 
 #FIXME For the time being, we only have OpenVAF for amd64
+#FIXME Get OpenVAF from osic-multitool (in the future)
 if [ "$(arch)" == "x86_64" ]; then
     cd "$PDK_ROOT"/"$PDK_VERSION"/libs.tech/ngspice/openvaf
 
