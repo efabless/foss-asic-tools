@@ -23,16 +23,14 @@ if [ -d $PDK_VERSION ]; then
 	mv $PDK_VERSION "$PDK_ROOT"
 fi
 
-#FIXME For the time being, we only have OpenVAF for amd64
-#FIXME Get OpenVAF from osic-multitool (in the future)
-if [ "$(arch)" == "x86_64" ]; then
-    cd "$PDK_ROOT"/"$PDK_VERSION"/libs.tech/ngspice/openvaf
+# Compile .va models
+####################
+cd "$PDK_ROOT"/"$PDK_VERSION"/libs.tech/ngspice/openvaf
 
-    # Get OpenVAF
-    wget https://openva.fra1.cdn.digitaloceanspaces.com/openvaf_23_5_0_linux_amd64.tar.gz
-    tar xfz openvaf_23_5_0_linux_amd64.tar.gz
-    rm -rf openvaf_23_5_0_linux_amd64.tar.gz
+# Get OpenVAF
+OPENFAV_FILE=openvaf.$(arch)
+OPENFAV_URL=https://github.com/iic-jku/osic-multitool/raw/main/openvaf/$OPENFAV_FILE.gz
+wget "$OPENFAV_URL" && gunzip "$OPENFAV_FILE.gz" && mv "$OPENFAV_FILE" openvaf && chmod +x openvaf
 
-    # Compile the PSP model
-    ./openvaf psp103_nqs.va
-fi
+# Compile the PSP model
+./openvaf psp103_nqs.va

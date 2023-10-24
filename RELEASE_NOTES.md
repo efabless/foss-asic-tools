@@ -4,10 +4,10 @@ This document summarizes the most important changes of the individual releases o
 
 ## 2023.10
 
-* Setup `xschem` and `ngspice` simulation for `ihp-sg13g2` (only on `amd64` for now).
+* Setup `xschem` and `ngspice` simulation for `ihp-sg13g2`.
 * Moved Docker build-related stuff into `_build` directory.
 * Add GitHub `CITATION.ff` for automatic citation support.
-* Upgrade to LLVM-15/Clang-15 to reduce installed versions.
+* Upgrade to `LLVM-15`/`Clang-15` to slim down image. Remove `GCC-10` as well.
 * Update various tool versions.
 
 ## 2023.09
