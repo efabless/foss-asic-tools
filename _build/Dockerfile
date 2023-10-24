@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="3b4056b8c1d22ef992e73dddcf4e7fcbe299ec5e"
+ARG OSIC_MULTITOOL_REPO_COMMIT="d0fee9b5a49204fc0c68dd43701fa193e7fe0813"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="8f3fedab1fa8e4447b3620a9440cb9d94f94d522"
+ARG XSCHEM_REPO_COMMIT="a65cd534b76098a8b7c572fa041845c211b262bf"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

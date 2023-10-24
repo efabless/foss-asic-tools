@@ -22,9 +22,6 @@
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
   commit: 8e0bcdb2e3df3078133e9bdf8d326b455f7c1ca5
-- name: osic-multitool
-  repo: https://github.com/iic-jku/osic-multitool.git
-  commit: 3b4056b8c1d22ef992e73dddcf4e7fcbe299ec5e
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: 16777a6af47119730a3e7e99547c8cbc39b4d124
@@ -40,6 +37,9 @@
 - name: nvc
   repo: https://github.com/nickg/nvc
   commit: r1.10.4
+- name: osic-multitool
+  repo: https://github.com/iic-jku/osic-multitool.git
+  commit: d0fee9b5a49204fc0c68dd43701fa193e7fe0813
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11.1"
@@ -57,7 +57,7 @@
   commit: "2023.10.18"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 8f3fedab1fa8e4447b3620a9440cb9d94f94d522
+  commit: a65cd534b76098a8b7c572fa041845c211b262bf
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
