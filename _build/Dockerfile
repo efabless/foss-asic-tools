@@ -38,7 +38,7 @@ RUN bash install.sh
 #######################################################################
 FROM magic as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="d0fee9b5a49204fc0c68dd43701fa193e7fe0813"
+ARG OSIC_MULTITOOL_REPO_COMMIT="1a49dbf27a79262ae63d70153163945baec4acf3"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -93,7 +93,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
-ARG GAW3_XSCHEM_REPO_COMMIT="a4bb956afe84a7792115144f370effe2393228c2"
+ARG GAW3_XSCHEM_REPO_COMMIT="640c672e1ad768b92eb6a15943459a1d2214e1dc"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
 COPY images/gaw3-xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as irsim
 ARG IRSIM_REPO_URL="https://github.com/rtimothyedwards/irsim"
-ARG IRSIM_REPO_COMMIT="16777a6af47119730a3e7e99547c8cbc39b4d124"
+ARG IRSIM_REPO_COMMIT="a7884acc04cd94017779893d381b7e93d8895587"
 ARG IRSIM_NAME="irsim"
 COPY images/irsim/scripts/install.sh install.sh
 RUN bash install.sh
@@ -143,7 +143,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="a9ef00676fe2de316f2b605bff9b9aec3d5c447f"
+ARG IVERILOG_REPO_COMMIT="77d7f0b8f73de3111580294744e3e95c19a0aa30"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.10.21"
+ARG OPENLANE_REPO_COMMIT="2023.10.27"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="bdc8e944cd08ba8edebeca19fa531bd026690330"
+ARG OPENROAD_APP_REPO_COMMIT="0a584d123190322b0725d5440c2c486d91d3afd8"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -252,9 +252,9 @@ RUN bash install.sh
 # Compile qucs-s
 #######################################################################
 FROM base as qucs-s
-ARG QUCS_REPO_URL="https://github.com/ra3xdh/qucs_s"
-ARG QUCS_REPO_COMMIT="2.0.0"
-ARG QUCS_NAME="qucs-s"
+ARG QUCS_S_REPO_URL="https://github.com/ra3xdh/qucs_s"
+ARG QUCS_S_REPO_COMMIT="2.1.0"
+ARG QUCS_S_NAME="qucs-s"
 COPY images/qucs-s/scripts/install.sh install.sh
 RUN bash install.sh
 
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="562774525cbf5f15f5817f7d341dc5c3b9266211"
+ARG SLANG_REPO_COMMIT="033da1084db12eb22817b5710233cd3cd59e5112"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="a65cd534b76098a8b7c572fa041845c211b262bf"
+ARG XSCHEM_REPO_COMMIT="a76dca4f298b2daf74f0e45b85795d87b2e3599e"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -323,7 +323,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
-ARG YOSYS_REPO_COMMIT="14d50a176d59a5eac95a57a01f9e933297251d5b"
+ARG YOSYS_REPO_COMMIT="4a1b5599258881f579a2d95274754bcd8fc171bd"
 ARG YOSYS_NAME="yosys"
 COPY images/yosys/scripts/install.sh install.sh
 RUN bash install.sh

@@ -44,7 +44,7 @@
     make install
 - name: yosys
   repo: https://github.com/YosysHQ/yosys
-  commit: 14d50a176d59a5eac95a57a01f9e933297251d5b
+  commit: 4a1b5599258881f579a2d95274754bcd8fc171bd
   build: |
     make clean
     make PREFIX=$PREFIX config-gcc
@@ -56,7 +56,7 @@
   in_install: false
 - name: openroad_app
   repo: https://github.com/The-OpenROAD-Project/OpenROAD
-  commit: bdc8e944cd08ba8edebeca19fa531bd026690330
+  commit: 0a584d123190322b0725d5440c2c486d91d3afd8
   in_install: false
 - name: git
   repo: https://github.com/git/git
