@@ -184,7 +184,7 @@ fi
 # Need libboost >= 1.78 for OpenROAD
 apt-get -y remove libboost-all-dev
 BOOST_VER_MAJ=1
-BOOST_VER_MIN=82	
+BOOST_VER_MIN=83	
 BOOST_BUILD=0
 echo "[INFO] Installing BOOST version $BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD.$BOOST_BUILD"
 _install_boost () {
@@ -199,7 +199,7 @@ _install_boost
 
 
 # Install or-tools (dependency of OpenROAD)
-ORTOOLS_VERSION=9.6
+ORTOOLS_VERSION=9.7
 echo "[INFO] Installing ORTOOLS version $ORTOOLS_VERSION"
 _install_ortools () {
 	cd /tmp || exit 1
@@ -219,6 +219,7 @@ _install_ortools
 echo "[INFO] Install support packages via PIP"
 pip3 install --upgrade --no-cache-dir \
 	click \
+	flask \
 	gobject \
 	graphviz \
 	libparse \
