@@ -10,6 +10,7 @@ This document summarizes the most important changes of the individual releases o
 * Adding `eqy` (equivalence checker), `sby` (formal verification), and `mcy` (mutation coverage) for `yosys`.
 * Upgrade to `LLVM-15`/`Clang-15` to slim down image. Remove `GCC-10` as well.
 * Update various tool versions.
+* Removes various examples from `/foss/examples` folder to reduce image size.
 
 ## 2023.09
 
