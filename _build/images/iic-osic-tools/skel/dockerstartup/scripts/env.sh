@@ -65,9 +65,9 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_bin      "xschem"
         _path_add_tool_bin      "xyce/Parallel"
         _path_add_tool_bin      "yosys"
-		_path_add_tool_custom   "align-utils"
-		
-		
+        _path_add_tool_custom   "yosys/bin"
+	_path_add_tool_custom   "align-utils"
+	
         export SAK=$TOOLS/sak/
         export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
 
@@ -76,6 +76,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_python "ngspyce"
         _path_add_tool_python "align"
         _path_add_tool_python "pyopus"
+        export PYTHONPATH=$PYTHONPATH:$TOOLS/yosys/share/yosys/python3
 
         echo "[INFO] Final PATH variable: $PATH"
         echo "[INFO] Final PYTHONPATH variable: $PYTHONPATH"

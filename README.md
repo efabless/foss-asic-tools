@@ -68,7 +68,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [gf180mcu](https://github.com/google/gf180mcu-pdk) GlobalFoundries 180nm CMOS PDK
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
 * [gtkwave](https://github.com/gtkwave/gtkwave) waveform plot tool for digital simulation
-* [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet; `xschem` and `ngspice` simulation works)
+* [ihp-sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet; `xschem` and `ngspice` simulation works incl. PSP MOSFET model)
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
 * [hdl21](https://github.com/dan-fritchman/Hdl21) Analog hardware description library
@@ -76,7 +76,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [magic](https://github.com/rtimothyedwards/magic) layout editor with DRC and PEX
 * [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
-* [ngspice](http://ngspice.sourceforge.net) SPICE analog and mixed-signal simulator
+* [ngspice](http://ngspice.sourceforge.net) SPICE analog and mixed-signal simulator, with OSDI support
 * [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice`
 * [nvc](https://github.com/nickg/nvc) VHDL simulator and compiler
 * [open_pdks](https://github.com/RTimothyEdwards/open_pdks) PDK setup scripts
@@ -104,7 +104,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [vlsirtools](https://github.com/Vlsir/Vlsir) Interchange formats for chip design.
 * [xschem](https://github.com/StefanSchippers/xschem.git) schematic editor
 * [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. `xdm` netlist conversion tool)
-* [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis)
+* [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis), incl. `eqy` (equivalence checker), `sby` (formal verification), and `mcy` (mutation coverage)
 
 The tool versions used for `OpenLane` are documented in `tool_metadata.yml` and the other tools in `tool_metadata_add.yml`. In addition to the EDA tools above, further valuable tools (like `git`) and editors (like `gvim`) are installed. If something useful is missing, please let us know!
 
