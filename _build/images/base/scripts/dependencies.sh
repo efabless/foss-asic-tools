@@ -118,6 +118,7 @@ apt-get -y install \
 	libxrender-dev \
 	libxslt-dev \
 	libyaml-dev \
+	libz-dev \
 	libz3-dev \
 	libzip-dev \
 	libzstd-dev \

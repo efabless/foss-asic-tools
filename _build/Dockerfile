@@ -218,6 +218,18 @@ ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
 
+
+#######################################################################
+# Compile openvaf
+#######################################################################
+FROM basepkg as openvaf
+ARG OPENVAF_REPO_URL="https://github.com/iic-jku/OpenVAF.git"
+ARG OPENVAF_REPO_COMMIT="c3600f38ea43ab4b9e13402c65a431cc8f0ab451"
+ARG OPENVAF_NAME="openvaf"
+COPY images/openvaf/scripts/install.sh install.sh
+RUN bash install.sh
+
+
 #######################################################################
 # Compile padring (part of OpenLane)
 #######################################################################

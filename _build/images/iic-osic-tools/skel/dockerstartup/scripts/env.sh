@@ -54,6 +54,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool          "openlane"
         _path_add_tool_bin      "openroad"
         _path_add_tool_bin      "opensta"
+	_path_add_tool_bin	"openvaf"
         _path_add_tool_custom   "osic-multitool"
         _path_add_tool_bin      "padring"
         _path_add_tool_bin      "pyopus"
