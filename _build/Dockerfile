@@ -34,9 +34,19 @@ COPY images/magic/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile openvaf
+#######################################################################
+FROM basepkg as openvaf
+ARG OPENVAF_REPO_URL="https://github.com/iic-jku/OpenVAF.git"
+ARG OPENVAF_REPO_COMMIT="a9697ae7780518f021f9f64e819b3a57033bd39f"
+ARG OPENVAF_NAME="openvaf"
+COPY images/openvaf/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile osic-multitool
 #######################################################################
-FROM magic as osic-multitool
+FROM openvaf as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
 ARG OSIC_MULTITOOL_REPO_COMMIT="1a49dbf27a79262ae63d70153163945baec4acf3"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
@@ -217,18 +227,6 @@ ARG OPENROAD_APP_REPO_COMMIT="0a584d123190322b0725d5440c2c486d91d3afd8"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
-
-
-#######################################################################
-# Compile openvaf
-#######################################################################
-FROM basepkg as openvaf
-ARG OPENVAF_REPO_URL="https://github.com/iic-jku/OpenVAF.git"
-ARG OPENVAF_REPO_COMMIT="c3600f38ea43ab4b9e13402c65a431cc8f0ab451"
-ARG OPENVAF_NAME="openvaf"
-COPY images/openvaf/scripts/install.sh install.sh
-RUN bash install.sh
-
 
 #######################################################################
 # Compile padring (part of OpenLane)
@@ -429,6 +427,7 @@ COPY --from=ngspyce                      ${TOOLS}/              ${TOOLS}/
 COPY --from=openlane                     ${TOOLS}/              ${TOOLS}/
 COPY --from=openroad_app                 ${TOOLS}/              ${TOOLS}/
 COPY --from=osic-multitool               ${TOOLS}/              ${TOOLS}/
+COPY --from=openvaf                      ${TOOLS}/              ${TOOLS}/
 COPY --from=padring                      ${TOOLS}/              ${TOOLS}/
 COPY --from=pyopus                       ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/

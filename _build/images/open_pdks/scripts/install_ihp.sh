@@ -30,9 +30,10 @@ cd "$PDK_ROOT"/"$PDK_VERSION"/libs.tech/ngspice/openvaf
 
 # Get OpenVAF
 #FIXME compile as part of Docker build, instead of pulling executable
-OPENFAV_FILE=openvaf.$(arch)
-OPENFAV_URL=https://github.com/iic-jku/osic-multitool/raw/main/openvaf/$OPENFAV_FILE.gz
-wget "$OPENFAV_URL" && gunzip "$OPENFAV_FILE.gz" && mv "$OPENFAV_FILE" openvaf && chmod +x openvaf
+#OPENFAV_FILE=openvaf.$(arch)
+#OPENFAV_URL=https://github.com/iic-jku/osic-multitool/raw/main/openvaf/$OPENFAV_FILE.gz
+#wget "$OPENFAV_URL" && gunzip "$OPENFAV_FILE.gz" && mv "$OPENFAV_FILE" openvaf && chmod +x openvaf
 
 # Compile the PSP model
-./openvaf psp103_nqs.va
+OPENVAF_VERSION=$(ls "$TOOLS/$OPENVAF_NAME")
+"$TOOLS/$OPENVAF_NAME/$OPENVAF_VERSION"/bin/openvaf psp103_nqs.va
