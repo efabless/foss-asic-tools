@@ -10,7 +10,7 @@ fi
 # INSTALL IHP-SG13G2
 ####################
 
-PDK_VERSION="ihp-sg13g2"
+MYPDK="ihp-sg13g2"
 
 cd /tmp || exit
 #git clone --depth=1 https://github.com/IHP-GmbH/IHP-Open-PDK.git ihp
@@ -20,13 +20,13 @@ cd ihp || exit
 #FIXME for now uses branch "dev" to get the latest releases
 git checkout dev
 
-if [ -d $PDK_VERSION ]; then
-	mv $PDK_VERSION "$PDK_ROOT"
+if [ -d $MYPDK ]; then
+	mv $MYPDK "$PDK_ROOT"
 fi
 
 # Compile .va models
 ####################
-cd "$PDK_ROOT"/"$PDK_VERSION"/libs.tech/ngspice/openvaf
+cd "$PDK_ROOT"/"$MYPDK"/libs.tech/ngspice/openvaf
 
 # Get OpenVAF
 #FIXME compile as part of Docker build, instead of pulling executable
