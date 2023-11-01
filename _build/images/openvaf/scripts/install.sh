@@ -40,5 +40,5 @@ EOF
 
 cargo build --release --bin openvaf
 
-mkdir -p  /${TOOLS}/${OPENVAF_NAME}/${REPO_COMMIT_SHORT}/bin
-cp target/release/openvaf /${TOOLS}/${OPENVAF_NAME}/${REPO_COMMIT_SHORT}/bin
+mkdir -p  "/${TOOLS}/${OPENVAF_NAME}/${REPO_COMMIT_SHORT}/bin"
+cp target/release/openvaf "/${TOOLS}/${OPENVAF_NAME}/${REPO_COMMIT_SHORT}/bin"
