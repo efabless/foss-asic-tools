@@ -48,7 +48,7 @@ RUN bash install.sh
 #######################################################################
 FROM openvaf as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="1a49dbf27a79262ae63d70153163945baec4acf3"
+ARG OSIC_MULTITOOL_REPO_COMMIT="cf797a038577e22fb175657387e820c635d0915e"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="033da1084db12eb22817b5710233cd3cd59e5112"
+ARG SLANG_REPO_COMMIT="a6824524994c4f8ba04850b0882dae859a790f12"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -303,7 +303,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="a76dca4f298b2daf74f0e45b85795d87b2e3599e"
+ARG XSCHEM_REPO_COMMIT="22a5365288bc979644afa152c73dbeb69d670bce"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -323,7 +323,7 @@ RUN bash install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
-ARG XYCE_XDM_REPO_COMMIT="Release-2.6.0"
+ARG XYCE_XDM_REPO_COMMIT="Release-2.7.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
 COPY images/xyce-xdm/scripts/install.sh install.sh
 RUN bash install.sh

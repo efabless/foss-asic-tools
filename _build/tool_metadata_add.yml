@@ -39,13 +39,13 @@
   commit: r1.10.4
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: 1a49dbf27a79262ae63d70153163945baec4acf3
+  commit: cf797a038577e22fb175657387e820c635d0915e
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11.1"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 033da1084db12eb22817b5710233cd3cd59e5112
+  commit: a6824524994c4f8ba04850b0882dae859a790f12 
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
@@ -57,10 +57,10 @@
   commit: "2023.10.18"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: a76dca4f298b2daf74f0e45b85795d87b2e3599e
+  commit: 22a5365288bc979644afa152c73dbeb69d670bce
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
 - name: xyce-xdm
   repo: https://github.com/Xyce/XDM
-  commit: Release-2.6.0
+  commit: Release-2.7.0
