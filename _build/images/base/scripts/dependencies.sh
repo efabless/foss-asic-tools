@@ -71,7 +71,7 @@ apt-get -y install \
 	libfftw3-dev \
 	libfindbin-libs-perl \
 	libfl-dev \
-	libgcc-9-dev \
+	libgcc-11-dev \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
