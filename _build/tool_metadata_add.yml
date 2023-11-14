@@ -27,7 +27,7 @@
   commit: a7884acc04cd94017779893d381b7e93d8895587
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 77d7f0b8f73de3111580294744e3e95c19a0aa30
+  commit: 28987277adf8bd99da5b777aa7b3275d4a1fa016
 - name: ngspice
   repo: https://git.code.sf.net/p/ngspice/ngspice
   commit: ngspice-41
@@ -39,13 +39,13 @@
   commit: r1.10.4
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: cf797a038577e22fb175657387e820c635d0915e
+  commit: 43b39cd209338b33d663973b0ab826290eca8d9e
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11.1"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: a6824524994c4f8ba04850b0882dae859a790f12 
+  commit: 879b86db7841251bf97b10e25b7c62a1e99c8021
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
@@ -54,10 +54,10 @@
   commit: "2.1.0"
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: "2023.10.18"
+  commit: "2023.11.08"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 22a5365288bc979644afa152c73dbeb69d670bce
+  commit: 852f2bd25ddc3408a4bffa54194a9cac67bddd7d
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
