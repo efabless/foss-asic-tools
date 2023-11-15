@@ -84,11 +84,13 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         export FOSS_PATH_SET=1
 fi
 
+# shellcheck disable=SC2086
 LD_LIBRARY_PATH="$(realpath ${TOOLS}/klayout/*/ ):${TOOLS}/ngspice/ngspice/lib" && export LD_LIBRARY_PATH
 export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
 export OPENLANE_ROOT=$TOOLS/openlane
 export EDITOR='gedit'
+export PYTHONPYCACHEPREFIX="$DESIGNS/.pycache"
 
 # Setting default PDK
 export PDK=sky130A
