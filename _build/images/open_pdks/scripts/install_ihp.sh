@@ -24,6 +24,10 @@ if [ -d $MYPDK ]; then
 	mv $MYPDK "$PDK_ROOT"
 fi
 
+# Some modifications/cleanup needed of stock IHP PDK
+# 1) Remove the `pre_osdi` line from the examples
+grep -Rl "pre_osdi" -- * | grep ".sch" | xargs sed -i '/pre_osdi/d'
+
 # Compile .va models
 ####################
 cd "$PDK_ROOT"/"$MYPDK"/libs.tech/ngspice/openvaf
