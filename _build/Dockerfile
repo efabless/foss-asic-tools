@@ -182,7 +182,7 @@ RUN bash install.sh
 # Compile ngspice
 #######################################################################
 FROM open_pdks as ngspice
-ARG NGSPICE_REPO_URL="https://git.code.sf.net/p/ngspice/ngspice"
+ARG NGSPICE_REPO_URL="https://github.com/danchitnis/ngspice-sf-mirror"
 ARG NGSPICE_REPO_COMMIT="ngspice-41"
 ARG NGSPICE_NAME="ngspice"
 COPY images/ngspice/scripts/install.sh install.sh

@@ -29,7 +29,7 @@
   repo: https://github.com/steveicarus/iverilog.git
   commit: 28987277adf8bd99da5b777aa7b3275d4a1fa016
 - name: ngspice
-  repo: https://git.code.sf.net/p/ngspice/ngspice
+  repo: https://github.com/danchitnis/ngspice-sf-mirror
   commit: ngspice-41
 - name: ngspyce
   repo: https://github.com/ignamv/ngspyce
