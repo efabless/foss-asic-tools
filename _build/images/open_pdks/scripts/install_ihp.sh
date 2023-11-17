@@ -20,23 +20,19 @@ cd ihp || exit
 #FIXME for now uses branch "dev" to get the latest releases
 git checkout dev
 
+# Some modifications/cleanup needed of stock IHP PDK
+# 1) Remove the `pre_osdi` line from the examples
+find . -name "*.sch" -exec sed -i '/pre_osdi/d' {} \;
+
+# Now move to proper location
 if [ -d $MYPDK ]; then
 	mv $MYPDK "$PDK_ROOT"
 fi
 
-# Some modifications/cleanup needed of stock IHP PDK
-# 1) Remove the `pre_osdi` line from the examples
-grep -Rl "pre_osdi" -- * | grep ".sch" | xargs sed -i '/pre_osdi/d'
-
+####################
 # Compile .va models
 ####################
 cd "$PDK_ROOT"/"$MYPDK"/libs.tech/ngspice/openvaf
-
-# Get OpenVAF
-#FIXME compile as part of Docker build, instead of pulling executable
-#OPENFAV_FILE=openvaf.$(arch)
-#OPENFAV_URL=https://github.com/iic-jku/osic-multitool/raw/main/openvaf/$OPENFAV_FILE.gz
-#wget "$OPENFAV_URL" && gunzip "$OPENFAV_FILE.gz" && mv "$OPENFAV_FILE" openvaf && chmod +x openvaf
 
 # Compile the PSP model
 OPENVAF_VERSION=$(ls "$TOOLS/$OPENVAF_NAME")
