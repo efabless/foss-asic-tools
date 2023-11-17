@@ -2,6 +2,13 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2023.11
+
+* `OpenVAF` built from source during image build.
+* Update `OpenVAF` to enable MOS-FET noise simulation.
+* Update various tool versions.
+* Remove `gcc-9` to reduce image size.
+
 ## 2023.10
 
 * Setup `xschem` and `ngspice` simulation for `ihp-sg13g2`.
