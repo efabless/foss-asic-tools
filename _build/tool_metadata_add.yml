@@ -21,7 +21,7 @@
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: 8e0bcdb2e3df3078133e9bdf8d326b455f7c1ca5
+  commit: 0549f7075d65668955fb39b7f022757918bad04c
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: a7884acc04cd94017779893d381b7e93d8895587
