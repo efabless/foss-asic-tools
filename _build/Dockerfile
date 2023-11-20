@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="8e0bcdb2e3df3078133e9bdf8d326b455f7c1ca5"
+ARG GTKWAVE_REPO_COMMIT="0549f7075d65668955fb39b7f022757918bad04c"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh

@@ -36,6 +36,7 @@ apt-get -y install \
 	csh \
 	curl \
 	cython3 \
+	desktop-file-utils \
 	doxygen \
 	expat \
 	flex \
@@ -74,6 +75,7 @@ apt-get -y install \
 	libgcc-11-dev \
 	libgconf2-dev \
 	libgettextpo-dev \
+	libgirepository1.0-dev \
 	libglu1-mesa-dev \
 	libgmp-dev \
 	libgomp1 \
@@ -226,6 +228,7 @@ pip3 install --upgrade --no-cache-dir \
 	libparse \
 	matplotlib \
 	maturin \
+	meson \
 	ninja \
 	numpy \
 	panda \
