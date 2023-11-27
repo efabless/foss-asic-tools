@@ -9,7 +9,8 @@ cd "${GTKWAVE_NAME}"
 git checkout "${GTKWAVE_REPO_COMMIT}"
 
 
-# Remove the parameter that declares a missing include directory as an error because the build fails otherwise.
+# FIXME Remove the parameter that declares a missing include directory as an error 
+# because the build fails otherwise (hopefully PR will be merged at some time).
 
 patch -p1 << EOF
 diff --git a/meson.build b/meson.build
