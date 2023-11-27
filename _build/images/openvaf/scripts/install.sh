@@ -21,7 +21,7 @@ export LLVM_CONFIG=/usr/bin/llvm-config-15
 [ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
 [ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
 
-
+# FIXME patching OpenVAF until PR is merged
 patch -p1 << EOF
 diff --git a/openvaf/target/build.rs b/openvaf/target/build.rs
 index 13db6e5..dada68e 100644
