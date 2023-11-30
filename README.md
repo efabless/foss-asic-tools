@@ -17,11 +17,11 @@ Use the green **Code** button, and either download the zip file or do a `git clo
 
 ### Step 2: Install Docker on your computer
 
-See instructions on how to do this in the section **Quick Launch for Designers** further down in this `README`.
+See instructions on how to do this in the section [**Quick Launch for Designers**](#quick-launch-for-designers) further down in this `README`.
 
 ### Step 3: Start and Use a Docker Container based on our IIC-OSIC-TOOLS Image
 
-Enter the directory of this repository on your computer, and use one of the methods described in the section **Quick Launch for Designers** to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
+Enter the directory of this repository on your computer, and use one of the methods described in the section [**Quick Launch for Designers**](#quick-launch-for-designers) to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
 
 If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed. Please note that this compressed image will be extracted on your drive, so please provide at least **20GB of free drive space**. If, after a while, the consumed space gets larger, this is maybe due to unused images piling up. In this case, delete old ones; please consult the internet for instructions on operating Docker.
 
