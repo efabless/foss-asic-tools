@@ -17,11 +17,11 @@ Use the green **Code** button, and either download the zip file or do a `git clo
 
 ### Step 2: Install Docker on your computer
 
-See instructions on how to do this in the section **Quick Launch for Designers** further down in this `README`.
+See instructions on how to do this in the section [**Quick Launch for Designers**](#quick-launch-for-designers) further down in this `README`.
 
 ### Step 3: Start and Use a Docker Container based on our IIC-OSIC-TOOLS Image
 
-Enter the directory of this repository on your computer, and use one of the methods described in the section **Quick Launch for Designers** to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
+Enter the directory of this repository on your computer, and use one of the methods described in the section [**Quick Launch for Designers**](#quick-launch-for-designers) to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
 
 If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed. Please note that this compressed image will be extracted on your drive, so please provide at least **20GB of free drive space**. If, after a while, the consumed space gets larger, this is maybe due to unused images piling up. In this case, delete old ones; please consult the internet for instructions on operating Docker.
 
@@ -90,7 +90,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [pyrtl](https://github.com/UCSBarchlab/PyRTL) collection of classes for pythonic RTL design
 * [pyspice](https://github.com/PySpice-org/PySpice) interface `ngspice` and `xyce` from Python
 * [pyverilog](https://github.com/PyHDI/Pyverilog) Python toolkit for Verilog
-* RF toolkit with [FastHenry2](https://github.com/ediloren/FastHenry2), [FasterCap](https://github.com/ediloren/FasterCap), and [openEMS](https://github.com/OpenEMS/openems).
+* RF toolkit with [FastHenry2](https://github.com/ediloren/FastHenry2), [FasterCap](https://github.com/ediloren/FasterCap), and [openEMS](https://github.com/thliebig/openEMS).
 * [qucs-s](https://github.com/ra3xdh/qucs_s) simulation environment with RF emphasis
 * [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
 * [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
@@ -145,9 +145,9 @@ You can now access the Desktop Environment through your browser ([http://localho
 
 #### Variables for VNC
 
-Both scripts will use default settings, which you can tweak by settings shell variables (VARIABLE=default is shown):
+Both scripts will use default settings, which you can tweak by settings shell variables (`VARIABLE=default` is shown):
 
-* `DRY_RUN` (unset by default); if set to any value (also 0, false, etc.), the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
+* `DRY_RUN` (unset by default); if set to any value (also `0`, `false`, etc.), the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `WEBSERVER_PORT=80` sets the port on which the Docker daemon will map the webserver port of the container to be reachable from localhost and the outside world. `0` disables the mapping.
 * `VNC_PORT=5901` sets the port on which the Docker daemon will map the VNC server port of the container to be reachable from localhost and the outside world. This is only required to access the UI with a different VNC client. `0` disabled the mapping.
@@ -182,18 +182,18 @@ or
 
 The following environment variables are used for configuration:
 
-* `DRY_RUN` (unset by default), if set to any value (also 0, false, etc.), makes the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
+* `DRY_RUN` (unset by default), if set to any value (also `0`, `false`, etc.), makes the start scripts print all executed commands instead of running. Useful for debugging/testing or just creating "template commands" for unique setups.
 * `DESIGNS=$HOME/eda/designs` (`DESIGNS=%USERPROFILE%\eda\designs` for `.bat`) sets the directory that holds your design files. This directory is mounted into the container on `/foss/designs`.
 * `DOCKER_USER="hpretl"` username for the Docker Hub repository from which the images are pulled. Usually, no change is required.
 * `DOCKER_IMAGE="iic-osic-tools"` Docker Hub image name to pull. Usually, no change is required.
 * `DOCKER_TAG="latest"` Docker Hub image tag. By default, it pulls the latest version; this might be handy to change if you want to match a specific Version set.
-* `CONTAINER_USER=$(id -u)` (the current user's ID, `CONTAINER_USER=1000` for `.bat`) The user ID (and also group ID) is especially important on Linux and macOS because those are the IDs used to write files in the DESIGNS directory.
+* `CONTAINER_USER=$(id -u)` (the current user's ID, `CONTAINER_USER=1000` for `.bat`) The user ID (and also group ID) is especially important on Linux and macOS because those are the IDs used to write files in the `DESIGNS` directory.
 * `CONTAINER_GROUP=$(id -g)` (the current user's group ID, `CONTAINER_GROUP=1000` for `.bat`)
 * `CONTAINER_NAME="iic-osic-tools_xserver_uid_"$(id -u)` (attaches the executing user's id to the name on Unix, or only `CONTAINER_NAME="iic-osic-tools_xserver` for `.bat`) is the name that is assigned to the container for easy identification. It is used to identify if a container exists and is running.
 
 #### macOS and Windows-specific Variables
 
-For Mac and Windows, the X11 server is accessed through TCP (:0, aka port 6000). To control the server's address, you can set the following variable:
+For Mac and Windows, the X11 server is accessed through TCP (`:0`, aka port 6000). To control the server's address, you can set the following variable:
 
 * `DISP=host.docker.internal:0` is the environment variable that is copied into the `DISPLAY` variable of the container. `host.docker.internal` resolves to the host's IP address inside the docker containers, `:0` corresponds to display 0 which corresponds to TCP port 6000.
 
