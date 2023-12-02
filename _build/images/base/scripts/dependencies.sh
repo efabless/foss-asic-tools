@@ -77,6 +77,7 @@ apt-get -y install \
 	libgettextpo-dev \
 	libgirepository1.0-dev \
 	libglu1-mesa-dev \
+	libgit2-dev \
 	libgmp-dev \
 	libgomp1 \
 	libgtk-3-dev \
