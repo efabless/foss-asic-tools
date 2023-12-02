@@ -36,7 +36,9 @@ apt-get -y install \
 	csh \
 	curl \
 	cython3 \
+	debhelper \
 	desktop-file-utils \
+	devscripts \
 	doxygen \
 	expat \
 	flex \
@@ -112,6 +114,7 @@ apt-get -y install \
 	libtool \
 	libwxgtk3.0-gtk3-dev \
 	libx11-dev \
+	libx11-xcb-dev \
 	libxaw7-dev \
 	libxcb1-dev \
 	libxext-dev \
@@ -159,6 +162,7 @@ apt-get -y install \
 	rustc \
 	strace \
 	swig \
+	tcl \
 	tcl-dev \
 	tcllib \
 	tcl-tclreadline \
