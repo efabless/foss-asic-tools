@@ -36,7 +36,7 @@
     cp vlog2Verilog $PREFIX/bin
 - name: verilator
   repo: https://github.com/verilator/verilator
-  commit: 947402bc57625106e1387255772fdb5d850a6c65
+  commit: 67dfa37c560385827218350ea936eb1baf604240
   build: |
     autoconf
     ./configure --prefix=$PREFIX
@@ -56,7 +56,7 @@
   in_install: false
 - name: openroad_app
   repo: https://github.com/The-OpenROAD-Project/OpenROAD
-  commit: 0a584d123190322b0725d5440c2c486d91d3afd8
+  commit: 6f9b2bb8b808b1bb5831d4525d868212ae50517a
   in_install: false
 - name: git
   repo: https://github.com/git/git
@@ -64,6 +64,6 @@
   in_install: false
 - name: open_pdks
   repo: https://github.com/RTimothyEdwards/open_pdks
-  commit: dd7771c384ed36b91a25e9f8b314355fc26561be
+  commit: e0f692f46654d6c7c99fc70a0c94a080dab53571
   in_install: false
   pdk: true

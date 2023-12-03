@@ -58,7 +58,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="dd7771c384ed36b91a25e9f8b314355fc26561be"
+ARG OPEN_PDKS_REPO_COMMIT="e0f692f46654d6c7c99fc70a0c94a080dab53571"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="0549f7075d65668955fb39b7f022757918bad04c"
+ARG GTKWAVE_REPO_COMMIT="ac53e6d356bcf622de8af95f6f6c5d61a12eb9c2"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -153,7 +153,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="28987277adf8bd99da5b777aa7b3275d4a1fa016"
+ARG IVERILOG_REPO_COMMIT="58dcf39db3c1b59ce27bc335081e39f354b2cda1"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.11.13"
+ARG OPENLANE_REPO_COMMIT="2023.11.23"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="0a584d123190322b0725d5440c2c486d91d3afd8"
+ARG OPENROAD_APP_REPO_COMMIT="6f9b2bb8b808b1bb5831d4525d868212ae50517a"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -253,7 +253,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as qflow
 ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG QFLOW_REPO_COMMIT="b0f76bf4b7dddd59badd67f462e50ed8c9be484c"
+ARG QFLOW_REPO_COMMIT="9ac7c7c3123f5a0a6844ef750f1902e2f66ada7b"
 ARG QFLOW_NAME="qflow"
 COPY images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.11.08"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.11.22"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="879b86db7841251bf97b10e25b7c62a1e99c8021"
+ARG SLANG_REPO_COMMIT="079fffd0b18b7e7ab806d5674de0615731fe59d0"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -293,7 +293,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
-ARG VERILATOR_REPO_COMMIT="947402bc57625106e1387255772fdb5d850a6c65"
+ARG VERILATOR_REPO_COMMIT="67dfa37c560385827218350ea936eb1baf604240"
 ARG VERILATOR_NAME="verilator"
 COPY images/verilator/scripts/install.sh install.sh
 RUN bash install.sh
@@ -303,7 +303,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="852f2bd25ddc3408a4bffa54194a9cac67bddd7d"
+ARG XSCHEM_REPO_COMMIT="b2965f4c3d214d30a4ca1356ace4c8f9a945b774"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

@@ -21,13 +21,13 @@
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: 0549f7075d65668955fb39b7f022757918bad04c
+  commit: ac53e6d356bcf622de8af95f6f6c5d61a12eb9c2
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: a7884acc04cd94017779893d381b7e93d8895587
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 28987277adf8bd99da5b777aa7b3275d4a1fa016
+  commit: 58dcf39db3c1b59ce27bc335081e39f354b2cda1
 - name: ngspice
   repo: https://github.com/danchitnis/ngspice-sf-mirror
   commit: ngspice-41
@@ -45,19 +45,19 @@
   commit: "0.11.1"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 879b86db7841251bf97b10e25b7c62a1e99c8021
+  commit: 079fffd0b18b7e7ab806d5674de0615731fe59d0
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
-  commit: b0f76bf4b7dddd59badd67f462e50ed8c9be484c
+  commit: 9ac7c7c3123f5a0a6844ef750f1902e2f66ada7b
 - name: qucs-s
   repo: https://github.com/ra3xdh/qucs_s
   commit: "2.1.0"
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: "2023.11.08"
+  commit: "2023.11.22"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 852f2bd25ddc3408a4bffa54194a9cac67bddd7d
+  commit: b2965f4c3d214d30a4ca1356ace4c8f9a945b774
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
