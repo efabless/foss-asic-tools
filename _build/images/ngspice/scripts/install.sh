@@ -27,7 +27,7 @@ make -j"$(nproc)"
 make install
 
 # Enable OSDI for IHP PDK
-if [ -f "$PDK_ROOT"/ihp-sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi ]; then
+if [ -f "$PDK_ROOT"/sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi ]; then
     FNAME="${TOOLS}/${NGSPICE_NAME}/${REPO_COMMIT_SHORT}"/share/ngspice/scripts/spinit
     cp "$FNAME" "$FNAME".bak
     sed -i "s/unset osdi_enabled/* unset osdi_enabled/g" "$FNAME"
@@ -41,5 +41,5 @@ if [ -f "$PDK_ROOT"/ihp-sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi ]; then
     sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/vbic_4T_et_cf.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/vbic_4T_et_cf.osdi#g" "$FNAME"
 
     # Copy OSDI PSP model for IHP
-    cp "$PDK_ROOT"/ihp-sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi "${TOOLS}"/"${NGSPICE_NAME}"/"${REPO_COMMIT_SHORT}"/lib/ngspice/psp103.osdi
+    cp "$PDK_ROOT"/sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi "${TOOLS}"/"${NGSPICE_NAME}"/"${REPO_COMMIT_SHORT}"/lib/ngspice/psp103.osdi
 fi

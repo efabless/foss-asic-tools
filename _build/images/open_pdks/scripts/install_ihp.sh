@@ -10,7 +10,8 @@ fi
 # INSTALL IHP-SG13G2
 ####################
 
-MYPDK="ihp-sg13g2"
+IHP_PDK="ihp-sg13g2"
+MY_PDK="sg13g2"
 
 cd /tmp || exit
 #git clone --depth=1 https://github.com/IHP-GmbH/IHP-Open-PDK.git ihp
@@ -25,14 +26,14 @@ git checkout dev
 find . -name "*.sch" -exec sed -i '/pre_osdi/d' {} \;
 
 # Now move to proper location
-if [ -d $MYPDK ]; then
-	mv $MYPDK "$PDK_ROOT"
+if [ -d $IHP_PDK ]; then
+	mv $IHP_PDK "$PDK_ROOT/$MY_PDK"
 fi
 
 ####################
 # Compile .va models
 ####################
-cd "$PDK_ROOT"/"$MYPDK"/libs.tech/ngspice/openvaf
+cd "$PDK_ROOT"/"$MY_PDK"/libs.tech/ngspice/openvaf
 
 # Compile the PSP model
 OPENVAF_VERSION=$(ls "$TOOLS/$OPENVAF_NAME")
