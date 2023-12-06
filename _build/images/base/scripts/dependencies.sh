@@ -6,9 +6,29 @@ set -e
 apt-get -y update && apt-get -y upgrade
 apt-get -y install tzdata software-properties-common wget gpg lsb-release
 
+# Proxy setup for APT (auth with user/password does not work with add-apt-repository)
+_proxy_detected () {
+    if [[ ${http_proxy:-"unset"} != "unset" || ${https_proxy:-"unset"} != "unset" ]]; then
+      return 0 
+    else
+      return 1
+    fi
+}
+
 # Preparations for adding Firefox later
-echo "[INFO] Adding Mozilla PPA"
-add-apt-repository -y ppa:mozillateam/ppa
+if _proxy_detected; then
+    echo "[INFO] Adding Mozilla PPA (proxy detected, we must avoid add-apt-repository)"
+    UBUNTU_CODENAME=$(lsb_release --short --codename)
+    cat <<EOF >> /etc/apt/sources.list
+deb http://ppa.launchpad.net/mozillateam/ppa/ubuntu $UBUNTU_CODENAME main
+deb-src http://ppa.launchpad.net/mozillateam/ppa/ubuntu $UBUNTU_CODENAME main
+EOF
+
+else
+    echo "[INFO] Adding Mozilla PPA"
+    add-apt-repository -y ppa:mozillateam/ppa
+fi
+
 # Add PPA to apt preferences list, so PPA > snap
 echo '
 Package: *
@@ -197,6 +217,11 @@ else
 	exit 1
 fi
 
+# Enable proxy auth for GIT
+if _proxy_detected; then
+    git config --global http.proxyAuthMethod 'basic'
+    git config --global http.sslVerify "false"
+fi
 
 # Need libboost >= 1.78 for OpenROAD
 apt-get -y remove libboost-all-dev
