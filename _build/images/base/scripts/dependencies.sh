@@ -240,6 +240,7 @@ pip3 install --upgrade --no-cache-dir \
 	plotly \
 	psutil \
 	pybind11 \
+	pytest \
 	pyyaml \
 	scikit-build \
 	scipy \
