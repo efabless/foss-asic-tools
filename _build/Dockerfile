@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="ac53e6d356bcf622de8af95f6f6c5d61a12eb9c2"
+ARG GTKWAVE_REPO_COMMIT="bdc22cd3e6662df672efbd8f4ed56b5227289c66"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.10.4"
+ARG NVC_REPO_COMMIT="r1.11.0"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="079fffd0b18b7e7ab806d5674de0615731fe59d0"
+ARG SLANG_REPO_COMMIT="2bcb74c814cd23a244730f5d6924e3a6013567a9"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -303,7 +303,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="b2965f4c3d214d30a4ca1356ace4c8f9a945b774"
+ARG XSCHEM_REPO_COMMIT="39769187d3371d3c0823deb7a1bedffdf88b3798"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

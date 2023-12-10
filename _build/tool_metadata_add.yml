@@ -21,7 +21,7 @@
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: ac53e6d356bcf622de8af95f6f6c5d61a12eb9c2
+  commit: bdc22cd3e6662df672efbd8f4ed56b5227289c66
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: a7884acc04cd94017779893d381b7e93d8895587
@@ -36,7 +36,7 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.10.4
+  commit: r1.11.0
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
   commit: 43b39cd209338b33d663973b0ab826290eca8d9e
@@ -45,7 +45,7 @@
   commit: "0.11.1"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 079fffd0b18b7e7ab806d5674de0615731fe59d0
+  commit: 2bcb74c814cd23a244730f5d6924e3a6013567a9
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: 9ac7c7c3123f5a0a6844ef750f1902e2f66ada7b
@@ -57,7 +57,7 @@
   commit: "2023.11.22"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: b2965f4c3d214d30a4ca1356ace4c8f9a945b774
+  commit: 39769187d3371d3c0823deb7a1bedffdf88b3798
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.7.0
