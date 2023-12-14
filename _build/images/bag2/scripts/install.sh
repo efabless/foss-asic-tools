@@ -14,3 +14,12 @@ git checkout "$BAG2_REPO_COMMIT"
 
 ./init_submodules.sh
 ./pip3userinstall.sh
+
+# create a file to be sourced in the final .bashrc
+cat <<EOF > "$TOOLS/$BAG2_NAME/sourceme.sh"
+export BAG_SRC_DIR="$BAG2_INSTALL_DIR"
+export BAG_GENERATOR_ROOT=/foss/designs/bag2
+export BAG_RUN_DIR=/foss/designs/bag2/BAG2_run_dir
+
+source $BAG_SRC_DIR/sourceme.sh
+EOF
