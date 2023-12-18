@@ -21,5 +21,5 @@ export BAG_SRC_DIR="$BAG2_INSTALL_DIR"
 export BAG_GENERATOR_ROOT=/foss/designs/bag2
 export BAG_RUN_DIR=/foss/designs/bag2/BAG2_run_dir
 
-source $BAG_SRC_DIR/sourceme.sh
+source \$BAG_SRC_DIR/sourceme.sh
 EOF
