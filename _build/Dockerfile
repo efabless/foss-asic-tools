@@ -71,8 +71,8 @@ ARG OPEN_PDKS_REPO_COMMIT="cd1748bb197f9b7af62a54507de6624e30363943"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
-# COPY images/open_pdks/scripts/install_ihp.sh install_ihp.sh
-# RUN bash install_ihp.sh 
+COPY images/open_pdks/scripts/install_ihp.sh install_ihp.sh
+RUN bash install_ihp.sh 
 
 #######################################################################
 # Compile covered 
