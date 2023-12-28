@@ -11,9 +11,9 @@ _install_atalanta () {
 	cd atalanta
 	git checkout 12d405311c3dc9f371a9009bb5cdc8844fe34f90
 	make -j"$(nproc)"
-	cp atalanta /usr/local/bin
+	make clear
 	cd ..
-	cp -R atalanta /usr/local/share
+	mv atalanta /opt/atalanta
 }
 _install_atalanta
 
