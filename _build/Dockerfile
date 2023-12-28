@@ -303,7 +303,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="f03a4ff68cbd0d2059fd18326f9a53bb54e8151d"
+ARG XSCHEM_REPO_COMMIT="64ca25b9fe50230531f20c5cff277e06ad01212f"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
