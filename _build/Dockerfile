@@ -58,7 +58,7 @@ RUN bash install.sh
 #######################################################################
 FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
-ARG OPEN_PDKS_REPO_COMMIT="e0f692f46654d6c7c99fc70a0c94a080dab53571"
+ARG OPEN_PDKS_REPO_COMMIT="cd1748bb197f9b7af62a54507de6624e30363943"
 ARG OPEN_PDKS_NAME="open_pdks"
 COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
 RUN bash install_volare.sh
@@ -133,7 +133,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="bdc22cd3e6662df672efbd8f4ed56b5227289c66"
+ARG GTKWAVE_REPO_COMMIT="a2373ef47518fe410827b14482f0ab0fd83c6c10"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -153,7 +153,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="58dcf39db3c1b59ce27bc335081e39f354b2cda1"
+ARG IVERILOG_REPO_COMMIT="734f2a076bb49bd13ae295cd4e814551338cdbb3"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -183,7 +183,7 @@ RUN bash install.sh
 #######################################################################
 FROM open_pdks as ngspice
 ARG NGSPICE_REPO_URL="https://github.com/danchitnis/ngspice-sf-mirror"
-ARG NGSPICE_REPO_COMMIT="ngspice-41"
+ARG NGSPICE_REPO_COMMIT="ngspice-42"
 ARG NGSPICE_NAME="ngspice"
 COPY images/ngspice/scripts/install.sh install.sh
 RUN bash install.sh
@@ -203,7 +203,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.11.0"
+ARG NVC_REPO_COMMIT="r1.11.1"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -213,7 +213,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.11.23"
+ARG OPENLANE_REPO_COMMIT="2023.12.27"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -223,7 +223,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="6f9b2bb8b808b1bb5831d4525d868212ae50517a"
+ARG OPENROAD_APP_REPO_COMMIT="75f2f325b7a42e56a92404f33af8e96530d9b202"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -273,7 +273,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.11.22"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.12.20"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -283,7 +283,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="2bcb74c814cd23a244730f5d6924e3a6013567a9"
+ARG SLANG_REPO_COMMIT="4177d5b6fe19818bbe85b146f8b7dae7a75d67c4"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -303,7 +303,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="39769187d3371d3c0823deb7a1bedffdf88b3798"
+ARG XSCHEM_REPO_COMMIT="f03a4ff68cbd0d2059fd18326f9a53bb54e8151d"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -314,7 +314,7 @@ RUN bash install.sh
 # FIXME build trilinos as own image, clean with commit etc.
 FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
-ARG XYCE_REPO_COMMIT="Release-7.7.0"
+ARG XYCE_REPO_COMMIT="Release-7.8.0"
 ARG XYCE_NAME="xyce"
 COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
 COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh
@@ -410,7 +410,7 @@ COPY --from=open_pdks                    ${PDK_ROOT}/           ${PDK_ROOT}/
 COPY --from=covered                      ${TOOLS}/              ${TOOLS}/
 COPY --from=cvc_rv                       ${TOOLS}/              ${TOOLS}/
 COPY --from=fault                        ${TOOLS}/              ${TOOLS}/
-COPY --from=fault                        /opt/swift/usr/lib/    /opt/swift/usr/lib/
+COPY --from=fault                        /opt/                  /opt/
 COPY --from=gaw3-xschem                  ${TOOLS}/              ${TOOLS}/
 COPY --from=gds3d                        ${TOOLS}/              ${TOOLS}/
 COPY --from=gds3d                        ${PDK_ROOT}/           ${PDK_ROOT}/
