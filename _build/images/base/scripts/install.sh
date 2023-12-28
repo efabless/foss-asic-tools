@@ -16,6 +16,7 @@ pip3 install --upgrade --no-cache-dir \
 	pyrtl \
 	pyspice \
 	pyverilog \
+	schemdraw \
 	scikit-rf \
 	siliconcompiler \
 	spyci \
