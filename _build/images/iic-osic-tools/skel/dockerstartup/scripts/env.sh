@@ -70,7 +70,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
 	_path_add_tool_custom   "align-utils"
 	
         export SAK=$TOOLS/sak/
-        export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH
+        export PATH=$TOOLS/bin:$SAK:/usr/local/sbin:$PATH:/opt/atalanta:/opt/swift/usr/bin
 
         # FIXME: OpenROAD in Ubuntu 22.04 does not find the PIP modules, so use PYTHONPATH
         PYTHONPATH=$(python -c "import sys; print(':'.join(x for x in sys.path if x))") && export PYTHONPATH 
