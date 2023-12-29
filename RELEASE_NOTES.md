@@ -2,10 +2,13 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
-## 2023.11
+## 2023.12
 
 * `OpenVAF` built from source during image build.
+* Adding `scikit-rf` and `schemdraw`.
+* Update `ngspice` to support KLU (fast solver) and Verilog co-simulation.
 * Update `OpenVAF` to enable MOS-FET noise simulation.
+* Update `gtkwave` to new build system.
 * Update various tool versions.
 * Remove `gcc-9` to reduce image size.
 
