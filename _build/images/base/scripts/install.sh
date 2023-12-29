@@ -9,7 +9,6 @@ pip3 install --upgrade --no-cache-dir \
 	edalize \
 	fusesoc \
 	hdl21 \
-	klayout \
 	gdsfactory \
 	gdspy \
 	openlane \
