@@ -78,7 +78,9 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_python "align"
         _path_add_tool_python "pyopus"
         export PYTHONPATH=$PYTHONPATH:$TOOLS/yosys/share/yosys/python3
-
+        KLAYOUT_PYTHON=("$TOOLS"/klayout/*/pymod)
+        export PYTHONPATH=$PYTHONPATH:${KLAYOUT_PYTHON[*]}
+        
         echo "[INFO] Final PATH variable: $PATH"
         echo "[INFO] Final PYTHONPATH variable: $PYTHONPATH"
         export FOSS_PATH_SET=1
