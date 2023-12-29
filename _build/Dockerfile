@@ -163,7 +163,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
-ARG KLAYOUT_REPO_COMMIT="44a2aa9ca17c2b1c154f9c410ded063de9ed3e12"
+ARG KLAYOUT_REPO_COMMIT="v0.28.13"
 ARG KLAYOUT_NAME="klayout"
 COPY images/klayout/scripts/install.sh install.sh
 RUN bash install.sh

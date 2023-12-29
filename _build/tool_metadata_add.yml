@@ -28,6 +28,9 @@
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
   commit: 734f2a076bb49bd13ae295cd4e814551338cdbb3
+- name: klayout
+  repo: https://github.com/KLayout/klayout
+  commit: v0.28.13
 - name: ngspice
   repo: https://github.com/danchitnis/ngspice-sf-mirror
   commit: ngspice-42
