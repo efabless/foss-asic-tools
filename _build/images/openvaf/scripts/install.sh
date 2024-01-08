@@ -8,18 +8,7 @@ git clone --filter=blob:none "${OPENVAF_REPO_URL}" "${OPENVAF_NAME}"
 cd "${OPENVAF_NAME}"
 git checkout "${OPENVAF_REPO_COMMIT}"
 
-# LLVM compile (needs LLVM<15)
-#./configure  --with-llvm-config --prefix="${TOOLS}/${OPENVAF_NAME}/${REPO_COMMIT_SHORT}"
-#make -j"$(nproc)"
-#make install
-
-export LLVM_CONFIG=/usr/bin/llvm-config-15
-
-[ ! -f /usr/bin/clang ] && ln -s /usr/bin/clang-15 /usr/bin/clang
-[ ! -f /usr/bin/clang-cl ] && ln -s /usr/bin/clang-cl-15 /usr/bin/clang-cl
-[ ! -f /usr/bin/llvm-lib ] && ln -s /usr/bin/llvm-lib-15 /usr/bin/llvm-lib
-[ ! -f /usr/bin/lld ] && ln -s /usr/bin/lld-15 /usr/bin/lld
-[ ! -f /usr/bin/ld.lld ] && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
+# LLVM compile (needs LLVM 15 or 16)
 
 # FIXME patching OpenVAF until PR is merged
 patch -p1 << EOF
