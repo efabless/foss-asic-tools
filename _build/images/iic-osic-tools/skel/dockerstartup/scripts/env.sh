@@ -119,14 +119,14 @@ fi
 #----------------------------------------
 
 alias magic='magic -d X11 -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
-alias mmagic='MAGTYPE=mag magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
-alias lmagic='MAGTYPE=maglef magic -rcfile $PDKPATH/libs.tech/magic/$PDK.magicrc'
+alias mmagic='MAGTYPE=mag magic'
+alias lmagic='MAGTYPE=maglef magic'
 
 alias k='klayout -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt'
 alias ke='klayout -e -nn $PDKPATH/libs.tech/klayout/tech/$PDK.lyt'
 
 alias xschem='xschem -b --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
-alias xschemtcl='xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
+alias xschemtcl='\xschem --rcfile $PDKPATH/libs.tech/xschem/xschemrc'
 
 alias openlane='openlane --manual-pdk'
 alias iic-pdk='source iic-pdk-script.sh'
