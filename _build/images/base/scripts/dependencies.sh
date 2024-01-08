@@ -197,6 +197,7 @@ BOOST_BUILD=0
 echo "[INFO] Installing BOOST version $BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD.$BOOST_BUILD"
 _install_boost () {
 	cd /tmp
+	# wget --no-verbose -O boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}.tar.gz https://sourceforge.net/projects/boost/files/boost/$BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD/boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}.tar.gz/download
 	wget --no-verbose https://boostorg.jfrog.io/artifactory/main/release/$BOOST_VER_MAJ.$BOOST_VER_MIN.$BOOST_BUILD/source/boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}.tar.gz
 	tar -xf boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}.tar.gz
 	cd boost_${BOOST_VER_MAJ}_${BOOST_VER_MIN}_${BOOST_BUILD}
