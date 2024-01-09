@@ -80,6 +80,7 @@ cleanup () {
 # https://unix.stackexchange.com/questions/67392/multiple-background-processes-in-a-script
 tag() { stdbuf -oL sed "s%^%$1 %"; }
 
+#UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
 
 if [ "$start_x" != true ] && [ "$start_vnc" != true ]; then
   if [ -z ${DISPLAY+x} ]; then

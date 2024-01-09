@@ -2,11 +2,11 @@
 
 set -e
 
-# Bootstrap APT
-apt-get -y update && apt-get -y upgrade
-apt-get -y install tzdata software-properties-common wget gpg lsb-release
+UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
 
-# Preparations for adding Firefox later
+apt-get -y update && apt-get -y upgrade
+apt-get -y install tzdata software-properties-common
+
 echo "[INFO] Adding Mozilla PPA"
 add-apt-repository -y ppa:mozillateam/ppa
 # Add PPA to apt preferences list, so PPA > snap
@@ -16,16 +16,6 @@ Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001
 ' | tee /etc/apt/preferences.d/mozilla-firefox
 
-# Preparations for adding VS Code later
-echo "[INFO] Adding APT package for VS Code"
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sh -c 'echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
-apt-get -y update && apt-get -y upgrade
-
-# See which Ubuntu version we are building in
-UBUNTU_VERSION=$(lsb_release -r -s)
 
 if [[ $UBUNTU_VERSION == 22.04 ]]; then
 echo "[INFO] Install APT packages for Ubuntu 22.04"
@@ -181,6 +171,7 @@ apt-get -y install \
 	tk-dev \
 	unzip \
 	uuid-dev \
+	wget \
 	xdot \
 	xvfb \
 	zip \

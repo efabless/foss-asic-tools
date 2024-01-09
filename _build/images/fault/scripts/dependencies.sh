@@ -2,7 +2,7 @@
 
 set -e
 
-UBUNTU_VERSION=$(lsb_release -r -s)
+UBUNTU_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release | sed 's/"//g')
 
 # Build Atalanta
 _install_atalanta () {

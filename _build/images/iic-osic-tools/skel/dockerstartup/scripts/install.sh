@@ -5,7 +5,6 @@ set -u
 
 echo "[INFO] Installing misc. packages"
 apt-get install -y \
-        code \
         firefox \
         gedit \
         gnuplot \
