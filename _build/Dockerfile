@@ -243,7 +243,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as pyopus
 ARG PYOPUS_REPO_URL="https://fides.fe.uni-lj.si/pyopus/download"
-ARG PYOPUS_REPO_COMMIT="0.11.1"
+ARG PYOPUS_REPO_COMMIT="0.11"
 ARG PYOPUS_NAME="pyopus"
 COPY images/pyopus/scripts/install.sh install.sh
 RUN bash install.sh
