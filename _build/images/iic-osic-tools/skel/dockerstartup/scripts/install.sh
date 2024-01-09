@@ -17,7 +17,6 @@ apt-get install -y \
         nmap \
         novnc \
         openems \
-        python3-openems \
         parallel \
         sudo \
         tigervnc-standalone-server \
