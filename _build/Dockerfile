@@ -40,6 +40,7 @@ FROM basepkg as openvaf
 ARG OPENVAF_REPO_URL="https://github.com/iic-jku/OpenVAF.git"
 ARG OPENVAF_REPO_COMMIT="a9697ae7780518f021f9f64e819b3a57033bd39f"
 ARG OPENVAF_NAME="openvaf"
+ENV OPENVAF_NAME=${OPENVAF_NAME}
 COPY images/openvaf/scripts/install.sh install.sh
 RUN bash install.sh
 
