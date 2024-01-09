@@ -254,6 +254,7 @@ pip3 install --upgrade --no-cache-dir \
 	setuptools-rust \
 	shapely \
 	tk \
+	virtualenv \
 	wheel \
 	xdot \
 	xlsxwriter \
