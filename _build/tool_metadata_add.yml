@@ -45,7 +45,7 @@
   commit: 43b39cd209338b33d663973b0ab826290eca8d9e
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
-  commit: "0.11.1"
+  commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
   commit: 4177d5b6fe19818bbe85b146f8b7dae7a75d67c4
