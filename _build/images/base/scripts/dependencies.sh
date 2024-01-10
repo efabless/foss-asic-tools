@@ -152,12 +152,30 @@ apt-get -y install \
 	pciutils \
 	pkg-config \
 	python3 \
+	python3-click \
+	python3-cvxopt \
 	python3-dev \
+	python3-flask \
+	python3-graphviz \
+	python3-matplotlib \
+	python3-numpy \
 	python3-pip \
+	python3-plotly \
+	python3-psutil \
+	python3-pybind11 \
+	python3-pyqt5 \
+	python3-pytest \
+	python3-scipy \
+	python3-setuptools \
+	python3-setuptools-rust \
+	python3-shapely \
 	python3-tk \
 	python3-venv \
-	python3-cvxopt \
-	python3-pyqt5 \
+	python3-virtualenv \
+	python3-wheel \
+	python3-xlsxwriter \
+	python3-xmltodict \
+	python3-yarl \
 	qt5-image-formats-plugins \
 	qt5-qmake \
 	qtbase5-dev \
@@ -241,34 +259,15 @@ _install_ortools
 
 echo "[INFO] Install support packages via PIP"
 pip3 install --upgrade --no-cache-dir \
-	click \
-	flask \
 	gobject \
-	graphviz \
 	libparse \
-	matplotlib \
 	maturin \
 	meson \
 	ninja \
-	numpy \
 	panda \
-	plotly \
-	psutil \
-	pybind11 \
-	pytest \
 	pyyaml \
 	scikit-build \
-	scipy \
-	setuptools \
-	setuptools-rust \
-	shapely \
-	tk \
-	virtualenv \
-	wheel \
-	xdot \
-	xlsxwriter \
-	xmltodict \
-	yarl
+	xdot
 
 
 # Cleanup to minimize image size
