@@ -68,10 +68,8 @@ volare enable "${OPEN_PDKS_REPO_COMMIT}" --pdk gf180mcu
 #FIXME maybe need to run spice model file reduction here as well
 #FIXME need to define a magic bindkeys for gf180mcu
 
-# remove version gf180mcuA/B/D to save space (efabless TO use gf180mcuC)
+# remove version gf180mcuA/B to save space (efabless TO use gf180mcuC, Chipathon use gf180mcuD)
 rm -rf "$PDK_ROOT"/volare/gf180mcu/versions/*/gf180mcuA
 rm -rf "$PDK_ROOT"/volare/gf180mcu/versions/*/gf180mcuB
-rm -rf "$PDK_ROOT"/volare/gf180mcu/versions/*/gf180mcuD
 rm -rf "$PDK_ROOT"/gf180mcuA
 rm -rf "$PDK_ROOT"/gf180mcuB
-rm -rf "$PDK_ROOT"/gf180mcuD
