@@ -6,7 +6,7 @@
   commit: v1.1.5
 - name: fault
   repo: https://github.com/AUCOHL/Fault
-  commit: 54e8665d638393a2e482b237b4ad2b5c02c7ec9a
+  commit: 6a45e7c2ecb1e8e2558199e472f6216c23684274
 - name: gaw3-xschem
   repo: https://github.com/StefanSchippers/xschem-gaw.git
   commit: 640c672e1ad768b92eb6a15943459a1d2214e1dc
@@ -15,22 +15,22 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: v3.0.0
+  commit: 304863d2b2067a9af9b5c6cc1e5ce2d995bf8592
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: 5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: a2373ef47518fe410827b14482f0ab0fd83c6c10
+  commit: 0d20555c6b4bff5f83673bc3dda580bccf033476
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: a7884acc04cd94017779893d381b7e93d8895587
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 734f2a076bb49bd13ae295cd4e814551338cdbb3
+  commit: 155ed084b0be2e0e21798fcd4b7cc0ff3379a1c0
 - name: klayout
   repo: https://github.com/KLayout/klayout
-  commit: v0.28.13
+  commit: v0.28.15
 - name: ngspice
   repo: https://github.com/danchitnis/ngspice-sf-mirror
   commit: ngspice-42
@@ -39,7 +39,7 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.11.1
+  commit: r1.11.2
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
   commit: 43b39cd209338b33d663973b0ab826290eca8d9e
@@ -48,10 +48,10 @@
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 4177d5b6fe19818bbe85b146f8b7dae7a75d67c4
+  commit: cd2a5e50a345ed9a6ed030a107cd96b956a7cbb9
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
-  commit: 9ac7c7c3123f5a0a6844ef750f1902e2f66ada7b
+  commit: 7314066deb9543436c76c817015f8554f09efdb0
 - name: qucs-s
   repo: https://github.com/ra3xdh/qucs_s
   commit: "2.1.0"
@@ -60,7 +60,7 @@
   commit: "2023.12.20"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 64ca25b9fe50230531f20c5cff277e06ad01212f
+  commit: 17e24e0f5f4e194f88fbe5e3ef9edb3d882fb902
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0

@@ -92,7 +92,7 @@ RUN bash install.sh
 # FIXME build dependencies clean as stand-alone stages
 FROM base as fault
 ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-ARG FAULT_REPO_COMMIT="54e8665d638393a2e482b237b4ad2b5c02c7ec9a"
+ARG FAULT_REPO_COMMIT="6a45e7c2ecb1e8e2558199e472f6216c23684274"
 ARG FAULT_NAME="fault"
 COPY images/fault/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
@@ -124,7 +124,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="v3.0.0"
+ARG GHDL_REPO_COMMIT="304863d2b2067a9af9b5c6cc1e5ce2d995bf8592"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -134,7 +134,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="a2373ef47518fe410827b14482f0ab0fd83c6c10"
+ARG GTKWAVE_REPO_COMMIT="0d20555c6b4bff5f83673bc3dda580bccf033476"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -154,7 +154,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="734f2a076bb49bd13ae295cd4e814551338cdbb3"
+ARG IVERILOG_REPO_COMMIT="155ed084b0be2e0e21798fcd4b7cc0ff3379a1c0"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -164,7 +164,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
-ARG KLAYOUT_REPO_COMMIT="v0.28.13"
+ARG KLAYOUT_REPO_COMMIT="v0.28.15"
 ARG KLAYOUT_NAME="klayout"
 COPY images/klayout/scripts/install.sh install.sh
 RUN bash install.sh
@@ -204,7 +204,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.11.1"
+ARG NVC_REPO_COMMIT="r1.11.2"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -254,7 +254,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as qflow
 ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
-ARG QFLOW_REPO_COMMIT="9ac7c7c3123f5a0a6844ef750f1902e2f66ada7b"
+ARG QFLOW_REPO_COMMIT="7314066deb9543436c76c817015f8554f09efdb0"
 ARG QFLOW_NAME="qflow"
 COPY images/qflow/scripts/install.sh install.sh
 RUN bash install.sh
@@ -284,7 +284,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="4177d5b6fe19818bbe85b146f8b7dae7a75d67c4"
+ARG SLANG_REPO_COMMIT="cd2a5e50a345ed9a6ed030a107cd96b956a7cbb9"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -304,7 +304,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="64ca25b9fe50230531f20c5cff277e06ad01212f"
+ARG XSCHEM_REPO_COMMIT="17e24e0f5f4e194f88fbe5e3ef9edb3d882fb902"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
