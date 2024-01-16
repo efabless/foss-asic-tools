@@ -11,6 +11,7 @@ pip3 install --upgrade --no-cache-dir \
 	hdl21 \
 	gdsfactory \
 	gdspy \
+	ipympl \
 	openlane \
 	openram \
 	pyrtl \
