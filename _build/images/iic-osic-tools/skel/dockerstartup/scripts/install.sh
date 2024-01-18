@@ -10,7 +10,13 @@ UBUNTU_CODENAME=$(awk -F= '/^VERSION_CODENAME/{print $2}' /etc/os-release | sed 
 echo "[INFO] Adding repositories and installing misc. packages"
 
 echo "[INFO] Adding Mozilla PPA"
-GNUPGHOME="/tmp" gpg --no-default-keyring --keyring /etc/apt/keyrings/mozillateam.gpg --keyserver keyserver.ubuntu.com --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21
+GNUPG_PROXY_OPTION=""
+if [[ ${http_proxy:-"unset"} != "unset" ]]; then
+    GNUPG_PROXY_OPTION="--keyserver-options http-proxy=$http_proxy"
+elif [[ ${https_proxy:-"unset"} != "unset" ]]; then
+    GNUPG_PROXY_OPTION="--keyserver-options http-proxy=$https_proxy"
+fi
+GNUPGHOME="/tmp" gpg --no-default-keyring $GNUPG_PROXY_OPTION --keyring /etc/apt/keyrings/mozillateam.gpg --keyserver keyserver.ubuntu.com --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21
 
 cat <<EOF >> /etc/apt/sources.list
 deb [signed-by=/etc/apt/keyrings/mozillateam.gpg] http://ppa.launchpad.net/mozillateam/ppa/ubuntu $UBUNTU_CODENAME main
