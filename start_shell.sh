@@ -58,11 +58,6 @@ if [ -z ${CONTAINER_NAME+z} ]; then
 	CONTAINER_NAME="iic-osic-tools_shell_uid_"$(id -u)
 fi
 
-PARAMS="--security-opt seccomp=unconfined"
-if [ -n "${DOCKER_EXTRA_PARAMS}" ]; then
-	PARAMS="${PARAMS} ${DOCKER_EXTRA_PARAMS}"
-fi
-
 # Check for UIDs and GIDs below 1000, except 0 (root)
 if [[ ${CONTAINER_USER} -ne 0 ]]  &&  [[ ${CONTAINER_USER} -lt 1000 ]]; then
 	prt_str="# [WARNING] Selected User ID ${CONTAINER_USER} is below 1000. This ID might interfere with User-IDs inside the container and cause undefined behavior! #"
