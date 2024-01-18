@@ -13,11 +13,15 @@ ENV IIC_OSIC_TOOLS_VERSION=${CONTAINER_TAG} \
     PDK_ROOT=/foss/pdks \
     DESIGNS=/foss/designs \
     EXAMPLES=/foss/examples
-COPY images/base/scripts/* /
+COPY images/base/scripts/00_base_install.sh /
 RUN bash 00_base_install.sh
+COPY images/base/scripts/01_base_setup.sh /
 RUN bash 01_base_setup.sh
+COPY images/base/scripts/30_install_boost.sh /
 RUN bash 30_install_boost.sh
+COPY images/base/scripts/31_install_or-tools.sh /
 RUN bash 31_install_or-tools.sh
+COPY images/base/scripts/70_install_from_pip.sh /
 RUN bash 70_install_from_pip.sh
 
 #######################################################################
