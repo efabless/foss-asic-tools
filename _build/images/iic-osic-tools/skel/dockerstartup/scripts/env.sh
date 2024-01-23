@@ -92,7 +92,7 @@ export XDG_RUNTIME_DIR=/tmp/runtime-default
 export ATALANTA_MAN=/usr/local/share/atalanta
 export OPENLANE_ROOT=$TOOLS/openlane
 export EDITOR='gedit'
-export PYTHONPYCACHEPREFIX="$DESIGNS/.pycache"
+export PYTHONPYCACHEPREFIX="/tmp/pycache"
 
 # Setting default PDK
 export PDK=sky130A
