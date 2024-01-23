@@ -57,7 +57,7 @@ RUN bash install.sh
 #######################################################################
 FROM openvaf as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="43b39cd209338b33d663973b0ab826290eca8d9e"
+ARG OSIC_MULTITOOL_REPO_COMMIT="512f0967c7bc74483e9c84f5756f53b326b74b32"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -100,7 +100,7 @@ RUN bash install.sh
 # FIXME build dependencies clean as stand-alone stages
 FROM base as fault
 ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
-ARG FAULT_REPO_COMMIT="6a45e7c2ecb1e8e2558199e472f6216c23684274"
+ARG FAULT_REPO_COMMIT="90b1192f7823fb99f3094bf3848b9e2e26a5181f"
 ARG FAULT_NAME="fault"
 COPY images/fault/scripts/dependencies.sh dependencies.sh
 RUN bash dependencies.sh
@@ -132,7 +132,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="304863d2b2067a9af9b5c6cc1e5ce2d995bf8592"
+ARG GHDL_REPO_COMMIT="95af05497c92a975d315cb227c242ffe07cb9716"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -142,7 +142,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="0d20555c6b4bff5f83673bc3dda580bccf033476"
+ARG GTKWAVE_REPO_COMMIT="51aa052db9440d634f588178759f20fec4cffdc2"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -162,7 +162,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="155ed084b0be2e0e21798fcd4b7cc0ff3379a1c0"
+ARG IVERILOG_REPO_COMMIT="0db1a0cc67f571b87a8ed78440ac69733a7e2e41"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -222,7 +222,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2023.12.27"
+ARG OPENLANE_REPO_COMMIT="2024.01.12"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -292,7 +292,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="cd2a5e50a345ed9a6ed030a107cd96b956a7cbb9"
+ARG SLANG_REPO_COMMIT="a060f15cdc6b04f5a84ba83cdeedacc8a9123b4b"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -312,7 +312,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="17e24e0f5f4e194f88fbe5e3ef9edb3d882fb902"
+ARG XSCHEM_REPO_COMMIT="a1c256950676b594bd751636b3b99dc12af63c21"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -349,7 +349,7 @@ RUN bash install.sh
 
 FROM base as ghdl-yosys-plugin
 ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
-ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="5b64ccfdeee6c75f70487c1ea153ec3e1fb26cd1"
+ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="0c4740a4f8f1e615cc587b3cd3849fa23a623862"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 COPY --from=yosys	${TOOLS}    ${TOOLS}
 COPY --from=ghdl	${TOOLS}    ${TOOLS}
