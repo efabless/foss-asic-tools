@@ -2,6 +2,13 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2024.01
+
+* Fix `PyOPUS` and `matplotlib`.
+* Adding `virtualenv`.
+* Adding `gf180mcuD` PDK flavor.
+* Bump various tool versions.
+
 ## 2023.12
 
 * `OpenVAF` built from source during image build.
