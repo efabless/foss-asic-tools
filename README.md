@@ -253,3 +253,16 @@ SET DESIGNS=\my\design\directory
 SET DOCKER_USERNAME=another_user
 .\start_x.bat
 ```
+
+
+## Support with Issues/Problems/Bugs
+
+We are open for your questions with this container and are very thankful for inputs! If you run into a problem and you are sure it is a bug, please let us know by following this routine:
+
+ * Take a look in the [KNOWN_ISSUES](KNOWN_ISSUES.md) and the [RELEASE_NOTES](RELEASE_NOTES.md). Both this files can include problems that we are already aware of and maybe include a workaround.
+ * Check the existing [Issues](https://github.com/iic-jku/IIC-OSIC-TOOLS/issues) on Github and see if the problem has been reported already. If yes, please participate in the discussion and help by further collecting information.
+ * Is the problem in connection with the container, or rather a problem with a specific tool? If it is the second, please also checkout the sources of the tool and further contact the maintainer!
+ * To help us fix the problem, please open an issue on Github and report the error. Please give us as much information as possible without being unneedingly verbose, so filter accordingly. It is also fine to open an issue with very little information, we will help you to narrow down the source of the error.
+ * Finally, if you can exactly know how to fix the reported error, we are also happy if you open a pull request with a fix!
+
+ Thank you for your cooperation!
