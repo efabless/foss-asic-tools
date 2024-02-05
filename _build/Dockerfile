@@ -132,7 +132,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="95af05497c92a975d315cb227c242ffe07cb9716"
+ARG GHDL_REPO_COMMIT="f9086ac6c678aaf380493632c89254b4c3d81d8a"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -162,7 +162,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="0db1a0cc67f571b87a8ed78440ac69733a7e2e41"
+ARG IVERILOG_REPO_COMMIT="2948e9a89f706144eab61dffc5642c959a019b8e"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -222,7 +222,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
-ARG NVC_REPO_COMMIT="r1.11.2"
+ARG NVC_REPO_COMMIT="r1.11.3"
 ARG NVC_NAME="nvc"
 COPY images/nvc/scripts/install.sh install.sh
 RUN bash install.sh
@@ -292,7 +292,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2023.12.20"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2024.02.02"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -302,7 +302,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="a060f15cdc6b04f5a84ba83cdeedacc8a9123b4b"
+ARG SLANG_REPO_COMMIT="8154635e271cf4a2006cfe109ff027651fca621a"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -322,7 +322,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="a1c256950676b594bd751636b3b99dc12af63c21"
+ARG XSCHEM_REPO_COMMIT="29d2541b212b119369b5eca3651262e93ebaa7d4"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh

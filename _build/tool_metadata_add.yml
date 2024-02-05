@@ -15,7 +15,7 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: 95af05497c92a975d315cb227c242ffe07cb9716
+  commit: f9086ac6c678aaf380493632c89254b4c3d81d8a
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: 0c4740a4f8f1e615cc587b3cd3849fa23a623862
@@ -27,7 +27,7 @@
   commit: a7884acc04cd94017779893d381b7e93d8895587
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 0db1a0cc67f571b87a8ed78440ac69733a7e2e41
+  commit: 2948e9a89f706144eab61dffc5642c959a019b8e
 - name: klayout
   repo: https://github.com/KLayout/klayout
   commit: v0.28.15
@@ -42,7 +42,7 @@
   commit: 154a2724080e3bf15827549bba9f315cd11984fe
 - name: nvc
   repo: https://github.com/nickg/nvc
-  commit: r1.11.2
+  commit: r1.11.3
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
   commit: 512f0967c7bc74483e9c84f5756f53b326b74b32
@@ -51,7 +51,7 @@
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: a060f15cdc6b04f5a84ba83cdeedacc8a9123b4b
+  commit: 8154635e271cf4a2006cfe109ff027651fca621a
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: 7314066deb9543436c76c817015f8554f09efdb0
@@ -60,10 +60,10 @@
   commit: "2.1.0"
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: "2023.12.20"
+  commit: "2024.02.02"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: a1c256950676b594bd751636b3b99dc12af63c21
+  commit: 29d2541b212b119369b5eca3651262e93ebaa7d4
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0
