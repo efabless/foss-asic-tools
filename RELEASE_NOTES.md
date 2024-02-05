@@ -4,7 +4,7 @@ This document summarizes the most important changes of the individual releases o
 
 ## 2024.01
 
-* Fix `PyOPUS` and `matplotlib`.
+* Fix `PyOPUS` and `matplotlib` (and therewith `openems`. Please see the known issues for an persisting problem).
 * Adding `virtualenv`.
 * Adding `gf180mcuD` PDK flavor.
 * Bump various tool versions.
