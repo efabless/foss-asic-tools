@@ -47,6 +47,7 @@ if [ -z ${FOSS_PATH_SET+x} ]; then
         _path_add_tool_bin      "irsim"
         _path_add_tool_bin      "iverilog"
         _path_add_tool          "klayout"
+        _path_add_tool_custom   "libman"
         _path_add_tool_bin      "magic"
         _path_add_tool_bin      "netgen"
         _path_add_tool_bin      "ngspice"

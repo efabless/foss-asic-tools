@@ -178,6 +178,16 @@ COPY images/klayout/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
+# Compile libman
+#######################################################################
+FROM base as libman
+ARG LIBMAN_REPO_URL="https://github.com/IHP-GmbH/LibMan"
+ARG LIBMAN_REPO_COMMIT="a4537c1fba19966e80408a7b224001d5697ff1e6"
+ARG LIBMAN_NAME="libman"
+COPY images/libman/scripts/install.sh install.sh
+RUN bash install.sh
+
+#######################################################################
 # Compile netgen (part of OpenLane)
 #######################################################################
 FROM base as netgen
@@ -428,6 +438,7 @@ COPY --from=gtkwave                      ${TOOLS}/              ${TOOLS}/
 COPY --from=irsim                        ${TOOLS}/              ${TOOLS}/
 COPY --from=iverilog                     ${TOOLS}/              ${TOOLS}/
 COPY --from=klayout                      ${TOOLS}/              ${TOOLS}/
+COPY --from=libman                       ${TOOLS}/              ${TOOLS}/
 COPY --from=magic                        ${TOOLS}/              ${TOOLS}/
 COPY --from=netgen                       ${TOOLS}/              ${TOOLS}/
 COPY --from=nvc                          ${TOOLS}/              ${TOOLS}/

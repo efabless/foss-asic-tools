@@ -71,8 +71,9 @@ Below is a list of the current tools already installed and ready to use (note th
 * [sg13g2](https://github.com/IHP-GmbH/IHP-Open-PDK) IHP Microelectronics 130nm SiGe:C BiCMOS PDK (partial PDK, not fully supported yet; `xschem` and `ngspice` simulation works incl. PSP MOSFET model)
 * [irsim](https://github.com/rtimothyedwards/irsim) switch-level digital simulator
 * [iverilog](https://github.com/steveicarus/iverilog.git) Verilog simulator
-* [hdl21](https://github.com/dan-fritchman/Hdl21) Analog hardware description library
+* [hdl21](https://github.com/dan-fritchman/Hdl21) analog hardware description library
 * [klayout](https://github.com/KLayout/klayout) layout viewer and editor for GDS and OASIS
+* [libman](https://github.com/IHP-GmbH/LibMan) design library manager to manage cells and views
 * [magic](https://github.com/rtimothyedwards/magic) layout editor with DRC and PEX
 * [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
@@ -101,7 +102,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [siliconcompiler](https://github.com/siliconcompiler/siliconcompiler) modular build system for hardware
 * [sky130](https://github.com/google/skywater-pdk.git) SkyWater Technologies 130nm CMOS PDK
 * [verilator](https://github.com/verilator/verilator) fast Verilog simulator
-* [vlsirtools](https://github.com/Vlsir/Vlsir) Interchange formats for chip design.
+* [vlsirtools](https://github.com/Vlsir/Vlsir) interchange formats for chip design.
 * [xschem](https://github.com/StefanSchippers/xschem.git) schematic editor
 * [xyce](https://github.com/Xyce/Xyce.git) fast parallel SPICE simulator (incl. `xdm` netlist conversion tool)
 * [yosys](https://github.com/YosysHQ/yosys) Verilog synthesis tool (with GHDL plugin for VHDL synthesis), incl. `eqy` (equivalence checker), `sby` (formal verification), and `mcy` (mutation coverage)

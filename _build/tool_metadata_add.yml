@@ -31,6 +31,9 @@
 - name: klayout
   repo: https://github.com/KLayout/klayout
   commit: v0.28.15
+- name: libman
+  repo: https://github.com/IHP-GmbH/LibMan
+  commit: a4537c1fba19966e80408a7b224001d5697ff1e6
 - name: ngspice
   repo: https://github.com/danchitnis/ngspice-sf-mirror
   commit: ngspice-42
