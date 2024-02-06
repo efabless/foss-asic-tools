@@ -9,6 +9,6 @@ git clone --filter=blob:none "${FAULT_REPO_URL}" "${FAULT_NAME}"
 cd "${FAULT_NAME}"
 git checkout "${FAULT_REPO_COMMIT}"
 git submodule update --init --recursive
-
+echo "[INFO] Compiling Fault using Swift."
 export PATH=/opt/swift/usr/bin:$PATH
 INSTALL_DIR=${TOOLS}/${FAULT_NAME}/${REPO_COMMIT_SHORT} swift ./install.swift
