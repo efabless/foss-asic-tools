@@ -99,7 +99,7 @@ RUN bash install.sh
 #######################################################################
 # FIXME build dependencies clean as stand-alone stages
 FROM base as fault
-ARG FAULT_REPO_URL="https://github.com/Cloud-V/Fault"
+ARG FAULT_REPO_URL="https://github.com/AUCOHL/Fault"
 ARG FAULT_REPO_COMMIT="90b1192f7823fb99f3094bf3848b9e2e26a5181f"
 ARG FAULT_NAME="fault"
 COPY images/fault/scripts/dependencies.sh dependencies.sh
