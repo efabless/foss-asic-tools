@@ -16,6 +16,9 @@ pip3 install --upgrade --no-cache-dir \
 	panda \
 	pyyaml \
 	scikit-build \
+	simanneal \
+	torch \
+	torch_geometric \
 	xdot
 
 echo "[INFO] Cleaning up caches"

@@ -140,15 +140,19 @@ apt-get -y install \
 	python3-numpy \
 	python3-pip \
 	python3-plotly \
+	python3-prettytable \
 	python3-psutil \
 	python3-pybind11 \
+	python3-pygame \
 	python3-pyqt5 \
 	python3-pytest \
+	python3-rtree \
 	python3-scipy \
 	python3-setuptools \
 	python3-setuptools-rust \
 	python3-shapely \
 	python3-tk \
+	python3-tqdm \
 	python3-venv \
 	python3-virtualenv \
 	python3-wheel \
