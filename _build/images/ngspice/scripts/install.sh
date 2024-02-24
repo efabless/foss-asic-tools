@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_COMMIT_SHORT=$(echo "$NGSPICE_REPO_COMMIT" | cut -c 1-7)
+REPO_COMMIT_SHORT=$(echo "$NGSPICE_REPO_COMMIT" | cut -c 1-10)
 
 git clone --filter=blob:none "${NGSPICE_REPO_URL}" "${NGSPICE_NAME}"
 cd "${NGSPICE_NAME}"
