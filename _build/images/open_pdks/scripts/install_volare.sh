@@ -27,6 +27,8 @@ if [ -d "$PDK_ROOT/sky130A" ]; then
 	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice tt
 	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ss
 	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ff
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice sf
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice fs
 
     echo "# Custom bindkeys for IIC" 		        >> "$PDK_ROOT/sky130A/libs.tech/magic/sky130A.magicrc"
     echo "source $SCRIPT_DIR/iic-magic-bindkeys" 	>> "$PDK_ROOT/sky130A/libs.tech/magic/sky130A.magicrc"
@@ -47,6 +49,8 @@ if [ -d "$PDK_ROOT/sky130B" ]; then
 	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice tt
 	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ss
 	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice ff
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice sf
+	"$SCRIPT_DIR/iic-spice-model-red.py" sky130.lib.spice fs
 
     echo "# Custom bindkeys for IIC" 		        >> "$PDK_ROOT/sky130B/libs.tech/magic/sky130B.magicrc"
     echo "source $SCRIPT_DIR/iic-magic-bindkeys" 	>> "$PDK_ROOT/sky130B/libs.tech/magic/sky130B.magicrc"
