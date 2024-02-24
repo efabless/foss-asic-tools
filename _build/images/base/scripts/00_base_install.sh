@@ -140,7 +140,6 @@ apt-get -y install \
 	python3-numpy \
 	python3-pip \
 	python3-plotly \
-	python3-prettytable \
 	python3-psutil \
 	python3-pybind11 \
 	python3-pygame \

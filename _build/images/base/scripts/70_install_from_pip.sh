@@ -14,6 +14,7 @@ pip3 install --upgrade --no-cache-dir \
 	meson \
 	ninja \
 	panda \
+	prettytable \
 	pyyaml \
 	scikit-build \
 	simanneal \
