@@ -22,7 +22,7 @@ _install_atalanta
 _install_swift () {
 	echo "[INFO] Installing Swift."
 	cd /tmp
-	SWIFT_VERSION=5.8
+	SWIFT_VERSION=5.9.2
 	if [[ $UBUNTU_VERSION == 22.04 ]]; then
 		if [ "$(arch)" == "x86_64" ]; then
 			echo "[INFO] Platform is x86_64, 22.04"
