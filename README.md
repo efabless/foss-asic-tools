@@ -23,7 +23,7 @@ See instructions on how to do this in the section [**Quick Launch for Designers*
 
 Enter the directory of this repository on your computer, and use one of the methods described in the section [**Quick Launch for Designers**](#quick-launch-for-designers) to start up and run a Docker container based on our image. The easiest way is probably to use the **VNC** mode.
 
-If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed. Please note that this compressed image will be extracted on your drive, so please provide at least **20GB of free drive space**. If, after a while, the consumed space gets larger, this is maybe due to unused images piling up. In this case, delete old ones; please consult the internet for instructions on operating Docker.
+If you do this the first time, or we have pushed an updated image to DockerHub, this can take a while since the image is pulled (loaded) automatically from DockerHub. Since this image is ca. 4GB, this takes time, depending on your internet speed. Please note that this compressed image will be extracted on your drive, so please provide at least **20GB of free drive space**. If, after a while, the consumed space gets larger, this may be due to unused images piling up. In this case, delete old ones; please consult the internet for instructions on operating Docker.
 
 If you know what you are doing and want full root access without a graphical interface, please use `./start_shell.sh`.
 
@@ -63,7 +63,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [fusesoc](https://github.com/olofk/fusesoc) package manager and build tools for SoC
 * [gaw3-xschem](https://github.com/StefanSchippers/xschem-gaw.git) waveform plot tool for `xschem`
 * [gdsfactory](https://github.com/gdsfactory/gdsfactory) Python library for GDS generation
-* [gdspy](https://github.com/heitzmann/gdspy) Python module for creation and manipulation of GDS files
+* [gdspy](https://github.com/heitzmann/gdspy) Python module for the creation and manipulation of GDS files
 * [gds3d](https://github.com/trilomix/GDS3D) a 3D viewer for GDS files
 * [gf180mcu](https://github.com/google/gf180mcu-pdk) GlobalFoundries 180nm CMOS PDK
 * [ghdl](https://github.com/ghdl/ghdl) VHDL simulator
@@ -75,7 +75,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [klayout](https://github.com/KLayout/klayout) layout viewer and editor for GDS and OASIS
 * [libman](https://github.com/IHP-GmbH/LibMan) design library manager to manage cells and views
 * [magic](https://github.com/rtimothyedwards/magic) layout editor with DRC and PEX
-* [netlistsvg](https://github.com/nturley/netlistsvg) draws SVG netlist from a `yosys` JSON netlist
+* [netlistsvg](https://github.com/nturley/netlistsvg) draws an SVG netlist from a `yosys` JSON netlist
 * [netgen](https://github.com/rtimothyedwards/netgen) netlist comparison (LVS)
 * [ngspice](http://ngspice.sourceforge.net) SPICE analog and mixed-signal simulator, with OSDI support
 * [ngspyce](https://github.com/ignamv/ngspyce) Python bindings for `ngspice`
@@ -255,15 +255,14 @@ SET DOCKER_USERNAME=another_user
 .\start_x.bat
 ```
 
-
 ## Support with Issues/Problems/Bugs
 
-We are open for your questions with this container and are very thankful for inputs! If you run into a problem and you are sure it is a bug, please let us know by following this routine:
+We are open to your questions about this container and are very thankful for your input! If you run into a problem and you are sure it is a bug, please let us know by following this routine:
 
- * Take a look in the [KNOWN_ISSUES](KNOWN_ISSUES.md) and the [RELEASE_NOTES](RELEASE_NOTES.md). Both this files can include problems that we are already aware of and maybe include a workaround.
- * Check the existing [Issues](https://github.com/iic-jku/IIC-OSIC-TOOLS/issues) on Github and see if the problem has been reported already. If yes, please participate in the discussion and help by further collecting information.
- * Is the problem in connection with the container, or rather a problem with a specific tool? If it is the second, please also checkout the sources of the tool and further contact the maintainer!
- * To help us fix the problem, please open an issue on Github and report the error. Please give us as much information as possible without being unneedingly verbose, so filter accordingly. It is also fine to open an issue with very little information, we will help you to narrow down the source of the error.
- * Finally, if you can exactly know how to fix the reported error, we are also happy if you open a pull request with a fix!
+* Take a look at the [KNOWN_ISSUES](KNOWN_ISSUES.md) and the [RELEASE_NOTES](RELEASE_NOTES.md). Both these files can include problems that we are already aware of and maybe include a workaround.
+* Check the existing [Issues](https://github.com/iic-jku/IIC-OSIC-TOOLS/issues) on GitHub and see if the problem has been reported already. If yes, please participate in the discussion and help by further collecting information.
+* Is the problem in connection with the container, or rather a problem with a specific tool? If it is the second, please also check out the sources of the tool and further contact the maintainer!
+* To help us fix the problem, please open an issue on Github and report the error. Please give us as much information as possible without being unneedingly verbose, so filter accordingly. It is also fine to open an issue with very little information, we will help you to narrow down the source of the error.
+* Finally, if you can exactly know how to fix the reported error, we are also happy if you open a pull request with a fix!
 
  Thank you for your cooperation!
