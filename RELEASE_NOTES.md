@@ -2,20 +2,27 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2024.02
+
+* Add Python packages for [IIC-RALF](https://github.com/iic-jku/IIC-RALF).
+* Add simple analog (inverter) and digital (counter) design examples in `/foss/examples`.
+* Add `libman` as a proposal for a design manager.
+* Update various tool versions.
+
 ## 2024.01
 
-* Fix `PyOPUS` and `matplotlib` (and therewith `openems`. Please see the known issues for an persisting problem).
+* Fix `PyOPUS` and `matplotlib` (and therewith `openems`. Please see the known issues for a persisting problem).
 * Adding `virtualenv`.
 * Adding `gf180mcuD` PDK flavor.
 * Bump various tool versions.
 
 ## 2023.12
 
-* `OpenVAF` built from source during image build.
+* `OpenVAF` is built from source during the image build.
 * Adding `scikit-rf` and `schemdraw`.
 * Update `ngspice` to support KLU (fast solver) and Verilog co-simulation.
 * Update `OpenVAF` to enable MOS-FET noise simulation.
-* Update `gtkwave` to new build system.
+* Update `gtkwave` to the new build system.
 * Update various tool versions.
 * Remove `gcc-9` to reduce image size.
 
@@ -48,7 +55,7 @@ This document summarizes the most important changes of the individual releases o
 * Fix XFCE configuration (background and other settings).
 * Cleanup of the startup script (container stops when subprocesses stop, redirect logs to Docker).
 * Update various tool versions.
-* Upgrade SWIFT to 5.8, upgrade LIBBOOST to 1.82, and removed legacy support of Ubuntu 20.04 LTS.
+* Upgrade SWIFT to 5.8, upgrade LIBBOOST to 1.82, and remove legacy support of Ubuntu 20.04 LTS.
 
 ## 2023.05
 
