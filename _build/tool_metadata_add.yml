@@ -15,7 +15,7 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: f9086ac6c678aaf380493632c89254b4c3d81d8a
+  commit: 5080b1443d1286a2aeeaa646b2b62a6cbe552763
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: 0c4740a4f8f1e615cc587b3cd3849fa23a623862
@@ -27,10 +27,10 @@
   commit: a7884acc04cd94017779893d381b7e93d8895587
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: 2948e9a89f706144eab61dffc5642c959a019b8e
+  commit: 3624a54f7fe9abda2de00b638733627ec09c6817
 - name: klayout
   repo: https://github.com/KLayout/klayout
-  commit: v0.28.15
+  commit: v0.28.17
 - name: libman
   repo: https://github.com/IHP-GmbH/LibMan
   commit: a4537c1fba19966e80408a7b224001d5697ff1e6
@@ -51,19 +51,19 @@
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 8154635e271cf4a2006cfe109ff027651fca621a
+  commit: 70c602e2364e766d7f37b507344574adafa86be8
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: 7314066deb9543436c76c817015f8554f09efdb0
 - name: qucs-s
   repo: https://github.com/ra3xdh/qucs_s
-  commit: "2.1.0"
+  commit: "24.1.0"
 - name: riscv-gnu-toolchain-rv32i
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
   commit: "2024.02.02"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 29d2541b212b119369b5eca3651262e93ebaa7d4
+  commit: 2fae34caa17f0a5bf193c722f2806fda577c3aa7
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0

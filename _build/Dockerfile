@@ -128,7 +128,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="f9086ac6c678aaf380493632c89254b4c3d81d8a"
+ARG GHDL_REPO_COMMIT="5080b1443d1286a2aeeaa646b2b62a6cbe552763"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -158,7 +158,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="2948e9a89f706144eab61dffc5642c959a019b8e"
+ARG IVERILOG_REPO_COMMIT="3624a54f7fe9abda2de00b638733627ec09c6817"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -168,7 +168,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
-ARG KLAYOUT_REPO_COMMIT="v0.28.15"
+ARG KLAYOUT_REPO_COMMIT="v0.28.17"
 ARG KLAYOUT_NAME="klayout"
 COPY images/klayout/scripts/install.sh install.sh
 RUN bash install.sh
@@ -278,7 +278,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as qucs-s
 ARG QUCS_S_REPO_URL="https://github.com/ra3xdh/qucs_s"
-ARG QUCS_S_REPO_COMMIT="2.1.0"
+ARG QUCS_S_REPO_COMMIT="24.1.0"
 ARG QUCS_S_NAME="qucs-s"
 COPY images/qucs-s/scripts/install.sh install.sh
 RUN bash install.sh
@@ -298,7 +298,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="8154635e271cf4a2006cfe109ff027651fca621a"
+ARG SLANG_REPO_COMMIT="70c602e2364e766d7f37b507344574adafa86be8"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -318,7 +318,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="29d2541b212b119369b5eca3651262e93ebaa7d4"
+ARG XSCHEM_REPO_COMMIT="2fae34caa17f0a5bf193c722f2806fda577c3aa7"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
