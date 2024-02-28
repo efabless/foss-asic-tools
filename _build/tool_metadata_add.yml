@@ -52,6 +52,9 @@
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
   commit: 70c602e2364e766d7f37b507344574adafa86be8
+- name: synlig-yosys-plugin
+  repo: https://github.com/chipsalliance/synlig.git
+  commit: fe8f61f1480faa1ea63377c6f60de74e5dca2713
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: 7314066deb9543436c76c817015f8554f09efdb0

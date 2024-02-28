@@ -344,7 +344,7 @@ COPY images/xyce-xdm/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile yosys (part of OpenLane) & yosys-ghdl-plugin
+# Compile yosys (part of OpenLane) & ghdl plugin & synlig plugin
 #######################################################################
 FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
@@ -360,6 +360,14 @@ ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 COPY --from=yosys	${TOOLS}    ${TOOLS}
 COPY --from=ghdl	${TOOLS}    ${TOOLS}
 COPY images/ghdl-yosys-plugin/scripts/install.sh install.sh
+RUN bash install.sh
+
+FROM base as synlig-yosys-plugin
+ARG SYNLIG_YOSYS_PLUGIN_REPO_URL="https://github.com/chipsalliance/synlig.git"
+ARG SYNLIG_YOSYS_PLUGIN_REPO_COMMIT="fe8f61f1480faa1ea63377c6f60de74e5dca2713"
+ARG SYNLIG_YOSYS_PLUGIN_NAME="synlig-yosys-plugin"
+COPY --from=yosys	${TOOLS}    ${TOOLS}
+COPY images/synlig-yosys-plugin/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
@@ -457,6 +465,7 @@ COPY --from=xyce                         ${TOOLS}/              ${TOOLS}/
 COPY --from=xyce-xdm                     ${TOOLS}/              ${TOOLS}/
 COPY --from=yosys                        ${TOOLS}/              ${TOOLS}/
 COPY --from=ghdl-yosys-plugin            ${TOOLS}_add/          ${TOOLS}/
+COPY --from=synlig-yosys-plugin          ${TOOLS}_add/          ${TOOLS}/
 COPY --from=align                        ${TOOLS}/              ${TOOLS}/
 COPY --from=align-pdk-sky130             ${TOOLS}/              ${TOOLS}/
 

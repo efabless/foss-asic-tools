@@ -96,6 +96,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
 * [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
 * [slang](https://github.com/MikePopoloski/slang) SystemVerilog parsing and translation (e.g. to Verilog)
+* [synlig](https://github.com/chipsalliance/synlig) SystemVerilog plugin for `yosys`
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion
 * [volare](https://github.com/efabless/volare) version manager (and builder) for open-source PDKs
 * [risc-v toolchain](https://github.com/riscv/riscv-gnu-toolchain) GNU compiler toolchain for RISC-V RV32I cores

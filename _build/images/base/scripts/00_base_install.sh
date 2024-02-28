@@ -8,6 +8,7 @@ echo "[INFO] Updating, upgrading and installing packages with APT"
 apt-get -y update
 apt-get -y upgrade
 apt-get -y install \
+	ant \
 	autoconf \
 	automake \
 	autotools-dev \
@@ -25,6 +26,7 @@ apt-get -y install \
 	curl \
 	cython3 \
 	debhelper \
+	default-jre \
 	desktop-file-utils \
 	devscripts \
 	doxygen \
@@ -40,6 +42,7 @@ apt-get -y install \
 	git \
 	gnat-11 \
 	gnupg2 \
+	google-perftools \
 	gperf \
 	gpg \
 	graphviz \
@@ -70,6 +73,7 @@ apt-get -y install \
 	libgit2-dev \
 	libgmp-dev \
 	libgomp1 \
+	libgoogle-perftools-dev \
 	libgtk-3-dev \
 	libgtk2.0-dev \
 	libjpeg-dev \
@@ -177,11 +181,13 @@ apt-get -y install \
 	tcl-dev \
 	tcllib \
 	tcl-tclreadline \
+	tclsh \
 	texinfo \
 	time \
 	tk-dev \
 	tzdata \
 	unzip \
+	uuid \
 	uuid-dev \
 	wget \
 	xdot \
