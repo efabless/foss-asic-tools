@@ -138,6 +138,7 @@ apt-get -y install \
 	python3-graphviz \
 	python3-matplotlib \
 	python3-numpy \
+	python3-orderedmultidict \
 	python3-pip \
 	python3-plotly \
 	python3-psutil \
