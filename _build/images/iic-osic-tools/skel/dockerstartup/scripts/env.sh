@@ -100,7 +100,6 @@ export PDK=sky130A
 export PDKPATH=$PDK_ROOT/$PDK
 export STD_CELL_LIBRARY=sky130_fd_sc_hd
 export ALIGN_PDKPATH=${TOOLS}/align-pdk-sky130/SKY130_PDK
-export KLAYOUT_HOME=$PDKPATH/libs.tech/klayout
 
 
 # FIXME: this gets rid of a few libGL errors

@@ -45,7 +45,7 @@
   commit: r1.11.3
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: d64a858e09ab46e921503e84e08df7163e0078d8
+  commit: 512f0967c7bc74483e9c84f5756f53b326b74b32
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11"
