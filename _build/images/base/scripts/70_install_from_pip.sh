@@ -14,10 +14,12 @@ pip3 install --upgrade --no-cache-dir \
 	meson \
 	ninja \
 	panda \
+	prettyprinttree \
 	prettytable \
 	pyyaml \
 	scikit-build \
 	simanneal \
+	svgutils \
 	torch \
 	torch_geometric \
 	xdot
