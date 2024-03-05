@@ -2,7 +2,7 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
-## 2024.02
+## 2024.03
 
 * Add `synlig` (SystemVerilog plugin for Yosys)
 * Add Python packages for [IIC-RALF](https://github.com/iic-jku/IIC-RALF).
