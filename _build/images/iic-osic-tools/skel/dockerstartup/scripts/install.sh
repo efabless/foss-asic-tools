@@ -61,6 +61,7 @@ apt-get install -y \
         vim \
         vim-gtk3 \
         websockify \
+        xarchiver \
         xfce4 \
         xfce4-terminal \
         xterm
