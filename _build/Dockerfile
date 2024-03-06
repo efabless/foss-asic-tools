@@ -53,7 +53,7 @@ RUN bash install.sh
 #######################################################################
 FROM openvaf as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="512f0967c7bc74483e9c84f5756f53b326b74b32"
+ARG OSIC_MULTITOOL_REPO_COMMIT="60591df3361def0e0f453fcc3833de331a3ad1be"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -128,7 +128,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="5080b1443d1286a2aeeaa646b2b62a6cbe552763"
+ARG GHDL_REPO_COMMIT="83bbd6617c438bc4eb25c6e3f6495a038ce8239c"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -138,7 +138,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="51aa052db9440d634f588178759f20fec4cffdc2"
+ARG GTKWAVE_REPO_COMMIT="f439c8ff0062d6125cb1c02b6f5bd19ebfae7453"
 ARG GTKWAVE_NAME="gtkwave"
 COPY images/gtkwave/scripts/install.sh install.sh
 RUN bash install.sh
@@ -158,7 +158,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
-ARG IVERILOG_REPO_COMMIT="3624a54f7fe9abda2de00b638733627ec09c6817"
+ARG IVERILOG_REPO_COMMIT="52d049b513dfa520e74f5abbf1acdda76650c499"
 ARG IVERILOG_NAME="iverilog"
 COPY images/iverilog/scripts/install.sh install.sh
 RUN bash install.sh
@@ -288,7 +288,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as riscv-gnu-toolchain-rv32i
 ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2024.02.02"
+ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2024.03.01"
 ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
 COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
 RUN bash install.sh
@@ -298,7 +298,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="70c602e2364e766d7f37b507344574adafa86be8"
+ARG SLANG_REPO_COMMIT="26532414a6092efa7169dd8b1690a661b2644aa0"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -318,7 +318,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="2fae34caa17f0a5bf193c722f2806fda577c3aa7"
+ARG XSCHEM_REPO_COMMIT="c88a8334a524858f7d7ff6dcf9967a271d04a702"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
