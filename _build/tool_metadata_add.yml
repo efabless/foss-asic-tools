@@ -15,7 +15,7 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: 83bbd6617c438bc4eb25c6e3f6495a038ce8239c
+  commit: b9bb6a915989a9bef75149b6e2b1c4ee62646177
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: 0c4740a4f8f1e615cc587b3cd3849fa23a623862
@@ -45,13 +45,13 @@
   commit: r1.11.3
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
-  commit: 60591df3361def0e0f453fcc3833de331a3ad1be
+  commit: 84f4323e39661cd1b83bc79a36389f3d16a2ce2e
 - name: pyopus
   repo: https://fides.fe.uni-lj.si/pyopus/download
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 26532414a6092efa7169dd8b1690a661b2644aa0
+  commit: ea14f8a6fcd8b75015c5c8587d16cc84176c9037
 - name: synlig-yosys-plugin
   repo: https://github.com/chipsalliance/synlig.git
   commit: fe8f61f1480faa1ea63377c6f60de74e5dca2713
@@ -66,7 +66,7 @@
   commit: "2024.03.01"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: c88a8334a524858f7d7ff6dcf9967a271d04a702
+  commit: 943c8f44536d49a31c3df53765a0b27efce9dc43
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0

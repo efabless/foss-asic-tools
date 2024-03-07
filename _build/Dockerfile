@@ -53,7 +53,7 @@ RUN bash install.sh
 #######################################################################
 FROM openvaf as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
-ARG OSIC_MULTITOOL_REPO_COMMIT="60591df3361def0e0f453fcc3833de331a3ad1be"
+ARG OSIC_MULTITOOL_REPO_COMMIT="84f4323e39661cd1b83bc79a36389f3d16a2ce2e"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
 COPY images/osic-multitool/scripts/install.sh install.sh
 RUN bash install.sh
@@ -128,7 +128,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="83bbd6617c438bc4eb25c6e3f6495a038ce8239c"
+ARG GHDL_REPO_COMMIT="b9bb6a915989a9bef75149b6e2b1c4ee62646177"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -228,7 +228,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2024.01.12"
+ARG OPENLANE_REPO_COMMIT="2024.03.07"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -238,7 +238,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
-ARG OPENROAD_APP_REPO_COMMIT="75f2f325b7a42e56a92404f33af8e96530d9b202"
+ARG OPENROAD_APP_REPO_COMMIT="0889970d1790a2617e69f253221b8bd7626e51dc"
 ARG OPENROAD_APP_NAME="openroad"
 COPY images/openroad/scripts/install.sh install.sh
 RUN bash install.sh
@@ -298,7 +298,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="26532414a6092efa7169dd8b1690a661b2644aa0"
+ARG SLANG_REPO_COMMIT="ea14f8a6fcd8b75015c5c8587d16cc84176c9037"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -318,7 +318,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="c88a8334a524858f7d7ff6dcf9967a271d04a702"
+ARG XSCHEM_REPO_COMMIT="943c8f44536d49a31c3df53765a0b27efce9dc43"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
