@@ -32,13 +32,13 @@ if [ -f "$PDK_ROOT"/sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi ]; then
     cp "$FNAME" "$FNAME".bak
     sed -i "s/unset osdi_enabled/* unset osdi_enabled/g" "$FNAME"
 
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/asmhemt.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/asmhemt.osdi#g" "$FNAME"
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/bjt504t.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/bjt504t.osdi#g" "$FNAME"
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/BSIMBULK107.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/BSIMBULK107.osdi#g" "$FNAME"
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/BSIMCMG.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/BSIMCMG.osdi#g" "$FNAME"
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/HICUMl0-2.0.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/HICUMl0-2.0.osdi#g" "$FNAME"
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/r2_cmc.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/r2_cmc.osdi#g" "$FNAME"
-    sed -i "s#osdi /foss/tools/ngspice/ngspice/lib/ngspice/vbic_4T_et_cf.osdi#* osdi /foss/tools/ngspice/ngspice/lib/ngspice/vbic_4T_et_cf.osdi#g" "$FNAME"
+    sed -i "/asmhemt.osdi/s/^/#/" "$FNAME"
+    sed -i "/bjt504t.osdi/s/^/#/" "$FNAME"
+    sed -i "/BSIMBULK107.osdi/s/^/#/" "$FNAME"
+    sed -i "/BSIMCMG.osdi/s/^/#/" "$FNAME"
+    sed -i "/HICUMl0-2.0.osdi/s/^/#/" "$FNAME"
+    sed -i "/r2_cmc.osdi/s/^/#/" "$FNAME"
+    sed -i "/vbic_4T_et_cf.osdi/s/^/#/" "$FNAME"
 
     # Copy OSDI PSP model for IHP
     cp "$PDK_ROOT"/sg13g2/libs.tech/ngspice/openvaf/psp103_nqs.osdi "${TOOLS}"/"${NGSPICE_NAME}"/"${REPO_COMMIT_SHORT}"/lib/ngspice/psp103.osdi
