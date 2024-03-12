@@ -69,8 +69,8 @@ apt-get -y install \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libgirepository1.0-dev \
-	libglu1-mesa-dev \
 	libgit2-dev \
+	libglu1-mesa-dev \
 	libgmp-dev \
 	libgomp1 \
 	libgoogle-perftools-dev \
@@ -95,8 +95,8 @@ apt-get -y install \
 	libqt5multimediawidgets5 \
 	libqt5svg5-dev \
 	libqt5xmlpatterns5-dev \
-	libreadline-dev \
 	libre2-dev \
+	libreadline-dev \
 	libsm-dev \
 	libspdlog-dev \
 	libsqlite3-dev \
@@ -147,10 +147,10 @@ apt-get -y install \
 	python3-babel \
 	python3-bleach \
 	python3-cachetools \
-	python3-charset-normalizer \
-	python3-cmd2 \
 	python3-cffi \
+	python3-charset-normalizer \
 	python3-click \
+	python3-cmd2 \
 	python3-commonmark \
 	python3-coverage \
 	python3-cvxopt \
@@ -180,9 +180,9 @@ apt-get -y install \
 	python3-joblib \
 	python3-json5 \
 	python3-jsonschema \
-	python3-jupyter-core \
 	python3-jupyter-client \
 	python3-jupyter-console \
+	python3-jupyter-core \
 	python3-jupyter-server \
 	python3-jupyterlab-server \
 	python3-linecache2 \
@@ -205,22 +205,22 @@ apt-get -y install \
 	python3-pandocfilters \
 	python3-parso \
 	python3-pexpect \
+	python3-pip \
+	python3-plotly \
 	python3-prettytable \
 	python3-prometheus-client \
 	python3-prompt-toolkit \
 	python3-protobuf \
+	python3-psutil \
 	python3-ptyprocess \
 	python3-pure-eval \
-	python3-pip \
-	python3-plotly \
-	python3-psutil \
 	python3-pybind11 \
 	python3-pycparser \
 	python3-pydantic \
 	python3-pygame \
 	python3-pyperclip \
-	python3-pyqtgraph \
 	python3-pyqt5 \
+	python3-pyqtgraph \
 	python3-pytest \
 	python3-qrcode \
 	python3-qtconsole \
@@ -244,10 +244,12 @@ apt-get -y install \
 	python3-testtools \
 	python3-threadpoolctl \
 	python3-tinycss2 \
+	python3-tk \
 	python3-tomli \
 	python3-toolz \
 	python3-torch \
 	python3-tornado \
+	python3-tqdm \
 	python3-traitlets \
 	python3-typer \
 	python3-typing-extensions \
@@ -255,17 +257,15 @@ apt-get -y install \
 	python3-unittest2 \
 	python3-uritemplate \
 	python3-validators \
+	python3-venv \
+	python3-virtualenv \
 	python3-voluptuous \
-	python3-tk \
-	python3-tqdm \
 	python3-watchdog \
 	python3-wcwidth \
 	python3-webcolors \
+	python3-wheel \
 	python3-widgetsnbextension \
 	python3-wrapt \
-	python3-venv \
-	python3-virtualenv \
-	python3-wheel \
 	python3-xlsxwriter \
 	python3-xmltodict \
 	python3-yarl \
@@ -285,8 +285,8 @@ apt-get -y install \
 	swig \
 	tcl \
 	tcl-dev \
-	tcllib \
 	tcl-tclreadline \
+	tcllib \
 	tclsh \
 	texinfo \
 	time \
