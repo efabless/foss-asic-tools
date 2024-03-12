@@ -5,13 +5,13 @@ set -e
 echo "[INFO] Install EDA packages via PIP"
 pip3 install --upgrade --no-cache-dir \
 	amaranth \
+	cace \
 	cocotb \
 	edalize \
 	fusesoc \
-	hdl21 \
 	gdsfactory \
 	gdspy \
-	ipympl \
+	hdl21 \
 	openlane \
 	openram \
 	pyrtl \
@@ -21,8 +21,8 @@ pip3 install --upgrade --no-cache-dir \
 	scikit-rf \
 	siliconcompiler \
 	spyci \
-	volare \
 	vlsirtools
+	volare \
 
 pip3 install --upgrade --no-cache-dir \
 	jupyter \

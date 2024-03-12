@@ -55,6 +55,7 @@ Below is a list of the current tools already installed and ready to use (note th
 
 * [align](https://github.com/ALIGN-analoglayout/ALIGN-public) automatic layout generation for analog circuits (only on `amd64` and for `sky130` PDK)
 * [amaranth](https://github.com/amaranth-lang/amaranth) a Python-based HDL toolchain
+* [cace](https://github.com/efabless/cace) a Python-based circuit automatic characterization engine
 * [cocotb](https://github.com/cocotb/cocotb) simulation library for writing VHDL and Verilog test benches in Python
 * [covered](https://github.com/hpretl/verilog-covered) Verilog code coverage
 * [cvc](https://github.com/d-m-bailey/cvc) circuit validity checker (ERC)
@@ -94,6 +95,7 @@ Below is a list of the current tools already installed and ready to use (note th
 * RF toolkit with [FastHenry2](https://github.com/ediloren/FastHenry2), [FasterCap](https://github.com/ediloren/FasterCap), [openEMS](https://github.com/thliebig/openEMS), and [scikit-rf](https://github.com/scikit-rf/scikit-rf).
 * [qucs-s](https://github.com/ra3xdh/qucs_s) simulation environment with RF emphasis
 * [rggen](https://github.com/rggen/rggen) code generation tool for configuration and status registers
+* [schemdraw](https://github.com/cdelker/schemdraw) Python package for drawing electrical schematics
 * [spyci](https://github.com/gmagno/spyci) analyze/plot `ngspice`/`xyce` output data with Python
 * [slang](https://github.com/MikePopoloski/slang) SystemVerilog parsing and translation (e.g. to Verilog)
 * [synlig](https://github.com/chipsalliance/synlig) SystemVerilog plugin for `yosys`
