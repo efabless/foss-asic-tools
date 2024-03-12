@@ -9,6 +9,7 @@ set -e
 echo "[INFO] Install support packages via PIP"
 pip3 install --upgrade --no-cache-dir \
 	gobject \
+	ipympl \
 	libparse \
 	maturin \
 	meson \
