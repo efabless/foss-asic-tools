@@ -205,6 +205,7 @@ apt-get -y install \
 	python3-pandocfilters \
 	python3-parso \
 	python3-pexpect \
+	python3-pickleshare \
 	python3-pip \
 	python3-plotly \
 	python3-prettytable \
