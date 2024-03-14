@@ -22,6 +22,10 @@ The package `fault` is currently not building correctly on macOS `aarch64`, thus
 
 The package `align` is currently not building correctly on `aarch64`, thus it is only available for `amd64`.
 
+### hdl21
+
+The package `hdl21` is temporarily removed, as the build fails.
+
 ## Build
 
 ### Boost

@@ -11,7 +11,6 @@ pip3 install --upgrade --no-cache-dir \
 	fusesoc \
 	gdsfactory \
 	gdspy \
-	hdl21 \
 	openlane \
 	openram \
 	pyrtl \
@@ -21,8 +20,10 @@ pip3 install --upgrade --no-cache-dir \
 	scikit-rf \
 	siliconcompiler \
 	spyci \
-	vlsirtools
-	volare \
+	vlsirtools \
+	volare
+
+#FIXME: temporary remove hdl21
 
 pip3 install --upgrade --no-cache-dir \
 	jupyter \
