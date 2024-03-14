@@ -128,7 +128,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="b9bb6a915989a9bef75149b6e2b1c4ee62646177"
+ARG GHDL_REPO_COMMIT="ec7cd59093dd919842c1e8dfb6a4e9bda4d58e7e"
 ARG GHDL_NAME="ghdl"
 COPY images/ghdl/scripts/install.sh install.sh
 RUN bash install.sh
@@ -228,7 +228,7 @@ RUN bash install.sh
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2024.03.07"
+ARG OPENLANE_REPO_COMMIT="2024.03.12"
 ARG OPENLANE_NAME="openlane"
 COPY images/openlane/scripts/install.sh install.sh
 RUN bash install.sh
@@ -298,7 +298,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="ea14f8a6fcd8b75015c5c8587d16cc84176c9037"
+ARG SLANG_REPO_COMMIT="cad562f821a575728e65f5414375c7cb94d2d124"
 ARG SLANG_NAME="slang"
 COPY images/slang/scripts/install.sh install.sh
 RUN bash install.sh
@@ -318,7 +318,7 @@ RUN bash install.sh
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="943c8f44536d49a31c3df53765a0b27efce9dc43"
+ARG XSCHEM_REPO_COMMIT="6c0398a8b6d6f7aaf82d664e8376f8378d446886"
 ARG XSCHEM_NAME="xschem"
 COPY images/xschem/scripts/install.sh install.sh
 RUN bash install.sh
@@ -364,7 +364,7 @@ RUN bash install.sh
 
 FROM base as synlig-yosys-plugin
 ARG SYNLIG_YOSYS_PLUGIN_REPO_URL="https://github.com/chipsalliance/synlig.git"
-ARG SYNLIG_YOSYS_PLUGIN_REPO_COMMIT="fe8f61f1480faa1ea63377c6f60de74e5dca2713"
+ARG SYNLIG_YOSYS_PLUGIN_REPO_COMMIT="d844d8d88520e07fa8c6e400ce5a117f7afee700"
 ARG SYNLIG_YOSYS_PLUGIN_NAME="synlig-yosys-plugin"
 COPY --from=yosys	${TOOLS}    ${TOOLS}
 COPY images/synlig-yosys-plugin/scripts/install.sh install.sh

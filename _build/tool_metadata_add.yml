@@ -15,7 +15,7 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: b9bb6a915989a9bef75149b6e2b1c4ee62646177
+  commit: ec7cd59093dd919842c1e8dfb6a4e9bda4d58e7e
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: 0c4740a4f8f1e615cc587b3cd3849fa23a623862
@@ -51,10 +51,10 @@
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: ea14f8a6fcd8b75015c5c8587d16cc84176c9037
+  commit: cad562f821a575728e65f5414375c7cb94d2d124
 - name: synlig-yosys-plugin
   repo: https://github.com/chipsalliance/synlig.git
-  commit: fe8f61f1480faa1ea63377c6f60de74e5dca2713
+  commit: d844d8d88520e07fa8c6e400ce5a117f7afee700
 - name: qflow
   repo: https://github.com/RTimothyEdwards/qflow.git
   commit: 7314066deb9543436c76c817015f8554f09efdb0
@@ -66,7 +66,7 @@
   commit: "2024.03.01"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 943c8f44536d49a31c3df53765a0b27efce9dc43
+  commit: 6c0398a8b6d6f7aaf82d664e8376f8378d446886
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0
