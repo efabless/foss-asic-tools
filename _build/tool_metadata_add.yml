@@ -66,7 +66,7 @@
   commit: "2024.03.01"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 6c0398a8b6d6f7aaf82d664e8376f8378d446886
+  commit: 91a2c98fedd18bd7cfceb2ae4139ce4167496c2f
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0
