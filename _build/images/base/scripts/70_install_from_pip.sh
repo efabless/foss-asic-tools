@@ -22,9 +22,7 @@ pip3 install --upgrade --no-cache-dir \
 	scikit-build \
 	simanneal \
 	svgutils \
-	torch \
-	torch_geometric \
-	xdot
+	torch_geometric
 
 echo "[INFO] Cleaning up caches"
 rm -rf /tmp/*

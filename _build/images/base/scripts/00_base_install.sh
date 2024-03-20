@@ -40,7 +40,7 @@ apt-get -y install \
 	gfortran \
 	ghostscript \
 	git \
-	gnat-11 \
+	gnat \
 	gnupg2 \
 	google-perftools \
 	gperf \
