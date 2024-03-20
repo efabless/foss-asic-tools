@@ -61,9 +61,6 @@
 - name: qucs-s
   repo: https://github.com/ra3xdh/qucs_s
   commit: "24.1.0"
-- name: riscv-gnu-toolchain-rv32i
-  repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
-  commit: "2024.03.01"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
   commit: 91a2c98fedd18bd7cfceb2ae4139ce4167496c2f

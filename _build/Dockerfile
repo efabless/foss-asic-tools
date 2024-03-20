@@ -284,16 +284,6 @@ COPY images/qucs-s/scripts/install.sh install.sh
 RUN bash install.sh
 
 #######################################################################
-# Compile riscv-gnu-toolchain-rv32i
-#######################################################################
-FROM base as riscv-gnu-toolchain-rv32i
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_URL="https://github.com/riscv-collab/riscv-gnu-toolchain.git"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_REPO_COMMIT="2024.03.01"
-ARG RISCV_GNU_TOOLCHAIN_RV32I_NAME="riscv-gnu-toolchain-rv32i"
-COPY images/riscv-gnu-toolchain-rv32i/scripts/install.sh install.sh
-RUN bash install.sh
-
-#######################################################################
 # Compile slang
 #######################################################################
 FROM base as slang
@@ -457,7 +447,6 @@ COPY --from=pyopus                       ${TOOLS}/              ${TOOLS}/
 COPY --from=qflow                        ${TOOLS}/              ${TOOLS}/
 COPY --from=qucs-s                       ${TOOLS}/              ${TOOLS}/
 COPY --from=rftoolkit                    ${TOOLS}/              ${TOOLS}/
-COPY --from=riscv-gnu-toolchain-rv32i    ${TOOLS}/              ${TOOLS}/
 COPY --from=slang                        ${TOOLS}/              ${TOOLS}/
 COPY --from=verilator                    ${TOOLS}/              ${TOOLS}/
 COPY --from=xschem                       ${TOOLS}/              ${TOOLS}/

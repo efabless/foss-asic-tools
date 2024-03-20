@@ -101,7 +101,6 @@ Below is a list of the current tools already installed and ready to use (note th
 * [synlig](https://github.com/chipsalliance/synlig) SystemVerilog plugin for `yosys`
 * [vlog2verilog](https://github.com/RTimothyEdwards/qflow.git) Verilog file conversion
 * [volare](https://github.com/efabless/volare) version manager (and builder) for open-source PDKs
-* [risc-v toolchain](https://github.com/riscv/riscv-gnu-toolchain) GNU compiler toolchain for RISC-V RV32I cores
 * [siliconcompiler](https://github.com/siliconcompiler/siliconcompiler) modular build system for hardware
 * [sky130](https://github.com/google/skywater-pdk.git) SkyWater Technologies 130nm CMOS PDK
 * [verilator](https://github.com/verilator/verilator) fast Verilog simulator
