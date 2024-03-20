@@ -13,6 +13,9 @@ if [ "$(arch)" == "x86_64" ]; then
 
     #python3 setup.py install
     pip3 install . --prefix="${TOOLS}/$ALIGN_NAME/$REPO_COMMIT_SHORT" --no-cache-dir
+    
+    # cleanup uneeded temporary build directories (see https://github.com/ALIGN-analoglayout/ALIGN-public/blob/master/docker/dockerfile)
+    rm -rf "${TOOLS}/$ALIGN_NAME/$REPO_COMMIT_SHORT/_skbuild"
 else
     mkdir -p "${TOOLS}/$ALIGN_NAME"
     echo "This CPU architecture is not supported yet!" > "${TOOLS}/$ALIGN_NAME/README.txt"
