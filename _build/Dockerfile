@@ -24,8 +24,8 @@ RUN bash 00_base_install.sh && \
 # Add base packages (install via pip, npm, or gem)
 #######################################################################
 FROM base as basepkg
-COPY images/base/scripts/install.sh install.sh
-RUN bash install.sh
+COPY images/base/scripts/99_basepkg_install.sh 99_basepkg_install.sh
+RUN bash 99_basepkg_install.sh
 
 #######################################################################
 # Compile magic (part of OpenLane)
