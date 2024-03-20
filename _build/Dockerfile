@@ -13,19 +13,20 @@ ENV IIC_OSIC_TOOLS_VERSION=${CONTAINER_TAG} \
     PDK_ROOT=/foss/pdks \
     DESIGNS=/foss/designs \
     EXAMPLES=/foss/examples
-COPY images/base/scripts/* /
-RUN bash 00_base_install.sh && \
-    bash 01_base_setup.sh && \
-    bash 30_install_boost.sh && \
-    bash 31_install_or-tools.sh && \
-    bash 70_install_from_pip.sh
+#COPY images/base/scripts/* /
+RUN --mount=type=bind,source=images/base,target=/images/base \
+    bash /images/base/scripts/00_base_install.sh && \
+    bash /images/base/scripts/01_base_setup.sh && \
+    bash /images/base/scripts/30_install_boost.sh && \
+    bash /images/base/scripts/31_install_or-tools.sh && \
+    bash /images/base/scripts/70_install_from_pip.sh
 
 #######################################################################
 # Add base packages (install via pip, npm, or gem)
 #######################################################################
 FROM base as basepkg
-COPY images/base/scripts/99_basepkg_install.sh 99_basepkg_install.sh
-RUN bash 99_basepkg_install.sh
+RUN --mount=type=bind,source=images/base,target=/images/base \
+    bash /images/base/scripts/99_basepkg_install.sh
 
 #######################################################################
 # Compile magic (part of OpenLane)
@@ -35,7 +36,8 @@ ARG MAGIC_REPO_URL="https://github.com/rtimothyedwards/magic"
 ARG MAGIC_REPO_COMMIT="0afe4d87d4aacfbbb2659129a1858a22d216a920"
 ARG MAGIC_NAME="magic"
 COPY images/magic/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/magic,target=/images/magic \
+    bash /images/magic/scripts/install.sh
 
 #######################################################################
 # Compile openvaf
@@ -45,8 +47,8 @@ ARG OPENVAF_REPO_URL="https://github.com/iic-jku/OpenVAF.git"
 ARG OPENVAF_REPO_COMMIT="a9697ae7780518f021f9f64e819b3a57033bd39f"
 ARG OPENVAF_NAME="openvaf"
 ENV OPENVAF_NAME=${OPENVAF_NAME}
-COPY images/openvaf/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/openvaf,target=/images/openvaf \
+    bash /images/openvaf/scripts/install.sh
 
 #######################################################################
 # Compile osic-multitool
@@ -55,8 +57,8 @@ FROM openvaf as osic-multitool
 ARG OSIC_MULTITOOL_REPO_URL="https://github.com/iic-jku/osic-multitool.git"
 ARG OSIC_MULTITOOL_REPO_COMMIT="84f4323e39661cd1b83bc79a36389f3d16a2ce2e"
 ARG OSIC_MULTITOOL_NAME="osic-multitool"
-COPY images/osic-multitool/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/osic-multitool,target=/images/osic-multitool \
+    bash /images/osic-multitool/scripts/install.sh
 
 #######################################################################
 # Create open_pdks (part of OpenLane)
@@ -65,10 +67,10 @@ FROM osic-multitool as open_pdks
 ARG OPEN_PDKS_REPO_URL="https://github.com/RTimothyEdwards/open_pdks"
 ARG OPEN_PDKS_REPO_COMMIT="cd1748bb197f9b7af62a54507de6624e30363943"
 ARG OPEN_PDKS_NAME="open_pdks"
-COPY images/open_pdks/scripts/install_volare.sh install_volare.sh
-RUN bash install_volare.sh
-COPY images/open_pdks/scripts/install_ihp.sh install_ihp.sh
-RUN bash install_ihp.sh 
+RUN --mount=type=bind,source=images/open_pdks,target=/images/open_pdks \
+    bash /images/open_pdks/scripts/install_volare.sh
+RUN --mount=type=bind,source=images/open_pdks,target=/images/open_pdks \
+    bash /images/open_pdks/scripts/install_ihp.sh
 
 #######################################################################
 # Compile covered 
@@ -77,8 +79,9 @@ FROM base as covered
 ARG COVERED_REPO_URL="https://github.com/hpretl/verilog-covered"
 ARG COVERED_REPO_COMMIT="19d30fc942642b14dc24e95331cd4777c8dcbad9"
 ARG COVERED_NAME="covered"
-COPY images/covered/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/covered,target=/images/covered \
+    bash /images/covered/scripts/install.sh
+
 
 #######################################################################
 # Compile cvc_rv
@@ -87,8 +90,8 @@ FROM base as cvc_rv
 ARG CVC_RV_REPO_URL="https://github.com/d-m-bailey/cvc"
 ARG CVC_RV_REPO_COMMIT="v1.1.5"
 ARG CVC_RV_NAME="cvc_rv"
-COPY images/cvc_rv/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/cvc_rv,target=/images/cvc_rv \
+    bash /images/cvc_rv/scripts/install.sh
 
 #######################################################################
 # Compile fault
@@ -98,10 +101,10 @@ FROM basepkg as fault
 ARG FAULT_REPO_URL="https://github.com/AUCOHL/Fault"
 ARG FAULT_REPO_COMMIT="90b1192f7823fb99f3094bf3848b9e2e26a5181f"
 ARG FAULT_NAME="fault"
-COPY images/fault/scripts/dependencies.sh dependencies.sh
-RUN bash dependencies.sh
-COPY images/fault/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/fault,target=/images/fault \
+    bash /images/fault/scripts/dependencies.sh
+RUN --mount=type=bind,source=images/fault,target=/images/fault \
+    bash /images/fault/scripts/install.sh
 
 #######################################################################
 # Compile gaw3-xschem
@@ -110,8 +113,8 @@ FROM base as gaw3-xschem
 ARG GAW3_XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem-gaw.git"
 ARG GAW3_XSCHEM_REPO_COMMIT="640c672e1ad768b92eb6a15943459a1d2214e1dc"
 ARG GAW3_XSCHEM_NAME="gaw3-xschem"
-COPY images/gaw3-xschem/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/gaw3-xschem,target=/images/gaw3-xschem \
+    bash /images/gaw3-xschem/scripts/install.sh
 
 #######################################################################
 # Compile GDS3D
@@ -120,8 +123,8 @@ FROM open_pdks as gds3d
 ARG GDS3D_REPO_URL="https://github.com/trilomix/GDS3D.git"
 ARG GDS3D_REPO_COMMIT="173da0cc2f3804984b7e77862fbb0c3f4e308a4b"
 ARG GDS3D_NAME="gds3d"
-COPY images/gds3d/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/gds3d,target=/images/gds3d \
+    bash /images/gds3d/scripts/install.sh
 
 #######################################################################
 # Compile ghdl
@@ -130,8 +133,8 @@ FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
 ARG GHDL_REPO_COMMIT="ec7cd59093dd919842c1e8dfb6a4e9bda4d58e7e"
 ARG GHDL_NAME="ghdl"
-COPY images/ghdl/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/ghdl,target=/images/ghdl \
+    bash /images/ghdl/scripts/install.sh
 
 #######################################################################
 # Compile gtkwave
@@ -140,8 +143,8 @@ FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
 ARG GTKWAVE_REPO_COMMIT="f439c8ff0062d6125cb1c02b6f5bd19ebfae7453"
 ARG GTKWAVE_NAME="gtkwave"
-COPY images/gtkwave/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/gtkwave,target=/images/gtkwave \
+    bash /images/gtkwave/scripts/install.sh
 
 #######################################################################
 # Compile irsim
@@ -150,8 +153,8 @@ FROM base as irsim
 ARG IRSIM_REPO_URL="https://github.com/rtimothyedwards/irsim"
 ARG IRSIM_REPO_COMMIT="a7884acc04cd94017779893d381b7e93d8895587"
 ARG IRSIM_NAME="irsim"
-COPY images/irsim/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/irsim,target=/images/irsim \
+    bash /images/irsim/scripts/install.sh
 
 #######################################################################
 # Compile iverilog
@@ -160,8 +163,8 @@ FROM base as iverilog
 ARG IVERILOG_REPO_URL="https://github.com/steveicarus/iverilog.git"
 ARG IVERILOG_REPO_COMMIT="52d049b513dfa520e74f5abbf1acdda76650c499"
 ARG IVERILOG_NAME="iverilog"
-COPY images/iverilog/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/iverilog,target=/images/iverilog \
+    bash /images/iverilog/scripts/install.sh
 
 #######################################################################
 # Compile klayout (part of OpenLane)
@@ -170,8 +173,8 @@ FROM basepkg as klayout
 ARG KLAYOUT_REPO_URL="https://github.com/KLayout/klayout"
 ARG KLAYOUT_REPO_COMMIT="v0.28.17"
 ARG KLAYOUT_NAME="klayout"
-COPY images/klayout/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/klayout,target=/images/klayout \
+    bash /images/klayout/scripts/install.sh
 
 #######################################################################
 # Compile libman
@@ -180,8 +183,8 @@ FROM base as libman
 ARG LIBMAN_REPO_URL="https://github.com/IHP-GmbH/LibMan"
 ARG LIBMAN_REPO_COMMIT="a4537c1fba19966e80408a7b224001d5697ff1e6"
 ARG LIBMAN_NAME="libman"
-COPY images/libman/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/libman,target=/images/libman \
+    bash /images/libman/scripts/install.sh
 
 #######################################################################
 # Compile netgen (part of OpenLane)
@@ -190,8 +193,8 @@ FROM base as netgen
 ARG NETGEN_REPO_URL="https://github.com/rtimothyedwards/netgen"
 ARG NETGEN_REPO_COMMIT="87d8759a6980d297edcb9be6f8661867e4726f9a"
 ARG NETGEN_NAME="netgen"
-COPY images/netgen/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/netgen,target=/images/netgen \
+    bash /images/netgen/scripts/install.sh
 
 #######################################################################
 # Compile ngspice
@@ -200,8 +203,8 @@ FROM open_pdks as ngspice
 ARG NGSPICE_REPO_URL="https://github.com/danchitnis/ngspice-sf-mirror"
 ARG NGSPICE_REPO_COMMIT="ngspice-42"
 ARG NGSPICE_NAME="ngspice"
-COPY images/ngspice/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/ngspice,target=/images/ngspice \
+    bash /images/ngspice/scripts/install.sh
 
 #######################################################################
 # Compile ngspyce
@@ -210,8 +213,8 @@ FROM basepkg as ngspyce
 ARG NGSPYCE_REPO_URL="https://github.com/ignamv/ngspyce"
 ARG NGSPYCE_REPO_COMMIT="154a2724080e3bf15827549bba9f315cd11984fe"
 ARG NGSPYCE_NAME="ngspyce"
-COPY images/ngspyce/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/ngspyce,target=/images/ngspyce \
+    bash /images/ngspyce/scripts/install.sh
 
 #######################################################################
 # Compile nvc (VHDL simulator)
@@ -220,8 +223,8 @@ FROM base as nvc
 ARG NVC_REPO_URL="https://github.com/nickg/nvc"
 ARG NVC_REPO_COMMIT="r1.11.3"
 ARG NVC_NAME="nvc"
-COPY images/nvc/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/nvc,target=/images/nvc \
+    bash /images/nvc/scripts/install.sh
 
 #######################################################################
 # Compile openlane (part of OpenLane)
@@ -230,8 +233,8 @@ FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
 ARG OPENLANE_REPO_COMMIT="2024.03.12"
 ARG OPENLANE_NAME="openlane"
-COPY images/openlane/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/openlane,target=/images/openlane \
+    bash /images/openlane/scripts/install.sh
 
 #######################################################################
 # Compile openroad (part of OpenLane)
@@ -240,8 +243,8 @@ FROM base as openroad_app
 ARG OPENROAD_APP_REPO_URL="https://github.com/The-OpenROAD-Project/OpenROAD.git"
 ARG OPENROAD_APP_REPO_COMMIT="0889970d1790a2617e69f253221b8bd7626e51dc"
 ARG OPENROAD_APP_NAME="openroad"
-COPY images/openroad/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/openroad,target=/images/openroad \
+    bash /images/openroad/scripts/install.sh
 
 #######################################################################
 # Compile padring (part of OpenLane)
@@ -250,8 +253,8 @@ FROM base as padring
 ARG PADRING_REPO_URL="https://github.com/donn/padring"
 ARG PADRING_REPO_COMMIT="b2a64abcc8561d758c0bcb3945117dcb13bd9dca"
 ARG PADRING_NAME="padring"
-COPY images/padring/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/padring,target=/images/padring \
+    bash /images/padring/scripts/install.sh
 
 #######################################################################
 # Compile pyopus
@@ -260,8 +263,8 @@ FROM basepkg as pyopus
 ARG PYOPUS_REPO_URL="https://fides.fe.uni-lj.si/pyopus/download"
 ARG PYOPUS_REPO_COMMIT="0.11"
 ARG PYOPUS_NAME="pyopus"
-COPY images/pyopus/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/pyopus,target=/images/pyopus \
+    bash /images/pyopus/scripts/install.sh
 
 #######################################################################
 # Compile qflow helper files
@@ -270,8 +273,8 @@ FROM base as qflow
 ARG QFLOW_REPO_URL="https://github.com/RTimothyEdwards/qflow.git"
 ARG QFLOW_REPO_COMMIT="7314066deb9543436c76c817015f8554f09efdb0"
 ARG QFLOW_NAME="qflow"
-COPY images/qflow/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/qflow,target=/images/qflow \
+    bash /images/qflow/scripts/install.sh
 
 #######################################################################
 # Compile qucs-s
@@ -280,8 +283,8 @@ FROM base as qucs-s
 ARG QUCS_S_REPO_URL="https://github.com/ra3xdh/qucs_s"
 ARG QUCS_S_REPO_COMMIT="24.1.0"
 ARG QUCS_S_NAME="qucs-s"
-COPY images/qucs-s/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/qucs-s,target=/images/qucs-s \
+    bash /images/qucs-s/scripts/install.sh
 
 #######################################################################
 # Compile slang
@@ -290,8 +293,8 @@ FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
 ARG SLANG_REPO_COMMIT="cad562f821a575728e65f5414375c7cb94d2d124"
 ARG SLANG_NAME="slang"
-COPY images/slang/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/slang,target=/images/slang \
+    bash /images/slang/scripts/install.sh
 
 #######################################################################
 # Compile verilator (part of OpenLane)
@@ -300,8 +303,8 @@ FROM base as verilator
 ARG VERILATOR_REPO_URL="https://github.com/verilator/verilator"
 ARG VERILATOR_REPO_COMMIT="67dfa37c560385827218350ea936eb1baf604240"
 ARG VERILATOR_NAME="verilator"
-COPY images/verilator/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/verilator,target=/images/verilator \
+    bash /images/verilator/scripts/install.sh
 
 #######################################################################
 # Compile xschem
@@ -310,8 +313,8 @@ FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
 ARG XSCHEM_REPO_COMMIT="91a2c98fedd18bd7cfceb2ae4139ce4167496c2f"
 ARG XSCHEM_NAME="xschem"
-COPY images/xschem/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/xschem,target=/images/xschem \
+    bash /images/xschem/scripts/install.sh
 
 #######################################################################
 # Compile xyce & xyce-xdm
@@ -321,17 +324,15 @@ FROM base as xyce
 ARG XYCE_REPO_URL="https://github.com/Xyce/Xyce.git"
 ARG XYCE_REPO_COMMIT="Release-7.8.0"
 ARG XYCE_NAME="xyce"
-COPY images/xyce/scripts/trilinos.reconfigure.sh /trilinos.reconfigure.sh
-COPY images/xyce/scripts/xyce.reconfigure.sh /xyce.reconfigure.sh
-COPY images/xyce/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/xyce,target=/images/xyce \
+    bash /images/xyce/scripts/install.sh
 
 FROM xyce as xyce-xdm
 ARG XYCE_XDM_REPO_URL="https://github.com/Xyce/XDM"
 ARG XYCE_XDM_REPO_COMMIT="Release-2.7.0"
 ARG XYCE_XDM_NAME="xyce-xdm"
-COPY images/xyce-xdm/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/xyce-xdm,target=/images/xyce-xdm \
+    bash /images/xyce-xdm/scripts/install.sh
 
 #######################################################################
 # Compile yosys (part of OpenLane) & ghdl plugin & synlig plugin
@@ -340,8 +341,8 @@ FROM base as yosys
 ARG YOSYS_REPO_URL="https://github.com/YosysHQ/yosys"
 ARG YOSYS_REPO_COMMIT="4a1b5599258881f579a2d95274754bcd8fc171bd"
 ARG YOSYS_NAME="yosys"
-COPY images/yosys/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/yosys,target=/images/yosys \
+    bash /images/yosys/scripts/install.sh
 
 FROM base as ghdl-yosys-plugin
 ARG GHDL_YOSYS_PLUGIN_REPO_URL="https://github.com/ghdl/ghdl-yosys-plugin.git"
@@ -349,16 +350,16 @@ ARG GHDL_YOSYS_PLUGIN_REPO_COMMIT="0c4740a4f8f1e615cc587b3cd3849fa23a623862"
 ARG GHDL_YOSYS_PLUGIN_NAME="ghdl-yosys-plugin"
 COPY --from=yosys	${TOOLS}    ${TOOLS}
 COPY --from=ghdl	${TOOLS}    ${TOOLS}
-COPY images/ghdl-yosys-plugin/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/ghdl-yosys-plugin,target=/images/ghdl-yosys-plugin \
+    bash /images/ghdl-yosys-plugin/scripts/install.sh
 
 FROM base as synlig-yosys-plugin
 ARG SYNLIG_YOSYS_PLUGIN_REPO_URL="https://github.com/chipsalliance/synlig.git"
 ARG SYNLIG_YOSYS_PLUGIN_REPO_COMMIT="d844d8d88520e07fa8c6e400ce5a117f7afee700"
 ARG SYNLIG_YOSYS_PLUGIN_NAME="synlig-yosys-plugin"
 COPY --from=yosys	${TOOLS}    ${TOOLS}
-COPY images/synlig-yosys-plugin/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/synlig-yosys-plugin,target=/images/synlig-yosys-plugin \
+    bash /images/synlig-yosys-plugin/scripts/install.sh
 
 #######################################################################
 # Compile ALIGN-analoglayout
@@ -367,8 +368,8 @@ FROM basepkg as align
 ARG ALIGN_REPO_URL="https://github.com/ALIGN-analoglayout/ALIGN-public.git"
 ARG ALIGN_REPO_COMMIT="d3954af5ba4deab3c7daec4a0e5fd866d65ef75c"
 ARG ALIGN_NAME="align"
-COPY images/align/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/align,target=/images/align \
+    bash /images/align/scripts/install.sh
 
 #######################################################################
 # Compile ALIGN-analoglayout-sky130
@@ -378,8 +379,8 @@ FROM base as align-pdk-sky130
 ARG ALIGN_PDK_SKY130_REPO_URL="https://github.com/iic-jku/ALIGN-pdk-sky130.git"
 ARG ALIGN_PDK_SKY130_REPO_COMMIT="856e568f809c54580e82e077e93aff98c509b451"
 ARG ALIGN_PDK_SKY130_NAME="align-pdk-sky130"
-COPY images/align-pdk-sky130/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/align-pdk-sky130,target=/images/align-pdk-sky130 \
+    bash /images/align-pdk-sky130/scripts/install.sh
 
 #######################################################################
 # Compile different components for the rftoolkit
@@ -390,8 +391,8 @@ ARG RFTK_FASTHENRY_REPO_URL="https://github.com/ediloren/FastHenry2"
 ARG RFTK_FASTHENRY_REPO_COMMIT="363e43ed57ad3b9affa11cba5a86624fad0edaa9"
 ARG RFTK_FASTERCAP_REPO_URL="https://github.com/ediloren/FasterCap.git"
 ARG RFTK_FASTERCAP_REPO_COMMIT="b42179a8fdd25ab42fe45527282b4a738d7e7f87"
-COPY images/rftoolkit/scripts/install.sh install.sh
-RUN bash install.sh
+RUN --mount=type=bind,source=images/rftoolkit,target=/images/rftoolkit \
+    bash /images/rftoolkit/scripts/install.sh
 
 #######################################################################
 # Final output container
