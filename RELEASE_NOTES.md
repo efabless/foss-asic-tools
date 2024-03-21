@@ -4,11 +4,15 @@ This document summarizes the most important changes of the individual releases o
 
 ## 2024.03
 
-* Add `synlig` (SystemVerilog plugin for Yosys)
+* Add `synlig` (SystemVerilog plugin for Yosys).
 * Add Python packages for [IIC-RALF](https://github.com/iic-jku/IIC-RALF).
 * Add simple analog (inverter) and digital (counter) design examples in `/foss/examples`.
 * Add `libman` as a proposal for a design manager.
+* Add `cace` and `schemdraw` packages.
+* Create `KNOWN_ISSUES.md` to document issues and work to do.
 * Update various tool versions.
+* Remove RISC-V toolchain to reduce image size.
+* Cleanup of build process to reduce image size.
 
 ## 2024.01
 
