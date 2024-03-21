@@ -131,7 +131,7 @@ RUN --mount=type=bind,source=images/gds3d,target=/images/gds3d \
 #######################################################################
 FROM base as ghdl
 ARG GHDL_REPO_URL="https://github.com/ghdl/ghdl.git"
-ARG GHDL_REPO_COMMIT="ec7cd59093dd919842c1e8dfb6a4e9bda4d58e7e"
+ARG GHDL_REPO_COMMIT="f845482a2d3d98434d4b051cb2bccefaea73971d"
 ARG GHDL_NAME="ghdl"
 RUN --mount=type=bind,source=images/ghdl,target=/images/ghdl \
     bash /images/ghdl/scripts/install.sh
@@ -141,7 +141,7 @@ RUN --mount=type=bind,source=images/ghdl,target=/images/ghdl \
 #######################################################################
 FROM base as gtkwave
 ARG GTKWAVE_REPO_URL="https://github.com/gtkwave/gtkwave"
-ARG GTKWAVE_REPO_COMMIT="f439c8ff0062d6125cb1c02b6f5bd19ebfae7453"
+ARG GTKWAVE_REPO_COMMIT="c2f445fac971d929e01853fb791258ca1c7b3cfb"
 ARG GTKWAVE_NAME="gtkwave"
 RUN --mount=type=bind,source=images/gtkwave,target=/images/gtkwave \
     bash /images/gtkwave/scripts/install.sh
@@ -231,7 +231,7 @@ RUN --mount=type=bind,source=images/nvc,target=/images/nvc \
 #######################################################################
 FROM basepkg as openlane
 ARG OPENLANE_REPO_URL="https://github.com/The-OpenROAD-Project/OpenLane"
-ARG OPENLANE_REPO_COMMIT="2024.03.12"
+ARG OPENLANE_REPO_COMMIT="2024.03.15"
 ARG OPENLANE_NAME="openlane"
 RUN --mount=type=bind,source=images/openlane,target=/images/openlane \
     bash /images/openlane/scripts/install.sh
@@ -291,7 +291,7 @@ RUN --mount=type=bind,source=images/qucs-s,target=/images/qucs-s \
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="cad562f821a575728e65f5414375c7cb94d2d124"
+ARG SLANG_REPO_COMMIT="f5b96f7544abab2f3bc0454052a24a6a99da7cc0"
 ARG SLANG_NAME="slang"
 RUN --mount=type=bind,source=images/slang,target=/images/slang \
     bash /images/slang/scripts/install.sh
@@ -311,7 +311,7 @@ RUN --mount=type=bind,source=images/verilator,target=/images/verilator \
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="91a2c98fedd18bd7cfceb2ae4139ce4167496c2f"
+ARG XSCHEM_REPO_COMMIT="85abc67c898251fd321c07fd11255447ff860141"
 ARG XSCHEM_NAME="xschem"
 RUN --mount=type=bind,source=images/xschem,target=/images/xschem \
     bash /images/xschem/scripts/install.sh

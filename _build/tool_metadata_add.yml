@@ -15,13 +15,13 @@
   commit: 173da0cc2f3804984b7e77862fbb0c3f4e308a4b
 - name: ghdl
   repo: https://github.com/ghdl/ghdl.git
-  commit: ec7cd59093dd919842c1e8dfb6a4e9bda4d58e7e
+  commit: f845482a2d3d98434d4b051cb2bccefaea73971d
 - name: ghdl-yosys-plugin
   repo: https://github.com/ghdl/ghdl-yosys-plugin.git
   commit: 0c4740a4f8f1e615cc587b3cd3849fa23a623862
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave
-  commit: f439c8ff0062d6125cb1c02b6f5bd19ebfae7453
+  commit: c2f445fac971d929e01853fb791258ca1c7b3cfb
 - name: irsim
   repo: https://github.com/rtimothyedwards/irsim
   commit: a7884acc04cd94017779893d381b7e93d8895587
@@ -51,7 +51,7 @@
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: cad562f821a575728e65f5414375c7cb94d2d124
+  commit: f5b96f7544abab2f3bc0454052a24a6a99da7cc0
 - name: synlig-yosys-plugin
   repo: https://github.com/chipsalliance/synlig.git
   commit: d844d8d88520e07fa8c6e400ce5a117f7afee700
@@ -63,7 +63,7 @@
   commit: "24.1.0"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 91a2c98fedd18bd7cfceb2ae4139ce4167496c2f
+  commit: 85abc67c898251fd321c07fd11255447ff860141
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0
