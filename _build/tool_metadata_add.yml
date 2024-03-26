@@ -51,7 +51,7 @@
   commit: "0.11"
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: f5b96f7544abab2f3bc0454052a24a6a99da7cc0
+  commit: ebe4772ca4e2678ea66e1617bb0877e5d0ef10b6
 - name: synlig-yosys-plugin
   repo: https://github.com/chipsalliance/synlig.git
   commit: d844d8d88520e07fa8c6e400ce5a117f7afee700
@@ -60,10 +60,10 @@
   commit: 7314066deb9543436c76c817015f8554f09efdb0
 - name: qucs-s
   repo: https://github.com/ra3xdh/qucs_s
-  commit: "24.1.0"
+  commit: "24.2.0"
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 85abc67c898251fd321c07fd11255447ff860141
+  commit: fc19e646c7f2e8c83aeb05b7cd792ea0fd6ce4f2
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.8.0

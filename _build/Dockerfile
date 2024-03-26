@@ -281,7 +281,7 @@ RUN --mount=type=bind,source=images/qflow,target=/images/qflow \
 #######################################################################
 FROM base as qucs-s
 ARG QUCS_S_REPO_URL="https://github.com/ra3xdh/qucs_s"
-ARG QUCS_S_REPO_COMMIT="24.1.0"
+ARG QUCS_S_REPO_COMMIT="24.2.0"
 ARG QUCS_S_NAME="qucs-s"
 RUN --mount=type=bind,source=images/qucs-s,target=/images/qucs-s \
     bash /images/qucs-s/scripts/install.sh
@@ -291,7 +291,7 @@ RUN --mount=type=bind,source=images/qucs-s,target=/images/qucs-s \
 #######################################################################
 FROM base as slang
 ARG SLANG_REPO_URL="https://github.com/MikePopoloski/slang.git"
-ARG SLANG_REPO_COMMIT="f5b96f7544abab2f3bc0454052a24a6a99da7cc0"
+ARG SLANG_REPO_COMMIT="ebe4772ca4e2678ea66e1617bb0877e5d0ef10b6"
 ARG SLANG_NAME="slang"
 RUN --mount=type=bind,source=images/slang,target=/images/slang \
     bash /images/slang/scripts/install.sh
@@ -311,7 +311,7 @@ RUN --mount=type=bind,source=images/verilator,target=/images/verilator \
 #######################################################################
 FROM base as xschem
 ARG XSCHEM_REPO_URL="https://github.com/StefanSchippers/xschem.git"
-ARG XSCHEM_REPO_COMMIT="85abc67c898251fd321c07fd11255447ff860141"
+ARG XSCHEM_REPO_COMMIT="fc19e646c7f2e8c83aeb05b7cd792ea0fd6ce4f2"
 ARG XSCHEM_NAME="xschem"
 RUN --mount=type=bind,source=images/xschem,target=/images/xschem \
     bash /images/xschem/scripts/install.sh
